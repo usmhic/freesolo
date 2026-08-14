@@ -23,14 +23,14 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "fumadocs-core": "16.11.5",
-    "fumadocs-mdx": "15.2.0",
-    "fumadocs-ui": "16.11.5",
-    "jose": "^6.2.3",
-    "lucide-react": "^1.24.0",
-    "next": "16.2.10",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "fumadocs-core": "16.14.3",
+    "fumadocs-mdx": "15.2.3",
+    "fumadocs-ui": "16.14.3",
+    "jose": "^6.2.8",
+    "lucide-react": "^1.31.0",
+    "next": "16.3.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-simple-maps": "^3.0.0",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.4.3"
@@ -38,13 +38,13 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/mdx": "^2.0.13",
-    "@types/node": "^26.1.1",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
+    "@types/node": "^26.2.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "@types/react-simple-maps": "^3.0.6",
     "eslint": "^9.39.4",
-    "eslint-config-next": "16.2.10",
-    "postcss": "^8.5.19",
+    "eslint-config-next": "16.3.0",
+    "postcss": "^8.5.26",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   }
