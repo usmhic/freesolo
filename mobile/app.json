@@ -1,0 +1,81 @@
+{
+  "expo": {
+    "name": "FreeSolo",
+    "slug": "freesolo",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "freesolo",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.freesolo.app",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "FreeSolo uses your location to show nearby experiences.",
+        "NSLocationAlwaysUsageDescription": "FreeSolo uses your location to find experiences near you.",
+        "NSCameraUsageDescription": "FreeSolo needs camera access to take photos for your application and profile.",
+        "NSPhotoLibraryUsageDescription": "FreeSolo needs photo library access to upload images.",
+        "NSMicrophoneUsageDescription": "FreeSolo may need microphone access for video uploads."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "package": "com.freesolo.app",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "FreeSolo needs your photos to upload travel images."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "FreeSolo uses your location to show nearby experiences."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#C4A882"
+        }
+      ],
+      "expo-secure-store",
+      "expo-font",
+      "expo-web-browser",
+      [
+        "@stripe/stripe-react-native",
+        {
+          "merchantIdentifier": "merchant.com.freesolo.app",
+          "enableGooglePay": true
+        }
+      ],
+      "expo-sharing",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#0D0D0D"
+        }
+      ],
+      "expo-maps",
+      "expo-status-bar"
+    ]
+  }
+}

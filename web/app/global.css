@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* FreeSolo brand palette — mirrors mobile/src/theme/index.ts `Colors`. */
+:root {
+  --color-fd-background: #F5F0E8;
+  --color-fd-foreground: #0A0A0A;
+  --color-fd-muted: #E6DDD0;
+  --color-fd-muted-foreground: #8A8278;
+  --color-fd-popover: #FFFFFF;
+  --color-fd-popover-foreground: #0A0A0A;
+  --color-fd-card: #FFFFFF;
+  --color-fd-card-foreground: #0A0A0A;
+  --color-fd-border: #E6DDD0;
+  --color-fd-primary: #0A0A0A;
+  --color-fd-primary-foreground: #F5F0E8;
+  --color-fd-secondary: #E6DDD0;
+  --color-fd-secondary-foreground: #0A0A0A;
+  --color-fd-accent: #B8976A30;
+  --color-fd-accent-foreground: #0A0A0A;
+  --color-fd-ring: #B8976A;
+}
+
+.dark {
+  --color-fd-background: #0A0A0A;
+  --color-fd-foreground: #F5F0E8;
+  --color-fd-muted: #1A1713;
+  --color-fd-muted-foreground: #A89F92;
+  --color-fd-popover: #161310;
+  --color-fd-popover-foreground: #F5F0E8;
+  --color-fd-card: #161310;
+  --color-fd-card-foreground: #F5F0E8;
+  --color-fd-border: #2A2520;
+  --color-fd-primary: #F5F0E8;
+  --color-fd-primary-foreground: #0A0A0A;
+  --color-fd-secondary: #1F1B17;
+  --color-fd-secondary-foreground: #F5F0E8;
+  --color-fd-accent: #B8976A30;
+  --color-fd-accent-foreground: #F5F0E8;
+  --color-fd-ring: #B8976A;
+}
+
+@theme inline {
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+/* FreeSoloLogo brand mark — swap light/dark variants with the page theme. */
+.logo-mark-dark {
+  display: none;
+}
+
+.dark .logo-mark-light {
+  display: none;
+}
+
+.dark .logo-mark-dark {
+  display: inline-block;
+}

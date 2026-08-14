@@ -1,0 +1,83 @@
+---
+title: Booking & how charges work
+description: Reserving a seat, the group-confirmation model, and cancelling
+---
+
+Booking on FreeSolo works a little differently from a typical "buy now"
+checkout — and that's deliberate. Group experiences only make sense as a
+*group*, so the whole flow is built around getting enough people in the door
+before anything actually happens.
+
+## The reservation flow
+
+<Steps>
+<Step>
+**Pick your seats.** From an experience page, tap **Reserve a seat**. Choose
+how many spots you need (1 to 4), and optionally leave a short note for the
+host — handy for dietary needs, accessibility questions, or just saying hi
+before you meet in person.
+</Step>
+<Step>
+**Review the price breakdown.** Before you confirm anything, FreeSolo shows you
+exactly what you're paying and — transparently — where that money goes. See
+[Payments](/docs/payments) for the full breakdown.
+</Step>
+<Step>
+**Add your payment details.** You'll move to a secure payment screen (powered
+by Stripe) to authorize the charge.
+</Step>
+<Step>
+**You're reserved.** Your seat is held and your booking shows as **pending** —
+the experience hasn't been charged or confirmed yet, because it's still waiting
+on the rest of the group.
+</Step>
+</Steps>
+
+## Why "pending" comes before "confirmed"
+
+Every experience has a **minimum group size** (`minSeats`) — the headcount the
+host needs to actually run it. Until that minimum is reached:
+
+- Your booking sits as **pending**.
+- You won't be charged yet.
+- You'll get a notification telling you how many more travelers are needed.
+
+The moment enough people have joined to hit the minimum, **everyone's pending
+bookings for that experience confirm at once** — you'll get a *"You're in! 🎒"*
+notification and email, and that's when the charge actually completes.
+
+<Callout type="success">
+  This is the heart of FreeSolo's promise: **you never pay for an experience
+  that doesn't happen.** If the group never fills, your hold is released
+  automatically — no charge, no chasing a refund.
+</Callout>
+
+## Booking statuses, plain and simple
+
+| You'll see… | It means… |
+|---|---|
+| **Pending** | Your seat is held; the group is still filling up |
+| **✓ Confirmed** | Enough people joined — it's happening, and you've been charged |
+| **Done** | The experience has already taken place |
+| **Cancelled** | You (or the host, due to low turnout) called it off |
+
+Your **Profile** tab keeps a running list of your trips under **Upcoming** and
+**Past trips**, so you always know where things stand.
+
+## Changing your mind
+
+Open the booking from your profile and choose **Cancel**. You can cancel any
+**pending** or **confirmed** booking — just add a quick reason so the host
+knows what happened on their end.
+
+- If you haven't been charged yet (still pending and unconfirmed), there's
+  nothing to refund — your hold is simply released.
+- If you *have* been charged (the group already confirmed), FreeSolo
+  automatically processes a refund back to your original payment method.
+
+## A note on seat limits
+
+You can reserve **1 to 4 seats** per booking, and only as many as remain
+available — the seat selector automatically disables options that would
+overbook the group. If an experience is full, you won't be able to reserve at
+all; keep an eye on the feed in case spots open up from a cancellation.
