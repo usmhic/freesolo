@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>4.1.0</version>
+    <version>4.1.1</version>
     <relativePath/>
   </parent>
 
@@ -35,9 +35,9 @@
     <lombok.version>1.18.46</lombok.version>
     <postgresql.version>42.7.13</postgresql.version>
     <jjwt.version>0.13.0</jjwt.version>
-    <stripe.version>33.1.1</stripe.version>
+    <stripe.version>33.4.0</stripe.version>
     <minio.version>9.0.3</minio.version>
-    <springdoc.version>3.0.3</springdoc.version>
+    <springdoc.version>3.1.0</springdoc.version>
   </properties>
 
   <dependencies>
@@ -117,7 +117,7 @@
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp-jvm</artifactId>
-      <version>5.3.2</version>
+      <version>5.5.0</version>
     </dependency>
 
     <!-- OpenAPI / Swagger UI -->
