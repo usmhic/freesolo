@@ -63,7 +63,7 @@ jobs:
       MINIO_BUCKET: freesolo-test
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Generate ephemeral CI credentials
         shell: bash
@@ -112,7 +112,7 @@ jobs:
       digest: ${{ steps.build.outputs.digest }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: docker/setup-buildx-action@v3
 
@@ -165,7 +165,7 @@ jobs:
           - 5432:5432
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Generate ephemeral CI credentials
         shell: bash
