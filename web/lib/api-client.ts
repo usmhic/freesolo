@@ -7,7 +7,7 @@
 
 import { cookies } from "next/headers";
 
-const API_URL = process.env.SPRING_BOOT_API_URL ?? "http://localhost:8080";
+const API_URL = process.env.SPRING_BOOT_API_URL;
 
 export class ApiError extends Error {
   constructor(

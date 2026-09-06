@@ -2,7 +2,7 @@ import { createMDX } from 'fumadocs-mdx/next';
 
 const withMDX = createMDX();
 
-const SPRING_BOOT_API_URL = process.env.SPRING_BOOT_API_URL ?? 'http://localhost:8080';
+const SPRING_BOOT_API_URL = process.env.SPRING_BOOT_API_URL;
 
 /** @type {import('next').NextConfig} */
 const config = {

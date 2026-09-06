@@ -27,13 +27,13 @@ docker compose up --build web
 
 For native web work, run `pnpm install` and `pnpm dev` with `SPRING_BOOT_API_URL` and `JWT_SECRET` exported by your shell.
 
-The Spring Boot API must be running at `SPRING_BOOT_API_URL` (default `http://localhost:8080`).
+The Spring Boot API must be running at `SPRING_BOOT_API_URL`.
 
 ### Required environment variables
 
 | Variable | Description |
 |---|---|
-| `SPRING_BOOT_API_URL` | URL of the Spring Boot API (default: `http://localhost:8080`) |
+| `SPRING_BOOT_API_URL` | URL of the Spring Boot API |
 | `JWT_SECRET` | **Must match** the API's `JWT_SECRET` — used to verify the auth cookie locally |
 
 The shared values used by Compose are documented in the root `.env.example`.
