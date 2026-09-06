@@ -3,6 +3,8 @@ spring:
     name: freesolo-api
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/freesolo}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
