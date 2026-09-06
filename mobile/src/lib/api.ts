@@ -15,11 +15,12 @@ import { expoClient } from "@better-auth/expo/client";
  */
 function resolveApiUrl(): string {
   if (process.env.EXPO_PUBLIC_API_URL) return process.env.EXPO_PUBLIC_API_URL;
+  if (process.env.NODE_ENV === "production") return "https://api.freesolo.osas.cloud";
   const debuggerHost = Constants.expoConfig?.hostUri?.split(":")[0];
   return debuggerHost ? `http://${debuggerHost}:8080` : "http://localhost:8080";
 }
 
-export const API_URL = resolveApiUrl();
+export const API_URL = resolveApiUrl().replace(/\/+$/, "");
 
 const SESSION_KEY = "freesolo_session_token";
 

@@ -116,6 +116,7 @@ tags where applicable.
 - [Web guide](./web/README.md)
 - [Mobile guide](./mobile/README.md)
 - [Engineering standards](./STANDARDS.md)
+- [Package naming](./PACKAGE_NAMING.md) - public package, namespace, and app identifiers
 - [Coding-agent guide](./AGENTS.md)
 - [Security policy](./SECURITY.md)
 

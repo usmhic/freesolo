@@ -1,0 +1,18 @@
+server:
+  error:
+    include-message: never
+    include-binding-errors: never
+  forward-headers-strategy: framework
+
+app:
+  cors:
+    allowed-origins: ${CORS_ORIGINS:https://freesolo.osas.cloud}
+  frontend-url: ${FRONTEND_URL:https://freesolo.osas.cloud}
+  cookie:
+    secure: true
+    same-site: None
+
+logging:
+  level:
+    com.freesolo: INFO
+    org.springframework.security: WARN

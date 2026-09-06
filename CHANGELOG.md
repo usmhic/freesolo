@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Added a documented package-naming contract for Java packages, Maven coordinates, JavaScript app names, and Android identifiers.
+- Standardized the Android application ID to `com.osascloud.freesolo` for Google Play releases.
 - Replaced the API migration history with one multi-schema baseline that creates
   fresh databases and moves legacy `public` tables without dropping their data.
 - Consolidated environment configuration into a single root `.env.example`
