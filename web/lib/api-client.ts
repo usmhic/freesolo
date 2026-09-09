@@ -7,7 +7,7 @@
 
 import { cookies } from "next/headers";
 
-const API_URL = process.env.SPRING_BOOT_API_URL;
+const API_URL = process.env.SPRING_BOOT_API_URL ?? "https://api.freesolo.osas.cloud";
 
 export class ApiError extends Error {
   constructor(

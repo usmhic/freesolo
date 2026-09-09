@@ -2,7 +2,11 @@ import { createMDX } from 'fumadocs-mdx/next';
 
 const withMDX = createMDX();
 
-const SPRING_BOOT_API_URL = process.env.SPRING_BOOT_API_URL;
+// Next.js resolves `rewrites()` at BUILD time and bakes the result into
+// routes-manifest.json, so this must be set as a build arg (see Dockerfile) —
+// a runtime `-e SPRING_BOOT_API_URL` will not reach the /api/** proxy.
+const SPRING_BOOT_API_URL =
+  process.env.SPRING_BOOT_API_URL ?? 'https://api.freesolo.osas.cloud';
 
 /** @type {import('next').NextConfig} */
 const config = {

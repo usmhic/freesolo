@@ -100,7 +100,9 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          build-args: APP_URL=${{ vars.NEXT_PUBLIC_APP_URL || 'http://localhost:3000' }}
+          build-args: |
+            APP_URL=${{ vars.NEXT_PUBLIC_APP_URL || 'https://freesolo.osas.cloud' }}
+            SPRING_BOOT_API_URL=${{ vars.SPRING_BOOT_API_URL || 'https://api.freesolo.osas.cloud' }}
 
   # ── Docker smoke test (PRs only) ─────────────────────────────────────────────
   docker-test:

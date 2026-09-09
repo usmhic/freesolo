@@ -33,7 +33,7 @@ The Spring Boot API must be running at `SPRING_BOOT_API_URL`.
 
 | Variable | Description |
 |---|---|
-| `SPRING_BOOT_API_URL` | URL of the Spring Boot API |
+| `SPRING_BOOT_API_URL` | URL of the Spring Boot API. Defaults to `https://api.freesolo.osas.cloud`. Needed at **build** time (baked into the `/api/**` rewrite) *and* at runtime (server-side calls in `lib/api-client.ts`) |
 | `JWT_SECRET` | **Must match** the API's `JWT_SECRET` — used to verify the auth cookie locally |
 
 The shared values used by Compose are documented in the root `.env.example`.
@@ -49,6 +49,11 @@ The shared values used by Compose are documented in the root `.env.example`.
 ## How the API proxy works
 
 `next.config.mjs` rewrites `/api/:path*` → `${SPRING_BOOT_API_URL}/api/:path*`.
+
+Next.js resolves `rewrites()` when `next build` runs and writes the result into
+`routes-manifest.json`, so the proxy target is fixed at build time. Pass it as a
+Docker `--build-arg`; a runtime `-e SPRING_BOOT_API_URL` only affects the
+server-side client in `lib/api-client.ts`.
 
 This means the browser never needs to know the Spring Boot URL, CORS is transparent, and HttpOnly cookies work seamlessly across both layers.
 
@@ -93,10 +98,14 @@ pnpm types:check   # tsc --noEmit + Fumadocs type gen
 ## Docker
 
 ```bash
-# Build (NEXT_PUBLIC_APP_URL is inlined at build time)
-docker build --build-arg APP_URL=https://freesolo.app -t freesolo-web .
+# Build (NEXT_PUBLIC_APP_URL and the /api/** proxy target are inlined here)
+docker build \
+  --build-arg APP_URL=https://freesolo.osas.cloud \
+  --build-arg SPRING_BOOT_API_URL=https://api.freesolo.osas.cloud \
+  -t freesolo-web .
 
-# Run (supply runtime secrets via environment)
+# Run (supply runtime secrets via environment). SPRING_BOOT_API_URL here only
+# redirects server-side calls; the browser proxy uses the build-arg value.
 docker run -p 3000:3000 \
   -e SPRING_BOOT_API_URL=http://api:8080 \
   -e JWT_SECRET=your-shared-secret-here \

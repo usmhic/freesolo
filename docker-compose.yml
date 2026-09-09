@@ -82,6 +82,10 @@ services:
       context: ./web
       args:
         APP_URL: ${APP_URL:-http://localhost:3000}
+        # Baked into the /api/** rewrite at build time. Points at the public
+        # API host by default; the `environment:` value below only covers
+        # server-side calls, not the browser-facing proxy.
+        SPRING_BOOT_API_URL: ${API_URL:-https://api.freesolo.osas.cloud}
     restart: unless-stopped
     depends_on:
       api:

@@ -1,5 +1,4 @@
 import * as SecureStore from "expo-secure-store";
-import Constants from "expo-constants";
 import { createAuthClient } from "better-auth/client";
 import { emailOTPClient, genericOAuthClient } from "better-auth/client/plugins";
 import { expoClient } from "@better-auth/expo/client";
@@ -7,11 +6,10 @@ import { expoClient } from "@better-auth/expo/client";
 /**
  * Resolves the FreeSolo API base URL.
  *
- * EXPO_PUBLIC_API_URL wins when set (e.g. pointing at a staging/prod deploy).
- * Otherwise, in dev, fall back to the host that's serving the Metro bundler —
- * that's the same machine running `webapi` — so the app connects correctly on
- * the iOS Simulator, an Android emulator, or a physical device on the same LAN
- * without any manual IP juggling.
+ * EXPO_PUBLIC_API_URL wins when set — point it at a local API (e.g.
+ * http://192.168.x.x:8080 so simulators and LAN devices can reach your machine)
+ * or at a staging deploy. Otherwise we use the production API, which is what
+ * every shipped build should talk to.
  */
 function resolveApiUrl(): string {
   if (process.env.EXPO_PUBLIC_API_URL) return process.env.EXPO_PUBLIC_API_URL;

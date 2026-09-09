@@ -65,6 +65,7 @@ values; fill the local copy before starting the stack.
 | Variable | Purpose |
 |---|---|
 | `APP_URL` | Public web URL and allowed browser origin |
+| `API_URL` | Public API URL baked into the web `/api/**` proxy at build time (default `https://api.freesolo.osas.cloud`) |
 | `STORAGE_URL` | Public MinIO URL returned for uploaded files |
 | `ADMIN_EMAIL` | Email that receives the administrator role |
 | `POSTGRES_PASSWORD` | PostgreSQL password |
