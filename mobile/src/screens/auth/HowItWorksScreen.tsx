@@ -21,12 +21,12 @@ const STEPS = [
   {
     icon: "💳", color: "#4A7FA5",
     title: "Pre-pay,\nshow up together",
-    body: "Powered by Stripe. Seats confirm only once the minimum group commits. Your card isn't charged until the experience is confirmed.",
+    body: "Seats confirm only once the minimum group commits. FreeSolo holds the reservation — you settle with the venue directly, on the day.",
   },
   {
     icon: "✈️", color: "#B8976A",
-    title: "Hosts earn\ntravel credits",
-    body: "Hosts earn FreeSolo credits — not cash. Spend them when you travel, joining someone else's world. The cycle keeps going.",
+    title: "Hosts open\ntheir own city",
+    body: "Register a venue, publish an experience, and meet travelers who chose your city. FreeSolo brings you the group; you run the day.",
   },
 ];
 

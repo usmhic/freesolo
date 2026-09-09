@@ -2,6 +2,7 @@ package com.freesolo.api.service;
 
 import com.freesolo.api.config.AppProperties;
 import com.freesolo.api.dto.application.ApplicationResponse;
+import com.freesolo.api.dto.application.ApplicationStatusResponse;
 import com.freesolo.api.dto.application.CreateApplicationRequest;
 import com.freesolo.api.dto.application.ReviewApplicationRequest;
 import com.freesolo.api.dto.common.PageResponse;
@@ -59,6 +60,18 @@ public class ApplicationService {
         emailService.sendApplicationReceived(email);
 
         return ApplicationResponse.from(app);
+    }
+
+    /**
+     * Public status lookup by reference. The reference is the application's
+     * generated UUID, which the applicant receives on submit — unguessable, so
+     * this cannot be used to enumerate who has applied the way an email-keyed
+     * lookup could.
+     */
+    public ApplicationStatusResponse status(String reference) {
+        return applicationRepository.findById(reference)
+                .map(ApplicationStatusResponse::from)
+                .orElseThrow(() -> ApiException.notFound("No application found with that reference"));
     }
 
     public PageResponse<ApplicationResponse> list(String status, int page, int limit) {

@@ -17,8 +17,6 @@ public final class ModuleCatalog {
                     "Experience catalog and reviews", List.of("identity", "partners")),
             new Module("bookings", DomainSchemas.BOOKINGS,
                     "Reservations and lifecycle state", List.of("identity", "experiences")),
-            new Module("billing", DomainSchemas.BILLING,
-                    "Payment methods and host payouts", List.of("identity", "bookings")),
             new Module("engagement", DomainSchemas.ENGAGEMENT,
                     "Notifications and email campaigns", List.of("identity")),
             new Module("media", DomainSchemas.MEDIA,

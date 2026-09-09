@@ -18,8 +18,6 @@ const NOTIF_ICONS: Record<string, string> = {
   booking_pending: "⏳",
   experience_full: "🔥",
   new_review: "⭐",
-  payout: "💸",
-  payout_paid: "💸",
   welcome: "🌍",
   application_reviewed: "📋",
   business_status: "🏢",

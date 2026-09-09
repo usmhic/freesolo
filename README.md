@@ -14,7 +14,7 @@ FreeSolo is a community-led platform for discovering and booking curated solo-tr
 | API | Java 21, Spring Boot, Spring Security, Flyway, PostgreSQL |
 | Web | Next.js, React, TypeScript, Fumadocs |
 | Mobile | Expo and React Native |
-| Storage and payments | MinIO and Stripe |
+| Storage | MinIO (S3-compatible) |
 | Delivery | Docker Compose, GitHub Actions, GHCR |
 
 ## Repository layout
@@ -35,11 +35,14 @@ Docker Compose is the supported full-stack development path. It starts PostgreSQ
 
 ```bash
 cp .env.example .env
-# Fill every empty value in .env before starting Compose.
+# Fill the secrets marked FILL ME at the bottom of .env, then start Compose.
 docker compose up --build
 ```
 
 On PowerShell, use `Copy-Item .env.example .env` for the first command.
+`.env.example` already carries working localhost defaults for everything that
+is not a secret, so the only values you need to invent are the passwords and the
+JWT secret. `.env` is gitignored; never commit it.
 
 | Service | URL |
 |---|---|
@@ -72,7 +75,7 @@ values; fill the local copy before starting the stack.
 | `MINIO_PASSWORD` | MinIO password shared with the API |
 | `JWT_SECRET` | Signing secret shared by the API and web app |
 
-Change every password and secret before deployment. Optional Stripe, Resend, OAuth, and Expo integration variables are documented in [api/README.md](./api/README.md) and can be supplied by the deployment platform without expanding the default local configuration.
+Change every password and secret before deployment. Optional Resend, OAuth, and Expo integration variables are documented in [api/README.md](./api/README.md) and can be supplied by the deployment platform without expanding the default local configuration.
 
 ## Mobile development
 

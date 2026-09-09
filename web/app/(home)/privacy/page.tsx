@@ -40,7 +40,7 @@ export default function PrivacyPage() {
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Create an account (name, email address, profile photo, bio)</li>
             <li>Apply to join as a traveler, host, or business</li>
-            <li>Book or list an experience (booking details, payment information via Stripe)</li>
+            <li>Book or list an experience (booking details, party size, guest notes)</li>
             <li>Communicate with us or other users (messages, reviews, support requests)</li>
           </ul>
           <p>We also collect certain information automatically, including:</p>
@@ -55,7 +55,7 @@ export default function PrivacyPage() {
           <p>We use the information we collect to:</p>
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Operate, maintain, and improve the Service</li>
-            <li>Process bookings, payments, and host payouts</li>
+            <li>Process and manage bookings</li>
             <li>Verify applications from prospective hosts and businesses</li>
             <li>Send booking confirmations, reminders, and other transactional notifications</li>
             <li>Respond to support requests and resolve disputes</li>
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
             </li>
             <li>
               <span className="font-medium text-fd-foreground">Service providers</span> — including
-              Stripe for payment processing and payouts, and email/push notification providers
+              our hosting, storage, and email/push notification providers
             </li>
             <li>
               <span className="font-medium text-fd-foreground">Legal authorities</span> — where

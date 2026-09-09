@@ -57,17 +57,10 @@ public class BookingService {
 
         User user = userRepository.findById(userId).orElseThrow();
 
-        var split = calcSplit(exp.getPrice(), req.seats());
-
         Booking booking = Booking.builder()
                 .user(user)
                 .experience(exp)
                 .seats(req.seats())
-                .amountTotal(split.total())
-                .amountVenue(split.venue())
-                .amountHostCredit(split.credit())
-                .amountPlatform(split.platform())
-                .currency(exp.getCurrency())
                 .guestNote(req.guestNote())
                 .build();
 
@@ -91,16 +84,4 @@ public class BookingService {
         b.setCancelledAt(java.time.LocalDateTime.now());
         bookingRepository.save(b);
     }
-
-    private record SplitResult(double total, double venue, double credit, double platform) {}
-
-    private SplitResult calcSplit(double price, int seats) {
-        double total    = price * seats;
-        double venue    = round(total * 0.70);
-        double credit   = round(total * 0.10);
-        double platform = round(total * 0.20);
-        return new SplitResult(total, venue, credit, platform);
-    }
-
-    private double round(double v) { return Math.round(v * 100.0) / 100.0; }
 }

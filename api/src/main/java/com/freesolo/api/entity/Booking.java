@@ -37,30 +37,6 @@ public class Booking {
     @Builder.Default
     private String status = "pending";
 
-    @Column(name = "amount_total", nullable = false)
-    private double amountTotal;
-
-    @Column(name = "amount_venue", nullable = false)
-    private double amountVenue;
-
-    @Column(name = "amount_host_credit", nullable = false)
-    private double amountHostCredit;
-
-    @Column(name = "amount_platform", nullable = false)
-    private double amountPlatform;
-
-    @Builder.Default
-    private String currency = "EUR";
-
-    @Column(name = "stripe_payment_intent_id", unique = true)
-    private String stripePaymentIntentId;
-
-    @Column(name = "stripe_charge_id")
-    private String stripeChargeId;
-
-    @Column(name = "stripe_paid_at")
-    private LocalDateTime stripePaidAt;
-
     @Column(name = "guest_note")
     private String guestNote;
 
@@ -92,9 +68,6 @@ public class Booking {
 
     @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
     private Review review;
-
-    @OneToOne(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Payout payout;
 
     @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

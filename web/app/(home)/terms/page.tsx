@@ -46,22 +46,13 @@ export default function TermsPage() {
         <Section title="3. Bookings & cancellations">
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Booking an experience reserves a seat subject to the host&rsquo;s availability and the details shown at checkout.</li>
-            <li>Cancellation terms (including any refund eligibility) are set per experience and shown before you confirm a booking.</li>
-            <li>Hosts may cancel an experience (e.g. for low attendance or unforeseen circumstances); affected travelers will be notified and refunded according to our policies.</li>
+            <li>Cancellation terms are set per experience and shown before you confirm a booking.</li>
+            <li>Hosts may cancel an experience (e.g. for low attendance or unforeseen circumstances); affected travelers will be notified.</li>
             <li>FreeSolo is a platform connecting travelers and hosts — we are not the operator of any experience and are not responsible for how a host conducts it.</li>
           </ul>
         </Section>
 
-        <Section title="4. Payments & payouts">
-          <ul className="list-disc space-y-1.5 pl-5">
-            <li>Payments are processed securely through Stripe. By making a booking, you authorize FreeSolo and Stripe to charge your selected payment method.</li>
-            <li>FreeSolo retains a platform fee from each booking; the remaining amount is credited to the host and paid out via Stripe Connect.</li>
-            <li>Travel credits, where issued, are non-transferable and have no cash value except as expressly stated.</li>
-            <li>You are responsible for any taxes associated with your use of the Service.</li>
-          </ul>
-        </Section>
-
-        <Section title="5. User conduct">
+        <Section title="4. User conduct">
           <p>You agree not to:</p>
           <ul className="list-disc space-y-1.5 pl-5">
             <li>Violate any applicable law or the rights of others</li>
@@ -76,7 +67,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="6. Reviews & content">
+        <Section title="5. Reviews & content">
           <p>
             By submitting reviews, photos, or other content (&ldquo;User Content&rdquo;), you
             grant FreeSolo a non-exclusive, worldwide, royalty-free license to use, display, and
@@ -85,7 +76,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="7. Disclaimers">
+        <Section title="6. Disclaimers">
           <p>
             The Service is provided &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without
             warranties of any kind, whether express or implied. FreeSolo does not guarantee that
@@ -94,7 +85,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="8. Limitation of liability">
+        <Section title="7. Limitation of liability">
           <p>
             To the fullest extent permitted by law, FreeSolo shall not be liable for any
             indirect, incidental, special, consequential, or punitive damages, or any loss of
@@ -103,7 +94,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="9. Termination">
+        <Section title="8. Termination">
           <p>
             You may stop using the Service and close your account at any time. We may suspend or
             terminate your access to the Service if you breach these Terms or if we reasonably
@@ -111,7 +102,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="10. Changes to these terms">
+        <Section title="9. Changes to these terms">
           <p>
             We may update these Terms from time to time. If we make material changes, we will
             notify you by posting the updated Terms on this page and updating the &ldquo;Last
@@ -120,7 +111,7 @@ export default function TermsPage() {
           </p>
         </Section>
 
-        <Section title="11. Contact us">
+        <Section title="10. Contact us">
           <p>
             Questions about these Terms? Reach us at{" "}
             <a href="mailto:support@freesolo.app" className="font-medium text-fd-foreground underline underline-offset-4">

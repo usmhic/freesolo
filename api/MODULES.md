@@ -13,7 +13,6 @@ separate deployments before they are useful.
 | Partners | `partners` | `fs_businesses`, `fs_applications` | Identity |
 | Experiences | `experiences` | `fs_experiences`, `fs_reviews` | Identity, Partners |
 | Bookings | `bookings` | `fs_bookings` | Identity, Experiences |
-| Billing | `billing` | `fs_payment_methods`, `fs_payouts` | Identity, Bookings |
 | Engagement | `engagement` | `fs_notifications`, `fs_email_campaigns` | Identity |
 | Media | `media` | `fs_uploads`, `fs_event_photos` | Identity, Experiences, Bookings |
 
@@ -33,7 +32,7 @@ schema or search-path dependency.
 - Cross-schema foreign keys are intentional while the modules share one
   database. They protect data integrity and make a later service extraction an
   explicit design decision rather than an accidental split.
-- Email, push, Stripe, and object-storage adapters remain infrastructure behind
+- Email, push, and object-storage adapters remain infrastructure behind
   the owning application service; they are not separate public APIs.
 
 ## Fresh baseline and existing data

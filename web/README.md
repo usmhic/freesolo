@@ -70,7 +70,6 @@ This means the browser never needs to know the Spring Boot URL, CORS is transpar
 | `/admin/experiences` | Experience management |
 | `/admin/bookings` | Booking management |
 | `/admin/reviews` | Review moderation |
-| `/admin/payouts` | Payout processing |
 | `/admin/users` | User management |
 | `/admin/marketing` | Email campaign management |
 | `/admin/media` | Media / upload management |

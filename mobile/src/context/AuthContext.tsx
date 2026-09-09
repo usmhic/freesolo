@@ -17,7 +17,6 @@ export interface User {
   phone?: string;
   role: string;
   status: string;
-  travelCredits: number;
   bio?: string;
   countriesVisited?: number;
   marketingOptIn?: boolean;

@@ -21,7 +21,6 @@ import BusinessDashboardScreen from "../screens/business/BusinessDashboardScreen
 import FeedScreen from "../screens/traveler/FeedScreen";
 import ExperienceDetailScreen from "../screens/traveler/ExperienceDetailScreen";
 import BookingScreen from "../screens/traveler/BookingScreen";
-import PaymentScreen from "../screens/traveler/PaymentScreen";
 import ConfirmedScreen from "../screens/traveler/ConfirmedScreen";
 import CreateExperienceScreen from "../screens/traveler/CreateExperienceScreen";
 import ProfileScreen from "../screens/traveler/ProfileScreen";
@@ -128,7 +127,6 @@ export default function AppNavigator() {
       {/* Modal-style screens */}
       <Stack.Screen name="ExperienceDetail"    component={ExperienceDetailScreen}   options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="Booking"             component={BookingScreen}            options={{ animation: "slide_from_bottom" }} />
-      <Stack.Screen name="Payment"             component={PaymentScreen}            options={{ animation: "slide_from_bottom" }} />
       <Stack.Screen name="Confirmed"           component={ConfirmedScreen}          options={{ animation: "fade" }} />
       <Stack.Screen name="CreateExperience"    component={CreateExperienceScreen} />
       <Stack.Screen name="Notifications"       component={NotificationsScreen} />

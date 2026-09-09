@@ -14,7 +14,6 @@ public record UserResponse(
         String bio,
         String role,
         String status,
-        double travelCredits,
         int countriesVisited,
         boolean marketingOptIn,
         LocalDateTime createdAt
@@ -23,7 +22,7 @@ public record UserResponse(
         return new UserResponse(
                 u.getId(), u.getEmail(), u.isEmailVerified(),
                 u.getName(), u.getImage(), u.getPhone(), u.getBio(),
-                u.getRole(), u.getStatus(), u.getTravelCredits(),
+                u.getRole(), u.getStatus(),
                 u.getCountriesVisited(), u.isMarketingOptIn(), u.getCreatedAt()
         );
     }

@@ -47,9 +47,6 @@ app:
     secure: ${COOKIE_SECURE:false}
     same-site: ${COOKIE_SAME_SITE:Lax}
 
-  stripe:
-    secret-key: ${STRIPE_SECRET_KEY:}
-    webhook-secret: ${STRIPE_WEBHOOK_SECRET:}
 
   resend:
     api-key: ${RESEND_API_KEY:}

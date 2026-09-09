@@ -4,7 +4,7 @@ import { setBusinessStatus, updateBusiness, deleteBusiness } from "../../actions
 import { ActionSelect } from "../../_components/action-select";
 import { ActionButton } from "../../_components/action-button";
 import { EditModal } from "../../_components/edit-modal";
-import { Badge, Card, EmptyState, PageHeader, Table, Td, Th, fmtDateTime } from "../../_components/ui";
+import { Card, EmptyState, PageHeader, Table, Td, Th, fmtDateTime } from "../../_components/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -39,7 +39,6 @@ export default async function AdminBusinessesPage() {
               <Th>Owner</Th>
               <Th>Location</Th>
               <Th>Experiences</Th>
-              <Th>Stripe</Th>
               <Th>Status</Th>
               <Th>Created</Th>
               <Th>Actions</Th>
@@ -58,13 +57,6 @@ export default async function AdminBusinessesPage() {
                 </Td>
                 <Td className="text-fd-muted-foreground">{b.city}, {b.country}</Td>
                 <Td>{b._count?.experiences ?? 0}</Td>
-                <Td>
-                  {b.stripeAccountId ? (
-                    <Badge className="bg-emerald-500/10 text-emerald-600 ring-emerald-500/20 dark:text-emerald-400">connected</Badge>
-                  ) : (
-                    <Badge className="bg-zinc-500/10 text-zinc-600 ring-zinc-500/20 dark:text-zinc-400">none</Badge>
-                  )}
-                </Td>
                 <Td>
                   <ActionSelect
                     value={b.status}

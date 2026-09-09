@@ -1,6 +1,6 @@
 # FreeSolo — Expo React Native App
 
-**Expo SDK 57 · React Navigation · Stripe · Push Notifications · TypeScript**
+**Expo SDK 57 · React Navigation · Push Notifications · TypeScript**
 
 The mobile client for the FreeSolo platform. Hits the Spring Boot REST API directly using a `Bearer` JWT token stored securely on-device.
 
@@ -20,7 +20,6 @@ Set mobile build values in your shell or CI environment; the repository does not
 | Variable | Description |
 |---|---|
 | `EXPO_PUBLIC_API_URL` | Spring Boot API URL. Leave blank on simulator (auto-detected). Set to your machine's LAN IP (e.g. `http://192.168.1.x:8080`) on a physical device, or your production URL in releases. |
-| `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY` | Stripe publishable key — `pk_test_...` in development. |
 
 > **Physical device tip:** set `EXPO_PUBLIC_API_URL` to your machine's local IP, not `localhost`.
 
@@ -28,7 +27,6 @@ Set mobile build values in your shell or CI environment; the repository does not
 
 - [ ] Spring Boot API running (see `api/README.md`)
 - [ ] `EXPO_PUBLIC_API_URL` set if on a physical device
-- [ ] `EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY` set in your shell or CI environment
 
 ## Tech stack
 
@@ -36,7 +34,6 @@ Set mobile build values in your shell or CI environment; the repository does not
 |---|---|
 | Navigation | `@react-navigation/native` + native-stack + bottom-tabs |
 | Auth | JWT stored in `expo-secure-store` — issued by the Spring Boot API |
-| Payments | `@stripe/stripe-react-native` |
 | Push notifications | `expo-notifications` |
 | Image upload | `expo-image-picker` → `POST /api/uploads` |
 | Fonts | Playfair Display + DM Sans via `expo-font` |
@@ -65,27 +62,26 @@ The app signs users in via `POST /api/auth/otp/verify` (or OAuth). Spring Boot r
 | `ExploreMapScreen` | Map with GPS and venue markers |
 | `CreateExperienceScreen` | Host creates an experience |
 | `NotificationsScreen` | Push notifications with unread badge |
-| `ProfileScreen` | Avatar, travel credits, bookings, sign-out |
+| `ProfileScreen` | Avatar, bookings, sign-out |
 
 ### Modal screens
 | Screen | Description |
 |---|---|
 | `ExperienceDetailScreen` | Detail: map, reviews, host card, CTA |
-| `BookingScreen` | Seat selector, guest note, price breakdown |
-| `PaymentScreen` | Stripe PaymentSheet |
+| `BookingScreen` | Seat selector, guest note, what the venue charges |
 | `ConfirmedScreen` | Animated booking confirmation |
 
 ### Business flow
 | Screen | Description |
 |---|---|
 | `BusinessOnboardingScreen` | Venue registration |
-| `BusinessDashboardScreen` | Bookings, revenue stats |
+| `BusinessDashboardScreen` | Bookings and listing stats |
 
 ## Project structure
 
 ```
 mobile/
-├── App.tsx                          Root — StripeProvider + AuthProvider + Navigation
+├── App.tsx                          Root — AuthProvider + Navigation
 └── src/
     ├── theme/index.ts               Design tokens (colors, fonts, spacing)
     ├── components/                  Shared UI (Button, Card, Field, Chip…)
@@ -100,11 +96,14 @@ mobile/
         └── business/
 ```
 
-## Stripe payment flow
+## Booking flow
 
-1. User taps "Reserve" → `POST /api/stripe/payment-intent` → returns `clientSecret`
-2. App presents `PaymentScreen` with Stripe PaymentSheet
-3. On success, Stripe webhook fires → Spring Boot confirms booking → push notification sent
+1. User taps "Reserve my seat" → `POST /api/experiences/{id}/book` → returns the booking
+2. The app shows `ConfirmedScreen`; the booking sits as **pending**
+3. Once the experience reaches its minimum group size, the API confirms every pending booking
+   at once and sends a push notification
+
+FreeSolo does not take payment. Travelers settle with the venue directly, on the day.
 
 ## Push notifications
 

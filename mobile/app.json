@@ -59,13 +59,6 @@
       "expo-secure-store",
       "expo-font",
       "expo-web-browser",
-      [
-        "@stripe/stripe-react-native",
-        {
-          "merchantIdentifier": "merchant.com.freesolo.app",
-          "enableGooglePay": true
-        }
-      ],
       "expo-sharing",
       [
         "expo-splash-screen",

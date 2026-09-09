@@ -16,12 +16,9 @@ import {
 } from "@expo-google-fonts/dm-sans";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { StripeProvider } from "@stripe/stripe-react-native";
 import { AuthProvider } from "./src/context/AuthContext";
 import AppNavigator from "./src/navigation/AppNavigator";
 import { Colors } from "./src/theme";
-
-const STRIPE_KEY = process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -43,7 +40,7 @@ export default function App() {
     );
   }
 
-  const app = (
+  return (
     <GestureHandlerRootView style={styles.root}>
       <SafeAreaProvider>
         <AuthProvider>
@@ -53,17 +50,6 @@ export default function App() {
         </AuthProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
-  );
-
-  if (!STRIPE_KEY) return app;
-
-  return (
-    <StripeProvider
-      publishableKey={STRIPE_KEY}
-      merchantIdentifier="merchant.com.freesolo.app"
-    >
-      {app}
-    </StripeProvider>
   );
 }
 

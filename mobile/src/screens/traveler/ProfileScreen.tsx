@@ -123,28 +123,11 @@ export default function ProfileScreen({ navigation }: any) {
         </LinearGradient>
 
         <View style={styles.body}>
-          {/* Credits card */}
-          <Card style={styles.creditsCard}>
-            <View style={styles.creditsRow}>
-              <View>
-                <Text style={styles.creditsLabel}>Travel Credits</Text>
-                <Text style={styles.creditsAmount}>€{user.travelCredits.toFixed(0)}</Text>
-                <Text style={styles.creditsSub}>Earned from hosting</Text>
-              </View>
-              <Text style={{ fontSize: 40 }}>✈️</Text>
-            </View>
-            <View style={styles.creditsBarBg}>
-              <View style={[styles.creditsBarFill, { width: `${Math.min(user.travelCredits / 500 * 100, 100)}%` }]} />
-            </View>
-            <Text style={styles.creditsBarLabel}>{user.travelCredits}/500 to next reward tier</Text>
-          </Card>
-
           {/* Stats */}
           <View style={styles.statsRow}>
             {[
               { label: "Bookings", value: bookings.length },
               { label: "Countries", value: user.countriesVisited ?? 0 },
-              { label: "Credits €", value: user.travelCredits.toFixed(0) },
             ].map(s => (
               <View key={s.label} style={styles.statBox}>
                 <Text style={styles.statVal}>{s.value}</Text>
@@ -283,14 +266,6 @@ const styles = StyleSheet.create({
   statusPending: { backgroundColor: "rgba(196,168,130,0.2)" },
   statusText: { fontFamily: Fonts.bodySemiBold, fontSize: 12, color: Colors.paper },
   body: { paddingHorizontal: Spacing.lg },
-  creditsCard: { marginTop: -14, padding: 20, marginBottom: Spacing.md, ...Shadow.md },
-  creditsRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 },
-  creditsLabel: { fontFamily: Fonts.bodySemiBold, fontSize: 10, letterSpacing: 0.8, textTransform: "uppercase", color: Colors.clay, marginBottom: 4 },
-  creditsAmount: { fontFamily: Fonts.display, fontSize: 36, color: Colors.ink },
-  creditsSub: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted },
-  creditsBarBg: { height: 6, backgroundColor: Colors.sand, borderRadius: 3, overflow: "hidden", marginBottom: 4 },
-  creditsBarFill: { height: "100%", backgroundColor: Colors.clay, borderRadius: 3 },
-  creditsBarLabel: { fontFamily: Fonts.body, fontSize: 10, color: Colors.muted },
   statsRow: { flexDirection: "row", gap: 10, marginBottom: Spacing.md },
   statBox: { flex: 1, backgroundColor: Colors.white, borderRadius: Radius.md, padding: 14, alignItems: "center", ...Shadow.sm },
   statVal: { fontFamily: Fonts.display, fontSize: 22, color: Colors.ink },

@@ -16,15 +16,14 @@ Browser / Mobile app
 │   - Admin UI      │─────────────── proxies /api/** ──────────────▶  Spring Boot (api)  :8080
 │   - JWT cookie    │                                                  - REST API
 └───────────────────┘                                                  - Auth (JWT + OAuth)
-                                                                       - Stripe payments
 Mobile (Expo)  ──────────────────── Bearer token ────────────────────▶ - MinIO uploads
                                                                        - Resend email
                                                                        - PostgreSQL
 ```
 
 - **`api/`** is the single source of truth for data, auth, and business logic — a Spring Boot
-  REST API backed by PostgreSQL via Spring Data JPA. It issues JWTs, integrates Stripe for
-  payments, and stores uploads in MinIO/S3.
+  REST API backed by PostgreSQL via Spring Data JPA. It issues JWTs and stores uploads in
+  MinIO/S3.
 - **`web/`** does not talk to the database directly. It **proxies** `/api/**` requests to the
   Spring Boot API and verifies the JWT cookie locally (using the same `JWT_SECRET` as the API) to
   avoid a network round-trip on every request. Server components and the admin UI still call the
@@ -32,11 +31,76 @@ Mobile (Expo)  ──────────────────── Bear
 - **`mobile/`** calls the Spring Boot API directly with a Bearer token — there's no proxy layer on
   the mobile side since there's no browser cookie to manage.
 
+## Repository structure
+
+```
+freesolo/
+├── api/                              Spring Boot API — sole owner of the schema, auth, and rules
+│   ├── pom.xml                       Maven build and dependency pins
+│   ├── MODULES.md                    Module ↔ schema ownership and allowed dependencies
+│   └── src/main/
+│       ├── java/com/freesolo/api/
+│       │   ├── FreeSoloApiApplication.java   Spring Boot entry point
+│       │   ├── config/               Security, CORS, OpenAPI, AppProperties, DatabaseCreator
+│       │   ├── module/               DomainSchemas + ModuleCatalog — the ownership map in code
+│       │   ├── controller/           REST controllers — request/response mapping only
+│       │   ├── dto/                  Request/response records, grouped by domain
+│       │   ├── entity/               JPA entities — the schema
+│       │   ├── repository/           Spring Data JPA repositories
+│       │   ├── service/              Business logic
+│       │   ├── security/             JWT issuance/validation, auth filter, principal
+│       │   └── exception/            ApiException and the global handler
+│       └── resources/
+│           ├── application.yml       Non-secret defaults, populated from env vars
+│           └── db/migration/         Flyway migrations (V1 is the modular baseline)
+│
+├── web/                              Next.js App Router — public site, admin UI, API proxy
+│   ├── app/
+│   │   ├── (home)/                   Landing, privacy, terms
+│   │   ├── admin/                    Admin dashboard + sign-in + server actions
+│   │   │   └── (dashboard)/          applications, businesses, experiences, bookings,
+│   │   │                             reviews, users, media, marketing, api-docs
+│   │   ├── docs/                     Fumadocs help center (end-user, not developer docs)
+│   │   └── og/                       Open Graph image generation
+│   ├── content/docs/                 MDX source for the help center
+│   ├── lib/                          API client, auth + admin guards, route config, validation
+│   └── components/                   Shared UI
+│
+├── mobile/                           Expo app — calls the API directly with a Bearer token
+│   ├── App.tsx                       Root — AuthProvider + NavigationContainer
+│   └── src/
+│       ├── navigation/               Stack + bottom-tab navigators
+│       ├── screens/                  auth/, traveler/, business/, shared/
+│       ├── context/                  AuthContext — session, sign-in, sign-out
+│       ├── lib/                      apiFetch() with Bearer injection, push registration
+│       ├── components/               Shared native UI (Button, Card, Field, Chip…)
+│       └── theme/                    Design tokens (colors, fonts, spacing)
+│
+├── docker-compose.yml                The full local stack: Postgres, MinIO, api, web
+├── .env                              Local development values — gitignored, ready to run
+├── .env.example                      The committed reference for every variable
+├── ARCHITECTURE.md                   This file — how the system fits together and why
+├── AGENTS.md                         Condensed working map for automated contributors
+├── STANDARDS.md                      Repository-wide conventions
+├── CONTRIBUTING.md                   How to set up, change, verify, and submit
+└── PACKAGE_NAMING.md                 Naming rules for published artifacts
+```
+
+Three rules explain most of the layout:
+
+1. **One owner per concern.** The schema, auth, and business rules live only in
+   `api/`. `web/` and `mobile/` hold presentation and client-side state.
+2. **A module owns a schema.** `module/DomainSchemas.java` names the schemas and
+   `module/ModuleCatalog.java` records who may depend on whom — both are code, so
+   they cannot drift silently from the documentation.
+3. **Layers point inward.** `controller/` depends on `service/`, which depends on
+   `repository/` and `entity/`. Nothing flows the other way.
+
 ## Modular monolith and schemas
 
 The API is one deployable and one public contract, but its database is divided
 into domain-owned schemas: `identity`, `partners`, `experiences`, `bookings`,
-`billing`, `engagement`, and `media`. The ownership and allowed dependency
+`engagement`, and `media`. The ownership and allowed dependency
 direction are defined in [`api/MODULES.md`](./api/MODULES.md).
 
 Controllers expose the unified `/api/**` surface. Domain services communicate
@@ -45,27 +109,6 @@ calls. Cross-schema foreign keys preserve integrity and make module dependencies
 visible. A module can later be extracted behind a service/event contract without
 changing how clients reach the API.
 
-## Directory purposes
-
-| Directory | Responsibility |
-|---|---|
-| `api/src/main/java/com/freesolo/api/config/` | Spring configuration — security, CORS, beans |
-| `api/src/main/java/com/freesolo/api/module/` | Schema constants and the module ownership/dependency catalog |
-| `api/src/main/java/com/freesolo/api/controller/` | REST controllers — request/response mapping |
-| `api/src/main/java/com/freesolo/api/dto/` | Request/response records exposed at the API boundary |
-| `api/src/main/java/com/freesolo/api/entity/` | JPA entities — the schema |
-| `api/src/main/java/com/freesolo/api/repository/` | Spring Data JPA repositories |
-| `api/src/main/java/com/freesolo/api/security/` | JWT issuance/validation, auth filter, principal |
-| `api/src/main/java/com/freesolo/api/service/` | Business logic |
-| `api/src/main/resources/application.yml` | Configuration, populated from environment variables |
-| `web/app/(home)/` | Public landing and marketing pages |
-| `web/app/admin/` | Admin dashboard (server components, calls the API with elevated auth) |
-| `web/app/docs/` | Fumadocs help center — end-user documentation, not developer docs |
-| `web/lib/` | API client, auth helpers, admin guards |
-| `mobile/src/screens/` | App screens |
-| `mobile/src/lib/` | Typed API client, auth, navigation helpers |
-| `ARCHITECTURE.md` | This file — engineering-facing architecture documentation |
-
 ## Data flow
 
 1. A client (web via proxy, or mobile directly) calls a Spring Boot REST endpoint.
@@ -73,8 +116,8 @@ changing how clients reach the API.
    read/write via JPA.
 3. The web app additionally verifies the JWT cookie itself (shared-secret HMAC check) before
    proxying, so it can redirect unauthenticated users without waiting on the API.
-4. File uploads and Stripe webhooks are handled entirely on the API side; the web app never talks
-   to MinIO or Stripe directly.
+4. File uploads are handled entirely on the API side; the web app never talks to MinIO
+   directly.
 
 ## Database startup
 

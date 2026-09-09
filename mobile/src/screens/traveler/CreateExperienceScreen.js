@@ -91,7 +91,7 @@ export default function CreateExperienceScreen({ navigation }) {
         />
 
         <InfoBox>
-          You earn FreeSolo travel credits when travelers book your experience — redeemable when you travel.
+          Travelers reserve through FreeSolo and pay you directly at your venue on the day.
         </InfoBox>
 
         {/* Emoji picker */}

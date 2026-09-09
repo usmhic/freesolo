@@ -65,9 +65,6 @@ public class Business {
     @Builder.Default
     private String status = "pending";
 
-    @Column(name = "stripe_account_id")
-    private String stripeAccountId;
-
     @Column(name = "created_at", updatable = false)
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();

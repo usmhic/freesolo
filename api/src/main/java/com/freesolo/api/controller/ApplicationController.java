@@ -1,6 +1,7 @@
 package com.freesolo.api.controller;
 
 import com.freesolo.api.dto.application.ApplicationResponse;
+import com.freesolo.api.dto.application.ApplicationStatusResponse;
 import com.freesolo.api.dto.application.CreateApplicationRequest;
 import com.freesolo.api.dto.common.PageResponse;
 import com.freesolo.api.service.ApplicationService;
@@ -21,6 +22,12 @@ public class ApplicationController {
     @PostMapping
     public ResponseEntity<ApplicationResponse> submit(@Valid @RequestBody CreateApplicationRequest req) {
         return ResponseEntity.status(201).body(applicationService.submit(req));
+    }
+
+    /** GET /api/applications/{reference}/status — public lookup by reference */
+    @GetMapping("/{reference}/status")
+    public ResponseEntity<ApplicationStatusResponse> status(@PathVariable String reference) {
+        return ResponseEntity.ok(applicationService.status(reference));
     }
 
     /** GET /api/applications — admin only */

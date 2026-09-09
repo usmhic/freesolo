@@ -9,6 +9,5 @@ public record AdminUpdateUserRequest(
         @NotBlank @Email String email,
         String phone,
         String bio,
-        @PositiveOrZero double travelCredits,
         @PositiveOrZero int countriesVisited
 ) {}

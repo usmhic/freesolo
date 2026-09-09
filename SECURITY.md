@@ -19,5 +19,5 @@ may require an upgrade.
 ## Deployment notes
 
 Use HTTPS, keep PostgreSQL and MinIO private, rotate all local sample
-credentials, verify Stripe webhooks, and store production secrets outside the
+credentials, and store production secrets outside the
 repository.

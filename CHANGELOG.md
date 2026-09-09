@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - A documented modular API architecture with schema ownership for identity,
-  partners, experiences, bookings, billing, engagement, and media.
+  partners, experiences, bookings, engagement, and media.
 - Shared engineering standards, coding-agent guidance, Dependabot configuration,
   and a private security-reporting path.
 - Initial public documentation pass: `LICENSE`, `CODE_OF_CONDUCT.md`, issue/PR

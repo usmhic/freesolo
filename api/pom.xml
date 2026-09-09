@@ -35,7 +35,6 @@
     <lombok.version>1.18.46</lombok.version>
     <postgresql.version>42.7.13</postgresql.version>
     <jjwt.version>0.13.0</jjwt.version>
-    <stripe.version>33.1.1</stripe.version>
     <minio.version>9.0.3</minio.version>
     <springdoc.version>3.0.3</springdoc.version>
   </properties>
@@ -97,13 +96,6 @@
       <artifactId>jjwt-jackson</artifactId>
       <version>${jjwt.version}</version>
       <scope>runtime</scope>
-    </dependency>
-
-    <!-- Stripe -->
-    <dependency>
-      <groupId>com.stripe</groupId>
-      <artifactId>stripe-java</artifactId>
-      <version>${stripe.version}</version>
     </dependency>
 
     <!-- MinIO -->

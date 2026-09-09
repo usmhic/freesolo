@@ -84,7 +84,6 @@ export default async function AdminUsersPage({
             <tr className="border-b border-fd-border">
               <Th>User</Th>
               <Th>Activity</Th>
-              <Th>Credits</Th>
               <Th>Role</Th>
               <Th>Status</Th>
               <Th>Joined</Th>
@@ -103,7 +102,6 @@ export default async function AdminUsersPage({
                   <Td className="text-xs text-fd-muted-foreground">
                     {u._count?.bookings ?? 0} bookings · {u._count?.experiences ?? 0} hosted · {u._count?.businesses ?? 0} businesses
                   </Td>
-                  <Td className="tabular-nums">{u.travelCredits ?? 0}</Td>
                   <Td>
                     <ActionSelect
                       value={u.role}
@@ -135,7 +133,6 @@ export default async function AdminUsersPage({
                           { name: "email", label: "Email" },
                           { name: "phone", label: "Phone" },
                           { name: "bio", label: "Bio", type: "textarea", rows: 3 },
-                          { name: "travelCredits", label: "Travel credits", type: "number" },
                           { name: "countriesVisited", label: "Countries visited", type: "number" },
                         ]}
                         initialValues={{
@@ -143,7 +140,6 @@ export default async function AdminUsersPage({
                           email: u.email ?? "",
                           phone: u.phone ?? "",
                           bio: u.bio ?? "",
-                          travelCredits: u.travelCredits ?? 0,
                           countriesVisited: u.countriesVisited ?? 0,
                         }}
                         action={updateUser.bind(null, u.id)}

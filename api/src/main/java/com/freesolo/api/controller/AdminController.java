@@ -37,7 +37,6 @@ public class AdminController {
     private final ExperienceRepository experienceRepository;
     private final BookingRepository bookingRepository;
     private final ReviewRepository reviewRepository;
-    private final PayoutRepository payoutRepository;
     private final UploadRepository uploadRepository;
     private final EventPhotoRepository eventPhotoRepository;
     private final EmailCampaignRepository emailCampaignRepository;
@@ -59,15 +58,13 @@ public class AdminController {
 
     private Map<String, Object> adminDashboard() {
         LocalDateTime monthStart = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-        List<String> revenueStatuses = List.of("confirmed", "completed");
+        List<String> bookedStatuses = List.of("confirmed", "completed");
 
         long totalUsers          = userRepository.count();
         long pendingApplications = applicationRepository.countByStatus("pending");
         long pendingBusinesses   = businessRepository.countByStatus("pending");
         long activeExperiences   = experienceRepository.countByStatus("active");
-        long pendingPayoutsCount = payoutRepository.countByStatus("pending");
-        Double pendingPayoutsAmt = payoutRepository.sumAmountByStatus("pending");
-        Double monthRevenue      = bookingRepository.sumAmountTotalSince(revenueStatuses, monthStart);
+        long monthBookings       = bookingRepository.countByStatusesSince(bookedStatuses, monthStart);
 
         List<Map<String, Object>> recentApps = applicationRepository
                 .findAll(PageRequest.of(0, 5, Sort.by("createdAt").descending()))
@@ -85,9 +82,7 @@ public class AdminController {
         result.put("pendingApplications", pendingApplications);
         result.put("pendingBusinesses", pendingBusinesses);
         result.put("activeExperiences", activeExperiences);
-        result.put("pendingPayoutsCount", pendingPayoutsCount);
-        result.put("pendingPayoutsAmount", pendingPayoutsAmt != null ? pendingPayoutsAmt : 0.0);
-        result.put("monthRevenue", monthRevenue != null ? monthRevenue : 0.0);
+        result.put("monthBookings", monthBookings);
         result.put("recentApplications", recentApps);
         result.put("recentBookings", recentBookings);
         result.put("recentReviews", recentReviews);
@@ -102,14 +97,12 @@ public class AdminController {
             return r;
         }
         LocalDateTime monthStart = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
-        List<String> revenueStatuses = List.of("confirmed", "completed");
+        List<String> bookedStatuses = List.of("confirmed", "completed");
 
         Business business = businessRepository.findById(businessId)
                 .orElseThrow(() -> ApiException.notFound("Business not found"));
         long activeExperiences   = experienceRepository.countByStatusAndBusinessId("active", businessId);
-        Double monthRevenue      = bookingRepository.sumAmountTotalForBusinessSince(revenueStatuses, businessId, monthStart);
-        long pendingPayoutsCount = payoutRepository.countByStatusAndHostId("pending", userId);
-        Double pendingPayoutsAmt = payoutRepository.sumAmountByStatusAndHostId("pending", userId);
+        long monthBookings       = bookingRepository.countForBusinessByStatusesSince(bookedStatuses, businessId, monthStart);
 
         List<Map<String, Object>> recentBookings = bookingRepository
                 .findByExperienceBusinessId(businessId, PageRequest.of(0, 5, Sort.by("createdAt").descending()))
@@ -122,9 +115,7 @@ public class AdminController {
         result.put("scope", "business");
         result.put("business", Map.of("name", business.getName(), "status", business.getStatus()));
         result.put("activeExperiences", activeExperiences);
-        result.put("monthRevenue", monthRevenue != null ? monthRevenue : 0.0);
-        result.put("pendingPayoutsCount", pendingPayoutsCount);
-        result.put("pendingPayoutsAmount", pendingPayoutsAmt != null ? pendingPayoutsAmt : 0.0);
+        result.put("monthBookings", monthBookings);
         result.put("recentBookings", recentBookings);
         result.put("recentReviews", recentReviews);
         return result;
@@ -150,7 +141,6 @@ public class AdminController {
             m.put("bio", str(u.getBio()));
             m.put("role", u.getRole());
             m.put("status", u.getStatus());
-            m.put("travelCredits", u.getTravelCredits());
             m.put("countriesVisited", u.getCountriesVisited());
             m.put("createdAt", u.getCreatedAt());
             m.put("_count", Map.of(
@@ -253,7 +243,6 @@ public class AdminController {
             m.put("city", str(b.getCity()));
             m.put("country", str(b.getCountry()));
             m.put("status", b.getStatus());
-            m.put("stripeAccountId", b.getStripeAccountId());
             m.put("description", str(b.getDescription()));
             m.put("website", str(b.getWebsite()));
             m.put("createdAt", b.getCreatedAt());
@@ -398,11 +387,6 @@ public class AdminController {
         }
 
         // Aggregate totals for display
-        List<String> totStatuses = List.of("confirmed", "completed");
-        LocalDateTime epoch = LocalDateTime.of(2000, 1, 1, 0, 0);
-        Double totalRevenue = effectiveBusinessId != null
-                ? bookingRepository.sumAmountTotalForBusinessSince(totStatuses, effectiveBusinessId, epoch)
-                : bookingRepository.sumAmountTotalSince(totStatuses, epoch);
         long confirmedCount = effectiveBusinessId != null
                 ? bookingRepository.findByStatusAndExperienceBusinessId("confirmed", effectiveBusinessId,
                     PageRequest.of(0, 1)).getTotalElements()
@@ -420,7 +404,6 @@ public class AdminController {
         resp.put("limit", limit);
         resp.put("pages", (int) Math.ceil((double) result.getTotalElements() / limit));
         Map<String, Object> totalsMap = new HashMap<>();
-        totalsMap.put("revenue", totalRevenue != null ? totalRevenue : 0.0);
         totalsMap.put("confirmedCount", confirmedCount);
         resp.put("totals", totalsMap);
         return ResponseEntity.ok(resp);
@@ -475,56 +458,6 @@ public class AdminController {
     public ResponseEntity<Map<String, String>> deleteReview(@PathVariable String id) {
         adminService.deleteReview(id);
         return ResponseEntity.ok(Map.of("message", "Review deleted"));
-    }
-
-    // ── Payouts ──────────────────────────────────────────────────────────────
-
-    @GetMapping("/payouts")
-    public ResponseEntity<PageResponse<Map<String, Object>>> listPayouts(
-            @RequestParam(defaultValue = "pending") String status,
-            @RequestParam(defaultValue = "1") int page,
-            @RequestParam(defaultValue = "50") int limit,
-            @AuthenticationPrincipal UserPrincipal principal) {
-        String effectiveHostId = "business".equals(principal.getRole()) ? principal.getId() : null;
-
-        Page<Payout> result = effectiveHostId != null
-                ? payoutRepository.findByStatusAndHostId(status, effectiveHostId,
-                    PageRequest.of(page - 1, Math.min(200, limit), Sort.by("createdAt").descending()))
-                : payoutRepository.findByStatus(status,
-                    PageRequest.of(page - 1, Math.min(200, limit), Sort.by("createdAt").descending()));
-
-        List<Map<String, Object>> list = result.getContent().stream().map(p -> {
-            Map<String, Object> m = new HashMap<>();
-            m.put("id", p.getId());
-            m.put("amount", p.getAmount());
-            m.put("currency", str(p.getCurrency()));
-            m.put("status", p.getStatus());
-            m.put("paidAt", p.getPaidAt());
-            m.put("createdAt", p.getCreatedAt());
-            Map<String, Object> hostMap = new HashMap<>();
-            hostMap.put("id", p.getHost().getId());
-            hostMap.put("name", str(p.getHost().getName()));
-            hostMap.put("email", p.getHost().getEmail());
-            hostMap.put("businesses", p.getHost().getBusinesses().stream()
-                    .map(b -> Map.<String, Object>of("stripeAccountId", b.getStripeAccountId() != null ? b.getStripeAccountId() : ""))
-                    .toList());
-            m.put("host", hostMap);
-            Map<String, Object> bookingMap = new HashMap<>();
-            bookingMap.put("id", p.getBooking().getId());
-            Map<String, Object> expMap = new HashMap<>();
-            expMap.put("title", p.getBooking().getExperience().getTitle());
-            expMap.put("emoji", str(p.getBooking().getExperience().getEmoji()));
-            bookingMap.put("experience", expMap);
-            m.put("booking", bookingMap);
-            return m;
-        }).toList();
-        return ResponseEntity.ok(PageResponse.of(list, result.getTotalElements(), page, limit));
-    }
-
-    @PostMapping("/payouts/{id}/process")
-    public ResponseEntity<Map<String, String>> processPayout(@PathVariable String id) {
-        adminService.processPayout(id);
-        return ResponseEntity.ok(Map.of("message", "Payout processed"));
     }
 
     // ── Media ────────────────────────────────────────────────────────────────
@@ -705,10 +638,6 @@ public class AdminController {
         Map<String, Object> m = new HashMap<>();
         m.put("id", b.getId());
         m.put("seats", b.getSeats());
-        m.put("amountTotal", b.getAmountTotal());
-        m.put("amountPlatform", b.getAmountPlatform());
-        m.put("amountHostCredit", b.getAmountHostCredit());
-        m.put("currency", str(b.getCurrency()));
         m.put("status", b.getStatus());
         m.put("guestNote", b.getGuestNote());
         m.put("createdAt", b.getCreatedAt());

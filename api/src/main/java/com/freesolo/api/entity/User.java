@@ -41,10 +41,6 @@ public class User {
     @Builder.Default
     private String status = "pending";
 
-    @Column(name = "travel_credits")
-    @Builder.Default
-    private double travelCredits = 0.0;
-
     @Column(name = "countries_visited")
     @Builder.Default
     private int countriesVisited = 0;
@@ -55,9 +51,6 @@ public class User {
     @Column(name = "marketing_opt_in")
     @Builder.Default
     private boolean marketingOptIn = true;
-
-    @Column(name = "stripe_customer_id")
-    private String stripeCustomerId;
 
     @Column(name = "created_at", updatable = false)
     @Builder.Default
@@ -105,10 +98,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<Notification> notifications = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<PaymentMethod> paymentMethods = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default

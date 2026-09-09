@@ -172,20 +172,13 @@ export default function BusinessDashboardScreen({ navigation }) {
           );
         })}
 
-        {/* Revenue split reminder */}
+        {/* How payment works */}
         <Card style={styles.splitCard}>
-          <Text style={styles.splitTitle}>Revenue Split</Text>
-          {[
-            ['Your venue', '70%', Colors.sage],
-            ['Host travel credit', '10%', Colors.clay],
-            ['FreeSolo fee', '20%', Colors.muted],
-          ].map(([label, pct, color]) => (
-            <View key={label} style={styles.splitRow}>
-              <View style={[styles.splitDot, { backgroundColor: color }]} />
-              <Text style={styles.splitLabel}>{label}</Text>
-              <Text style={styles.splitPct}>{pct}</Text>
-            </View>
-          ))}
+          <Text style={styles.splitTitle}>Getting paid</Text>
+          <Text style={styles.splitNote}>
+            FreeSolo doesn't process payments. Travelers settle with you directly at
+            your venue, however you normally take payment.
+          </Text>
         </Card>
       </ScrollView>
     </SafeAreaView>
@@ -243,8 +236,5 @@ const styles = StyleSheet.create({
   seatsNeeded: { fontFamily: Fonts.body, fontSize: 11, color: Colors.terra },
   splitCard: { marginTop: Spacing.sm, padding: 16, marginBottom: 40 },
   splitTitle: { fontFamily: Fonts.bodyMedium, fontSize: 14, color: Colors.ink, marginBottom: 12 },
-  splitRow: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 8 },
-  splitDot: { width: 8, height: 8, borderRadius: 4 },
-  splitLabel: { fontFamily: Fonts.body, fontSize: 13, color: Colors.muted, flex: 1 },
-  splitPct: { fontFamily: Fonts.bodySemiBold, fontSize: 13, color: Colors.ink },
+  splitNote: { fontFamily: Fonts.body, fontSize: 13, color: Colors.muted, lineHeight: 20 },
 });

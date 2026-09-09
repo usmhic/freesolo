@@ -5,13 +5,12 @@ import {
   Building2,
   Compass,
   CalendarCheck,
-  Banknote,
   Star,
   ArrowUpRight,
 } from "lucide-react";
 import { requireDashboardUser } from "@/lib/admin";
 import { apiGet } from "@/lib/api-client";
-import { Badge, Card, EmptyState, Money, PageHeader, StatCard, fmtDate, fmtDateTime } from "../_components/ui";
+import { Badge, Card, EmptyState, PageHeader, StatCard, fmtDate, fmtDateTime } from "../_components/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -59,16 +58,10 @@ function AdminDashboard({ data, viewer }: { data: any; viewer: any }) {
         />
         <StatCard label="Active experiences" value={data.activeExperiences ?? 0} icon={<Compass className="size-4 text-fd-muted-foreground" />} />
         <StatCard
-          label="Revenue this month"
-          value={<Money amount={data.monthRevenue ?? 0} />}
-          hint="Confirmed & completed bookings"
+          label="Bookings this month"
+          value={data.monthBookings ?? 0}
+          hint="Confirmed & completed"
           icon={<CalendarCheck className="size-4 text-fd-muted-foreground" />}
-        />
-        <StatCard
-          label="Pending payouts"
-          value={data.pendingPayoutsCount ?? 0}
-          hint={data.pendingPayoutsAmount ? `${new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(data.pendingPayoutsAmount)} owed` : undefined}
-          icon={<Banknote className="size-4 text-fd-muted-foreground" />}
         />
       </div>
 
@@ -90,7 +83,7 @@ function AdminDashboard({ data, viewer }: { data: any; viewer: any }) {
             <ActivityRow
               key={b.id}
               title={b.experience.title}
-              subtitle={`${b.user.name || b.user.email} · ${b.seats} seat${b.seats !== 1 ? "s" : ""} · ${new Intl.NumberFormat("en-IE", { style: "currency", currency: b.currency || "EUR" }).format(b.amountTotal)}`}
+              subtitle={`${b.user.name || b.user.email} · ${b.seats} seat${b.seats !== 1 ? "s" : ""}`}
               meta={fmtDateTime(b.createdAt)}
               badge={b.status}
             />
@@ -124,16 +117,10 @@ function BusinessDashboard({ data }: { data: any }) {
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatCard label="Active experiences" value={data.activeExperiences ?? 0} icon={<Compass className="size-4 text-fd-muted-foreground" />} />
         <StatCard
-          label="Revenue this month"
-          value={<Money amount={data.monthRevenue ?? 0} />}
-          hint="Confirmed & completed bookings"
+          label="Bookings this month"
+          value={data.monthBookings ?? 0}
+          hint="Confirmed & completed"
           icon={<CalendarCheck className="size-4 text-fd-muted-foreground" />}
-        />
-        <StatCard
-          label="Pending payouts"
-          value={data.pendingPayoutsCount ?? 0}
-          hint={data.pendingPayoutsAmount ? `${new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(data.pendingPayoutsAmount)} owed` : undefined}
-          icon={<Banknote className="size-4 text-fd-muted-foreground" />}
         />
         <StatCard label="Status" value={<Badge>{data.business?.status ?? "—"}</Badge>} icon={<Building2 className="size-4 text-fd-muted-foreground" />} />
       </div>
@@ -144,7 +131,7 @@ function BusinessDashboard({ data }: { data: any }) {
             <ActivityRow
               key={b.id}
               title={b.experience.title}
-              subtitle={`${b.user.name || b.user.email} · ${b.seats} seat${b.seats !== 1 ? "s" : ""} · ${new Intl.NumberFormat("en-IE", { style: "currency", currency: b.currency || "EUR" }).format(b.amountTotal)}`}
+              subtitle={`${b.user.name || b.user.email} · ${b.seats} seat${b.seats !== 1 ? "s" : ""}`}
               meta={fmtDateTime(b.createdAt)}
               badge={b.status}
             />

@@ -159,7 +159,7 @@ export async function setUserStatus(userId: string, status: string): Promise<Act
 
 export interface UserInput {
   name: string; email: string; phone: string;
-  bio: string; travelCredits: number; countriesVisited: number;
+  bio: string; countriesVisited: number;
 }
 
 export async function updateUser(userId: string, input: UserInput): Promise<ActionResult> {
@@ -187,18 +187,6 @@ export async function sendUserNotification(userId: string, input: NotificationIn
   try {
     await apiPost(`/api/admin/users/${userId}/notify`, input);
     revalidatePath("/admin/users");
-    return { ok: true };
-  } catch (e) { return handleError(e); }
-}
-
-// ── Payouts ─────────────────────────────────────────────────────────────────
-
-export async function processPayout(payoutId: string): Promise<ActionResult> {
-  await requireAdmin();
-  try {
-    await apiPost(`/api/admin/payouts/${payoutId}/process`);
-    revalidatePath("/admin/payouts");
-    revalidatePath("/admin");
     return { ok: true };
   } catch (e) { return handleError(e); }
 }

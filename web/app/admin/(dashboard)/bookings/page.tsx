@@ -5,7 +5,7 @@ import { cn } from "@/lib/cn";
 import { updateBooking, deleteBooking } from "../../actions";
 import { ActionButton } from "../../_components/action-button";
 import { EditModal } from "../../_components/edit-modal";
-import { Badge, Card, EmptyState, Money, PageHeader, Table, Td, Th, fmtDateTime } from "../../_components/ui";
+import { Badge, Card, EmptyState, PageHeader, Table, Td, Th, fmtDateTime } from "../../_components/ui";
 
 export const dynamic = "force-dynamic";
 
@@ -32,13 +32,13 @@ export default async function AdminBookingsPage({
 
   const result = await apiGet<any>(`/api/admin/bookings?${params}`);
   const bookings: any[] = result.data ?? [];
-  const totals = result.totals ?? { revenue: 0, confirmedCount: 0 };
+  const totals = result.totals ?? { confirmedCount: 0 };
 
   return (
     <div className="space-y-6">
       <PageHeader
         title="Bookings"
-        description={`${totals.confirmedCount} confirmed/completed · ${new Intl.NumberFormat("en-IE", { style: "currency", currency: "EUR" }).format(totals.revenue)} gross revenue`}
+        description={`${totals.confirmedCount} confirmed/completed`}
       />
 
       <div className="flex flex-wrap gap-1.5">
@@ -67,9 +67,6 @@ export default async function AdminBookingsPage({
               <Th>Experience</Th>
               <Th>Traveler</Th>
               <Th>Seats</Th>
-              <Th>Total</Th>
-              <Th>Platform fee</Th>
-              <Th>Host credit</Th>
               <Th>Status</Th>
               <Th>Booked</Th>
               {viewer.scope === "admin" && <Th>Actions</Th>}
@@ -87,9 +84,6 @@ export default async function AdminBookingsPage({
                   <p className="text-xs text-fd-muted-foreground">{b.user?.email}</p>
                 </Td>
                 <Td>{b.seats}</Td>
-                <Td><Money amount={b.amountTotal} currency={b.currency} /></Td>
-                <Td className="text-fd-muted-foreground"><Money amount={b.amountPlatform} currency={b.currency} /></Td>
-                <Td className="text-fd-muted-foreground"><Money amount={b.amountHostCredit} currency={b.currency} /></Td>
                 <Td><Badge>{b.status}</Badge></Td>
                 <Td className="text-fd-muted-foreground">{fmtDateTime(b.createdAt)}</Td>
                 {viewer.scope === "admin" && (

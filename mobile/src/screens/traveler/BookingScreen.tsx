@@ -22,10 +22,7 @@ export default function BookingScreen({ navigation, route }: any) {
   const [loading, setLoading] = useState(false);
 
   const seatsLeft = (exp.availableSeats ?? exp.maxSeats - (exp.filledSeats ?? 0));
-  const total = exp.price * seats;
-  const venueCut  = (total * 0.7).toFixed(2);
-  const hostCut   = (total * 0.1).toFixed(2);
-  const feesCut   = (total * 0.2).toFixed(2);
+  const venueTotal = exp.price * seats;
 
   const handleBook = async () => {
     if (!isAuthenticated) {
@@ -37,23 +34,15 @@ export default function BookingScreen({ navigation, route }: any) {
     }
 
     setLoading(true);
-    // Create payment intent
-    const { data, error } = await apiFetch<{ clientSecret: string; bookingId: string }>("/api/stripe/payment-intent", {
+    const { data, error } = await apiFetch<{ id: string }>(`/api/experiences/${exp.id}/book`, {
       method: "POST",
-      body: JSON.stringify({ experienceId: exp.id, seats }),
+      body: JSON.stringify({ seats, guestNote: note.trim() || null }),
     });
     setLoading(false);
 
     if (error) { Alert.alert("Booking failed", error); return; }
 
-    // Navigate to payment screen
-    navigation.navigate("Payment", {
-      clientSecret: data?.clientSecret,
-      bookingId: data?.bookingId,
-      exp,
-      seats,
-      total,
-    });
+    navigation.navigate("Confirmed", { exp, bookingId: data?.id, seats });
   };
 
   return (
@@ -108,32 +97,27 @@ export default function BookingScreen({ navigation, route }: any) {
           numberOfLines={3}
         />
 
-        {/* Price breakdown */}
+        {/* What the venue charges */}
         <Card style={styles.breakdownCard}>
-          <Text style={styles.breakdownTitle}>Price breakdown</Text>
-          {[
-            [`€${exp.price} × ${seats} seat${seats !== 1 ? "s" : ""}`, `€${total.toFixed(2)}`],
-            ["Venue (70%)", `€${venueCut}`],
-            ["Host credit (10%)", `€${hostCut}`],
-            ["FreeSolo fee (20%)", `€${feesCut}`],
-          ].map(([label, val], i) => (
-            <View key={i} style={[styles.breakdownRow, i === 0 && styles.breakdownRowTop]}>
-              <Text style={i === 0 ? styles.breakdownLabelBold : styles.breakdownLabel}>{label}</Text>
-              <Text style={i === 0 ? styles.breakdownValBold : styles.breakdownVal}>{val}</Text>
-            </View>
-          ))}
+          <Text style={styles.breakdownTitle}>What you'll pay the venue</Text>
+          <View style={[styles.breakdownRow, styles.breakdownRowTop]}>
+            <Text style={styles.breakdownLabelBold}>
+              €{exp.price} × {seats} seat{seats !== 1 ? "s" : ""}
+            </Text>
+            <Text style={styles.breakdownValBold}>€{venueTotal.toFixed(2)}</Text>
+          </View>
           <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>Total charged</Text>
-            <Text style={styles.totalVal}>€{total.toFixed(2)}</Text>
+            <Text style={styles.totalLabel}>Paid on the day</Text>
+            <Text style={styles.totalVal}>€{venueTotal.toFixed(2)}</Text>
           </View>
         </Card>
 
         <InfoBox variant="warning">
-          Your card is only charged once {exp.minSeats} travelers confirm. If the experience doesn't fill within 48h, you get a full refund automatically.
+          FreeSolo doesn't take payment — you settle with the venue directly. Your seat confirms once {exp.minSeats} travelers have joined.
         </InfoBox>
 
         <Button
-          label={`Continue to payment · €${total.toFixed(2)}`}
+          label="Reserve my seat"
           onPress={handleBook}
           loading={loading}
         />

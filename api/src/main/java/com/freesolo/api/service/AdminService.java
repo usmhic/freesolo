@@ -26,13 +26,11 @@ public class AdminService {
     private final ExperienceRepository experienceRepository;
     private final BookingRepository bookingRepository;
     private final ReviewRepository reviewRepository;
-    private final PayoutRepository payoutRepository;
     private final UploadRepository uploadRepository;
     private final EventPhotoRepository eventPhotoRepository;
     private final EmailCampaignRepository emailCampaignRepository;
     private final ApplicationRepository applicationRepository;
     private final NotificationService notificationService;
-    private final StripeService stripeService;
     private final EmailService emailService;
     private final StorageService storageService;
 
@@ -69,7 +67,6 @@ public class AdminService {
         user.setEmail(req.email().trim());
         user.setPhone(req.phone() != null && !req.phone().isBlank() ? req.phone().trim() : null);
         user.setBio(req.bio() != null && !req.bio().isBlank() ? req.bio().trim() : null);
-        user.setTravelCredits(req.travelCredits());
         user.setCountriesVisited(req.countriesVisited());
         userRepository.save(user);
     }
@@ -205,8 +202,8 @@ public class AdminService {
     @Transactional
     public void deleteBooking(String bookingId) {
         Booking b = bookingRepository.findById(bookingId).orElseThrow(() -> ApiException.notFound("Booking not found"));
-        if (b.getReview() != null || b.getPayout() != null)
-            throw ApiException.badRequest("Booking has linked records. Cancel instead.");
+        if (b.getReview() != null)
+            throw ApiException.badRequest("Booking has a linked review. Cancel instead.");
         bookingRepository.delete(b);
     }
 
@@ -226,32 +223,6 @@ public class AdminService {
     public void deleteReview(String reviewId) {
         Review r = reviewRepository.findById(reviewId).orElseThrow(() -> ApiException.notFound("Review not found"));
         reviewRepository.delete(r);
-    }
-
-    // ── Payouts ──────────────────────────────────────────────────────────────
-
-    @Transactional
-    public void processPayout(String payoutId) {
-        Payout payout = payoutRepository.findById(payoutId)
-                .orElseThrow(() -> ApiException.notFound("Payout not found"));
-        if (!"pending".equals(payout.getStatus())) throw ApiException.badRequest("Payout already processed");
-
-        String stripeAccountId = payout.getHost().getBusinesses().stream()
-                .map(Business::getStripeAccountId).filter(id -> id != null).findFirst()
-                .orElseThrow(() -> ApiException.badRequest("Host has no connected Stripe account"));
-
-        var transfer = stripeService.createTransfer(
-                Math.round(payout.getAmount() * 100), payout.getCurrency(), stripeAccountId,
-                Map.of("payoutId", payoutId));
-
-        payout.setStatus("paid");
-        payout.setStripeTransferId(transfer.getId());
-        payout.setPaidAt(LocalDateTime.now());
-        payoutRepository.save(payout);
-
-        notificationService.create(payout.getHost().getId(), "payout_paid",
-                "You got paid! 💸",
-                "A payout of " + payout.getAmount() + " " + payout.getCurrency() + " was sent.", null);
     }
 
     // ── Business full update ─────────────────────────────────────────────────

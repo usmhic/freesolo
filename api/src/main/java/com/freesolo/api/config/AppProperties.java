@@ -16,7 +16,6 @@ public class AppProperties {
     private Cors cors = new Cors();
     private String frontendUrl;
     private Cookie cookie = new Cookie();
-    private Stripe stripe = new Stripe();
     private Resend resend = new Resend();
     private Minio minio = new Minio();
     private Expo expo = new Expo();
@@ -39,12 +38,6 @@ public class AppProperties {
     public static class Cookie {
         private boolean secure = false;
         private String sameSite = "Lax";
-    }
-
-    @Data
-    public static class Stripe {
-        private String secretKey;
-        private String webhookSecret;
     }
 
     @Data

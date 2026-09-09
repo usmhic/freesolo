@@ -39,10 +39,9 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/users/{id}").permitAll()
                 // Application submission (unauthenticated)
                 .requestMatchers(HttpMethod.POST, "/api/applications").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/applications/{reference}/status").permitAll()
                 // Unsubscribe (unauthenticated)
                 .requestMatchers(HttpMethod.GET, "/api/unsubscribe").permitAll()
-                // Stripe webhook (signature-verified separately)
-                .requestMatchers(HttpMethod.POST, "/api/stripe/webhook").permitAll()
                 // Health check
                 .requestMatchers("/actuator/health").permitAll()
                 // OpenAPI

@@ -9,7 +9,6 @@ import {
   Compass,
   CalendarCheck,
   Users,
-  Banknote,
   Star,
   Code2,
   Megaphone,
@@ -26,7 +25,6 @@ const ADMIN_NAV = [
   { href: "/admin/experiences", label: "Experiences", icon: Compass },
   { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { href: "/admin/reviews", label: "Reviews", icon: Star },
-  { href: "/admin/payouts", label: "Payouts", icon: Banknote },
   { href: "/admin/users", label: "Users", icon: Users },
   { href: "/admin/marketing", label: "Marketing", icon: Megaphone },
   { href: "/admin/media", label: "Media", icon: ImageIcon },
@@ -40,7 +38,6 @@ const BUSINESS_NAV = [
   { href: "/admin/experiences", label: "Experiences", icon: Compass },
   { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { href: "/admin/reviews", label: "Reviews", icon: Star },
-  { href: "/admin/payouts", label: "Payouts", icon: Banknote },
 ];
 
 export function AdminSidebar({

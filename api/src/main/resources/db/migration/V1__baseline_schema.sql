@@ -8,7 +8,6 @@ CREATE SCHEMA IF NOT EXISTS identity;
 CREATE SCHEMA IF NOT EXISTS partners;
 CREATE SCHEMA IF NOT EXISTS experiences;
 CREATE SCHEMA IF NOT EXISTS bookings;
-CREATE SCHEMA IF NOT EXISTS billing;
 CREATE SCHEMA IF NOT EXISTS engagement;
 CREATE SCHEMA IF NOT EXISTS media;
 
@@ -25,8 +24,6 @@ BEGIN
         ARRAY['fs_experiences', 'experiences'],
         ARRAY['fs_reviews', 'experiences'],
         ARRAY['fs_bookings', 'bookings'],
-        ARRAY['fs_payment_methods', 'billing'],
-        ARRAY['fs_payouts', 'billing'],
         ARRAY['fs_notifications', 'engagement'],
         ARRAY['fs_email_campaigns', 'engagement'],
         ARRAY['fs_uploads', 'media'],
@@ -51,11 +48,9 @@ CREATE TABLE IF NOT EXISTS identity.fs_users (
     bio                 VARCHAR(255),
     role                VARCHAR(255),
     status              VARCHAR(255),
-    travel_credits      DOUBLE PRECISION    NOT NULL,
     countries_visited   INTEGER             NOT NULL,
     push_token          VARCHAR(255),
     marketing_opt_in    BOOLEAN             NOT NULL,
-    stripe_customer_id  VARCHAR(255),
     created_at          TIMESTAMP,
     updated_at          TIMESTAMP,
     CONSTRAINT uq_users_email UNIQUE (email)
@@ -79,7 +74,6 @@ CREATE TABLE IF NOT EXISTS partners.fs_businesses (
     cover_image         VARCHAR(255),
     images              TEXT,
     status              VARCHAR(255),
-    stripe_account_id   VARCHAR(255),
     created_at          TIMESTAMP,
     updated_at          TIMESTAMP,
     CONSTRAINT fk_businesses_owner FOREIGN KEY (owner_id) REFERENCES identity.fs_users (id)
@@ -121,14 +115,6 @@ CREATE TABLE IF NOT EXISTS bookings.fs_bookings (
     experience_id               VARCHAR(36)         NOT NULL,
     seats                       INTEGER             NOT NULL,
     status                      VARCHAR(255),
-    amount_total                DOUBLE PRECISION    NOT NULL,
-    amount_venue                DOUBLE PRECISION    NOT NULL,
-    amount_host_credit          DOUBLE PRECISION    NOT NULL,
-    amount_platform             DOUBLE PRECISION    NOT NULL,
-    currency                    VARCHAR(255),
-    stripe_payment_intent_id    VARCHAR(255),
-    stripe_charge_id            VARCHAR(255),
-    stripe_paid_at              TIMESTAMP,
     guest_note                  VARCHAR(255),
     cancel_reason               VARCHAR(255),
     confirmed_at                TIMESTAMP,
@@ -138,8 +124,7 @@ CREATE TABLE IF NOT EXISTS bookings.fs_bookings (
     created_at                  TIMESTAMP,
     updated_at                  TIMESTAMP,
     CONSTRAINT fk_bookings_user FOREIGN KEY (user_id) REFERENCES identity.fs_users (id),
-    CONSTRAINT fk_bookings_experience FOREIGN KEY (experience_id) REFERENCES experiences.fs_experiences (id),
-    CONSTRAINT uq_bookings_stripe_payment_intent_id UNIQUE (stripe_payment_intent_id)
+    CONSTRAINT fk_bookings_experience FOREIGN KEY (experience_id) REFERENCES experiences.fs_experiences (id)
 );
 
 CREATE TABLE IF NOT EXISTS partners.fs_applications (
@@ -221,36 +206,6 @@ CREATE TABLE IF NOT EXISTS identity.fs_otp_codes (
     expires_at  TIMESTAMP       NOT NULL,
     created_at  TIMESTAMP,
     CONSTRAINT fk_otp_codes_user FOREIGN KEY (user_id) REFERENCES identity.fs_users (id)
-);
-
-CREATE TABLE IF NOT EXISTS billing.fs_payment_methods (
-    id                          VARCHAR(36)     NOT NULL PRIMARY KEY,
-    user_id                     VARCHAR(36)     NOT NULL,
-    stripe_customer_id          VARCHAR(255)    NOT NULL,
-    stripe_payment_method_id    VARCHAR(255)    NOT NULL,
-    brand                       VARCHAR(255)    NOT NULL,
-    last4                       VARCHAR(4)      NOT NULL,
-    exp_month                   INTEGER         NOT NULL,
-    exp_year                    INTEGER         NOT NULL,
-    is_default                  BOOLEAN         NOT NULL,
-    created_at                  TIMESTAMP,
-    CONSTRAINT fk_payment_methods_user FOREIGN KEY (user_id) REFERENCES identity.fs_users (id),
-    CONSTRAINT uq_payment_methods_stripe_pm_id UNIQUE (stripe_payment_method_id)
-);
-
-CREATE TABLE IF NOT EXISTS billing.fs_payouts (
-    id                  VARCHAR(36)         NOT NULL PRIMARY KEY,
-    booking_id          VARCHAR(36)         NOT NULL,
-    host_id             VARCHAR(36)         NOT NULL,
-    amount              DOUBLE PRECISION    NOT NULL,
-    currency            VARCHAR(255),
-    status              VARCHAR(255),
-    stripe_transfer_id  VARCHAR(255),
-    paid_at             TIMESTAMP,
-    created_at          TIMESTAMP,
-    CONSTRAINT fk_payouts_booking FOREIGN KEY (booking_id) REFERENCES bookings.fs_bookings (id),
-    CONSTRAINT fk_payouts_host FOREIGN KEY (host_id) REFERENCES identity.fs_users (id),
-    CONSTRAINT uq_payouts_booking_id UNIQUE (booking_id)
 );
 
 CREATE TABLE IF NOT EXISTS experiences.fs_reviews (

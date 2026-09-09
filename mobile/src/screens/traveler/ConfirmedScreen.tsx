@@ -6,7 +6,7 @@ import { Colors, Fonts, Spacing, Radius } from "../../theme";
 import { Button } from "../../components/UI";
 
 export default function ConfirmedScreen({ navigation, route }: any) {
-  const { exp, bookingId, seats = 1, total } = route?.params ?? {};
+  const { exp, bookingId, seats = 1 } = route?.params ?? {};
   const scale   = useRef(new Animated.Value(0.5)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const slideUp = useRef(new Animated.Value(32)).current;
@@ -46,11 +46,6 @@ export default function ConfirmedScreen({ navigation, route }: any) {
                 <View style={styles.summaryPill}>
                   <Text style={styles.summaryPillText}>{seats} seat{seats !== 1 ? "s" : ""}</Text>
                 </View>
-                {total && (
-                  <View style={[styles.summaryPill, styles.summaryPillAmt]}>
-                    <Text style={[styles.summaryPillText, { color: Colors.ink }]}>€{total.toFixed(2)} reserved</Text>
-                  </View>
-                )}
               </View>
             </Animated.View>
           )}

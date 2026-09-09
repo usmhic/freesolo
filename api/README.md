@@ -2,7 +2,9 @@
 
 **Java 21 · Spring Boot 4.1 · Spring Security · Spring Data JPA · PostgreSQL**
 
-The backend for the FreeSolo platform. Handles authentication, bookings, payments (Stripe), file uploads (MinIO), email (Resend), push notifications (Expo), and the admin API consumed by the Next.js web dashboard.
+The backend for the FreeSolo platform. Handles authentication, bookings, file uploads (MinIO), email (Resend), push notifications (Expo), and the admin API consumed by the Next.js web dashboard.
+
+FreeSolo does not process payments. It reserves seats and confirms groups; travelers settle with the venue directly.
 
 ## Architecture
 
@@ -20,7 +22,6 @@ guidance.
 | Language | Java 21 |
 | Auth | JWT (HS256) via JJWT · Google OAuth · Apple OAuth |
 | Database | PostgreSQL · Spring Data JPA · Hibernate |
-| Payments | Stripe (checkout, webhooks, Connect payouts) |
 | Storage | MinIO (S3-compatible) |
 | Email | Resend |
 | Push notifications | Expo Push API |
@@ -48,7 +49,7 @@ For native API work, start `db`, `minio`, and `minio-init` with Compose, then ru
 
 The root `.env.example` contains only the variable names required by the default
 Compose stack, with intentionally empty values. Optional integrations use
-`STRIPE_*`, `RESEND_API_KEY`, `EMAIL_FROM`, `EXPO_ACCESS_TOKEN`, `GOOGLE_*`, and
+`RESEND_API_KEY`, `EMAIL_FROM`, `EXPO_ACCESS_TOKEN`, `GOOGLE_*`, and
 `APPLE_*`; inject them through your deployment platform when enabling those
 features. `application.yml` contains only non-secret defaults.
 
@@ -81,12 +82,6 @@ Require a valid JWT. See controllers for the full list.
 ### Admin — `/api/admin/**`
 
 `GET` endpoints allow `ROLE_ADMIN` and `ROLE_BUSINESS` (business owners see only their own data). Mutating endpoints require `ROLE_ADMIN`.
-
-### Webhooks — `/api/webhooks`
-
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/api/webhooks/stripe` | Stripe webhook handler |
 
 ### Health
 
