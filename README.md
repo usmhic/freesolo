@@ -219,6 +219,7 @@ Images are published as `ghcr.io/usmhic/freesolo-api` and `ghcr.io/usmhic/freeso
 | [API guide](./api/README.md) | Spring Boot modules, migrations, and optional integrations |
 | [Web guide](./web/README.md) | Next.js app, proxy layer, and the help center |
 | [Mobile guide](./mobile/README.md) | Expo setup, device testing, and builds |
+| [Mobile delivery](./MOBILE_DELIVERY.md) | Signing secrets, App Distribution, and store submission |
 | [Mobile delivery](./MOBILE_DELIVERY.md) | How dev builds reach testers and release builds reach the stores |
 | [Engineering standards](./STANDARDS.md) | Shared conventions across every usmhic project |
 | [Package naming](./PACKAGE_NAMING.md) | Public package, namespace, and app identifiers |

@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker } from "../../components/Map";
 import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Button, Card, ProgressBar } from "../../components/UI";
 import { apiFetch } from "../../lib/api";

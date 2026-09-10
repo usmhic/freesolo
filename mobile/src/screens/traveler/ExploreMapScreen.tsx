@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout } from "../../components/Map";
 import * as Location from "expo-location";
 import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { apiFetch } from "../../lib/api";
@@ -17,7 +17,7 @@ import { apiFetch } from "../../lib/api";
 const { height } = Dimensions.get("window");
 
 export default function ExploreMapScreen({ navigation }: any) {
-  const mapRef = useRef<MapView>(null);
+  const mapRef = useRef<any>(null);
   const [region, setRegion] = useState({
     latitude: 38.7169, longitude: -9.1399,
     latitudeDelta: 0.08, longitudeDelta: 0.08,
