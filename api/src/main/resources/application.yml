@@ -29,6 +29,14 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
 
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # Without this the UI boots pointing at the bundled petstore sample.
+    disable-swagger-default-url: true
+
 server:
   port: ${PORT:8080}
   error:
@@ -41,7 +49,10 @@ app:
     expiration-ms: ${JWT_EXPIRATION_MS:2592000000} # 30 days
   admin-email: ${ADMIN_EMAIL:admin@freesolo.local}
   cors:
-    allowed-origins: ${CORS_ORIGINS:http://localhost:3000,exp://,freesolo://}
+    # Treated as origin *patterns*, so a wildcard port covers whatever port the
+    # web app, Expo web or a test client happens to come up on locally. Set
+    # CORS_ORIGINS explicitly in production to pin exact origins.
+    allowed-origins: ${CORS_ORIGINS:http://localhost:*,http://127.0.0.1:*,exp://*,freesolo://*}
   frontend-url: ${FRONTEND_URL:http://localhost:3000}
   cookie:
     secure: ${COOKIE_SECURE:false}

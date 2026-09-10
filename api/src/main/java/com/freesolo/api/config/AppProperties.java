@@ -31,7 +31,8 @@ public class AppProperties {
 
     @Data
     public static class Cors {
-        private List<String> allowedOrigins = List.of("http://localhost:3000");
+        private List<String> allowedOrigins =
+                List.of("http://localhost:*", "http://127.0.0.1:*", "exp://*", "freesolo://*");
     }
 
     @Data

@@ -9,6 +9,7 @@ import com.freesolo.api.security.JwtProvider;
 import com.freesolo.api.security.UserPrincipal;
 import com.freesolo.api.service.AuthService;
 import com.freesolo.api.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+// Clears the global bearerAuth requirement declared in OpenApiConfig. Signing
+// in is how you obtain a token, so these endpoints must not ask for one — this
+// stops Swagger UI from attaching an Authorization header and marking them
+// locked.
+@SecurityRequirements
 public class AuthController {
 
     private final AuthService authService;
