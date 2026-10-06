@@ -17,13 +17,15 @@ public record BookingResponse(
         LocalDateTime createdAt,
         boolean hasReview
 ) {
-    public record ExperienceSnippet(String id, String title, String date, String time, String city, String coverImage) {}
+    public record ExperienceSnippet(String id, String kind, String title, String date, String endDate,
+                                    String time, String city, String coverImage) {}
 
     public static BookingResponse from(Booking b) {
         var e = b.getExperience();
         return new BookingResponse(
                 b.getId(),
-                new ExperienceSnippet(e.getId(), e.getTitle(), e.getDate(), e.getTime(), e.getCity(), e.getCoverImage()),
+                new ExperienceSnippet(e.getId(), e.getKind(), e.getTitle(), e.getDate(), e.getEndDate(),
+                        e.getTime(), e.getCity(), e.getCoverImage()),
                 b.getSeats(), b.getStatus(),
                 b.getGuestNote(), b.getCancelReason(),
                 b.getConfirmedAt(), b.getCancelledAt(), b.getCompletedAt(), b.getCreatedAt(),

@@ -18,6 +18,12 @@ import java.util.List;
 @Builder
 public class Experience {
 
+    public static final String KIND_EXPERIENCE = "experience";
+    public static final String KIND_TRIP = "trip";
+
+    public static final String JOIN_INSTANT = "instant";
+    public static final String JOIN_APPROVAL = "approval";
+
     @Id
     @UuidGenerator
     @Column(length = 36, updatable = false)
@@ -28,8 +34,12 @@ public class Experience {
     private User host;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "business_id", nullable = false)
+    @JoinColumn(name = "business_id")
     private Business business;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private String kind = KIND_EXPERIENCE;
 
     @Column(nullable = false)
     private String title;
@@ -57,6 +67,9 @@ public class Experience {
 
     @Column(nullable = false)
     private String time;
+
+    @Column(name = "end_date")
+    private String endDate;
 
     @Column(name = "duration_mins")
     @Builder.Default
@@ -87,6 +100,18 @@ public class Experience {
     @Builder.Default
     private String tags = "[]";
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    @Builder.Default
+    private String itinerary = "[]";
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    @Builder.Default
+    private String included = "[]";
+
+    @Column(name = "join_policy", nullable = false)
+    @Builder.Default
+    private String joinPolicy = JOIN_INSTANT;
+
     @Builder.Default
     private String status = "active";
 
@@ -103,6 +128,10 @@ public class Experience {
 
     @PreUpdate
     void onUpdate() { updatedAt = LocalDateTime.now(); }
+
+    public boolean isTrip() { return KIND_TRIP.equals(kind); }
+
+    public boolean requiresApproval() { return JOIN_APPROVAL.equals(joinPolicy); }
 
     @OneToMany(mappedBy = "experience", cascade = CascadeType.ALL)
     @Builder.Default

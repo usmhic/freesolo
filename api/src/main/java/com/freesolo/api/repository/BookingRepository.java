@@ -18,8 +18,15 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
     List<Booking> findByExperienceAndStatusIn(Experience experience, List<String> statuses);
     long countByExperienceAndStatusIn(Experience experience, List<String> statuses);
 
-    @Query("SELECT COUNT(b) FROM Booking b WHERE b.experience = :experience AND b.status IN ('pending', 'confirmed')")
+    /** Seats held on a listing. Join requests awaiting the host hold none. */
+    @Query("SELECT COALESCE(SUM(b.seats), 0) FROM Booking b WHERE b.experience = :experience AND b.status IN ('pending', 'confirmed')")
     long countFilledSeats(@Param("experience") Experience experience);
+
+    long countByExperienceAndStatus(Experience experience, String status);
+
+    boolean existsByUserAndExperienceAndStatusIn(User user, Experience experience, List<String> statuses);
+
+    List<Booking> findByExperienceAndStatusInOrderByCreatedAtAsc(Experience experience, List<String> statuses);
 
     Page<Booking> findByStatus(String status, Pageable pageable);
 

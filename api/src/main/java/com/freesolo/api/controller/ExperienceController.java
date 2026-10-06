@@ -5,6 +5,7 @@ import com.freesolo.api.dto.common.PageResponse;
 import com.freesolo.api.dto.experience.BookExperienceRequest;
 import com.freesolo.api.dto.experience.CreateExperienceRequest;
 import com.freesolo.api.dto.experience.ExperienceResponse;
+import com.freesolo.api.dto.experience.MemberResponse;
 import com.freesolo.api.entity.EventPhoto;
 import com.freesolo.api.entity.Experience;
 import com.freesolo.api.entity.User;
@@ -35,15 +36,16 @@ public class ExperienceController {
     private final ExperienceRepository experienceRepository;
     private final EventPhotoRepository eventPhotoRepository;
 
-    /** GET /api/experiences */
+    /** GET /api/experiences — {@code kind} narrows to {@code experience} or {@code trip}. */
     @GetMapping
     public ResponseEntity<PageResponse<ExperienceResponse>> list(
+            @RequestParam(required = false) String kind,
             @RequestParam(required = false) String city,
             @RequestParam(required = false) String category,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int limit) {
         limit = Math.min(50, Math.max(1, limit));
-        return ResponseEntity.ok(experienceService.list(city, category, page, limit));
+        return ResponseEntity.ok(experienceService.list(kind, city, category, page, limit));
     }
 
     /** GET /api/experiences/featured */
@@ -74,6 +76,12 @@ public class ExperienceController {
             @AuthenticationPrincipal UserPrincipal principal,
             @Valid @RequestBody BookExperienceRequest req) {
         return ResponseEntity.status(201).body(bookingService.createBooking(principal.getId(), id, req));
+    }
+
+    /** GET /api/experiences/{id}/members — who's going; members only. */
+    @GetMapping("/{id}/members")
+    public ResponseEntity<List<MemberResponse>> members(@PathVariable String id) {
+        return ResponseEntity.ok(experienceService.getMembers(id));
     }
 
     /** GET /api/experiences/{id}/photos */
