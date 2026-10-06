@@ -69,7 +69,10 @@ public class ExperienceService {
     }
 
     /** Travelers holding a seat. Join requests still awaiting the host are not listed. */
-    public List<MemberResponse> getMembers(String experienceId) {
+    public List<MemberResponse> getMembers(User viewer, String experienceId) {
+        if (!"approved".equals(viewer.getStatus())) {
+            throw ApiException.forbidden("Only approved FreeSolo members can see who's going");
+        }
         Experience e = experienceRepository.findById(experienceId)
                 .orElseThrow(() -> ApiException.notFound("Experience not found"));
         return bookingRepository.findByExperienceAndStatusInOrderByCreatedAtAsc(

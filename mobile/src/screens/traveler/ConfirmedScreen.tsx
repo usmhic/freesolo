@@ -4,9 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors, Fonts, Spacing, Radius } from "../../theme";
 import { Button } from "../../components/UI";
+import { isTrip, whenLabel } from "../../lib/listing";
 
 export default function ConfirmedScreen({ navigation, route }: any) {
-  const { exp, bookingId, seats = 1 } = route?.params ?? {};
+  const { exp, bookingId, seats = 1, status } = route?.params ?? {};
+  const requested = status === "requested";
+  const confirmed = status === "confirmed";
   const scale   = useRef(new Animated.Value(0.5)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const slideUp = useRef(new Animated.Value(32)).current;
@@ -27,13 +30,17 @@ export default function ConfirmedScreen({ navigation, route }: any) {
 
         <View style={styles.content}>
           <Animated.View style={[styles.emojiWrap, { transform: [{ scale }], opacity }]}>
-            <Text style={styles.emoji}>🎉</Text>
+            <Text style={styles.emoji}>{requested ? "✋" : "🎉"}</Text>
           </Animated.View>
 
           <Animated.View style={{ opacity, transform: [{ translateY: slideUp }] }}>
-            <Text style={styles.heading}>You're in!</Text>
+            <Text style={styles.heading}>{requested ? "Request sent" : "You're in!"}</Text>
             <Text style={styles.sub}>
-              Your seat is reserved. We'll confirm once the minimum group fills. You'll get a notification immediately.
+              {requested
+                ? "The host will read your intro and get back to you. You'll get a notification the moment they decide."
+                : confirmed
+                  ? "The group has enough travelers — it's happening. See you there."
+                  : "Your seat is reserved. We'll confirm once the minimum group fills. You'll get a notification immediately."}
             </Text>
           </Animated.View>
 
@@ -41,10 +48,12 @@ export default function ConfirmedScreen({ navigation, route }: any) {
             <Animated.View style={[styles.summaryCard, { opacity, transform: [{ translateY: slideUp }] }]}>
               <Text style={styles.summaryEmoji}>{exp.emoji}</Text>
               <Text style={styles.summaryTitle}>{exp.title}</Text>
-              <Text style={styles.summaryMeta}>{exp.date} · {exp.time} · {exp.city}</Text>
+              <Text style={styles.summaryMeta}>{whenLabel(exp)} · {exp.city}</Text>
               <View style={styles.summaryRow}>
                 <View style={styles.summaryPill}>
-                  <Text style={styles.summaryPillText}>{seats} seat{seats !== 1 ? "s" : ""}</Text>
+                  <Text style={styles.summaryPillText}>
+                    {requested ? "Awaiting host" : isTrip(exp) ? "1 place" : `${seats} seat${seats !== 1 ? "s" : ""}`}
+                  </Text>
                 </View>
               </View>
             </Animated.View>

@@ -4,10 +4,10 @@
 
 ### Solo travel, together.
 
-**Small-group local experiences, hosted by people who actually live there.**
+**Small-group trips and local experiences for solo travelers, hosted by vetted members.**
 No big-bus tours. No stranger-danger group chats. Just a handful of people
-sharing a pottery morning, a food crawl, or a sunrise hike — with a host who
-knows exactly where to go.
+sharing five days island-hopping, a food crawl, or a sunrise hike — with a host
+who picked the group and knows exactly where to go.
 
 <br />
 
@@ -49,9 +49,11 @@ knows exactly where to go.
 ## ✨ How it works, in one breath
 
 1. **You apply** to join — about five minutes, reviewed by a human.
-2. **You explore** a feed of small-group experiences in your city, or the one you're visiting.
-3. **You reserve a seat.** The booking confirms once enough people join to make it happen.
-4. **You go, you connect, you review.** And if you know your own city well — flip the script and host.
+2. **You explore** multi-day group trips and few-hour local experiences.
+3. **You ask to join** with a short intro. On most trips the host picks the group; everything
+   confirms once enough people are in.
+4. **You go, you connect, you review.** And when you're planning a trip anyway — host it, and choose
+   who comes along.
 
 ## 🗺️ What's inside
 
@@ -59,7 +61,7 @@ knows exactly where to go.
 |---|---|---|
 | 🌍 | **Web** | Public site, experience feed, booking flow, Fumadocs help center, OG image generation |
 | 🔐 | **Admin** | Applications, businesses, experiences, bookings, reviews, users, media, marketing |
-| 📱 | **Mobile** | Expo app with the feed, maps, bookings, notifications, and camera uploads |
+| 📱 | **Mobile** | Expo app with the trip and experience feed, hosting and join requests, maps, notifications, and camera uploads |
 | ⚙️ | **API** | Spring Boot REST API — sole owner of auth, business rules, and the PostgreSQL schema |
 | 📦 | **Storage** | MinIO (S3-compatible) for every uploaded photo and document |
 

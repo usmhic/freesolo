@@ -78,10 +78,12 @@ public class ExperienceController {
         return ResponseEntity.status(201).body(bookingService.createBooking(principal.getId(), id, req));
     }
 
-    /** GET /api/experiences/{id}/members — who's going; members only. */
+    /** GET /api/experiences/{id}/members — who's going; approved members only. */
     @GetMapping("/{id}/members")
-    public ResponseEntity<List<MemberResponse>> members(@PathVariable String id) {
-        return ResponseEntity.ok(experienceService.getMembers(id));
+    public ResponseEntity<List<MemberResponse>> members(
+            @PathVariable String id,
+            @AuthenticationPrincipal UserPrincipal principal) {
+        return ResponseEntity.ok(experienceService.getMembers(userService.getById(principal.getId()), id));
     }
 
     /** GET /api/experiences/{id}/photos */

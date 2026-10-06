@@ -16,6 +16,7 @@ import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Button, Card, ProgressBar } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
+import { ItineraryDay, isTrip, needsApproval, parseList, tripDays, whenLabel } from "../../lib/listing";
 
 const { width } = Dimensions.get("window");
 
@@ -24,16 +25,20 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   const { user } = useAuth();
   const [exp, setExp] = useState<any>(null);
   const [reviews, setReviews] = useState<any[]>([]);
+  const [members, setMembers] = useState<any[] | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const [{ data }, { data: revData }] = await Promise.all([
+      const [{ data }, { data: revData }, { data: memberData }] = await Promise.all([
         apiFetch(`/api/experiences/${experienceId}`),
         apiFetch(`/api/reviews?experienceId=${experienceId}`),
+        // Members only — signed-out viewers get an error and see a prompt instead.
+        apiFetch<any[]>(`/api/experiences/${experienceId}/members`),
       ]);
       setExp(data);
       setReviews((revData as any) ?? []);
+      setMembers(Array.isArray(memberData) ? memberData : null);
       setLoading(false);
     })();
   }, [experienceId]);
@@ -46,6 +51,12 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   if (!exp) return null;
 
   const seatsLeft = exp.maxSeats - (exp.filledSeats ?? 0);
+  const trip = isTrip(exp);
+  const days = trip ? tripDays(exp) : null;
+  const itinerary = parseList<ItineraryDay>(exp.itinerary);
+  const included = parseList(exp.included);
+  const vetted = needsApproval(exp);
+  const isHost = !!user?.id && user.id === exp.host?.id;
   const hostInitial = (exp.host?.name ?? "H")[0].toUpperCase();
   const avgRating = reviews.length ? (reviews.reduce((s: number, r: any) => s + r.rating, 0) / reviews.length).toFixed(1) : null;
 
@@ -64,17 +75,34 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
 
         <View style={styles.body}>
           {/* Category pill */}
-          <View style={styles.catPill}>
-            <Text style={styles.catText}>{exp.category}</Text>
+          <View style={styles.pillRow}>
+            {trip && (
+              <View style={[styles.catPill, styles.tripPill]}>
+                <Text style={[styles.catText, { color: Colors.paper }]}>🧭 Group trip</Text>
+              </View>
+            )}
+            <View style={styles.catPill}>
+              <Text style={styles.catText}>{exp.category}</Text>
+            </View>
           </View>
 
           <Text style={styles.title}>{exp.title}</Text>
 
           {/* Meta row */}
           <View style={styles.metaRow}>
-            <Text style={styles.meta}>📅 {exp.date}</Text>
-            <Text style={styles.meta}>🕐 {exp.time}</Text>
-            <Text style={styles.meta}>⏱ {exp.durationMins ?? 120}min</Text>
+            {trip ? (
+              <>
+                <Text style={styles.meta}>📅 {whenLabel(exp)}</Text>
+                {days ? <Text style={styles.meta}>🗓 {days} days</Text> : null}
+                <Text style={styles.meta}>📍 {exp.city}</Text>
+              </>
+            ) : (
+              <>
+                <Text style={styles.meta}>📅 {exp.date}</Text>
+                <Text style={styles.meta}>🕐 {exp.time}</Text>
+                <Text style={styles.meta}>⏱ {exp.durationMins ?? 120}min</Text>
+              </>
+            )}
           </View>
 
           {/* Host card */}
@@ -90,7 +118,7 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={styles.hostName}>{exp.host?.name ?? "Local host"}</Text>
-                <Text style={styles.hostSub}>Verified local host · {exp.city}</Text>
+                <Text style={styles.hostSub}>{trip ? "Trip host · verified member" : `Verified local host · ${exp.city}`}</Text>
               </View>
               {avgRating && (
                 <View style={styles.ratingBadge}>
@@ -113,12 +141,66 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
               </View>
             </View>
             <ProgressBar filled={exp.filledSeats ?? 0} total={exp.maxSeats} warn={seatsLeft <= 2} />
-            <Text style={styles.seatsSubtext}>{exp.filledSeats ?? 0}/{exp.maxSeats} spots filled · min {exp.minSeats} to confirm</Text>
+            <Text style={styles.seatsSubtext}>
+              {exp.filledSeats ?? 0}/{exp.maxSeats} spots filled · min {exp.minSeats} to confirm
+              {vetted ? " · the host picks the group" : ""}
+            </Text>
           </Card>
 
           {/* Description */}
-          <Text style={styles.sectionTitle}>About this experience</Text>
+          <Text style={styles.sectionTitle}>{trip ? "About this trip" : "About this experience"}</Text>
           <Text style={styles.description}>{exp.description}</Text>
+
+          {/* Who's going */}
+          <Text style={styles.sectionTitle}>Who's going</Text>
+          {members === null ? (
+            <Text style={styles.membersHint}>Sign in as an approved member to see who's going.</Text>
+          ) : members.length === 0 ? (
+            <Text style={styles.membersHint}>Nobody yet — be the first to {vetted ? "ask to join" : "join"}.</Text>
+          ) : (
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.membersRow}>
+              {members.map((m: any) => (
+                <TouchableOpacity key={m.id} style={styles.member} activeOpacity={0.7}
+                  onPress={() => navigation.navigate("UserProfile", { userId: m.id })}>
+                  {m.image ? (
+                    <Image source={{ uri: m.image }} style={styles.memberAvatar} />
+                  ) : (
+                    <View style={[styles.memberAvatar, styles.memberFallback]}>
+                      <Text style={styles.memberInitial}>{(m.name ?? "T")[0].toUpperCase()}</Text>
+                    </View>
+                  )}
+                  <Text style={styles.memberName} numberOfLines={1}>{m.name?.split(" ")[0] ?? "Traveler"}</Text>
+                  <Text style={styles.memberMeta}>{m.countriesVisited} 🌍</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          )}
+
+          {/* Itinerary */}
+          {itinerary.length > 0 && (
+            <>
+              <Text style={styles.sectionTitle}>Itinerary</Text>
+              {itinerary.map((d, i) => (
+                <View key={i} style={styles.dayRow}>
+                  <View style={styles.dayDot}><Text style={styles.dayNum}>{i + 1}</Text></View>
+                  <View style={{ flex: 1, paddingBottom: 14 }}>
+                    <Text style={styles.dayTitle}>{d.title}</Text>
+                    {d.description ? <Text style={styles.dayBody}>{d.description}</Text> : null}
+                  </View>
+                </View>
+              ))}
+            </>
+          )}
+
+          {/* Included */}
+          {included.length > 0 && (
+            <>
+              <Text style={styles.sectionTitle}>What the price covers</Text>
+              {included.map((item, i) => (
+                <Text key={i} style={styles.includedItem}>✓  {item}</Text>
+              ))}
+            </>
+          )}
 
           {/* Venue */}
           {exp.business && (
@@ -189,14 +271,26 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
           <Text style={styles.ctaPriceAmount}>€{exp.price}</Text>
           <Text style={styles.ctaPriceSub}>per person</Text>
         </View>
-        <TouchableOpacity
-          style={[styles.ctaBtn, seatsLeft === 0 && styles.ctaBtnDisabled]}
-          disabled={seatsLeft === 0}
-          activeOpacity={0.85}
-          onPress={() => navigation.navigate("Booking", { exp })}
-        >
-          <Text style={styles.ctaBtnText}>{seatsLeft === 0 ? "Fully booked" : "Reserve a seat →"}</Text>
-        </TouchableOpacity>
+        {isHost ? (
+          <TouchableOpacity
+            style={styles.ctaBtn}
+            activeOpacity={0.85}
+            onPress={() => navigation.navigate("HostRequests", { experienceId: exp.id, title: exp.title })}
+          >
+            <Text style={styles.ctaBtnText}>Manage your group →</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            style={[styles.ctaBtn, seatsLeft === 0 && styles.ctaBtnDisabled]}
+            disabled={seatsLeft === 0}
+            activeOpacity={0.85}
+            onPress={() => navigation.navigate("Booking", { exp })}
+          >
+            <Text style={styles.ctaBtnText}>
+              {seatsLeft === 0 ? "Group is full" : vetted ? "Request to join →" : trip ? "Join this trip →" : "Reserve a seat →"}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </SafeAreaView>
   );
@@ -214,7 +308,9 @@ const styles = StyleSheet.create({
     ...Shadow.sm,
   },
   body: { padding: Spacing.lg },
-  catPill: { alignSelf: "flex-start", backgroundColor: Colors.sand, borderRadius: Radius.full, paddingHorizontal: 12, paddingVertical: 5, marginBottom: 10 },
+  pillRow: { flexDirection: "row", gap: 6, marginBottom: 10 },
+  tripPill: { backgroundColor: Colors.ink },
+  catPill: { alignSelf: "flex-start", backgroundColor: Colors.sand, borderRadius: Radius.full, paddingHorizontal: 12, paddingVertical: 5 },
   catText: { fontFamily: Fonts.bodyMedium, fontSize: 11, color: Colors.muted },
   title: { fontFamily: Fonts.display, fontSize: 28, color: Colors.ink, lineHeight: 36, letterSpacing: -0.5, marginBottom: 12 },
   metaRow: { flexDirection: "row", gap: 16, marginBottom: Spacing.md },
@@ -235,6 +331,20 @@ const styles = StyleSheet.create({
   seatsSubtext: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted, marginTop: 6 },
   sectionTitle: { fontFamily: Fonts.bodySemiBold, fontSize: 11, letterSpacing: 0.8, textTransform: "uppercase", color: Colors.muted, marginBottom: 10, marginTop: Spacing.md },
   description: { fontFamily: Fonts.body, fontSize: 15, color: Colors.ink, lineHeight: 24, marginBottom: Spacing.sm },
+  membersHint: { fontFamily: Fonts.body, fontSize: 13, color: Colors.muted, marginBottom: Spacing.sm },
+  membersRow: { gap: 14, paddingBottom: Spacing.sm },
+  member: { alignItems: "center", width: 58 },
+  memberAvatar: { width: 48, height: 48, borderRadius: 24 },
+  memberFallback: { backgroundColor: Colors.clay, alignItems: "center", justifyContent: "center" },
+  memberInitial: { fontFamily: Fonts.display, fontSize: 18, color: Colors.white },
+  memberName: { fontFamily: Fonts.bodyMedium, fontSize: 12, color: Colors.ink, marginTop: 4 },
+  memberMeta: { fontFamily: Fonts.body, fontSize: 10, color: Colors.muted },
+  dayRow: { flexDirection: "row", gap: 12 },
+  dayDot: { width: 26, height: 26, borderRadius: 13, backgroundColor: Colors.ink, alignItems: "center", justifyContent: "center" },
+  dayNum: { fontFamily: Fonts.bodySemiBold, fontSize: 12, color: Colors.paper },
+  dayTitle: { fontFamily: Fonts.bodyMedium, fontSize: 14, color: Colors.ink, marginTop: 3 },
+  dayBody: { fontFamily: Fonts.body, fontSize: 13, color: Colors.muted, lineHeight: 19, marginTop: 2 },
+  includedItem: { fontFamily: Fonts.body, fontSize: 14, color: Colors.ink, marginBottom: 6 },
   venueCard: { padding: 14, marginBottom: Spacing.sm },
   venueName: { fontFamily: Fonts.bodyMedium, fontSize: 14, color: Colors.ink },
   venueAddress: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: 3 },

@@ -17,6 +17,9 @@ import SignInScreen from "../screens/auth/SignInScreen";
 // Business
 import BusinessOnboardingScreen from "../screens/business/BusinessOnboardingScreen";
 import BusinessDashboardScreen from "../screens/business/BusinessDashboardScreen";
+// Host
+import HostDashboardScreen from "../screens/host/HostDashboardScreen";
+import HostRequestsScreen from "../screens/host/HostRequestsScreen";
 // Traveler
 import FeedScreen from "../screens/traveler/FeedScreen";
 import ExperienceDetailScreen from "../screens/traveler/ExperienceDetailScreen";
@@ -90,7 +93,7 @@ function TravelerTabs() {
       />
       <Tab.Screen
         name="Host"
-        component={CreateExperienceScreen}
+        component={HostDashboardScreen}
         options={{ title: "Host", tabBarIcon: ({ focused }: { focused: boolean }) => <TabIcon emoji="＋" focused={focused} /> }}
       />
       <Tab.Screen
@@ -129,6 +132,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Booking"             component={BookingScreen}            options={{ animation: "slide_from_bottom" }} />
       <Stack.Screen name="Confirmed"           component={ConfirmedScreen}          options={{ animation: "fade" }} />
       <Stack.Screen name="CreateExperience"    component={CreateExperienceScreen} />
+      <Stack.Screen name="HostRequests"        component={HostRequestsScreen}       options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="Notifications"       component={NotificationsScreen} />
       <Stack.Screen name="ExploreMap"          component={ExploreMapScreen}         options={{ animation: "slide_from_bottom" }} />
       <Stack.Screen name="UserProfile"         component={UserProfileScreen}        options={{ animation: "slide_from_right" }} />

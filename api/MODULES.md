@@ -12,7 +12,7 @@ separate deployments before they are useful.
 | Identity | `identity` | `fs_users`, `fs_oauth_accounts`, `fs_otp_codes` | — |
 | Partners | `partners` | `fs_businesses`, `fs_applications` | Identity |
 | Experiences | `experiences` | `fs_experiences`, `fs_reviews` | Identity, Partners |
-| Bookings | `bookings` | `fs_bookings` | Identity, Experiences |
+| Bookings | `bookings` | `fs_bookings` | Identity, Experiences, Engagement |
 | Engagement | `engagement` | `fs_notifications`, `fs_email_campaigns` | Identity |
 | Media | `media` | `fs_uploads`, `fs_event_photos` | Identity, Experiences, Bookings |
 
@@ -32,13 +32,17 @@ schema or search-path dependency.
 - Cross-schema foreign keys are intentional while the modules share one
   database. They protect data integrity and make a later service extraction an
   explicit design decision rather than an accidental split.
+- Bookings owns join requests: it notifies hosts and travelers through the
+  Engagement module's `NotificationService` when someone asks to join, is
+  accepted or declined, and when a group confirms.
 - Email, push, and object-storage adapters remain infrastructure behind
   the owning application service; they are not separate public APIs.
 
 ## Fresh baseline and existing data
 
-`db/migration/V1__baseline_schema.sql` is the only maintained Flyway migration.
-It creates the schemas and tables for a fresh database. If legacy tables exist
+`db/migration/V1__baseline_schema.sql` is the baseline Flyway migration; later
+versions (`V2`, `V3`, …) are small, idempotent changes on top of it.
+V1 creates the schemas and tables for a fresh database. If legacy tables exist
 in `public`, the same migration moves them with `ALTER TABLE ... SET SCHEMA`,
 which preserves rows, indexes, constraints, and identifiers.
 
