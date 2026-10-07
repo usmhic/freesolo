@@ -57,6 +57,7 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   const included = parseList(exp.included);
   const vetted = needsApproval(exp);
   const isHost = !!user?.id && user.id === exp.host?.id;
+  const inGroup = isHost || !!members?.some((m: any) => m.id === user?.id);
   const hostInitial = (exp.host?.name ?? "H")[0].toUpperCase();
   const avgRating = reviews.length ? (reviews.reduce((s: number, r: any) => s + r.rating, 0) / reviews.length).toFixed(1) : null;
 
@@ -174,6 +175,13 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
                 </TouchableOpacity>
               ))}
             </ScrollView>
+          )}
+
+          {inGroup && (
+            <TouchableOpacity style={styles.chatBtn} activeOpacity={0.85}
+              onPress={() => navigation.navigate("GroupChat", { experienceId: exp.id, title: exp.title })}>
+              <Text style={styles.chatBtnText}>💬  Open group chat</Text>
+            </TouchableOpacity>
           )}
 
           {/* Itinerary */}
@@ -339,6 +347,8 @@ const styles = StyleSheet.create({
   memberInitial: { fontFamily: Fonts.display, fontSize: 18, color: Colors.white },
   memberName: { fontFamily: Fonts.bodyMedium, fontSize: 12, color: Colors.ink, marginTop: 4 },
   memberMeta: { fontFamily: Fonts.body, fontSize: 10, color: Colors.muted },
+  chatBtn: { borderWidth: 1.5, borderColor: Colors.ink, borderRadius: Radius.md, paddingVertical: 12, alignItems: "center", marginTop: 4, marginBottom: Spacing.sm },
+  chatBtnText: { fontFamily: Fonts.bodySemiBold, fontSize: 14, color: Colors.ink },
   dayRow: { flexDirection: "row", gap: 12 },
   dayDot: { width: 26, height: 26, borderRadius: 13, backgroundColor: Colors.ink, alignItems: "center", justifyContent: "center" },
   dayNum: { fontFamily: Fonts.bodySemiBold, fontSize: 12, color: Colors.paper },

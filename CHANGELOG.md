@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Held seats confirm together once a listing reaches its minimum group size,
   with in-app, push, and email notice.
 - `/api/hosting/**` endpoints for a host's listings, venues, and join requests.
+- Group chat for every listing, open to the host and travelers holding a
+  seat. Members get one notification when a quiet chat wakes up, not one per
+  message.
 
 - A documented modular API architecture with schema ownership for identity,
   partners, experiences, bookings, engagement, and media.

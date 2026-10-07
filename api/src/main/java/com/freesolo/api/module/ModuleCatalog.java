@@ -16,7 +16,7 @@ public final class ModuleCatalog {
             new Module("experiences", DomainSchemas.EXPERIENCES,
                     "Experience and multi-day trip catalog, itineraries, and reviews", List.of("identity", "partners")),
             new Module("bookings", DomainSchemas.BOOKINGS,
-                    "Reservations, host-approved join requests, and lifecycle state",
+                    "Reservations, host-approved join requests, group chat, and lifecycle state",
                     List.of("identity", "experiences", "engagement")),
             new Module("engagement", DomainSchemas.ENGAGEMENT,
                     "Notifications and email campaigns", List.of("identity")),

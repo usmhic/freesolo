@@ -12,7 +12,7 @@ separate deployments before they are useful.
 | Identity | `identity` | `fs_users`, `fs_oauth_accounts`, `fs_otp_codes` | — |
 | Partners | `partners` | `fs_businesses`, `fs_applications` | Identity |
 | Experiences | `experiences` | `fs_experiences`, `fs_reviews` | Identity, Partners |
-| Bookings | `bookings` | `fs_bookings` | Identity, Experiences, Engagement |
+| Bookings | `bookings` | `fs_bookings`, `fs_group_messages` | Identity, Experiences, Engagement |
 | Engagement | `engagement` | `fs_notifications`, `fs_email_campaigns` | Identity |
 | Media | `media` | `fs_uploads`, `fs_event_photos` | Identity, Experiences, Bookings |
 
@@ -35,6 +35,9 @@ schema or search-path dependency.
 - Bookings owns join requests: it notifies hosts and travelers through the
   Engagement module's `NotificationService` when someone asks to join, is
   accepted or declined, and when a group confirms.
+- Bookings also owns each listing's group chat (`fs_group_messages`), because
+  holding a seat is what grants access. Keeping it out of Engagement avoids an
+  Engagement → Bookings dependency that would close a cycle.
 - Email, push, and object-storage adapters remain infrastructure behind
   the owning application service; they are not separate public APIs.
 

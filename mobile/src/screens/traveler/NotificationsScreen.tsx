@@ -30,6 +30,7 @@ const NOTIF_ICONS: Record<string, string> = {
   join_approved: "✅",
   join_declined: "🧭",
   booking_new: "🙌",
+  group_message: "💬",
 };
 
 interface Notif {
@@ -69,6 +70,9 @@ export default function NotificationsScreen({ navigation }: any) {
     switch (item.type) {
       case "new_review":
         if (data.authorId) navigation.navigate("UserProfile", { userId: data.authorId });
+        break;
+      case "group_message":
+        if (data.experienceId) navigation.navigate("GroupChat", { experienceId: data.experienceId });
         break;
       case "join_request":
         if (data.experienceId) navigation.navigate("HostRequests", { experienceId: data.experienceId });

@@ -89,6 +89,8 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `GET` | `/api/hosting/listings/{id}/requests` | Join requests and the current group (host only) |
 | `POST` | `/api/hosting/requests/{bookingId}/approve` | Accept a traveler (host only) |
 | `POST` | `/api/hosting/requests/{bookingId}/decline` | Decline a traveler (host only) |
+| `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
+| `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |
 
 Only approved members can join. A join request holds no seat until the host
 accepts it, and every held seat confirms together once the listing reaches its

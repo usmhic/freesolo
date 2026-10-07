@@ -32,6 +32,7 @@ import ExploreMapScreen from "../screens/traveler/ExploreMapScreen";
 import TravelPlanScreen from "../screens/traveler/TravelPlanScreen";
 import UserProfileScreen from "../screens/traveler/UserProfileScreen";
 import RateExperienceScreen from "../screens/traveler/RateExperienceScreen";
+import GroupChatScreen from "../screens/traveler/GroupChatScreen";
 
 const Stack = createNativeStackNavigator();
 const Tab   = createBottomTabNavigator();
@@ -132,6 +133,7 @@ export default function AppNavigator() {
       <Stack.Screen name="Booking"             component={BookingScreen}            options={{ animation: "slide_from_bottom" }} />
       <Stack.Screen name="Confirmed"           component={ConfirmedScreen}          options={{ animation: "fade" }} />
       <Stack.Screen name="CreateExperience"    component={CreateExperienceScreen} />
+      <Stack.Screen name="GroupChat"           component={GroupChatScreen}          options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="HostRequests"        component={HostRequestsScreen}       options={{ animation: "slide_from_right" }} />
       <Stack.Screen name="Notifications"       component={NotificationsScreen} />
       <Stack.Screen name="ExploreMap"          component={ExploreMapScreen}         options={{ animation: "slide_from_bottom" }} />

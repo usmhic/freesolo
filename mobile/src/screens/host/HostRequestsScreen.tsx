@@ -101,6 +101,9 @@ export default function HostRequestsScreen({ navigation, route }: any) {
           <Text style={{ fontSize: 18 }}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle} numberOfLines={1}>{title ?? "Your group"}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate("GroupChat", { experienceId, title })} style={styles.viewBtn}>
+          <Text style={styles.viewText}>💬 Chat</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("ExperienceDetail", { experienceId })} style={styles.viewBtn}>
           <Text style={styles.viewText}>View</Text>
         </TouchableOpacity>
