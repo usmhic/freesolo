@@ -300,6 +300,7 @@ public class AdminController {
         List<Map<String, Object>> list = result.getContent().stream().map(e -> {
             Map<String, Object> m = new HashMap<>();
             m.put("id", e.getId());
+            m.put("kind", e.getKind());
             m.put("title", e.getTitle());
             m.put("emoji", str(e.getEmoji()));
             m.put("category", e.getCategory());
@@ -307,6 +308,8 @@ public class AdminController {
             m.put("country", str(e.getCountry()));
             m.put("date", e.getDate());
             m.put("time", e.getTime());
+            m.put("endDate", str(e.getEndDate()));
+            m.put("joinPolicy", e.getJoinPolicy());
             m.put("price", e.getPrice());
             m.put("currency", str(e.getCurrency()));
             m.put("status", e.getStatus());
@@ -320,7 +323,7 @@ public class AdminController {
             hostMap.put("name", str(e.getHost().getName()));
             hostMap.put("email", e.getHost().getEmail());
             m.put("host", hostMap);
-            m.put("business", Map.of("name", e.getBusiness().getName()));
+            m.put("business", e.getBusiness() != null ? Map.of("name", e.getBusiness().getName()) : null);
             m.put("_count", Map.of("bookings", e.getBookings().size(), "reviews", e.getReviews().size()));
             return m;
         }).toList();

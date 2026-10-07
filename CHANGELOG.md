@@ -9,6 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Multi-day group trips alongside single-session experiences. Trips carry a
+  day-by-day itinerary and what the price covers, and don't need a venue.
+- Host-approved joining: travelers ask to join with a short intro, and the host
+  accepts or declines from the new Host tab. Requests hold no seat. A
+  declined traveler can't re-request the same trip.
+- "Who's going" on every listing, visible to signed-in members.
+- Held seats confirm together once a listing reaches its minimum group size,
+  with in-app, push, and email notice.
+- `/api/hosting/**` endpoints for a host's listings, venues, and join requests.
+- Group chat for every listing, open to the host and travelers holding a
+  seat. Members get one notification when a quiet chat wakes up, not one per
+  message.
+
 - A documented modular API architecture with schema ownership for identity,
   partners, experiences, bookings, engagement, and media.
 - Shared engineering standards, coding-agent guidance, Dependabot configuration,
@@ -17,6 +30,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   templates, `ARCHITECTURE.md`.
 
 ### Changed
+
+- Only approved members can join a listing, and groups cap at twelve
+  travelers. Hosts can only list experiences at venues they own.
+- The landing page and help center now lead with group trips.
 
 - Added a documented package-naming contract for Java packages, Maven coordinates, JavaScript app names, and Android identifiers.
 - Standardized the Android application ID to `com.osascloud.freesolo` for Google Play releases.
@@ -29,6 +46,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   with the usmhic open-source ecosystem.
 
 ### Fixed
+
+- Filled seats now count booked seats, not bookings, so a two-seat booking no
+  longer leaves room to oversell. Joining and approving lock the listing row
+  so two travelers can't take the last seat at the same time.
+- The mobile host form loads the member's venues from the API; it previously
+  read a field `/api/users/me` never returned, so no venue ever appeared.
+- The landing page no longer says cards are charged; FreeSolo doesn't take
+  payment.
 
 - `mobile-ci.yml` type-check step no longer silently no-ops — `mobile/package.json`
   now has a real `types:check` script.

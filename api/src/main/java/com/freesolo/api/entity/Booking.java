@@ -18,6 +18,16 @@ import java.util.List;
 @Builder
 public class Booking {
 
+    /** Waiting for the host to accept a join request; holds no seat. */
+    public static final String REQUESTED = "requested";
+    /** Seat held; the group has not reached its minimum yet. */
+    public static final String PENDING = "pending";
+    public static final String CONFIRMED = "confirmed";
+    public static final String DECLINED = "declined";
+    public static final String CANCELLED = "cancelled";
+    public static final String COMPLETED = "completed";
+    public static final String REFUNDED = "refunded";
+
     @Id
     @UuidGenerator
     @Column(length = 36, updatable = false)
@@ -35,13 +45,16 @@ public class Booking {
     private int seats = 1;
 
     @Builder.Default
-    private String status = "pending";
+    private String status = PENDING;
 
     @Column(name = "guest_note")
     private String guestNote;
 
     @Column(name = "cancel_reason")
     private String cancelReason;
+
+    @Column(name = "decided_at")
+    private LocalDateTime decidedAt;
 
     @Column(name = "confirmed_at")
     private LocalDateTime confirmedAt;

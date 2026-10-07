@@ -9,12 +9,14 @@ import { Badge, Card, EmptyState, PageHeader, Table, Td, Th, fmtDateTime } from 
 
 export const dynamic = "force-dynamic";
 
-const STATUSES = ["all", "pending", "confirmed", "completed", "cancelled", "refunded"] as const;
+const STATUSES = ["all", "requested", "pending", "confirmed", "completed", "cancelled", "declined", "refunded"] as const;
 const BOOKING_STATUS_OPTIONS = [
+  { value: "requested", label: "Requested (awaiting host)" },
   { value: "pending", label: "Pending" },
   { value: "confirmed", label: "Confirmed" },
   { value: "completed", label: "Completed" },
   { value: "cancelled", label: "Cancelled" },
+  { value: "declined", label: "Declined by host" },
   { value: "refunded", label: "Refunded" },
 ];
 

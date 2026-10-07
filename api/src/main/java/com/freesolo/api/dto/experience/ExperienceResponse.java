@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 public record ExperienceResponse(
         String id,
+        String kind,
         HostSnippet host,
         BusinessSnippet business,
         String title,
@@ -20,6 +21,7 @@ public record ExperienceResponse(
         Double lng,
         String date,
         String time,
+        String endDate,
         int durationMins,
         int minSeats,
         int maxSeats,
@@ -28,6 +30,9 @@ public record ExperienceResponse(
         String coverImage,
         String images,
         String tags,
+        String itinerary,
+        String included,
+        String joinPolicy,
         String status,
         boolean featured,
         long filledSeats,
@@ -42,14 +47,16 @@ public record ExperienceResponse(
         Business biz = e.getBusiness();
         long available = Math.max(0, e.getMaxSeats() - filledSeats);
         return new ExperienceResponse(
-                e.getId(),
+                e.getId(), e.getKind(),
                 new HostSnippet(host.getId(), host.getName(), host.getImage()),
-                new BusinessSnippet(biz.getId(), biz.getName(), biz.getAddress(), biz.getCity()),
+                biz != null ? new BusinessSnippet(biz.getId(), biz.getName(), biz.getAddress(), biz.getCity()) : null,
                 e.getTitle(), e.getDescription(), e.getCategory(), e.getEmoji(),
                 e.getCity(), e.getCountry(), e.getLat(), e.getLng(),
-                e.getDate(), e.getTime(), e.getDurationMins(),
+                e.getDate(), e.getTime(), e.getEndDate(), e.getDurationMins(),
                 e.getMinSeats(), e.getMaxSeats(), e.getPrice(), e.getCurrency(),
-                e.getCoverImage(), e.getImages(), e.getTags(), e.getStatus(), e.isFeatured(),
+                e.getCoverImage(), e.getImages(), e.getTags(),
+                e.getItinerary(), e.getIncluded(), e.getJoinPolicy(),
+                e.getStatus(), e.isFeatured(),
                 filledSeats, available, e.getCreatedAt()
         );
     }

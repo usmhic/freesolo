@@ -18,6 +18,7 @@ import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Card, Logo } from "../../components/UI";
 import { apiFetch, uploadImage } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
+import { BOOKING_STATUS, UPCOMING_STATUSES, whenLabel } from "../../lib/listing";
 
 export default function ProfileScreen({ navigation }: any) {
   const { user, logout, refreshUser } = useAuth();
@@ -68,8 +69,8 @@ export default function ProfileScreen({ navigation }: any) {
     ]);
   };
 
-  const upcoming = bookings.filter(b => ["pending","confirmed"].includes(b.status));
-  const past     = bookings.filter(b => ["completed","cancelled"].includes(b.status));
+  const upcoming = bookings.filter(b => UPCOMING_STATUSES.includes(b.status));
+  const past     = bookings.filter(b => !UPCOMING_STATUSES.includes(b.status));
   const displayed = tab === "upcoming" ? upcoming : past;
 
   if (!user) return null;
@@ -141,7 +142,7 @@ export default function ProfileScreen({ navigation }: any) {
             {[
               { icon: "🗺️", label: "Explore map", screen: "ExploreMap" },
               { icon: "🔔", label: "Notifications", screen: "Notifications" },
-              { icon: "✨", label: "Host experience", screen: "CreateExperience" },
+              { icon: "🧭", label: "Host a trip", screen: "Host" },
             ].map(a => (
               <TouchableOpacity key={a.label} onPress={() => navigation.navigate(a.screen)} style={styles.actionBtn}>
                 <Text style={{ fontSize: 24 }}>{a.icon}</Text>
@@ -180,24 +181,20 @@ export default function ProfileScreen({ navigation }: any) {
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={styles.tripTitle}>{b.experience?.title ?? "Experience"}</Text>
-                  <Text style={styles.tripMeta}>{b.experience?.city} · {b.experience?.date}</Text>
-                  <Text style={styles.tripPrice}>€{b.amountTotal}</Text>
+                  <Text style={styles.tripMeta}>{b.experience?.city} · {whenLabel(b.experience ?? {})}</Text>
                 </View>
                 <View style={[styles.tripBadge,
-                  b.status === "confirmed" && styles.badgeGreen,
-                  b.status === "pending" && styles.badgeAmber,
-                  (b.status === "completed" || b.status === "cancelled") && styles.badgeGrey,
+                  BOOKING_STATUS[b.status]?.tone === "green" && styles.badgeGreen,
+                  BOOKING_STATUS[b.status]?.tone === "amber" && styles.badgeAmber,
+                  BOOKING_STATUS[b.status]?.tone !== "green" && BOOKING_STATUS[b.status]?.tone !== "amber" && styles.badgeGrey,
                 ]}>
                   <Text style={[styles.tripBadgeText,
-                    b.status === "confirmed" && { color: Colors.success },
-                    b.status === "pending" && { color: Colors.warning },
-                    b.status === "completed" && { color: Colors.muted },
-                    b.status === "cancelled" && { color: Colors.danger },
+                    BOOKING_STATUS[b.status]?.tone === "green" && { color: Colors.success },
+                    BOOKING_STATUS[b.status]?.tone === "amber" && { color: Colors.warning },
+                    BOOKING_STATUS[b.status]?.tone === "grey" && { color: Colors.muted },
+                    BOOKING_STATUS[b.status]?.tone === "red" && { color: Colors.danger },
                   ]}>
-                    {b.status === "confirmed" ? "✓ Confirmed"
-                      : b.status === "pending" ? "Pending"
-                      : b.status === "completed" ? "Done"
-                      : "Cancelled"}
+                    {BOOKING_STATUS[b.status]?.label ?? b.status}
                   </Text>
                 </View>
               </View>

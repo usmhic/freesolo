@@ -19,23 +19,23 @@ import { WorldMapSection } from "@/components/world-map";
 import { PhoneShowcase } from "@/components/phone-showcase";
 
 export const metadata: Metadata = {
-  title: "FreeSolo — Small-group travel experiences",
+  title: "FreeSolo — Small-group trips for solo travelers",
   description:
-    "A vetted community where solo travelers join four-to-eight person experiences hosted by locals. Apply to join — a real person reads every application.",
+    "A vetted community where solo travelers join small-group trips and local experiences, and hosts pick who comes along. Apply to join — a real person reads every application.",
 };
 
 const FEATURES = [
   {
     icon: Compass,
-    title: "Curated experiences",
+    title: "Trips & experiences",
     description:
-      "Bookable group activities across cities and categories — hand-reviewed before they go live.",
+      "Multi-day group trips with a day-by-day itinerary, and few-hour experiences hosted by locals.",
   },
   {
     icon: Calendar,
-    title: "Bookings & confirmations",
+    title: "Host-picked groups",
     description:
-      "Reserve a seat, get confirmed once the group fills, and manage everything from your profile.",
+      "Ask to join with a short intro, see who's already going, and get confirmed once the group fills.",
   },
   {
     icon: ShieldCheck,
@@ -67,7 +67,7 @@ const PROMISES = [
   {
     icon: Users,
     title: "The group is the product",
-    body: "Every experience caps between four and eight seats. Big enough for a proper conversation, small enough that nobody drifts to the edge of it.",
+    body: "Trips and experiences cap at twelve travelers, and most run four to eight. Big enough for a proper conversation, small enough that nobody drifts to the edge of it.",
   },
   {
     icon: Wallet,
@@ -77,7 +77,7 @@ const PROMISES = [
   {
     icon: Heart,
     title: "Vetted on both sides",
-    body: "Travelers and hosts are both read by a person before they can book or list. It's slower than an open marketplace, and that's the entire point.",
+    body: "Every member is read by a person before they can join or host — and on trips, the host still picks the group. It's slower than an open marketplace, and that's the entire point.",
   },
 ] as const;
 
@@ -89,18 +89,18 @@ const HOW_IT_WORKS = [
   },
   {
     step: "02",
-    title: "Browse & reserve",
-    body: "Explore a live feed of small-group experiences. Reserve a seat — your card is only charged once the group confirms.",
+    title: "Find your group",
+    body: "Browse group trips and local experiences. Ask to join with a short intro — FreeSolo never takes payment; you settle with the host.",
   },
   {
     step: "03",
     title: "Go & connect",
-    body: "Show up, meet people who chose the same thing you did, and experience a city the way locals actually see it.",
+    body: "See who's going before you leave, then travel with people who chose the same trip you did.",
   },
   {
     step: "04",
     title: "Host your own",
-    body: "Know your city? Register a venue and host your own experience for travelers looking for exactly what you know."
+    body: "Planning a trip anyway? Publish the itinerary and choose the solo travelers who come with you — or host a few hours at your venue."
   },
 ] as const;
 
@@ -152,7 +152,7 @@ export default function HomePage() {
         />
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
           <span className="rounded-full border border-fd-border bg-fd-card px-3 py-1 text-xs font-medium text-fd-muted-foreground">
-            🌍 Small groups · Local hosts · Real connections
+            🧭 Group trips · Local experiences · Vetted members
           </span>
           <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl">
             Solo doesn&apos;t have to mean{" "}
@@ -162,9 +162,10 @@ export default function HomePage() {
           </h1>
           <p className="max-w-2xl text-balance text-base text-fd-muted-foreground sm:text-lg">
             Travelling by yourself is wonderful — right up until you want to do something
-            <em> with</em> someone. FreeSolo puts four to eight people around one table, one
-            trailhead, one pottery wheel, hosted by somebody who actually lives there. No
-            big-bus tours. No group chat with forty strangers.
+            <em> with</em> someone. On FreeSolo, members host small-group trips and local
+            experiences, and every traveler has been vetted before they can ask to join. Five
+            days island-hopping or one morning at a pottery wheel — no big-bus tours, no group
+            chat with forty strangers.
           </p>
           <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
             <ButtonLink href="/apply">
@@ -249,7 +250,7 @@ export default function HomePage() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Everything a travel experience platform needs
+              Everything a small-group travel platform needs
             </h2>
             <p className="mt-3 text-fd-muted-foreground">
               Discovery, bookings, reviews and moderation — purpose-built for small-group
@@ -282,8 +283,9 @@ export default function HomePage() {
             The next one is already being planned
           </h2>
           <p className="max-w-xl text-fd-muted-foreground">
-            Somewhere in Lisbon a host is deciding how many seats to open. Applications take
-            about five minutes, and a person reads every one — usually inside 48 hours.
+            Somewhere a host is finishing an itinerary and deciding who to bring along.
+            Applications take about five minutes, and a person reads every one — usually inside
+            48 hours.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <ButtonLink href="/apply">

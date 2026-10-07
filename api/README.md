@@ -71,13 +71,30 @@ All endpoints are under `/api/`. Authentication uses a JWT stored in an HttpOnly
 
 | Method | Path | Description |
 |---|---|---|
-| `GET` | `/api/experiences` | Browse active experiences |
-| `GET` | `/api/experiences/{id}` | Experience detail |
+| `GET` | `/api/experiences` | Browse active listings; `kind=trip` or `kind=experience` narrows them |
+| `GET` | `/api/experiences/{id}` | Listing detail, including a trip's `itinerary`, `included`, and `joinPolicy` |
 | `POST` | `/api/applications` | Submit a host application |
 
 ### Authenticated — `/api/bookings`, `/api/reviews`, `/api/uploads`, etc.
 
-Require a valid JWT. See controllers for the full list.
+Require a valid JWT. See controllers for the full list. The group-trip flow:
+
+| Method | Path | Description |
+|---|---|---|
+| `POST` | `/api/experiences` | Host an `experience` (needs one of your approved venues) or a `trip` (needs `endDate`; venue optional) |
+| `POST` | `/api/experiences/{id}/book` | Join, or ask to join when the listing's `joinPolicy` is `approval` |
+| `GET` | `/api/experiences/{id}/members` | Who's going |
+| `GET` | `/api/hosting/listings` | Your listings, with waiting join requests counted |
+| `GET` | `/api/hosting/venues` | Your venues |
+| `GET` | `/api/hosting/listings/{id}/requests` | Join requests and the current group (host only) |
+| `POST` | `/api/hosting/requests/{bookingId}/approve` | Accept a traveler (host only) |
+| `POST` | `/api/hosting/requests/{bookingId}/decline` | Decline a traveler (host only) |
+| `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
+| `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |
+
+Only approved members can join. A join request holds no seat until the host
+accepts it, and every held seat confirms together once the listing reaches its
+minimum group size.
 
 ### Admin — `/api/admin/**`
 

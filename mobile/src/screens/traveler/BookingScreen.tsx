@@ -13,6 +13,7 @@ import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Button, Card, ProgressBar, InfoBox } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
+import { isTrip, needsApproval, whenLabel } from "../../lib/listing";
 
 export default function BookingScreen({ navigation, route }: any) {
   const { exp } = route.params;
@@ -22,6 +23,8 @@ export default function BookingScreen({ navigation, route }: any) {
   const [loading, setLoading] = useState(false);
 
   const seatsLeft = (exp.availableSeats ?? exp.maxSeats - (exp.filledSeats ?? 0));
+  const trip = isTrip(exp);
+  const vetted = needsApproval(exp);
   const venueTotal = exp.price * seats;
 
   const handleBook = async () => {
@@ -34,15 +37,15 @@ export default function BookingScreen({ navigation, route }: any) {
     }
 
     setLoading(true);
-    const { data, error } = await apiFetch<{ id: string }>(`/api/experiences/${exp.id}/book`, {
+    const { data, error } = await apiFetch<{ id: string; status: string }>(`/api/experiences/${exp.id}/book`, {
       method: "POST",
       body: JSON.stringify({ seats, guestNote: note.trim() || null }),
     });
     setLoading(false);
 
-    if (error) { Alert.alert("Booking failed", error); return; }
+    if (error) { Alert.alert(vetted ? "Couldn't send your request" : "Booking failed", error); return; }
 
-    navigation.navigate("Confirmed", { exp, bookingId: data?.id, seats });
+    navigation.navigate("Confirmed", { exp, bookingId: data?.id, seats, status: data?.status });
   };
 
   return (
@@ -51,7 +54,7 @@ export default function BookingScreen({ navigation, route }: any) {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
           <Text style={styles.backArrow}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Reserve seats</Text>
+        <Text style={styles.headerTitle}>{vetted ? "Ask to join" : trip ? "Join trip" : "Reserve seats"}</Text>
         <View style={{ width: 40 }} />
       </View>
 
@@ -62,7 +65,7 @@ export default function BookingScreen({ navigation, route }: any) {
             <View style={styles.expEmoji}><Text style={{ fontSize: 28 }}>{exp.emoji}</Text></View>
             <View style={{ flex: 1 }}>
               <Text style={styles.expTitle}>{exp.title}</Text>
-              <Text style={styles.expMeta}>{exp.date} · {exp.time} · {exp.city}</Text>
+              <Text style={styles.expMeta}>{whenLabel(exp)} · {exp.city}</Text>
               <Text style={styles.expHost}>by {exp.host?.name ?? "Local host"}</Text>
             </View>
           </View>
@@ -70,9 +73,9 @@ export default function BookingScreen({ navigation, route }: any) {
           <Text style={styles.seatsText}>{exp.filledSeats ?? 0}/{exp.maxSeats} filled</Text>
         </Card>
 
-        {/* Seat selector */}
-        <Text style={styles.label}>Number of seats</Text>
-        <View style={styles.seatSelector}>
+        {/* Seat selector — trips are joined one traveler at a time */}
+        {!trip && <Text style={styles.label}>Number of seats</Text>}
+        {!trip && <View style={styles.seatSelector}>
           {[1,2,3,4].map(n => (
             <TouchableOpacity
               key={n}
@@ -83,13 +86,15 @@ export default function BookingScreen({ navigation, route }: any) {
               <Text style={[styles.seatBtnText, seats === n && styles.seatBtnTextActive]}>{n}</Text>
             </TouchableOpacity>
           ))}
-        </View>
+        </View>}
 
         {/* Note */}
-        <Text style={styles.label}>Note for host (optional)</Text>
+        <Text style={styles.label}>{vetted ? "Introduce yourself to the host" : "Note for host (optional)"}</Text>
         <TextInput
           style={styles.noteInput}
-          placeholder="Tell the host a bit about yourself…"
+          placeholder={vetted
+            ? "Where you've travelled, what you're hoping to get from this trip, anything the host should know…"
+            : "Tell the host a bit about yourself…"}
           placeholderTextColor={Colors.muted}
           value={note}
           onChangeText={setNote}
@@ -99,25 +104,28 @@ export default function BookingScreen({ navigation, route }: any) {
 
         {/* What the venue charges */}
         <Card style={styles.breakdownCard}>
-          <Text style={styles.breakdownTitle}>What you'll pay the venue</Text>
+          <Text style={styles.breakdownTitle}>{trip ? "What you'll pay the host" : "What you'll pay the venue"}</Text>
           <View style={[styles.breakdownRow, styles.breakdownRowTop]}>
             <Text style={styles.breakdownLabelBold}>
-              €{exp.price} × {seats} seat{seats !== 1 ? "s" : ""}
+              {trip ? `€${exp.price} for the trip` : `€${exp.price} × ${seats} seat${seats !== 1 ? "s" : ""}`}
             </Text>
             <Text style={styles.breakdownValBold}>€{venueTotal.toFixed(2)}</Text>
           </View>
           <View style={styles.totalRow}>
-            <Text style={styles.totalLabel}>Paid on the day</Text>
+            <Text style={styles.totalLabel}>{trip ? "Settled with the host" : "Paid on the day"}</Text>
             <Text style={styles.totalVal}>€{venueTotal.toFixed(2)}</Text>
           </View>
         </Card>
 
         <InfoBox variant="warning">
-          FreeSolo doesn't take payment — you settle with the venue directly. Your seat confirms once {exp.minSeats} travelers have joined.
+          {vetted
+            ? `The host reads every request and picks a group that fits. Once you're accepted, your place confirms when ${exp.minSeats} travelers are in. FreeSolo doesn't take payment.`
+            : `FreeSolo doesn't take payment — you settle with the ${trip ? "host" : "venue"} directly. Your seat confirms once ${exp.minSeats} travelers have joined.`}
         </InfoBox>
 
         <Button
-          label="Reserve my seat"
+          label={vetted ? "Send request" : trip ? "Join this trip" : "Reserve my seat"}
+          disabled={vetted && note.trim().length < 10}
           onPress={handleBook}
           loading={loading}
         />

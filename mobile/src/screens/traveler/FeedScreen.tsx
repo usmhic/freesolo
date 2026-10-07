@@ -16,6 +16,14 @@ import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Card, ProgressBar, Logo } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
+import { isTrip, needsApproval, tripDays, whenLabel } from "../../lib/listing";
+
+const KINDS = [
+  { id: "all",        label: "All",         title: "Trips & experiences" },
+  { id: "trip",       label: "🧭 Trips",       title: "Group trips" },
+  { id: "experience", label: "✨ Experiences", title: "Experiences" },
+] as const;
+type KindId = typeof KINDS[number]["id"];
 
 const FILTERS = [
   { id: "all",     label: "All",       emoji: "✦" },
@@ -28,8 +36,8 @@ const FILTERS = [
 ];
 
 interface Experience {
-  id: string; emoji: string; title: string; city: string;
-  date: string; time: string; category: string; price: number;
+  id: string; kind: string; emoji: string; title: string; city: string;
+  date: string; endDate: string | null; time: string; category: string; price: number; joinPolicy: string;
   filledSeats: number; maxSeats: number; minSeats: number;
   host: { id: string; name: string }; business: { name: string };
   status: string;
@@ -39,6 +47,7 @@ export default function FeedScreen({ navigation, route }: any) {
   const { city = "Lisbon", filter: initialFilter } = route?.params ?? {};
   const { user } = useAuth();
   const [filter, setFilter]       = useState(initialFilter ?? "all");
+  const [kind, setKind]           = useState<KindId>("all");
   const [experiences, setExp]     = useState<Experience[]>([]);
   const [loading, setLoading]     = useState(false);
   const [error, setError]         = useState<string | null>(null);
@@ -48,12 +57,12 @@ export default function FeedScreen({ navigation, route }: any) {
   const load = useCallback(async () => {
     setLoading(true); setError(null);
     const cat = filter === "all" ? "" : FILTERS.find(f => f.id === filter)?.label ?? "";
-    const { data, error: e } = await apiFetch<any>(`/api/experiences?city=${encodeURIComponent(city)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}`);
+    const { data, error: e } = await apiFetch<any>(`/api/experiences?city=${encodeURIComponent(city)}${cat ? `&category=${encodeURIComponent(cat)}` : ""}${kind !== "all" ? `&kind=${kind}` : ""}`);
     setLoading(false);
     if (e) { setError(e); setExp([]); return; }
     const list = Array.isArray(data) ? data : (data as any)?.data ?? [];
     setExp(list);
-  }, [city, filter]);
+  }, [city, filter, kind]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -69,7 +78,7 @@ export default function FeedScreen({ navigation, route }: any) {
       <View style={styles.header}>
         <View>
           <Text style={styles.headerCity}>{city}</Text>
-          <Text style={styles.headerTitle}>Experiences</Text>
+          <Text style={styles.headerTitle}>{KINDS.find(k => k.id === kind)?.title}</Text>
         </View>
         <View style={styles.headerRight}>
           <TouchableOpacity style={styles.mapBtn} onPress={() => navigation.navigate("ExploreMap")}>
@@ -81,13 +90,22 @@ export default function FeedScreen({ navigation, route }: any) {
         </View>
       </View>
 
+      {/* ── Trips / experiences ── */}
+      <View style={styles.kindRow}>
+        {KINDS.map(k => (
+          <TouchableOpacity key={k.id} onPress={() => setKind(k.id)} style={[styles.kindBtn, kind === k.id && styles.kindBtnActive]}>
+            <Text style={[styles.kindText, kind === k.id && styles.kindTextActive]}>{k.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
       {/* ── Search ── */}
       <View style={styles.searchRow}>
         <View style={styles.searchBox}>
           <Text style={styles.searchIcon}>🔍</Text>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search experiences…"
+            placeholder={kind === "trip" ? "Search trips…" : "Search experiences…"}
             placeholderTextColor={Colors.muted}
             value={search}
             onChangeText={setSearch}
@@ -114,12 +132,12 @@ export default function FeedScreen({ navigation, route }: any) {
       {loading ? (
         <View style={styles.center}>
           <ActivityIndicator color={Colors.clay} size="large" />
-          <Text style={styles.loadingText}>Finding experiences…</Text>
+          <Text style={styles.loadingText}>{kind === "trip" ? "Finding trips…" : "Finding experiences…"}</Text>
         </View>
       ) : error ? (
         <View style={styles.center}>
           <Text style={{ fontSize: 44, marginBottom: 12 }}>⚠️</Text>
-          <Text style={styles.emptyTitle}>Couldn't load experiences</Text>
+          <Text style={styles.emptyTitle}>Couldn't load listings</Text>
           <Text style={styles.emptyBody}>{error}</Text>
           <TouchableOpacity onPress={load} style={styles.retryBtn}>
             <Text style={styles.retryText}>Try again</Text>
@@ -135,13 +153,17 @@ export default function FeedScreen({ navigation, route }: any) {
             <View style={styles.empty}>
               <Text style={{ fontSize: 44, marginBottom: 12 }}>🔍</Text>
               <Text style={styles.emptyTitle}>Nothing found</Text>
-              <Text style={styles.emptyBody}>Try a different city or filter</Text>
+              <Text style={styles.emptyBody}>
+                {kind === "trip" ? "No trips leaving from here yet — or host the first one." : "Try a different city or filter"}
+              </Text>
             </View>
           )}
           renderItem={({ item: exp }) => {
             const seatsLeft = exp.maxSeats - exp.filledSeats;
             const hot       = seatsLeft <= 2;
             const pct       = Math.min((exp.filledSeats / exp.maxSeats) * 100, 100);
+            const trip      = isTrip(exp);
+            const days      = trip ? tripDays(exp) : null;
             return (
               <TouchableOpacity
                 activeOpacity={0.88}
@@ -160,7 +182,10 @@ export default function FeedScreen({ navigation, route }: any) {
                     </View>
                     <View style={{ flex: 1 }}>
                       <Text style={styles.expTitle} numberOfLines={2}>{exp.title}</Text>
-                      <Text style={styles.expMeta}>{exp.date} · {exp.time}</Text>
+                      {trip && (
+                        <Text style={styles.expKind}>Group trip{days ? ` · ${days} days` : ""} · {exp.city}</Text>
+                      )}
+                      <Text style={styles.expMeta}>{whenLabel(exp)}</Text>
                     </View>
                     <View style={styles.expPriceBox}>
                       <Text style={styles.expPrice}>€{exp.price}</Text>
@@ -184,6 +209,11 @@ export default function FeedScreen({ navigation, route }: any) {
                     <View style={styles.verifiedTag}>
                       <Text style={styles.verifiedText}>✓ verified</Text>
                     </View>
+                    {needsApproval(exp) && (
+                      <View style={styles.vettedTag}>
+                        <Text style={styles.vettedText}>host picks the group</Text>
+                      </View>
+                    )}
                     <Text style={styles.seatsRight}>{exp.filledSeats}/{exp.maxSeats}</Text>
                   </View>
 
@@ -219,6 +249,12 @@ const styles = StyleSheet.create({
   avatarBtn: { width: 40, height: 40, backgroundColor: Colors.ink, borderRadius: 20, alignItems: "center", justifyContent: "center" },
   avatarText:{ fontFamily: Fonts.display, fontSize: 16, color: Colors.paper },
 
+  kindRow: { flexDirection: "row", gap: 6, paddingHorizontal: Spacing.lg, paddingBottom: Spacing.sm },
+  kindBtn: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: Radius.full, backgroundColor: Colors.sand },
+  kindBtnActive: { backgroundColor: Colors.ink },
+  kindText: { fontFamily: Fonts.bodyMedium, fontSize: 13, color: Colors.ink },
+  kindTextActive: { color: Colors.paper },
+
   searchRow: { paddingHorizontal: Spacing.lg, paddingBottom: Spacing.sm },
   searchBox: { flexDirection: "row", alignItems: "center", backgroundColor: Colors.white, borderRadius: Radius.md, paddingHorizontal: 14, paddingVertical: 12, borderWidth: 1.5, borderColor: Colors.sand, gap: 8 },
   searchIcon:  { fontSize: 15 },
@@ -250,6 +286,7 @@ const styles = StyleSheet.create({
   expIcon:  { width: 50, height: 50, backgroundColor: Colors.sand, borderRadius: Radius.md, alignItems: "center", justifyContent: "center" },
   expIconHot: { backgroundColor: "#FEF2F2" },
   expTitle: { fontFamily: Fonts.bodyMedium, fontSize: 15, color: Colors.ink, lineHeight: 21, flex: 1 },
+  expKind:  { fontFamily: Fonts.bodySemiBold, fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: Colors.clay, marginTop: 3 },
   expMeta:  { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: 3 },
   expPriceBox: { alignItems: "flex-end", minWidth: 50 },
   expPrice:    { fontFamily: Fonts.display, fontSize: 21, color: Colors.ink },
@@ -262,6 +299,8 @@ const styles = StyleSheet.create({
   hostName:   { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted },
   verifiedTag:{ backgroundColor: "#E8F5E9", borderRadius: 20, paddingHorizontal: 7, paddingVertical: 2 },
   verifiedText:{ fontFamily: Fonts.bodySemiBold, fontSize: 10, color: Colors.success },
+  vettedTag:  { backgroundColor: Colors.sand, borderRadius: 20, paddingHorizontal: 7, paddingVertical: 2 },
+  vettedText: { fontFamily: Fonts.bodySemiBold, fontSize: 10, color: Colors.ink },
   seatsRight: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted, marginLeft: "auto" },
 
   progressRow:   { marginBottom: 6 },

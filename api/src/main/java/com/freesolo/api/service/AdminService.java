@@ -187,7 +187,7 @@ public class AdminService {
     // ── Bookings ─────────────────────────────────────────────────────────────
 
     private static final List<String> VALID_BOOKING_STATUSES =
-            List.of("pending", "confirmed", "completed", "cancelled", "refunded");
+            List.of("requested", "pending", "confirmed", "completed", "cancelled", "declined", "refunded");
 
     @Transactional
     public void updateBookingStatus(String bookingId, String status, int seats, String guestNote) {
@@ -256,6 +256,7 @@ public class AdminService {
         if (fields.containsKey("country")) exp.setCountry((String) fields.get("country"));
         if (fields.containsKey("date")) exp.setDate((String) fields.get("date"));
         if (fields.containsKey("time")) exp.setTime((String) fields.get("time"));
+        if (fields.containsKey("endDate") && exp.isTrip()) exp.setEndDate((String) fields.get("endDate"));
         if (fields.containsKey("durationMins")) exp.setDurationMins(((Number) fields.get("durationMins")).intValue());
         if (fields.containsKey("minSeats")) exp.setMinSeats(((Number) fields.get("minSeats")).intValue());
         if (fields.containsKey("maxSeats")) exp.setMaxSeats(((Number) fields.get("maxSeats")).intValue());

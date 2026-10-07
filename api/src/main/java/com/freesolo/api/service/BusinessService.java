@@ -43,6 +43,11 @@ public class BusinessService {
                 .orElseThrow(() -> ApiException.notFound("Business not found")));
     }
 
+    public List<BusinessResponse> getOwnedBy(String userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        return businessRepository.findByOwner(user).stream().map(BusinessResponse::from).toList();
+    }
+
     @Transactional
     public BusinessResponse create(String userId, CreateBusinessRequest req) {
         User user = userRepository.findById(userId).orElseThrow();

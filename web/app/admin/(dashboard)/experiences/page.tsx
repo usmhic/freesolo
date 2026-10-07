@@ -25,7 +25,10 @@ export default async function AdminExperiencesPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader title="Experiences" description={`${result.total ?? experiences.length} total · ${featuredCount} featured`} />
+      <PageHeader
+        title="Trips & experiences"
+        description={`${result.total ?? experiences.length} total · ${experiences.filter((e: any) => e.kind === "trip").length} trips · ${featuredCount} featured`}
+      />
 
       {experiences.length === 0 ? (
         <Card><EmptyState>No experiences have been created yet.</EmptyState></Card>
@@ -33,7 +36,7 @@ export default async function AdminExperiencesPage() {
         <Table>
           <thead>
             <tr className="border-b border-fd-border">
-              <Th>Experience</Th>
+              <Th>Listing</Th>
               <Th>Host</Th>
               <Th>Date</Th>
               <Th>Price</Th>
@@ -47,14 +50,22 @@ export default async function AdminExperiencesPage() {
             {experiences.map((e: any) => (
               <tr key={e.id}>
                 <Td>
-                  <p className="font-medium">{e.emoji} {e.title}</p>
-                  <p className="text-xs text-fd-muted-foreground">{e.business?.name} · {e.city}, {e.country} · <span className="capitalize">{e.category}</span></p>
+                  <p className="font-medium">
+                    {e.emoji} {e.title}{" "}
+                    {e.kind === "trip" && <Badge className="ml-1 align-middle">trip</Badge>}
+                  </p>
+                  <p className="text-xs text-fd-muted-foreground">
+                    {[e.business?.name, `${e.city}, ${e.country}`].filter(Boolean).join(" · ")} · <span className="capitalize">{e.category}</span>
+                    {e.joinPolicy === "approval" && " · host approves joins"}
+                  </p>
                 </Td>
                 <Td>
                   <p>{e.host?.name || "—"}</p>
                   <p className="text-xs text-fd-muted-foreground">{e.host?.email}</p>
                 </Td>
-                <Td className="text-fd-muted-foreground">{fmtDate(e.date)} · {e.time}</Td>
+                <Td className="text-fd-muted-foreground">
+                  {e.kind === "trip" && e.endDate ? `${fmtDate(e.date)} – ${fmtDate(e.endDate)}` : `${fmtDate(e.date)} · ${e.time}`}
+                </Td>
                 <Td><Money amount={e.price} currency={e.currency} /></Td>
                 <Td>
                   {e._count?.bookings ?? 0} · {e._count?.reviews ?? 0} <Star className="inline size-3 -mt-0.5" />

@@ -26,6 +26,11 @@ const NOTIF_ICONS: Record<string, string> = {
   experience_completed: "🏁",
   marketing: "📣",
   admin_message: "📢",
+  join_request: "✋",
+  join_approved: "✅",
+  join_declined: "🧭",
+  booking_new: "🙌",
+  group_message: "💬",
 };
 
 interface Notif {
@@ -66,6 +71,16 @@ export default function NotificationsScreen({ navigation }: any) {
       case "new_review":
         if (data.authorId) navigation.navigate("UserProfile", { userId: data.authorId });
         break;
+      case "group_message":
+        if (data.experienceId) navigation.navigate("GroupChat", { experienceId: data.experienceId });
+        break;
+      case "join_request":
+        if (data.experienceId) navigation.navigate("HostRequests", { experienceId: data.experienceId });
+        break;
+      case "booking_new":
+      case "join_approved":
+      case "join_declined":
+      case "booking_confirmed":
       case "event_photo_shared":
       case "experience_completed":
         if (data.experienceId) navigation.navigate("ExperienceDetail", { experienceId: data.experienceId });
