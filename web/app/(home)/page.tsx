@@ -17,6 +17,12 @@ import { cn } from "@/lib/cn";
 import { FreeSoloLogo } from "@/components/logo";
 import { WorldMapSection } from "@/components/world-map";
 import { PhoneShowcase } from "@/components/phone-showcase";
+import { ListingCard } from "@/components/listing-card";
+import { getListings } from "@/lib/listings";
+
+// Live "Leaving soon" listings: re-fetched at most once a minute. Next.js needs
+// a literal here; keep it in step with LISTINGS_REVALIDATE_SECONDS.
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "FreeSolo — Small-group trips for solo travelers",
@@ -105,6 +111,7 @@ const HOW_IT_WORKS = [
 ] as const;
 
 const FOOTER_LINKS = [
+  { href: "/trips",         label: "Trips"          },
   { href: "/apply",         label: "Apply to join"  },
   { href: "/apply/status",  label: "Check status"   },
   { href: "/docs",          label: "Help Center"    },
@@ -137,7 +144,9 @@ function ButtonLink({
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const trips = (await getListings({ kind: "trip", limit: 3 })).slice(0, 3);
+
   return (
     <div className="flex flex-1 flex-col">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
@@ -171,8 +180,8 @@ export default function HomePage() {
             <ButtonLink href="/apply">
               Apply to join <ArrowRight className="size-4" />
             </ButtonLink>
-            <ButtonLink href="/apply/status" variant="secondary">
-              <Search className="size-4" /> Check application status
+            <ButtonLink href="/trips" variant="secondary">
+              <Compass className="size-4" /> Browse trips
             </ButtonLink>
           </div>
           <p className="text-xs text-fd-muted-foreground">
@@ -180,6 +189,34 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ── Leaving soon (live) ────────────────────────────────────────────── */}
+      {trips.length > 0 && (
+        <section className="border-b border-fd-border">
+          <div className="mx-auto max-w-6xl px-6 py-20">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+              <div className="max-w-xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8976A]">Leaving soon</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+                  Trips members are hosting right now
+                </h2>
+                <p className="mt-3 text-fd-muted-foreground">
+                  Planned by a member, joined by a handful of vetted solo travelers. The host reads
+                  every request and picks the group.
+                </p>
+              </div>
+              <ButtonLink href="/trips" variant="secondary">
+                See all trips <ArrowRight className="size-4" />
+              </ButtonLink>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {trips.map((t) => (
+                <ListingCard key={t.id} listing={t} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── World Map ─────────────────────────────────────────────────────── */}
       <WorldMapSection />

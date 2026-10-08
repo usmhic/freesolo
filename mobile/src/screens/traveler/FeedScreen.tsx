@@ -11,22 +11,22 @@ import {
   TextInput,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
 import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
-import { Card, ProgressBar, Logo } from "../../components/UI";
+import { Logo } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 import { isTrip, needsApproval, tripDays, whenLabel } from "../../lib/listing";
+import { ListingCover } from "../../components/ListingCover";
 
 const KINDS = [
-  { id: "all",        label: "All",         title: "Trips & experiences" },
+  { id: "all",        label: "Everything",     title: "Explore" },
   { id: "trip",       label: "🧭 Trips",       title: "Group trips" },
   { id: "experience", label: "✨ Experiences", title: "Experiences" },
 ] as const;
 type KindId = typeof KINDS[number]["id"];
 
 const FILTERS = [
-  { id: "all",     label: "All",       emoji: "✦" },
+  { id: "all",     label: "Any topic", emoji: "✦" },
   { id: "art",     label: "Art",       emoji: "🎨" },
   { id: "food",    label: "Food",      emoji: "🍜" },
   { id: "music",   label: "Music",     emoji: "🎵" },
@@ -38,6 +38,7 @@ const FILTERS = [
 interface Experience {
   id: string; kind: string; emoji: string; title: string; city: string;
   date: string; endDate: string | null; time: string; category: string; price: number; joinPolicy: string;
+  coverImage: string | null;
   filledSeats: number; maxSeats: number; minSeats: number;
   host: { id: string; name: string }; business: { name: string };
   status: string;
@@ -77,7 +78,7 @@ export default function FeedScreen({ navigation, route }: any) {
       {/* ── Header ── */}
       <View style={styles.header}>
         <View>
-          <Text style={styles.headerCity}>{city}</Text>
+          <Text style={styles.headerCity}>{city ? `📍 ${city}` : "Leaving soon"}</Text>
           <Text style={styles.headerTitle}>{KINDS.find(k => k.id === kind)?.title}</Text>
         </View>
         <View style={styles.headerRight}>
@@ -164,71 +165,62 @@ export default function FeedScreen({ navigation, route }: any) {
             const pct       = Math.min((exp.filledSeats / exp.maxSeats) * 100, 100);
             const trip      = isTrip(exp);
             const days      = trip ? tripDays(exp) : null;
+            const short     = Math.max(0, exp.minSeats - exp.filledSeats);
             return (
               <TouchableOpacity
-                activeOpacity={0.88}
+                activeOpacity={0.9}
                 onPress={() => navigation.navigate("ExperienceDetail", { experienceId: exp.id, exp })}
               >
-                <View style={styles.expCard}>
-                  {hot && (
-                    <LinearGradient
-                      colors={["rgba(220,38,38,0.06)", "transparent"]}
-                      style={StyleSheet.absoluteFill}
-                    />
-                  )}
-                  <View style={styles.expTop}>
-                    <View style={[styles.expIcon, hot && styles.expIconHot]}>
-                      <Text style={{ fontSize: 24 }}>{exp.emoji}</Text>
+                <View style={styles.card}>
+                  <ListingCover listing={exp} style={styles.cardCover} emojiSize={52}>
+                    <View style={styles.coverRow}>
+                      <View style={styles.kindPill}>
+                        <Text style={styles.kindPillText}>
+                          {trip ? `Trip${days ? ` · ${days} days` : ""}` : "Experience"}
+                        </Text>
+                      </View>
+                      <View style={styles.pricePill}>
+                        <Text style={styles.pricePillText}>€{exp.price}</Text>
+                      </View>
                     </View>
-                    <View style={{ flex: 1 }}>
-                      <Text style={styles.expTitle} numberOfLines={2}>{exp.title}</Text>
-                      {trip && (
-                        <Text style={styles.expKind}>Group trip{days ? ` · ${days} days` : ""} · {exp.city}</Text>
+                  </ListingCover>
+
+                  <View style={styles.cardBody}>
+                    <Text style={styles.cardMeta}>📅 {whenLabel(exp)}  ·  📍 {exp.city}</Text>
+                    <Text style={styles.cardTitle} numberOfLines={2}>{exp.title}</Text>
+
+                    <View style={styles.hostRow}>
+                      <TouchableOpacity
+                        style={styles.hostIdentity}
+                        activeOpacity={exp.host?.id ? 0.6 : 1}
+                        disabled={!exp.host?.id}
+                        onPress={() => navigation.navigate("UserProfile", { userId: exp.host.id })}
+                      >
+                        <View style={styles.hostBubble}>
+                          <Text style={styles.hostBubbleText}>{exp.host?.name?.[0] ?? "H"}</Text>
+                        </View>
+                        <Text style={styles.hostName} numberOfLines={1}>{exp.host?.name ?? "Local host"}</Text>
+                      </TouchableOpacity>
+                      {needsApproval(exp) && (
+                        <View style={styles.vettedTag}>
+                          <Text style={styles.vettedText}>🛡 host picks</Text>
+                        </View>
                       )}
-                      <Text style={styles.expMeta}>{whenLabel(exp)}</Text>
                     </View>
-                    <View style={styles.expPriceBox}>
-                      <Text style={styles.expPrice}>€{exp.price}</Text>
-                      <Text style={styles.expPriceSub}>/person</Text>
-                    </View>
-                  </View>
 
-                  {/* Host + venue */}
-                  <View style={styles.hostRow}>
-                    <TouchableOpacity
-                      style={styles.hostIdentity}
-                      activeOpacity={exp.host?.id ? 0.6 : 1}
-                      disabled={!exp.host?.id}
-                      onPress={() => navigation.navigate("UserProfile", { userId: exp.host.id })}
-                    >
-                      <View style={styles.hostBubble}>
-                        <Text style={styles.hostBubbleText}>{exp.host?.name?.[0] ?? "H"}</Text>
-                      </View>
-                      <Text style={styles.hostName}>{exp.host?.name ?? "Local host"}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.verifiedTag}>
-                      <Text style={styles.verifiedText}>✓ verified</Text>
-                    </View>
-                    {needsApproval(exp) && (
-                      <View style={styles.vettedTag}>
-                        <Text style={styles.vettedText}>host picks the group</Text>
-                      </View>
-                    )}
-                    <Text style={styles.seatsRight}>{exp.filledSeats}/{exp.maxSeats}</Text>
-                  </View>
-
-                  {/* Progress */}
-                  <View style={styles.progressRow}>
                     <View style={styles.progressTrack}>
-                      <View style={[styles.progressFill, { width: `${pct}%` as any, backgroundColor: hot ? Colors.danger : Colors.clay }]} />
+                      <View style={[styles.progressFill, { width: `${pct}%` as any, backgroundColor: hot ? Colors.terra : Colors.clay }]} />
+                    </View>
+                    <View style={styles.seatsRow}>
+                      <Text style={styles.seatsText}>{exp.filledSeats}/{exp.maxSeats} going</Text>
+                      <Text style={[styles.seatsText, hot && styles.seatsHot]}>
+                        {seatsLeft <= 0 ? "Group is full"
+                          : short > 0 ? `${short} more to confirm`
+                          : hot ? `Only ${seatsLeft} left`
+                          : "Confirmed ✓"}
+                      </Text>
                     </View>
                   </View>
-
-                  {hot && (
-                    <View style={styles.hotBadge}>
-                      <Text style={styles.hotText}>🔥 Only {seatsLeft} seat{seatsLeft !== 1 ? "s" : ""} left!</Text>
-                    </View>
-                  )}
                 </View>
               </TouchableOpacity>
             );
@@ -249,8 +241,11 @@ const styles = StyleSheet.create({
   avatarBtn: { width: 40, height: 40, backgroundColor: Colors.ink, borderRadius: 20, alignItems: "center", justifyContent: "center" },
   avatarText:{ fontFamily: Fonts.display, fontSize: 16, color: Colors.paper },
 
-  kindRow: { flexDirection: "row", gap: 6, paddingHorizontal: Spacing.lg, paddingBottom: Spacing.sm },
-  kindBtn: { paddingHorizontal: 14, paddingVertical: 8, borderRadius: Radius.full, backgroundColor: Colors.sand },
+  kindRow: {
+    flexDirection: "row", marginHorizontal: Spacing.lg, marginBottom: Spacing.sm, padding: 4,
+    backgroundColor: Colors.white, borderRadius: Radius.md, borderWidth: 1.5, borderColor: Colors.sand,
+  },
+  kindBtn: { flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: Radius.sm },
   kindBtnActive: { backgroundColor: Colors.ink },
   kindText: { fontFamily: Fonts.bodyMedium, fontSize: 13, color: Colors.ink },
   kindTextActive: { color: Colors.paper },
@@ -276,37 +271,29 @@ const styles = StyleSheet.create({
   emptyTitle: { fontFamily: Fonts.display, fontSize: 20, color: Colors.ink },
   emptyBody:  { fontFamily: Fonts.body, fontSize: 14, color: Colors.muted, textAlign: "center" },
 
-  expCard: {
-    backgroundColor: Colors.white, borderRadius: Radius.xl,
-    padding: 18, overflow: "hidden",
-    borderWidth: 1, borderColor: Colors.sand,
-    ...Shadow.sm,
-  },
-  expTop:   { flexDirection: "row", alignItems: "flex-start", gap: 12, marginBottom: 12 },
-  expIcon:  { width: 50, height: 50, backgroundColor: Colors.sand, borderRadius: Radius.md, alignItems: "center", justifyContent: "center" },
-  expIconHot: { backgroundColor: "#FEF2F2" },
-  expTitle: { fontFamily: Fonts.bodyMedium, fontSize: 15, color: Colors.ink, lineHeight: 21, flex: 1 },
-  expKind:  { fontFamily: Fonts.bodySemiBold, fontSize: 10, letterSpacing: 0.5, textTransform: "uppercase", color: Colors.clay, marginTop: 3 },
-  expMeta:  { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: 3 },
-  expPriceBox: { alignItems: "flex-end", minWidth: 50 },
-  expPrice:    { fontFamily: Fonts.display, fontSize: 21, color: Colors.ink },
-  expPriceSub: { fontFamily: Fonts.body, fontSize: 10, color: Colors.muted },
 
-  hostRow:    { flexDirection: "row", alignItems: "center", gap: 7, marginBottom: 10 },
+  card: { backgroundColor: Colors.white, borderRadius: Radius.xl, overflow: "hidden", borderWidth: 1, borderColor: Colors.sand, ...Shadow.sm },
+  cardCover: { height: 168 },
+  coverRow: { flexDirection: "row", justifyContent: "space-between", padding: 12 },
+  kindPill: { backgroundColor: "rgba(0,0,0,0.55)", borderRadius: Radius.full, paddingHorizontal: 10, paddingVertical: 4 },
+  kindPillText: { fontFamily: Fonts.bodySemiBold, fontSize: 10, letterSpacing: 0.6, textTransform: "uppercase", color: Colors.white },
+  pricePill: { backgroundColor: "rgba(255,255,255,0.94)", borderRadius: Radius.full, paddingHorizontal: 10, paddingVertical: 4 },
+  pricePillText: { fontFamily: Fonts.bodySemiBold, fontSize: 13, color: Colors.ink },
+  cardBody: { padding: 16, paddingTop: 14 },
+  cardMeta: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted },
+  cardTitle: { fontFamily: Fonts.display, fontSize: 19, lineHeight: 25, color: Colors.ink, marginTop: 4, marginBottom: 12, letterSpacing: -0.2 },
+  seatsRow: { flexDirection: "row", justifyContent: "space-between", marginTop: 6 },
+  seatsText: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted },
+  seatsHot: { fontFamily: Fonts.bodySemiBold, color: Colors.terra },
+  hostRow:    { flexDirection: "row", alignItems: "center", gap: 7, marginBottom: 12 },
   hostIdentity: { flexDirection: "row", alignItems: "center", gap: 7 },
   hostBubble: { width: 22, height: 22, borderRadius: 11, backgroundColor: Colors.clay, alignItems: "center", justifyContent: "center" },
   hostBubbleText: { fontFamily: Fonts.bodySemiBold, fontSize: 10, color: Colors.white },
-  hostName:   { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted },
-  verifiedTag:{ backgroundColor: "#E8F5E9", borderRadius: 20, paddingHorizontal: 7, paddingVertical: 2 },
-  verifiedText:{ fontFamily: Fonts.bodySemiBold, fontSize: 10, color: Colors.success },
-  vettedTag:  { backgroundColor: Colors.sand, borderRadius: 20, paddingHorizontal: 7, paddingVertical: 2 },
+  hostName:   { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, flexShrink: 1 },
+  vettedTag:  { marginLeft: "auto", backgroundColor: Colors.sand, borderRadius: 20, paddingHorizontal: 8, paddingVertical: 3 },
   vettedText: { fontFamily: Fonts.bodySemiBold, fontSize: 10, color: Colors.ink },
-  seatsRight: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted, marginLeft: "auto" },
 
-  progressRow:   { marginBottom: 6 },
   progressTrack: { height: 4, backgroundColor: Colors.sand, borderRadius: 2, overflow: "hidden" },
   progressFill:  { height: "100%", borderRadius: 2 },
 
-  hotBadge: { marginTop: 6, alignSelf: "flex-start", backgroundColor: "#FEF2F2", borderRadius: 20, paddingHorizontal: 10, paddingVertical: 4 },
-  hotText:  { fontFamily: Fonts.bodySemiBold, fontSize: 11, color: Colors.danger },
 });

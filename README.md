@@ -59,7 +59,7 @@ who picked the group and knows exactly where to go.
 
 | | Surface | Highlights |
 |---|---|---|
-| 🌍 | **Web** | Public site, experience feed, booking flow, Fumadocs help center, OG image generation |
+| 🌍 | **Web** | Public site, trip and experience pages, Fumadocs help center, OG image generation |
 | 🔐 | **Admin** | Applications, businesses, experiences, bookings, reviews, users, media, marketing |
 | 📱 | **Mobile** | Expo app with the trip and experience feed, hosting and join requests, maps, notifications, and camera uploads |
 | ⚙️ | **API** | Spring Boot REST API — sole owner of auth, business rules, and the PostgreSQL schema |

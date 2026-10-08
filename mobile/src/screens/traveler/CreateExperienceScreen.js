@@ -11,7 +11,9 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Colors, Fonts, Spacing, Radius, Shadow } from '../../theme';
 import { Field, Button, Chip, ScreenHeader, InfoBox } from '../../components/UI';
-import { apiFetch } from '../../lib/api';
+import * as ImagePicker from 'expo-image-picker';
+import { apiFetch, uploadImage } from '../../lib/api';
+import { ListingCover } from '../../components/ListingCover';
 
 const CATEGORIES = [
   '🎨 Art & Culture', '🍜 Food & Drink', '🥾 Outdoor',
@@ -28,6 +30,30 @@ const INCLUDED = ['🛏️ Accommodation', '🚐 Local transport', '🍳 Breakfa
 
 // Matches the API's MAX_GROUP_SIZE — FreeSolo groups stay small on purpose.
 const MAX_GROUP = 12;
+
+// Keeps typed dates in the DD/MM/YYYY shape the rest of the app reads.
+const formatDate = (raw) => {
+  const d = raw.replace(/\D/g, '').slice(0, 8);
+  return [d.slice(0, 2), d.slice(2, 4), d.slice(4)].filter(Boolean).join('/');
+};
+
+function Stepper({ label, value, min, max, onChange }) {
+  const n = parseInt(value, 10) || min;
+  return (
+    <View style={{ flex: 1 }}>
+      <Text style={styles.label}>{label}</Text>
+      <View style={styles.stepper}>
+        <TouchableOpacity style={styles.stepBtn} disabled={n <= min} onPress={() => onChange(String(n - 1))}>
+          <Text style={[styles.stepBtnText, n <= min && { opacity: 0.3 }]}>−</Text>
+        </TouchableOpacity>
+        <Text style={styles.stepValue}>{n}</Text>
+        <TouchableOpacity style={styles.stepBtn} disabled={n >= max} onPress={() => onChange(String(n + 1))}>
+          <Text style={[styles.stepBtnText, n >= max && { opacity: 0.3 }]}>+</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+}
 
 export default function CreateExperienceScreen({ navigation, route }) {
   const initialKind = route?.params?.kind === 'experience' ? 'experience' : 'trip';
@@ -46,6 +72,8 @@ export default function CreateExperienceScreen({ navigation, route }) {
   const [venues, setVenues]       = useState([]);
   const [venuesLoading, setVL]    = useState(true);
   const [loading, setLoading]     = useState(false);
+  const [coverImage, setCover]    = useState(null);
+  const [uploading, setUploading] = useState(false);
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
 
   const loadVenues = useCallback(async () => {
@@ -74,6 +102,18 @@ export default function CreateExperienceScreen({ navigation, route }) {
 
   const canSubmit = form.title && form.category && form.date && form.time && form.price && city && !loading
     && (isTrip ? form.endDate && filledDays.length > 0 : form.businessId);
+
+  const pickCover = async () => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') return;
+    const result = await ImagePicker.launchImageLibraryAsync({ allowsEditing: true, aspect: [16, 10], quality: 0.8 });
+    if (result.canceled) return;
+    setUploading(true);
+    const url = await uploadImage(result.assets[0].uri, 'experience');
+    setUploading(false);
+    if (url) setCover(url);
+    else Alert.alert('Upload failed', 'Try another photo, or publish without one.');
+  };
 
   const setDay = (i, k, v) => setDays(ds => ds.map((d, idx) => idx === i ? { ...d, [k]: v } : d));
   const toggleIncluded = (item) => setIncluded(list =>
@@ -105,6 +145,7 @@ export default function CreateExperienceScreen({ navigation, route }) {
         itinerary:    isTrip ? filledDays.map(d => ({ title: d.title.trim(), description: d.description.trim() || null })) : [],
         included:     isTrip ? included.map(i => i.replace(/^\S+\s*/, '')) : [],
         joinPolicy:   form.joinPolicy,
+        coverImage,
       }),
     });
     setLoading(false);
@@ -152,6 +193,27 @@ export default function CreateExperienceScreen({ navigation, route }) {
         <InfoBox>
           FreeSolo doesn’t take payment — travelers settle with you directly. Only approved members can see who’s going or ask to join.
         </InfoBox>
+
+        {/* Cover */}
+        <Text style={styles.label}>Cover photo</Text>
+        <TouchableOpacity activeOpacity={0.9} onPress={pickCover} disabled={uploading}>
+          <ListingCover listing={{ id: kind, emoji: form.emoji, coverImage }} style={styles.cover} emojiSize={56}>
+            <View style={styles.coverOverlay}>
+              {uploading ? (
+                <ActivityIndicator color={Colors.white} />
+              ) : (
+                <Text style={styles.coverAction}>{coverImage ? 'Change photo' : '📷  Add a photo'}</Text>
+              )}
+            </View>
+          </ListingCover>
+        </TouchableOpacity>
+        {coverImage ? (
+          <TouchableOpacity onPress={() => setCover(null)} style={{ alignSelf: 'flex-start', marginBottom: Spacing.md }}>
+            <Text style={styles.dayRemove}>Remove photo — use the icon instead</Text>
+          </TouchableOpacity>
+        ) : (
+          <Text style={styles.coverHint}>Optional. Without a photo, your icon below is shown on a colour cover.</Text>
+        )}
 
         {/* Emoji picker */}
         <Text style={styles.label}>Pick an icon</Text>
@@ -215,11 +277,11 @@ export default function CreateExperienceScreen({ navigation, route }) {
 
         <View style={styles.row}>
           <View style={{ flex: 1 }}>
-            <Field label={isTrip ? 'Starts *' : 'Date *'} placeholder="DD/MM/YYYY" value={form.date} onChangeText={v => set('date', v)} keyboardType="numbers-and-punctuation" />
+            <Field label={isTrip ? 'Starts *' : 'Date *'} placeholder="DD/MM/YYYY" value={form.date} onChangeText={v => set('date', formatDate(v))} keyboardType="number-pad" />
           </View>
           {isTrip && (
             <View style={{ flex: 1 }}>
-              <Field label="Ends *" placeholder="DD/MM/YYYY" value={form.endDate} onChangeText={v => set('endDate', v)} keyboardType="numbers-and-punctuation" />
+              <Field label="Ends *" placeholder="DD/MM/YYYY" value={form.endDate} onChangeText={v => set('endDate', formatDate(v))} keyboardType="number-pad" />
             </View>
           )}
           <View style={{ flex: isTrip ? 0.8 : 1 }}>
@@ -257,17 +319,29 @@ export default function CreateExperienceScreen({ navigation, route }) {
           </>
         )}
 
-        <View style={styles.row}>
-          <View style={{ flex: 1 }}>
-            <Field label="Min group" placeholder="4" value={form.minSeats} onChangeText={v => set('minSeats', v)} keyboardType="numeric" />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Field label={`Max (≤${MAX_GROUP})`} placeholder="8" value={form.maxSeats} onChangeText={v => set('maxSeats', v)} keyboardType="numeric" />
-          </View>
-          <View style={{ flex: 1 }}>
-            <Field label="Price (€) *" placeholder={isTrip ? '640' : '25'} value={form.price} onChangeText={v => set('price', v)} keyboardType="numeric" />
-          </View>
+        <View style={[styles.row, { marginBottom: Spacing.md }]}>
+          <Stepper
+            label="Min group"
+            value={form.minSeats}
+            min={2}
+            max={parseInt(form.maxSeats, 10) || MAX_GROUP}
+            onChange={v => set('minSeats', v)}
+          />
+          <Stepper
+            label={`Max (≤${MAX_GROUP})`}
+            value={form.maxSeats}
+            min={parseInt(form.minSeats, 10) || 2}
+            max={MAX_GROUP}
+            onChange={v => set('maxSeats', v)}
+          />
         </View>
+        <Field
+          label={isTrip ? 'Price per person, whole trip (€) *' : 'Price per person (€) *'}
+          placeholder={isTrip ? '640' : '25'}
+          value={form.price}
+          onChangeText={v => set('price', v.replace(/[^0-9.]/g, ''))}
+          keyboardType="decimal-pad"
+        />
 
         <Text style={styles.label}>Who gets in</Text>
         {[
@@ -325,6 +399,21 @@ const styles = StyleSheet.create({
   chips: { flexDirection: 'row', flexWrap: 'wrap', marginBottom: Spacing.md },
   row: { flexDirection: 'row', gap: 10 },
   venueAddress: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: -4, marginBottom: Spacing.md },
+  cover: { height: 170, borderRadius: Radius.lg, marginBottom: 8 },
+  coverOverlay: { ...StyleSheet.absoluteFillObject, alignItems: 'center', justifyContent: 'flex-end', paddingBottom: 14 },
+  coverAction: {
+    fontFamily: Fonts.bodySemiBold, fontSize: 13, color: Colors.ink,
+    backgroundColor: 'rgba(255,255,255,0.92)', borderRadius: Radius.full, overflow: 'hidden',
+    paddingHorizontal: 14, paddingVertical: 7,
+  },
+  coverHint: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginBottom: Spacing.md },
+  stepper: {
+    flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+    backgroundColor: Colors.white, borderRadius: Radius.md, borderWidth: 1.5, borderColor: Colors.sand, padding: 4,
+  },
+  stepBtn: { width: 40, height: 40, borderRadius: Radius.sm, backgroundColor: Colors.sand, alignItems: 'center', justifyContent: 'center' },
+  stepBtnText: { fontFamily: Fonts.bodySemiBold, fontSize: 20, color: Colors.ink },
+  stepValue: { fontFamily: Fonts.display, fontSize: 22, color: Colors.ink },
   dayCard: {
     backgroundColor: Colors.surfaceAlt, borderRadius: Radius.md, borderWidth: 1, borderColor: Colors.sand,
     padding: 12, paddingBottom: 0, marginBottom: 10,

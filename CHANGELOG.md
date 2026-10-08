@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Public trip pages on the web: `/trips` to browse trips and experiences, and
+  `/trips/[id]` with the itinerary, what's included, the host, how full the
+  group is, and a sticky join bar on phones. The landing page shows live
+  "Leaving soon" trips and its app mockups now show trips.
+- Cover photos for listings: hosts can add one from the app; listings without
+  one get a colour cover that matches between web and mobile.
+- Mobile UI refresh: cover-first feed cards, a photo hero on the listing page,
+  a button that reflects your status (request sent, you're going), group-size
+  steppers, and self-formatting dates in the host form.
+
 - Multi-day group trips alongside single-session experiences. Trips carry a
   day-by-day itinerary and what the price covers, and don't need a venue.
 - Host-approved joining: travelers ask to join with a short intro, and the host

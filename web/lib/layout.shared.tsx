@@ -11,6 +11,7 @@ export function baseOptions(): BaseLayoutProps {
       mode: 'light-dark-system',
     },
     links: [
+      { text: 'Trips', url: '/trips', active: 'nested-url' },
       { text: 'Docs', url: '/docs', active: 'nested-url' },
       { text: 'Privacy', url: '/privacy' },
       { text: 'Terms', url: '/terms' },
