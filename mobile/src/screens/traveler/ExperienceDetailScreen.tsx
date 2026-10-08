@@ -16,6 +16,8 @@ import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Button, Card, ProgressBar } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
+import { ListingCover } from "../../components/ListingCover";
+import { LinearGradient } from "expo-linear-gradient";
 import { ItineraryDay, isTrip, needsApproval, parseList, tripDays, whenLabel } from "../../lib/listing";
 
 const { width } = Dimensions.get("window");
@@ -26,16 +28,21 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   const [exp, setExp] = useState<any>(null);
   const [reviews, setReviews] = useState<any[]>([]);
   const [members, setMembers] = useState<any[] | null>(null);
+  const [myBooking, setMyBooking] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
-      const [{ data }, { data: revData }, { data: memberData }] = await Promise.all([
+      const [{ data }, { data: revData }, { data: memberData }, { data: mine }] = await Promise.all([
         apiFetch(`/api/experiences/${experienceId}`),
         apiFetch(`/api/reviews?experienceId=${experienceId}`),
         // Members only — signed-out viewers get an error and see a prompt instead.
         apiFetch<any[]>(`/api/experiences/${experienceId}/members`),
+        apiFetch<any[]>("/api/bookings", { params: { limit: "50" } }),
       ]);
+      // The traveler's own open request or seat on this listing, if any.
+      setMyBooking((Array.isArray(mine) ? mine : []).find((b: any) =>
+        b.experience?.id === experienceId && ["requested", "pending", "confirmed"].includes(b.status)) ?? null);
       setExp(data);
       setReviews((revData as any) ?? []);
       setMembers(Array.isArray(memberData) ? memberData : null);
@@ -57,7 +64,8 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   const included = parseList(exp.included);
   const vetted = needsApproval(exp);
   const isHost = !!user?.id && user.id === exp.host?.id;
-  const inGroup = isHost || !!members?.some((m: any) => m.id === user?.id);
+  const inGroup = isHost || !!members?.some((m: any) => m.id === user?.id)
+    || myBooking?.status === "pending" || myBooking?.status === "confirmed";
   const hostInitial = (exp.host?.name ?? "H")[0].toUpperCase();
   const avgRating = reviews.length ? (reviews.reduce((s: number, r: any) => s + r.rating, 0) / reviews.length).toFixed(1) : null;
 
@@ -65,23 +73,26 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
     <SafeAreaView style={styles.safe}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 120 }}>
         {/* Hero */}
-        <View style={styles.hero}>
-          <View style={styles.heroIcon}>
-            <Text style={{ fontSize: 52 }}>{exp.emoji}</Text>
-          </View>
+        <ListingCover listing={exp} style={styles.hero} emojiSize={72}>
+          <LinearGradient
+            colors={["rgba(0,0,0,0.35)", "transparent", "rgba(0,0,0,0.55)"]}
+            locations={[0, 0.4, 1]}
+            style={StyleSheet.absoluteFill}
+          />
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
             <Text style={{ fontSize: 18 }}>←</Text>
           </TouchableOpacity>
-        </View>
+          <View style={styles.heroCaption}>
+            <Text style={styles.heroKind}>
+              {trip ? `Group trip${days ? ` · ${days} days` : ""}` : "Experience"}
+            </Text>
+            <Text style={styles.heroPlace}>📍 {exp.city}</Text>
+          </View>
+        </ListingCover>
 
         <View style={styles.body}>
           {/* Category pill */}
           <View style={styles.pillRow}>
-            {trip && (
-              <View style={[styles.catPill, styles.tripPill]}>
-                <Text style={[styles.catText, { color: Colors.paper }]}>🧭 Group trip</Text>
-              </View>
-            )}
             <View style={styles.catPill}>
               <Text style={styles.catText}>{exp.category}</Text>
             </View>
@@ -287,6 +298,18 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
           >
             <Text style={styles.ctaBtnText}>Manage your group →</Text>
           </TouchableOpacity>
+        ) : inGroup ? (
+          <TouchableOpacity
+            style={styles.ctaBtn}
+            activeOpacity={0.85}
+            onPress={() => navigation.navigate("GroupChat", { experienceId: exp.id, title: exp.title })}
+          >
+            <Text style={styles.ctaBtnText}>You're going ✓ · Group chat →</Text>
+          </TouchableOpacity>
+        ) : myBooking?.status === "requested" ? (
+          <View style={[styles.ctaBtn, styles.ctaBtnWaiting]}>
+            <Text style={[styles.ctaBtnText, { color: Colors.ink }]}>Request sent · waiting on host</Text>
+          </View>
         ) : (
           <TouchableOpacity
             style={[styles.ctaBtn, seatsLeft === 0 && styles.ctaBtnDisabled]}
@@ -307,8 +330,10 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: Colors.paper },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
-  hero: { height: 220, backgroundColor: Colors.ink, alignItems: "center", justifyContent: "center", position: "relative" },
-  heroIcon: { alignItems: "center", justifyContent: "center" },
+  hero: { height: 280 },
+  heroCaption: { position: "absolute", left: Spacing.lg, right: Spacing.lg, bottom: 16, flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
+  heroKind: { fontFamily: Fonts.bodySemiBold, fontSize: 11, letterSpacing: 0.8, textTransform: "uppercase", color: Colors.white, backgroundColor: "rgba(255,255,255,0.18)", borderRadius: Radius.full, paddingHorizontal: 10, paddingVertical: 4, overflow: "hidden" },
+  heroPlace: { fontFamily: Fonts.bodyMedium, fontSize: 13, color: Colors.white },
   backBtn: {
     position: "absolute", top: 16, left: 20,
     width: 40, height: 40, backgroundColor: Colors.white,
@@ -317,7 +342,6 @@ const styles = StyleSheet.create({
   },
   body: { padding: Spacing.lg },
   pillRow: { flexDirection: "row", gap: 6, marginBottom: 10 },
-  tripPill: { backgroundColor: Colors.ink },
   catPill: { alignSelf: "flex-start", backgroundColor: Colors.sand, borderRadius: Radius.full, paddingHorizontal: 12, paddingVertical: 5 },
   catText: { fontFamily: Fonts.bodyMedium, fontSize: 11, color: Colors.muted },
   title: { fontFamily: Fonts.display, fontSize: 28, color: Colors.ink, lineHeight: 36, letterSpacing: -0.5, marginBottom: 12 },
@@ -370,6 +394,7 @@ const styles = StyleSheet.create({
   ctaPriceAmount: { fontFamily: Fonts.display, fontSize: 22, color: Colors.ink },
   ctaPriceSub: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted },
   ctaBtn: { flex: 1, height: 52, backgroundColor: Colors.ink, borderRadius: Radius.md, alignItems: "center", justifyContent: "center" },
+  ctaBtnWaiting: { backgroundColor: Colors.sand },
   ctaBtnDisabled: { backgroundColor: Colors.muted },
   ctaBtnText: { fontFamily: Fonts.bodySemiBold, fontSize: 15, color: Colors.paper },
 });

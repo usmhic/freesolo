@@ -81,31 +81,34 @@ function PhoneFrame({
 
 /* ── Screen 1: the feed ───────────────────────────────────────────────────── */
 
-const FILTERS = [
-  { emoji: "✦", label: "All", active: true },
-  { emoji: "🎨", label: "Art", active: false },
-  { emoji: "🍜", label: "Food", active: false },
-  { emoji: "🎵", label: "Music", active: false },
+const KINDS = [
+  { label: "All", active: false },
+  { label: "🧭 Trips", active: true },
+  { label: "✨ Experiences", active: false },
 ];
 
 const FEED = [
   {
-    emoji: "🏺",
-    title: "Wheel-throwing morning in Alfama",
-    meta: "Sat 14 Jun · 09:30",
-    price: "€38",
-    host: "Inês",
-    filled: 5,
-    max: 6,
+    emoji: "🏝️",
+    cover: `linear-gradient(135deg, #1B2633, #4A7FA5)`,
+    kind: "Trip · 5 days",
+    title: "Azores island hop",
+    meta: "10 – 14 Nov · São Miguel",
+    price: "€640",
+    host: "Hana",
+    filled: 4,
+    max: 8,
   },
   {
-    emoji: "🍜",
-    title: "Ramen crawl, three counters",
-    meta: "Sat 14 Jun · 19:00",
-    price: "€25",
+    emoji: "🏔️",
+    cover: `linear-gradient(135deg, #1E2A24, ${SAGE})`,
+    kind: "Trip · 3 days",
+    title: "Picos de Europa hut-to-hut",
+    meta: "21 – 23 Nov · Asturias",
+    price: "€210",
     host: "Tomás",
-    filled: 3,
-    max: 8,
+    filled: 6,
+    max: 7,
   },
 ] as const;
 
@@ -115,122 +118,92 @@ function FeedScreen() {
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[8px] uppercase tracking-[0.14em]" style={{ color: MUTED }}>
-            Lisbon
+            Leaving soon
           </p>
           <p className="font-display text-[15px] font-bold leading-tight" style={{ color: INK }}>
-            Experiences
+            Group trips
           </p>
         </div>
-        <div className="flex items-center gap-1.5">
-          <span
-            className="grid size-6 place-items-center rounded-full text-[10px]"
-            style={{ background: SAND }}
-          >
-            🗺️
-          </span>
-          <span
-            className="grid size-6 place-items-center rounded-full text-[9px] font-semibold"
-            style={{ background: INK, color: PAPER }}
-          >
-            A
-          </span>
-        </div>
-      </div>
-
-      {/* search */}
-      <div
-        className="mt-2.5 flex items-center gap-1.5 rounded-lg px-2 py-1.5"
-        style={{ background: "#FFFFFF", border: `1px solid ${SAND}` }}
-      >
-        <span className="text-[8px]">🔍</span>
-        <span className="text-[8px]" style={{ color: MUTED }}>
-          Search experiences…
+        <span
+          className="grid size-6 place-items-center rounded-full text-[9px] font-semibold"
+          style={{ background: INK, color: PAPER }}
+        >
+          A
         </span>
       </div>
 
-      {/* filters */}
-      <div className="mt-2.5 flex gap-1.5 overflow-hidden">
-        {FILTERS.map((f) => (
+      {/* kind switch */}
+      <div className="mt-2.5 flex gap-1">
+        {KINDS.map((k) => (
           <span
-            key={f.label}
-            className="flex shrink-0 items-center gap-1 rounded-full px-2 py-1 text-[8px] font-medium"
-            style={
-              f.active
-                ? { background: INK, color: PAPER }
-                : { background: "#FFFFFF", color: INK, border: `1px solid ${SAND}` }
-            }
+            key={k.label}
+            className="rounded-full px-2 py-1 text-[8px] font-medium"
+            style={k.active ? { background: INK, color: PAPER } : { background: SAND, color: INK }}
           >
-            <span>{f.emoji}</span>
-            {f.label}
+            {k.label}
           </span>
         ))}
       </div>
 
       {/* cards */}
-      <div className="mt-2.5 space-y-2">
+      <div className="mt-2.5 space-y-2.5">
         {FEED.map((e) => {
           const pct = Math.round((e.filled / e.max) * 100);
           const almost = e.max - e.filled <= 2;
           return (
             <div
               key={e.title}
-              className="rounded-xl p-2.5"
+              className="overflow-hidden rounded-xl"
               style={{ background: "#FFFFFF", border: `1px solid ${SAND}` }}
             >
-              <div className="flex gap-2">
+              <div className="relative grid h-[62px] place-items-center text-[26px]" style={{ background: e.cover }}>
+                {e.emoji}
                 <span
-                  className="grid size-8 shrink-0 place-items-center rounded-lg text-[15px]"
-                  style={{ background: almost ? "#DC262614" : SAND }}
+                  className="absolute left-1.5 top-1.5 rounded-full px-1.5 py-px text-[6.5px] font-semibold uppercase tracking-wide"
+                  style={{ background: "#00000080", color: "#FFFFFF" }}
                 >
-                  {e.emoji}
+                  {e.kind}
                 </span>
-                <div className="min-w-0 flex-1">
-                  <p
-                    className="truncate text-[9px] font-semibold leading-tight"
-                    style={{ color: INK }}
+                <span
+                  className="absolute right-1.5 top-1.5 rounded-full px-1.5 py-px text-[7.5px] font-bold"
+                  style={{ background: "#FFFFFFEE", color: INK }}
+                >
+                  {e.price}
+                </span>
+              </div>
+              <div className="p-2">
+                <p className="text-[7px]" style={{ color: MUTED }}>
+                  {e.meta}
+                </p>
+                <p className="mt-0.5 truncate font-display text-[10px] font-bold leading-tight" style={{ color: INK }}>
+                  {e.title}
+                </p>
+                <div className="mt-1.5 flex items-center gap-1">
+                  <span
+                    className="grid size-3.5 place-items-center rounded-full text-[5.5px] font-semibold"
+                    style={{ background: CLAY, color: "#FFFFFF" }}
                   >
-                    {e.title}
-                  </p>
-                  <p className="mt-0.5 text-[7.5px]" style={{ color: MUTED }}>
-                    {e.meta}
-                  </p>
+                    {e.host[0]}
+                  </span>
+                  <span className="text-[7px]" style={{ color: MUTED }}>
+                    {e.host}
+                  </span>
+                  <span
+                    className="rounded-full px-1 py-px text-[6px] font-medium"
+                    style={{ background: SAND, color: INK }}
+                  >
+                    host picks
+                  </span>
+                  <span className="ml-auto text-[7px] font-medium" style={{ color: almost ? "#C2410C" : MUTED }}>
+                    {almost ? `${e.max - e.filled} left` : `${e.filled}/${e.max}`}
+                  </span>
                 </div>
-                <div className="text-right">
-                  <p className="text-[10px] font-bold leading-none" style={{ color: INK }}>
-                    {e.price}
-                  </p>
-                  <p className="text-[6.5px]" style={{ color: MUTED }}>
-                    /person
-                  </p>
+                <div className="mt-1 h-[3px] w-full overflow-hidden rounded-full" style={{ background: SAND }}>
+                  <div
+                    className="h-full rounded-full"
+                    style={{ width: `${pct}%`, background: almost ? "#C2410C" : CLAY }}
+                  />
                 </div>
-              </div>
-
-              <div className="mt-2 flex items-center gap-1.5">
-                <span
-                  className="grid size-4 place-items-center rounded-full text-[6px] font-semibold"
-                  style={{ background: CLAY, color: "#FFFFFF" }}
-                >
-                  {e.host[0]}
-                </span>
-                <span className="text-[7.5px] font-medium" style={{ color: INK }}>
-                  {e.host}
-                </span>
-                <span
-                  className="rounded-full px-1 py-px text-[6px] font-medium"
-                  style={{ background: `${SAGE}22`, color: SAGE }}
-                >
-                  ✓ verified
-                </span>
-                <span className="ml-auto text-[7.5px] font-medium" style={{ color: MUTED }}>
-                  {e.filled}/{e.max}
-                </span>
-              </div>
-
-              <div className="mt-1.5 h-[3px] w-full overflow-hidden rounded-full" style={{ background: SAND }}>
-                <div
-                  className="h-full rounded-full"
-                  style={{ width: `${pct}%`, background: almost ? "#DC2626" : SAGE }}
-                />
               </div>
             </div>
           );
@@ -240,87 +213,88 @@ function FeedScreen() {
   );
 }
 
-/* ── Screen 2: experience detail ──────────────────────────────────────────── */
+/* ── Screen 2: trip detail ────────────────────────────────────────────────── */
+
+const DAYS = ["Arrive · sunset at Sete Cidades", "Whale watching off the south coast", "Hot springs in Furnas"];
+const GOING = ["A", "B", "M", "J"];
 
 function DetailScreen() {
   return (
     <div className="flex h-full flex-col">
       <div
-        className="relative mx-3.5 mt-3 grid h-[112px] place-items-center rounded-xl text-[38px]"
-        style={{ background: SAND }}
+        className="relative grid h-[104px] place-items-center text-[40px]"
+        style={{ background: "linear-gradient(135deg, #1B2633, #4A7FA5)" }}
       >
-        🏺
+        🏝️
+        <div className="absolute inset-x-0 bottom-0 h-10" style={{ background: "linear-gradient(transparent, #00000066)" }} />
         <span
-          className="absolute left-2 top-2 rounded-full px-1.5 py-0.5 text-[6.5px] font-semibold"
-          style={{ background: "#DC2626", color: "#FFFFFF" }}
+          className="absolute bottom-2 left-3.5 rounded-full px-1.5 py-0.5 text-[6.5px] font-semibold uppercase tracking-wide"
+          style={{ background: "#FFFFFF26", color: "#FFFFFF" }}
         >
-          1 seat left
+          Group trip · 5 days
         </span>
       </div>
 
       <div className="px-3.5 pt-2.5">
         <p className="font-display text-[13px] font-bold leading-tight" style={{ color: INK }}>
-          Wheel-throwing morning in Alfama
+          Azores island hop
         </p>
-        <p className="mt-1 text-[8px]" style={{ color: MUTED }}>
-          📍 Rua dos Remédios · Sat 14 Jun, 09:30 — 12:00
+        <p className="mt-0.5 text-[7.5px]" style={{ color: MUTED }}>
+          📅 10 – 14 Nov · 📍 São Miguel
         </p>
 
-        <div className="mt-2.5 flex items-center gap-1.5">
-          <span
-            className="grid size-6 place-items-center rounded-full text-[8px] font-semibold"
-            style={{ background: CLAY, color: "#FFFFFF" }}
-          >
-            I
-          </span>
-          <div className="min-w-0">
-            <p className="text-[8px] font-semibold leading-none" style={{ color: INK }}>
-              Inês
-            </p>
-            <p className="mt-0.5 text-[7px]" style={{ color: MUTED }}>
-              Hosting since 2023 · ★ 4.9
-            </p>
-          </div>
-          <span
-            className="ml-auto rounded-full px-1.5 py-0.5 text-[6.5px] font-medium"
-            style={{ background: `${SAGE}22`, color: SAGE }}
-          >
-            ✓ verified host
+        <p className="mt-2 text-[7px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>
+          Who&apos;s going
+        </p>
+        <div className="mt-1 flex items-center">
+          {GOING.map((g, i) => (
+            <span
+              key={g}
+              className="grid size-5 place-items-center rounded-full text-[7px] font-semibold"
+              style={{
+                background: [CLAY, SAGE, "#4A7FA5", "#8B4513"][i],
+                color: "#FFFFFF",
+                marginLeft: i ? -5 : 0,
+                boxShadow: `0 0 0 1.5px ${PAPER}`,
+              }}
+            >
+              {g}
+            </span>
+          ))}
+          <span className="ml-1.5 text-[7px]" style={{ color: MUTED }}>
+            4 of 8 · confirms at 4 ✓
           </span>
         </div>
 
-        <p className="mt-2.5 text-[7.5px] leading-relaxed" style={{ color: MUTED }}>
-          Six people, six wheels, one very patient teacher. We start with a demo, then you throw
-          until something survives. Everything gets fired and posted to you.
+        <p className="mt-2 text-[7px] font-semibold uppercase tracking-wide" style={{ color: MUTED }}>
+          Day by day
         </p>
-
-        <div
-          className="mt-2.5 rounded-lg p-2"
-          style={{ background: "#FFFFFF", border: `1px solid ${SAND}` }}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-[7.5px] font-medium" style={{ color: INK }}>
-              Group confirms at 4
-            </span>
-            <span className="text-[7.5px] font-semibold" style={{ color: SAGE }}>
-              5 / 6 joined
-            </span>
-          </div>
-          <div className="mt-1.5 h-[3px] w-full overflow-hidden rounded-full" style={{ background: SAND }}>
-            <div className="h-full w-[83%] rounded-full" style={{ background: SAGE }} />
-          </div>
-          <p className="mt-1.5 text-[6.5px]" style={{ color: MUTED }}>
-            Card charged only once the group confirms
-          </p>
+        <div className="mt-1 space-y-1">
+          {DAYS.map((d, i) => (
+            <div key={d} className="flex items-center gap-1.5">
+              <span
+                className="grid size-3.5 shrink-0 place-items-center rounded-full text-[6px] font-semibold"
+                style={{ background: INK, color: PAPER }}
+              >
+                {i + 1}
+              </span>
+              <span className="truncate text-[7.5px]" style={{ color: INK }}>
+                {d}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
       <div className="mt-auto px-3.5 pb-3.5">
+        <p className="mb-1.5 text-center text-[6.5px]" style={{ color: MUTED }}>
+          The host reads every request · settle with them directly
+        </p>
         <div
           className="flex items-center justify-center gap-1.5 rounded-lg py-2 text-[9px] font-semibold"
           style={{ background: INK, color: PAPER }}
         >
-          Reserve a seat · €38
+          Request to join · €640
         </div>
       </div>
     </div>
@@ -330,10 +304,10 @@ function DetailScreen() {
 /* ── Screen 3: notifications ──────────────────────────────────────────────── */
 
 const NOTIFS = [
-  { emoji: "🎉", title: "Your group is confirmed", body: "Wheel-throwing morning · Sat 09:30", fresh: true },
-  { emoji: "✅", title: "Application approved", body: "Welcome to FreeSolo — here's your code", fresh: true },
-  { emoji: "💬", title: "Inês replied to your review", body: "“So glad the bowl survived!”", fresh: false },
-  { emoji: "🗓️", title: "Two days to go", body: "Ramen crawl · Thu 19:00", fresh: false },
+  { emoji: "✅", title: "You're in the group", body: "Hana accepted you on Azores island hop", fresh: true },
+  { emoji: "🎒", title: "You're in! It's happening", body: "Azores island hop has enough travelers", fresh: true },
+  { emoji: "💬", title: "New in Azores island hop", body: "Hana wrote in the group chat", fresh: false },
+  { emoji: "✋", title: "New request to join", body: "Ben would like to join your trip", fresh: false },
 ] as const;
 
 function NotificationsScreen() {
@@ -380,7 +354,7 @@ function NotificationsScreen() {
           That&apos;s everything
         </p>
         <p className="mt-0.5 text-[7px]" style={{ color: MUTED }}>
-          We only message you about your own bookings
+          We only message you about your own trips
         </p>
       </div>
     </div>
@@ -392,23 +366,23 @@ function NotificationsScreen() {
 const PILLARS = [
   {
     icon: Users,
-    title: "Four to eight people",
-    body: "Small enough that you'll actually talk to everyone by the end.",
+    title: "Twelve at most",
+    body: "Most groups run four to eight — small enough to talk to everyone by the end.",
   },
   {
     icon: CalendarCheck,
     title: "Confirms, or it doesn't",
-    body: "Reserve a seat and your card waits until the group actually comes together.",
+    body: "Nothing is locked in until enough travelers are in. FreeSolo never takes payment.",
   },
   {
     icon: ShieldCheck,
-    title: "Everyone was reviewed",
-    body: "Members and hosts both get read by a person before they can book or list.",
+    title: "The host picks the group",
+    body: "Every member was read by a person — and on trips, the host reads every request too.",
   },
   {
     icon: BellRing,
     title: "Told only what matters",
-    body: "Notifications cover your bookings and your groups. Nothing else.",
+    body: "Requests, confirmations and a private group chat for each trip. Nothing else.",
   },
 ] as const;
 
@@ -429,23 +403,23 @@ export function PhoneShowcase() {
             The app
           </span>
           <h2 className="mt-5 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-            Your next table for six,{" "}
-            <span className="italic text-[#B8976A]">three taps away</span>
+            Your next trip,{" "}
+            <span className="italic text-[#B8976A]">with people you&apos;d pick</span>
           </h2>
           <p className="mt-3 text-balance text-fd-muted-foreground">
-            Browse what&apos;s happening in the city you&apos;re standing in, hold a seat before
-            it&apos;s gone, and let FreeSolo handle the awkward part — whether enough people
-            actually show up.
+            Browse trips members are hosting, see who&apos;s going, ask to join with a short
+            intro, and sort the details in the group chat once you&apos;re in. FreeSolo handles
+            the awkward part — whether enough people actually show up.
           </p>
         </div>
 
         {/* Devices — centre phone raised, outer two stepped back */}
         <div className="mt-14 flex flex-wrap items-end justify-center gap-6 sm:gap-8">
-          <PhoneFrame label="Browse the feed" className="hidden lg:flex lg:translate-y-6 lg:scale-95 lg:opacity-95">
+          <PhoneFrame label="Find a trip" className="hidden lg:flex lg:translate-y-6 lg:scale-95 lg:opacity-95">
             <FeedScreen />
           </PhoneFrame>
 
-          <PhoneFrame label="Hold your seat" className="z-10">
+          <PhoneFrame label="Ask to join" className="z-10">
             <DetailScreen />
           </PhoneFrame>
 
@@ -469,7 +443,7 @@ export function PhoneShowcase() {
 
         <p className="mt-10 flex items-center justify-center gap-1.5 text-center text-xs text-fd-muted-foreground">
           <MapPin className="size-3.5" />
-          The same three screens, in every city on the map above.
+          Trips and experiences in every city on the map above.
         </p>
       </div>
     </section>

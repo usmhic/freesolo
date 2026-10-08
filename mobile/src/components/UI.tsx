@@ -24,7 +24,7 @@ interface FieldProps {
   onChangeText: (t: string) => void;
   multiline?: boolean;
   rows?: number;
-  keyboardType?: "default" | "email-address" | "phone-pad" | "numeric" | "numbers-and-punctuation";
+  keyboardType?: "default" | "email-address" | "phone-pad" | "numeric" | "number-pad" | "decimal-pad" | "numbers-and-punctuation";
   secureTextEntry?: boolean;
   autoCapitalize?: "none" | "sentences" | "words" | "characters";
   style?: ViewStyle;

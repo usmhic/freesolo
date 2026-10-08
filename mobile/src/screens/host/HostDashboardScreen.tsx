@@ -15,6 +15,7 @@ import { Card, InfoBox, ProgressBar, ScreenHeader } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 import { isTrip, needsApproval, tripDays, whenLabel } from "../../lib/listing";
+import { ListingCover } from "../../components/ListingCover";
 
 interface HostedListing {
   listing: any;
@@ -93,7 +94,7 @@ export default function HostDashboardScreen({ navigation }: any) {
               onPress={() => navigation.navigate("HostRequests", { experienceId: l.id, title: l.title })}>
               <Card style={styles.card}>
                 <View style={styles.cardTop}>
-                  <View style={styles.icon}><Text style={{ fontSize: 22 }}>{l.emoji}</Text></View>
+                  <ListingCover listing={l} style={styles.icon} emojiSize={24} />
                   <View style={{ flex: 1 }}>
                     <Text style={styles.kind}>{isTrip(l) ? `Trip${days ? ` · ${days} days` : ""}` : "Experience"}</Text>
                     <Text style={styles.title} numberOfLines={2}>{l.title}</Text>
@@ -132,7 +133,7 @@ const styles = StyleSheet.create({
   emptyText: { fontFamily: Fonts.body, fontSize: 13, color: Colors.muted, textAlign: "center", lineHeight: 19 },
   card: { padding: 16, marginBottom: 12 },
   cardTop: { flexDirection: "row", gap: 12, alignItems: "flex-start", marginBottom: 12 },
-  icon: { width: 46, height: 46, borderRadius: Radius.md, backgroundColor: Colors.sand, alignItems: "center", justifyContent: "center" },
+  icon: { width: 56, height: 56, borderRadius: Radius.md },
   kind: { fontFamily: Fonts.bodySemiBold, fontSize: 10, letterSpacing: 0.6, textTransform: "uppercase", color: Colors.clay },
   title: { fontFamily: Fonts.bodyMedium, fontSize: 15, color: Colors.ink, marginTop: 2 },
   meta: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: 2 },
