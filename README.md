@@ -32,6 +32,9 @@ who picked the group and knows exactly where to go.
 
 ---
 
+Local setup, shared workspace ports, environment conventions, and `dev` workflows:
+[Local development](./LOCAL_DEVELOPMENT.md).
+
 ## 🎬 Try the demo
 
 | Where | Link | What you'll see |
@@ -95,7 +98,7 @@ never commit it.
 
 | Service | URL |
 |---|---|
-| 🌍 Web | http://localhost:3000 |
+| 🌍 Web | http://localhost:3002 |
 | ❤️ API health | http://localhost:8080/actuator/health |
 | 📦 MinIO console | http://localhost:9001 |
 | 🐘 PostgreSQL | localhost:5432 |

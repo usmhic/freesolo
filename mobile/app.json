@@ -52,7 +52,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/icon.png",
+          "icon": "./assets/notification-icon.png",
           "color": "#C4A882"
         }
       ],
@@ -65,7 +65,7 @@
         {
           "image": "./assets/splash-icon.png",
           "resizeMode": "contain",
-          "backgroundColor": "#0D0D0D"
+          "backgroundColor": "#243A46"
         }
       ],
       "expo-maps",

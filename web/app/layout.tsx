@@ -16,6 +16,13 @@ export const metadata: Metadata = {
   authors: [{ name: 'usmhic', url: 'https://github.com/usmhic' }],
   creator: 'usmhic',
   publisher: 'usmhic',
+  icons: {
+    icon: [{ url: '/icon-16.png', sizes: '16x16' }, { url: '/icon-32.png', sizes: '32x32' }],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/site.webmanifest',
+  openGraph: { images: [{ url: '/social-card.png', width: 1200, height: 630, alt: 'FreeSolo' }] },
+  twitter: { card: 'summary_large_image', images: ['/social-card.png'] },
 };
 
 const playfair = Playfair_Display({
