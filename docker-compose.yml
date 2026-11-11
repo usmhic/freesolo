@@ -68,6 +68,7 @@ services:
       MINIO_PUBLIC_URL: ${STORAGE_URL:-http://localhost:9000}
       MINIO_ACCESS_KEY: freesolo
       MINIO_SECRET_KEY: ${MINIO_PASSWORD:?Copy .env.example to .env}
+      ORS_API_KEY: ${ORS_API_KEY:-}
     ports:
       - "${API_PORT:-8080}:8080"
     healthcheck:

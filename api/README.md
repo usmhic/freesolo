@@ -89,6 +89,11 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `GET` | `/api/hosting/listings/{id}/requests` | Join requests and the current group (host only) |
 | `POST` | `/api/hosting/requests/{bookingId}/approve` | Accept a traveler (host only) |
 | `POST` | `/api/hosting/requests/{bookingId}/decline` | Decline a traveler (host only) |
+| `GET` | `/api/routing/places?q=` | Place search for the planner (public, 60/min per client) |
+| `POST` | `/api/routing/directions` | Route through `[lng, lat]` stops for a travel mode (public, 20/min per client); `estimated: true` when no OpenRouteService key is set |
+| `GET`/`POST` | `/api/plans` | The member's saved journey plans; the API computes the route on save |
+| `GET`/`PUT`/`DELETE` | `/api/plans/{id}` | One plan (owner only) |
+| `PUT`/`DELETE` | `/api/hosting/listings/{id}/route` | Show one of your plans' routes on a listing you host |
 | `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
 | `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |
 

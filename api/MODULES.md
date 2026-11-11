@@ -15,6 +15,7 @@ separate deployments before they are useful.
 | Bookings | `bookings` | `fs_bookings`, `fs_group_messages` | Identity, Experiences, Engagement |
 | Engagement | `engagement` | `fs_notifications`, `fs_email_campaigns` | Identity |
 | Media | `media` | `fs_uploads`, `fs_event_photos` | Identity, Experiences, Bookings |
+| Planning | `planning` | `fs_journey_plans` | Identity |
 
 `module/DomainSchemas.java` is the source of truth for schema names, and
 `module/ModuleCatalog.java` is the machine-readable ownership/dependency map.
@@ -38,6 +39,10 @@ schema or search-path dependency.
 - Bookings also owns each listing's group chat (`fs_group_messages`), because
   holding a seat is what grants access. Keeping it out of Engagement avoids an
   Engagement → Bookings dependency that would close a cycle.
+- Routing (OpenRouteService place search and directions) is an infrastructure
+  adapter like email: `RoutingService` keeps the key server-side and is used by
+  Planning. A trip's route is copied from the host's plan by the hosting
+  controller, so Experiences does not depend on Planning.
 - Email, push, and object-storage adapters remain infrastructure behind
   the owning application service; they are not separate public APIs.
 

@@ -8,6 +8,7 @@ public final class DomainSchemas {
     public static final String BOOKINGS = "bookings";
     public static final String ENGAGEMENT = "engagement";
     public static final String MEDIA = "media";
+    public static final String PLANNING = "planning";
 
     private DomainSchemas() {
     }

@@ -33,6 +33,7 @@ public record ExperienceResponse(
         String itinerary,
         String included,
         String joinPolicy,
+        String route,
         String status,
         boolean featured,
         long filledSeats,
@@ -55,7 +56,7 @@ public record ExperienceResponse(
                 e.getDate(), e.getTime(), e.getEndDate(), e.getDurationMins(),
                 e.getMinSeats(), e.getMaxSeats(), e.getPrice(), e.getCurrency(),
                 e.getCoverImage(), e.getImages(), e.getTags(),
-                e.getItinerary(), e.getIncluded(), e.getJoinPolicy(),
+                e.getItinerary(), e.getIncluded(), e.getJoinPolicy(), e.getRoute(),
                 e.getStatus(), e.isFeatured(),
                 filledSeats, available, e.getCreatedAt()
         );

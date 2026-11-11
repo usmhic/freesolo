@@ -75,6 +75,13 @@ app:
   app-store-url: ${APP_STORE_URL:https://apps.apple.com}
   play-store-url: ${PLAY_STORE_URL:https://play.google.com}
 
+  # Trip planner routing. Without a key the planner still works, but routes
+  # fall back to straight lines between stops.
+  ors:
+    api-key: ${ORS_API_KEY:}
+    base-url: ${ORS_BASE_URL:https://api.openrouteservice.org}
+    timeout-ms: ${ORS_TIMEOUT_MS:8000}
+
   oauth:
     google:
       client-id: ${GOOGLE_CLIENT_ID:}

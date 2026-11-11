@@ -88,6 +88,16 @@ public class ExperienceService {
                 .toList();
     }
 
+    /** Sets or clears ({@code null}) the route a listing follows. Host only. */
+    @Transactional
+    public ExperienceResponse setRoute(String hostId, String experienceId, String routeJson) {
+        Experience e = experienceRepository.findById(experienceId)
+                .orElseThrow(() -> ApiException.notFound("Experience not found"));
+        if (!e.getHost().getId().equals(hostId)) throw ApiException.forbidden("Only the host can change this listing");
+        e.setRoute(routeJson);
+        return ExperienceResponse.from(experienceRepository.save(e), bookingRepository.countFilledSeats(e));
+    }
+
     @Transactional
     public ExperienceResponse create(User user, CreateExperienceRequest req) {
         if (!"approved".equals(user.getStatus())) {
