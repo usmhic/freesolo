@@ -20,13 +20,14 @@ type HeaderUser = { name: string; email: string; role: string } | null;
 export function HeaderBar({ user }: { user: HeaderUser }) {
   const pathname = usePathname();
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  // The menu belongs to the page it was opened on, so navigating closes it.
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const open = menuPath === pathname;
+  const setOpen = (fn: (v: boolean) => boolean) => setMenuPath(fn(open) ? pathname : null);
   const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => setOpen(false), [pathname]);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
