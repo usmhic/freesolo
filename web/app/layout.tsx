@@ -1,6 +1,6 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import { Playfair_Display, DM_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import { cn } from '@/lib/cn';
 import type { Metadata } from 'next';
 
@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
   applicationName: 'FreeSolo',
   title: {
-    default: 'FreeSolo - curated solo-travel experiences',
+    default: 'FreeSolo — small-group trips for solo travelers',
     template: '%s | FreeSolo',
   },
   description:
-    'Discover and book curated experiences built for independent travelers and local hosts.',
+    'Join small, vetted groups of solo travelers on trips hosted by members — and plan your own route on the map.',
   authors: [{ name: 'usmhic', url: 'https://github.com/usmhic' }],
   creator: 'usmhic',
   publisher: 'usmhic',
@@ -25,19 +25,22 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', images: ['/social-card.png'] },
 };
 
-const playfair = Playfair_Display({
+// Geometric display face to echo the rounded "f" of the logo; Inter for
+// long-form reading and dense UI.
+const display = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-display',
+  weight: ['500', '600', '700', '800'],
 });
 
-const dmSans = DM_Sans({
+const body = Inter({
   subsets: ['latin'],
   variable: '--font-body',
 });
 
 export default function Layout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={cn(playfair.variable, dmSans.variable, 'font-sans')} suppressHydrationWarning>
+    <html lang="en" className={cn(display.variable, body.variable, 'font-sans')} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         <RootProvider>{children}</RootProvider>
       </body>

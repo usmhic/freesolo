@@ -2,366 +2,336 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  Bell,
-  Calendar,
-  Compass,
-  Heart,
-  LayoutDashboard,
+  BadgeCheck,
+  CalendarCheck,
+  ChevronDown,
+  HandCoins,
+  Map,
   MessagesSquare,
-  Search,
+  Route,
   ShieldCheck,
+  Sparkles,
+  UserRoundCheck,
   Users,
-  Wallet,
 } from "lucide-react";
-import { cn } from "@/lib/cn";
-import { FreeSoloLogo } from "@/components/logo";
-import { WorldMapSection } from "@/components/world-map";
-import { PhoneShowcase } from "@/components/phone-showcase";
 import { ListingCard } from "@/components/listing-card";
+import { HeroRoute } from "@/components/site/hero-route";
+import { PlannerPreview } from "@/components/site/planner-preview";
 import { getListings } from "@/lib/listings";
 
-// Live "Leaving soon" listings: re-fetched at most once a minute. Next.js needs
-// a literal here; keep it in step with LISTINGS_REVALIDATE_SECONDS.
-export const revalidate = 60;
-
 export const metadata: Metadata = {
-  title: "FreeSolo — Small-group trips for solo travelers",
+  title: "FreeSolo — small-group trips for solo travelers",
   description:
-    "A vetted community where solo travelers join small-group trips and local experiences, and hosts pick who comes along. Apply to join — a real person reads every application.",
+    "Join small, vetted groups of solo travelers on trips hosted by members, or plan your own route on the map. Apply to join — a person reads every application.",
 };
 
-const FEATURES = [
+// Live "Leaving soon" trips: re-fetched at most once a minute. Next.js needs a
+// literal here; keep it in step with LISTINGS_REVALIDATE_SECONDS.
+export const revalidate = 60;
+
+const STEPS = [
   {
-    icon: Compass,
-    title: "Trips & experiences",
-    description:
-      "Multi-day group trips with a day-by-day itinerary, and few-hour experiences hosted by locals.",
+    icon: UserRoundCheck,
+    title: "Apply once",
+    body: "Tell us a little about how you travel. A real person reads every application, usually within 48 hours.",
   },
   {
-    icon: Calendar,
-    title: "Host-picked groups",
-    description:
-      "Ask to join with a short intro, see who's already going, and get confirmed once the group fills.",
+    icon: Users,
+    title: "Find your group",
+    body: "Browse trips members are hosting. Ask to join with a short intro — on most trips the host picks the group.",
   },
   {
-    icon: ShieldCheck,
-    title: "Trusted, vetted hosts",
-    description:
-      "Every host and business goes through an application and identity-verification flow.",
-  },
-  {
-    icon: Bell,
-    title: "Real-time updates",
-    description:
-      "In-app and push notifications keep travelers and hosts in sync at every step.",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Full admin control",
-    description:
-      "Review applications, moderate listings, and manage users from one dashboard.",
+    icon: Route,
+    title: "Plan the route",
+    body: "Lay out stops on the map, see real road and trail times, and keep every plan in one place.",
   },
   {
     icon: MessagesSquare,
-    title: "Reviews that go both ways",
-    description:
-      "Rate the experience afterwards; hosts can reply. Ratings stay attached to the host, not buried in a feed.",
+    title: "Go together",
+    body: "Once you have a place, the group chat opens. Sort meeting points and rooms, then go.",
   },
-] as const;
+];
 
 const PROMISES = [
   {
+    icon: BadgeCheck,
+    title: "Everyone was vetted",
+    body: "Membership is by application only. No anonymous profiles, no open sign-ups.",
+  },
+  {
     icon: Users,
-    title: "The group is the product",
-    body: "Trips and experiences cap at twelve travelers, and most run four to eight. Big enough for a proper conversation, small enough that nobody drifts to the edge of it.",
+    title: "Twelve at most",
+    body: "Groups cap at twelve and most run four to eight — small enough to actually talk to everyone.",
   },
   {
-    icon: Wallet,
-    title: "You never pay for a maybe",
-    body: "Reserve a seat and nothing moves until the group actually confirms. If it doesn't come together, the reservation quietly lapses — no charge, no chasing.",
+    icon: ShieldCheck,
+    title: "The host picks",
+    body: "On most trips the host reads every request. You see who's going before you commit.",
   },
   {
-    icon: Heart,
-    title: "Vetted on both sides",
-    body: "Every member is read by a person before they can join or host — and on trips, the host still picks the group. It's slower than an open marketplace, and that's the entire point.",
+    icon: HandCoins,
+    title: "No fees, ever",
+    body: "FreeSolo never takes payment. You settle with the host directly, and only once the group is set.",
   },
-] as const;
+];
 
-const HOW_IT_WORKS = [
+const FAQ = [
   {
-    step: "01",
-    title: "Apply to join",
-    body: "FreeSolo is invite-gated. Submit a short application and a real person reviews it — usually within a day or two.",
+    q: "Who is FreeSolo for?",
+    a: "People who like to travel alone but don't always want to do everything by themselves. Members join small trips and local experiences hosted by other members.",
   },
   {
-    step: "02",
-    title: "Find your group",
-    body: "Browse group trips and local experiences. Ask to join with a short intro — FreeSolo never takes payment; you settle with the host.",
+    q: "Why do I have to apply?",
+    a: "Because the group is the product. A person reads every application so that everyone on a trip has been looked at by a human — it's slower than an open marketplace, on purpose.",
   },
   {
-    step: "03",
-    title: "Go & connect",
-    body: "See who's going before you leave, then travel with people who chose the same trip you did.",
+    q: "How does joining a trip work?",
+    a: "Open a trip, ask to join with a short intro, and wait for the host. Once you're accepted you hold a place, and the trip confirms for everyone when enough travelers are in.",
   },
   {
-    step: "04",
-    title: "Host your own",
-    body: "Planning a trip anyway? Publish the itinerary and choose the solo travelers who come with you — or host a few hours at your venue."
+    q: "Do I need an account to use the planner?",
+    a: "No — anyone can sketch a route. Sign in to save plans to your account, and if you host a trip you can show your route on its page.",
   },
-] as const;
-
-const FOOTER_LINKS = [
-  { href: "/trips",         label: "Trips"          },
-  { href: "/apply",         label: "Apply to join"  },
-  { href: "/apply/status",  label: "Check status"   },
-  { href: "/docs",          label: "Help Center"    },
-  { href: "/privacy",       label: "Privacy"        },
-  { href: "/terms",         label: "Terms"          },
-  { href: "/admin/sign-in", label: "Admin"          },
-] as const;
-
-function ButtonLink({
-  href,
-  variant = "primary",
-  children,
-}: {
-  href: string;
-  variant?: "primary" | "secondary";
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
-        variant === "primary"
-          ? "bg-fd-primary text-fd-primary-foreground hover:opacity-90"
-          : "border border-fd-border bg-fd-background hover:bg-fd-accent hover:text-fd-accent-foreground"
-      )}
-    >
-      {children}
-    </Link>
-  );
-}
+  {
+    q: "What does it cost?",
+    a: "Nothing. FreeSolo doesn't take payment or commission. Each trip shows what the host charges and what it covers.",
+  },
+];
 
 export default async function HomePage() {
-  const trips = (await getListings({ kind: "trip", limit: 3 })).slice(0, 3);
+  const trips = (await getListings({ kind: "trip", limit: 6 })).slice(0, 6);
 
   return (
-    <div className="flex flex-1 flex-col">
+    <>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden border-b border-fd-border">
+      <section className="relative overflow-hidden">
         <div
-          className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, var(--color-fd-border) 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
+          aria-hidden
+          className="pointer-events-none absolute -right-40 -top-40 size-[640px] rounded-full bg-sunset/10 blur-3xl dark:bg-sunset/[0.07]"
         />
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-24 text-center sm:py-32">
-          <span className="rounded-full border border-fd-border bg-fd-card px-3 py-1 text-xs font-medium text-fd-muted-foreground">
-            🧭 Group trips · Local experiences · Vetted members
-          </span>
-          <h1 className="font-display text-4xl font-bold tracking-tight sm:text-6xl">
-            Solo doesn&apos;t have to mean{" "}
-            <span className="bg-gradient-to-r from-fd-primary to-[#B8976A] bg-clip-text italic text-transparent">
-              alone
+        <div className="container-page grid items-center gap-12 pb-16 pt-10 sm:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-24">
+          <div className="max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium text-ink-soft">
+              <span className="size-1.5 rounded-full bg-sunset" />
+              Invite-only · groups of up to 12 · no fees
             </span>
-          </h1>
-          <p className="max-w-2xl text-balance text-base text-fd-muted-foreground sm:text-lg">
-            Travelling by yourself is wonderful — right up until you want to do something
-            <em> with</em> someone. On FreeSolo, members host small-group trips and local
-            experiences, and every traveler has been vetted before they can ask to join. Five
-            days island-hopping or one morning at a pottery wheel — no big-bus tours, no group
-            chat with forty strangers.
-          </p>
-          <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-            <ButtonLink href="/apply">
-              Apply to join <ArrowRight className="size-4" />
-            </ButtonLink>
-            <ButtonLink href="/trips" variant="secondary">
-              <Compass className="size-4" /> Browse trips
-            </ButtonLink>
+            <h1 className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[4.1rem]">
+              Travel solo.
+              <br />
+              <span className="text-sunset">Never alone.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
+              Join small groups of vetted solo travelers on trips hosted by members — or plan your own
+              route on the map, with real road and trail times for every leg.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/trips" className="btn-primary px-6 py-3 text-[15px]">
+                Explore trips <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/planner" className="btn-outline px-6 py-3 text-[15px]">
+                <Map className="size-4" /> Plan a route
+              </Link>
+            </div>
+            <dl className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-line pt-6">
+              {[
+                ["100%", "members vetted"],
+                ["≤ 12", "per group"],
+                ["€0", "booking fees"],
+              ].map(([v, l]) => (
+                <div key={l}>
+                  <dt className="sr-only">{l}</dt>
+                  <dd className="font-display text-2xl font-extrabold text-ink">{v}</dd>
+                  <dd className="text-xs text-ink-soft">{l}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <p className="text-xs text-fd-muted-foreground">
-            Invite-gated · A person reads every application · Usually answered within 48 hours
-          </p>
+          <HeroRoute />
         </div>
       </section>
 
-      {/* ── Leaving soon (live) ────────────────────────────────────────────── */}
-      {trips.length > 0 && (
-        <section className="border-b border-fd-border">
-          <div className="mx-auto max-w-6xl px-6 py-20">
-            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-              <div className="max-w-xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#B8976A]">Leaving soon</p>
-                <h2 className="mt-2 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                  Trips members are hosting right now
+      {/* ── Leaving soon (live) ──────────────────────────────────────────── */}
+      <section className="border-t border-line bg-surface/50 py-20">
+        <div className="container-page">
+          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+            <div className="max-w-xl">
+              <p className="eyebrow">Leaving soon</p>
+              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Trips members are hosting
+              </h2>
+              <p className="mt-3 text-ink-soft">
+                Planned by a member, joined by a handful of vetted solo travelers.
+              </p>
+            </div>
+            <Link href="/trips" className="btn-outline">
+              See all trips <ArrowRight className="size-4" />
+            </Link>
+          </div>
+
+          {trips.length > 0 ? (
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {trips.map((t, i) => (
+                <ListingCard key={t.id} listing={t} priority={i < 2} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-10 grid gap-6 rounded-3xl border border-dashed border-line p-10 text-center">
+              <p className="text-ink-soft">
+                New trips are posted every week. Members can host their own from the app — or start by{" "}
+                <Link href="/planner" className="font-semibold text-sunset hover:underline">planning a route</Link>.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── How it works ─────────────────────────────────────────────────── */}
+      <section id="how-it-works" className="scroll-mt-20 py-20 sm:py-24">
+        <div className="container-page">
+          <div className="max-w-2xl">
+            <p className="eyebrow">How it works</p>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+              From stranger to fellow traveler
+            </h2>
+          </div>
+          <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {STEPS.map(({ icon: Icon, title, body }, i) => (
+              <li key={title} className="card relative p-6">
+                <span className="absolute right-5 top-5 font-display text-sm font-bold text-ink-soft/50">
+                  0{i + 1}
+                </span>
+                <span className="flex size-11 items-center justify-center rounded-2xl bg-sunset-soft text-sunset">
+                  <Icon className="size-5" />
+                </span>
+                <h3 className="mt-5 font-display text-lg font-bold">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ── Planner ──────────────────────────────────────────────────────── */}
+      <section className="bg-navy py-20 text-white sm:py-24 dark:bg-navy-deep">
+        <div className="container-page grid items-center gap-12 lg:grid-cols-[1fr_1.15fr]">
+          <div className="max-w-xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sunset">Trip planner</p>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Lay out the whole journey on one map
+            </h2>
+            <p className="mt-4 text-white/75">
+              Search places, drop stops, drag them into order and split them into days. FreeSolo works
+              out the road, bike or trail route between every stop — with distance and time for each leg.
+            </p>
+            <ul className="mt-8 space-y-3 text-sm text-white/85">
+              {[
+                "Drive, cycle, walk or hike — switch modes and the route follows",
+                "Group stops into days and see each day's distance at a glance",
+                "Save plans to your account and pick them up on any device",
+                "Hosting? Put your route on your trip so travelers see where you're going",
+              ].map((t) => (
+                <li key={t} className="flex gap-3">
+                  <CalendarCheck className="mt-0.5 size-4 shrink-0 text-sunset" /> {t}
+                </li>
+              ))}
+            </ul>
+            <Link href="/planner" className="btn-primary mt-9 px-6 py-3">
+              Open the planner <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <PlannerPreview />
+        </div>
+      </section>
+
+      {/* ── Promises ─────────────────────────────────────────────────────── */}
+      <section className="py-20 sm:py-24">
+        <div className="container-page">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow">Why it feels different</p>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Built around who else turns up
+            </h2>
+            <p className="mt-4 text-ink-soft">
+              The itinerary matters less than the people. So FreeSolo is slow to join, small by design,
+              and never in the middle of your money.
+            </p>
+          </div>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {PROMISES.map(({ icon: Icon, title, body }) => (
+              <div key={title} className="card p-6">
+                <Icon className="size-6 text-sunset" />
+                <h3 className="mt-4 font-display text-lg font-bold">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Host + FAQ ───────────────────────────────────────────────────── */}
+      <section className="border-t border-line bg-surface/50 py-20 sm:py-24">
+        <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr]">
+          <div>
+            <div className="card overflow-hidden">
+              <div className="bg-sunset-soft p-8">
+                <Sparkles className="size-6 text-sunset" />
+                <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight sm:text-3xl">
+                  Planning a trip anyway? Host it.
                 </h2>
-                <p className="mt-3 text-fd-muted-foreground">
-                  Planned by a member, joined by a handful of vetted solo travelers. The host reads
-                  every request and picks the group.
+                <p className="mt-3 text-ink-soft">
+                  Publish your itinerary and route, read every request, and choose the solo travelers who
+                  come with you. Approved members can host from the FreeSolo app.
                 </p>
               </div>
-              <ButtonLink href="/trips" variant="secondary">
-                See all trips <ArrowRight className="size-4" />
-              </ButtonLink>
+              <div className="flex flex-col gap-3 p-6 sm:flex-row">
+                <Link href="/apply" className="btn-primary">Apply to join <ArrowRight className="size-4" /></Link>
+                <Link href="/docs/trips#hosting-a-trip" className="btn-ghost">How hosting works</Link>
+              </div>
             </div>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {trips.map((t) => (
-                <ListingCard key={t.id} listing={t} />
+          </div>
+
+          <div>
+            <p className="eyebrow">Questions</p>
+            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">Good to know</h2>
+            <div className="mt-8 divide-y divide-line border-y border-line">
+              {FAQ.map(({ q, a }) => (
+                <details key={q} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                    {q}
+                    <ChevronDown className="size-5 shrink-0 text-ink-soft transition group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{a}</p>
+                </details>
               ))}
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* ── World Map ─────────────────────────────────────────────────────── */}
-      <WorldMapSection />
-
-      {/* ── Why it works ──────────────────────────────────────────────────── */}
-      <section className="border-b border-fd-border">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Built around the awkward parts
+      {/* ── Final CTA ────────────────────────────────────────────────────── */}
+      <section className="py-20">
+        <div className="container-page">
+          <div className="relative overflow-hidden rounded-[2rem] bg-sunset px-6 py-14 text-center text-white sm:px-12">
+            <svg aria-hidden className="absolute inset-0 size-full opacity-20" viewBox="0 0 800 300" preserveAspectRatio="none">
+              <path d="M-20 260 C 160 160, 300 300, 460 180 S 700 60, 820 120" fill="none" stroke="#fff" strokeWidth="4" strokeDasharray="3 14" strokeLinecap="round" />
+            </svg>
+            <h2 className="relative font-display text-3xl font-extrabold tracking-tight sm:text-5xl">
+              Your next trip is already forming.
             </h2>
-            <p className="mt-3 text-fd-muted-foreground">
-              Most of what makes group travel work isn&apos;t the itinerary — it&apos;s who else
-              turns up, whether it happens at all, and what it costs you when it doesn&apos;t.
-              Those are the three things FreeSolo actually solves.
+            <p className="relative mx-auto mt-4 max-w-xl text-white/90">
+              Applications take about five minutes, and a person reads every one.
             </p>
-          </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {PROMISES.map(({ icon: Icon, title, body }) => (
-              <div
-                key={title}
-                className="rounded-xl border border-fd-border bg-fd-card p-6 transition-colors hover:bg-fd-accent/40"
-              >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-[#B8976A]/15 text-[#B8976A]">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-fd-muted-foreground">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Mobile app showcase ───────────────────────────────────────────── */}
-      <PhoneShowcase />
-
-      {/* ── How it works ──────────────────────────────────────────────────── */}
-      <section className="border-b border-fd-border">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <div className="mx-auto mb-12 max-w-2xl text-center">
-            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              From stranger to fellow traveler in four steps
-            </h2>
-            <p className="mt-3 text-fd-muted-foreground">
-              Joining, booking, going, hosting. The whole loop takes about ten minutes of
-              your attention and gives you back a weekend you&apos;d never have planned alone.
-            </p>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {HOW_IT_WORKS.map(({ step, title, body }) => (
-              <div key={step} className="flex flex-col gap-3">
-                <span className="text-3xl font-bold text-fd-primary/30">
-                  {step}
-                </span>
-                <h3 className="font-semibold">{title}</h3>
-                <p className="text-sm leading-relaxed text-fd-muted-foreground">
-                  {body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Features grid ─────────────────────────────────────────────────── */}
-      <section className="border-b border-fd-border">
-        <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Everything a small-group travel platform needs
-            </h2>
-            <p className="mt-3 text-fd-muted-foreground">
-              Discovery, bookings, reviews and moderation — purpose-built for small-group
-              travel rather than bolted onto a ticketing tool.
-            </p>
-          </div>
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map(({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="rounded-xl border border-fd-border bg-fd-card p-6 transition-colors hover:bg-fd-accent/40"
-              >
-                <div className="mb-4 flex size-10 items-center justify-center rounded-lg bg-fd-primary/10 text-fd-primary">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="font-semibold">{title}</h3>
-                <p className="mt-1.5 text-sm text-fd-muted-foreground">
-                  {description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA band ──────────────────────────────────────────────────────── */}
-      <section className="border-b border-fd-border bg-fd-card/40">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-6 py-16 text-center">
-          <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-            The next one is already being planned
-          </h2>
-          <p className="max-w-xl text-fd-muted-foreground">
-            Somewhere a host is finishing an itinerary and deciding who to bring along.
-            Applications take about five minutes, and a person reads every one — usually inside
-            48 hours.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <ButtonLink href="/apply">
-              Apply to join <ArrowRight className="size-4" />
-            </ButtonLink>
-            <ButtonLink href="/apply/status" variant="secondary">
-              <Search className="size-4" /> Check your status
-            </ButtonLink>
-          </div>
-          <p className="text-xs text-fd-muted-foreground">
-            Already a member? Open the app and sign in. Curious how review works?{" "}
-            <Link href="/docs/joining" className="underline underline-offset-2 hover:text-fd-foreground">
-              Read the Help Center
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
-
-      {/* ── Footer ────────────────────────────────────────────────────────── */}
-      <footer className="mt-auto">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row">
-          <FreeSoloLogo />
-          <nav className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-fd-muted-foreground">
-            {FOOTER_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="transition-colors hover:text-fd-foreground"
-              >
-                {link.label}
+            <div className="relative mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <Link href="/apply" className="btn bg-white px-6 py-3 text-navy hover:bg-white/90">
+                Apply to join <ArrowRight className="size-4" />
               </Link>
-            ))}
-          </nav>
-          <p className="text-xs text-fd-muted-foreground">
-            © {new Date().getFullYear()} FreeSolo. All rights reserved.
-          </p>
+              <Link href="/apply/status" className="btn border border-white/50 px-6 py-3 text-white hover:bg-white/10">
+                Check my application
+              </Link>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
+      </section>
+    </>
   );
 }

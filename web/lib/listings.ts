@@ -40,6 +40,8 @@ export interface Listing {
   itinerary: string;
   included: string;
   joinPolicy: "instant" | "approval";
+  /** JSON {@link TripRoute} copied from the host's plan, or null. */
+  route: string | null;
   status: string;
   featured: boolean;
   filledSeats: number;
@@ -62,9 +64,31 @@ async function publicGet<T>(path: string): Promise<T | null> {
   }
 }
 
-export async function getListings(opts: { kind?: ListingKind; limit?: number } = {}): Promise<Listing[]> {
+export interface TripRoute {
+  profile: string;
+  stops: { name: string; lat: number; lng: number; day?: number | null }[];
+  /** [lng, lat] pairs along the route. */
+  coordinates: [number, number][];
+  legs: { distanceMeters: number; durationSeconds: number }[];
+  distanceMeters: number;
+  durationSeconds: number;
+  estimated: boolean;
+}
+
+export function parseRoute(json: string | null | undefined): TripRoute | null {
+  if (!json) return null;
+  try {
+    const r = JSON.parse(json) as TripRoute;
+    return Array.isArray(r?.coordinates) && Array.isArray(r?.stops) && r.stops.length >= 2 ? r : null;
+  } catch {
+    return null;
+  }
+}
+
+export async function getListings(opts: { kind?: ListingKind; limit?: number; city?: string } = {}): Promise<Listing[]> {
   const params = new URLSearchParams({ limit: String(opts.limit ?? 24) });
   if (opts.kind) params.set("kind", opts.kind);
+  if (opts.city) params.set("city", opts.city);
   const page = await publicGet<{ data: Listing[] }>(`/api/experiences?${params}`);
   return page?.data ?? [];
 }
@@ -133,12 +157,12 @@ export function money(amount: number, currency: string | null | undefined): stri
 
 /** A warm two-stop gradient picked from the listing id, so covers without a photo still differ. */
 const COVERS = [
-  ["#2B2118", "#B8976A"],
-  ["#1E2A24", "#6B8F71"],
-  ["#1B2633", "#4A7FA5"],
-  ["#2E1A12", "#8B4513"],
-  ["#231F2E", "#8A7FA8"],
-  ["#2A2420", "#C9A27A"],
+  ["#233846", "#2F6F8F"],
+  ["#233846", "#FF6D1D"],
+  ["#1F3A33", "#3F7A5A"],
+  ["#3A2418", "#F08A4B"],
+  ["#1E2D44", "#5B7FBF"],
+  ["#2B2F3A", "#C98B5A"],
 ] as const;
 
 export function coverGradient(id: string): string {
