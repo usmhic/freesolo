@@ -116,9 +116,9 @@ export default async function HomePage() {
               Invite-only · groups of up to 12 · no fees
             </span>
             <h1 className="mt-6 font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-[4.1rem]">
-              Travel solo.
+              Travel solo,
               <br />
-              <span className="text-sunset">Never alone.</span>
+              <span className="text-sunset">never alone</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-soft">
               Join small groups of vetted solo travelers on trips hosted by members — or plan your own

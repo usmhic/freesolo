@@ -25,14 +25,21 @@ export interface RouteMapProps {
   interactive?: boolean;
 }
 
-// CARTO basemaps (OpenStreetMap data): light "Voyager" and dark variants that
-// follow the site theme. Free with attribution; no key.
+// Basemap tiles. The default is OpenStreetMap's own raster tiles: free and
+// keyless, but meant for modest traffic (operations.osmfoundation.org/policies/tiles).
+// For production scale, set NEXT_PUBLIC_MAP_TILE_URL (and optionally a
+// _DARK_URL and _ATTRIBUTION) to a provider you have an account with.
+const CUSTOM_LIGHT = process.env.NEXT_PUBLIC_MAP_TILE_URL;
+const CUSTOM_DARK = process.env.NEXT_PUBLIC_MAP_TILE_DARK_URL;
 const TILES = {
-  light: "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",
-  dark: "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+  light: CUSTOM_LIGHT || "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+  dark: CUSTOM_DARK || CUSTOM_LIGHT || "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
 };
+// Without a dedicated dark style, dark mode tints the light tiles in CSS.
+const FILTER_DARK_TILES = !CUSTOM_DARK;
 const ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  process.env.NEXT_PUBLIC_MAP_TILE_ATTRIBUTION ||
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 function stopIcon(n: number, active: boolean) {
   return L.divIcon({
@@ -94,6 +101,7 @@ export default function RouteMapInner({
   interactive = true,
 }: RouteMapProps) {
   const { resolvedTheme } = useTheme();
+  const dark = resolvedTheme === "dark";
   const positions = useMemo(
     () =>
       line && line.length > 1
@@ -110,12 +118,12 @@ export default function RouteMapInner({
       scrollWheelZoom={interactive}
       dragging={interactive}
       zoomControl={interactive}
-      className={className}
+      className={[className, dark && FILTER_DARK_TILES ? "map-tiles-dark" : ""].filter(Boolean).join(" ")}
       style={{ height: "100%", width: "100%" }}
     >
       <TileLayer
         key={resolvedTheme}
-        url={resolvedTheme === "dark" ? TILES.dark : TILES.light}
+        url={dark ? TILES.dark : TILES.light}
         attribution={ATTRIBUTION}
         subdomains="abcd"
         maxZoom={19}

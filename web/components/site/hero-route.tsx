@@ -5,12 +5,13 @@ import { CalendarDays, Car, Users } from "lucide-react";
  * traveler sees. Drawn in SVG/HTML (not a screenshot) so it stays sharp,
  * follows the theme and never shows a screen the product doesn't have.
  */
+// Label offsets keep each name clear of the route line.
 const STOPS = [
-  { x: 70, y: 300, label: "Ponta Delgada" },
-  { x: 175, y: 205, label: "Sete Cidades" },
-  { x: 300, y: 250, label: "Lagoa do Fogo" },
-  { x: 410, y: 140, label: "Furnas" },
-];
+  { x: 70, y: 300, label: "Ponta Delgada", dx: 20, dy: 26, anchor: "start" },
+  { x: 175, y: 205, label: "Sete Cidades", dx: -4, dy: -20, anchor: "middle" },
+  { x: 300, y: 250, label: "Lagoa do Fogo", dx: 4, dy: 32, anchor: "middle" },
+  { x: 410, y: 140, label: "Furnas", dx: -20, dy: -14, anchor: "end" },
+] as const;
 
 export function HeroRoute() {
   return (
@@ -55,9 +56,9 @@ export function HeroRoute() {
                 {i + 1}
               </text>
               <text
-                x={s.x + (i === 3 ? -18 : 18)}
-                y={s.y - 16}
-                textAnchor={i === 3 ? "end" : "start"}
+                x={s.x + s.dx}
+                y={s.y + s.dy}
+                textAnchor={s.anchor}
                 fontSize="12"
                 fontWeight="600"
                 className="fill-[#233846] dark:fill-[#E3E9EE]"

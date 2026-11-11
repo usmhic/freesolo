@@ -98,41 +98,41 @@
   }
 }
 
-@layer components {
-  /* Buttons: one sunset primary per view, everything else quiet. */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition
-      focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset disabled:pointer-events-none disabled:opacity-50;
-  }
-  .btn-primary {
-    @apply btn bg-sunset text-white shadow-sm shadow-sunset/30 hover:bg-sunset-strong;
-  }
-  .btn-dark {
-    @apply btn bg-navy text-white hover:bg-navy-deep dark:bg-ink dark:text-navy-deep dark:hover:bg-white;
-  }
-  .btn-outline {
-    @apply btn border border-line bg-surface text-ink hover:border-ink-soft/50 hover:bg-fd-muted;
-  }
-  .btn-ghost {
-    @apply btn text-ink hover:bg-fd-muted;
-  }
-  .btn-sm {
-    @apply px-3.5 py-1.5 text-[13px];
-  }
+/* Buttons and surfaces, declared as utilities so they compose with @apply
+   and accept variants (e.g. `hover:`). */
+/* Buttons: one sunset primary per view, everything else quiet. */
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition
+    focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sunset disabled:pointer-events-none disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-sunset text-white shadow-sm shadow-sunset/30 hover:bg-sunset-strong;
+}
+@utility btn-dark {
+  @apply btn bg-navy text-white hover:bg-navy-deep dark:bg-ink dark:text-navy-deep dark:hover:bg-white;
+}
+@utility btn-outline {
+  @apply btn border border-line bg-surface text-ink hover:border-ink-soft/50 hover:bg-fd-muted;
+}
+@utility btn-ghost {
+  @apply btn text-ink hover:bg-fd-muted;
+}
+@utility btn-sm {
+  @apply px-3.5 py-1.5 text-[13px];
+}
 
-  .card {
-    @apply rounded-3xl border border-line bg-surface;
-  }
-  .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-sunset;
-  }
-  .field {
-    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink outline-none transition
-      placeholder:text-ink-soft/70 focus:border-sunset focus:ring-4 focus:ring-sunset/15;
-  }
-  .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
+@utility card {
+  @apply rounded-3xl border border-line bg-surface;
+}
+@utility eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.18em] text-sunset;
+}
+@utility field {
+  @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-sm text-ink outline-none transition
+    placeholder:text-ink-soft/70 focus:border-sunset focus:ring-4 focus:ring-sunset/15;
+}
+@utility container-page {
+  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
 
 /* FreeSoloLogo brand mark — swap light/dark variants with the page theme. */
@@ -155,6 +155,9 @@
 }
 .dark .leaflet-container {
   background: #0B141C;
+}
+.map-tiles-dark .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.82) contrast(0.92) saturate(0.55);
 }
 .leaflet-control-attribution {
   font-size: 10px !important;
