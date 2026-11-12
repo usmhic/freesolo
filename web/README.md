@@ -35,6 +35,12 @@ The Spring Boot API must be running at `SPRING_BOOT_API_URL`.
 |---|---|
 | `SPRING_BOOT_API_URL` | URL of the Spring Boot API. Defaults to `https://api.freesolo.osas.cloud`. Needed at **build** time (baked into the `/api/**` rewrite) *and* at runtime (server-side calls in `lib/api-client.ts`) |
 | `JWT_SECRET` | **Must match** the API's `JWT_SECRET` — used to verify the auth cookie locally |
+| `NEXT_PUBLIC_MAP_TILE_URL` | Optional. Raster tile URL template (`{z}/{x}/{y}`) for maps. Empty uses OpenStreetMap's public tiles, which are meant for light traffic; set your own provider for production. Inlined at **build** time |
+| `NEXT_PUBLIC_MAP_TILE_DARK_URL` | Optional. Dark-mode tiles. Without it, dark mode tints the light tiles |
+| `NEXT_PUBLIC_MAP_TILE_ATTRIBUTION` | Optional. Attribution HTML for a custom tile provider |
+
+Routing (OpenRouteService) runs in the API, so its key (`ORS_API_KEY`) never
+reaches the browser.
 
 The shared values used by Compose are documented in the root `.env.example`.
 
@@ -61,7 +67,11 @@ This means the browser never needs to know the Spring Boot URL, CORS is transpar
 
 | Route | Description |
 |---|---|
-| `/` | Marketing landing page |
+| `/` | Landing page |
+| `/trips`, `/trips/[id]` | Browse trips and experiences; trip pages show the host's route on a map |
+| `/planner` | Route planner: stops on a map, real travel times per leg, days, saved plans |
+| `/sign-in` | Member sign-in (email code) |
+| `/apply`, `/apply/status` | Membership application and status lookup |
 | `/docs` | Fumadocs help center |
 | `/admin/sign-in` | OTP + OAuth sign-in |
 | `/admin` | Admin dashboard |

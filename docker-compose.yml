@@ -85,6 +85,10 @@ services:
         APP_URL: ${APP_URL:-http://localhost:3000}
         # The server-side proxy reaches the API over the Compose network.
         SPRING_BOOT_API_URL: http://api:8080
+        # Inlined into the browser bundle at build time; empty means OSM tiles.
+        NEXT_PUBLIC_MAP_TILE_URL: ${NEXT_PUBLIC_MAP_TILE_URL:-}
+        NEXT_PUBLIC_MAP_TILE_DARK_URL: ${NEXT_PUBLIC_MAP_TILE_DARK_URL:-}
+        NEXT_PUBLIC_MAP_TILE_ATTRIBUTION: ${NEXT_PUBLIC_MAP_TILE_ATTRIBUTION:-}
     restart: unless-stopped
     depends_on:
       api:

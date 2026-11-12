@@ -62,9 +62,9 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 
 | | Surface | Highlights |
 |---|---|---|
-| 🌍 | **Web** | Public site, trip and experience pages, Fumadocs help center, OG image generation |
+| 🌍 | **Web** | Public site, trip pages with route maps, a route planner, Fumadocs help center, OG image generation |
 | 🔐 | **Admin** | Applications, businesses, experiences, bookings, reviews, users, media, marketing |
-| 📱 | **Mobile** | Expo app with the trip and experience feed, hosting and join requests, maps, notifications, and camera uploads |
+| 📱 | **Mobile** | Expo app with the trip and experience feed, trip routes, hosting and join requests, maps, notifications, and camera uploads |
 | ⚙️ | **API** | Spring Boot REST API — sole owner of auth, business rules, and the PostgreSQL schema |
 | 📦 | **Storage** | MinIO (S3-compatible) for every uploaded photo and document |
 
@@ -73,7 +73,8 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 | Surface | Stack |
 | --- | --- |
 | API | Java 21, Spring Boot, Spring Security, Flyway, PostgreSQL |
-| Web | Next.js, React, TypeScript, Fumadocs |
+| Web | Next.js, React, TypeScript, Tailwind CSS, Leaflet, Fumadocs |
+| Maps | OpenRouteService (routing and place search, called by the API), OpenStreetMap tiles |
 | Mobile | Expo and React Native |
 | Storage | MinIO (S3-compatible) |
 | Delivery | Docker Compose, GitHub Actions, GHCR |
@@ -93,6 +94,10 @@ docker compose up --build
 `.env.example` already carries working localhost defaults for everything that is not a secret, so
 the only values you need to invent are the passwords and the JWT secret. `.env` is gitignored;
 never commit it.
+
+🗺️ Route planning works out of the box with straight-line estimates. For real road and trail
+times and place search, add a free [OpenRouteService](https://openrouteservice.org/dev/#/signup)
+key as `ORS_API_KEY`. The API calls OpenRouteService, so the key never reaches a browser or the app.
 
 ☕ Grab a coffee for the first build, then open:
 
