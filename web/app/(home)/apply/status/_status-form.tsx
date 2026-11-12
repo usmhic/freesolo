@@ -107,7 +107,7 @@ function Result({ application }: { application: ApplicationStatus }) {
       {key === "approved" ? (
         <Link
           href="/docs/exploring"
-          className="mt-6 inline-flex items-center gap-1.5 rounded-lg bg-fd-primary px-4 py-2 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
+          className="mt-6 btn-primary"
         >
           Find your first experience <ArrowRight className="size-4" />
         </Link>
@@ -134,7 +134,7 @@ export function StatusForm({ initialReference = "" }: { initialReference?: strin
       <form action={formAction} className="rounded-2xl border border-fd-border bg-fd-card p-6 sm:p-8">
         <label className="block">
           <span className="flex items-center gap-2 text-sm font-medium">
-            <Search className="size-3.5 text-[#B8976A]" />
+            <Search className="size-3.5 text-sunset" />
             Application reference
           </span>
           <span className="mt-0.5 block text-xs text-fd-muted-foreground">
@@ -145,7 +145,7 @@ export function StatusForm({ initialReference = "" }: { initialReference?: strin
             required
             defaultValue={initialReference}
             placeholder="e.g. 3f9c1b8e-52a7-4c1d-9f0b-2e8a7d4c6b13"
-            className="mt-2 w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 font-mono text-sm outline-none transition-colors placeholder:font-sans placeholder:text-fd-muted-foreground focus:border-[#B8976A] focus:ring-2 focus:ring-[#B8976A]/20"
+            className="mt-2 w-full rounded-xl border border-fd-border bg-surface px-3.5 py-2.5 font-mono text-sm outline-none transition-colors placeholder:font-sans placeholder:text-fd-muted-foreground focus:border-sunset focus:ring-4 focus:ring-sunset/15"
           />
         </label>
 
@@ -159,7 +159,7 @@ export function StatusForm({ initialReference = "" }: { initialReference?: strin
         <button
           type="submit"
           disabled={pending}
-          className="mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-fd-primary px-4 py-2.5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+          className="mt-5 btn-primary w-full py-3"
         >
           {pending ? (
             <>

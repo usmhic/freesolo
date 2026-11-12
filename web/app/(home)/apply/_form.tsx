@@ -33,7 +33,7 @@ function FieldShell({
   return (
     <label className="block">
       <span className="flex items-center gap-2 text-sm font-medium">
-        <Icon className="size-3.5 text-[#B8976A]" />
+        <Icon className="size-3.5 text-sunset" />
         {label}
       </span>
       {hint ? (
@@ -45,7 +45,7 @@ function FieldShell({
 }
 
 const inputClass =
-  "w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm outline-none transition-colors placeholder:text-fd-muted-foreground focus:border-[#B8976A] focus:ring-2 focus:ring-[#B8976A]/20";
+  "w-full rounded-xl border border-fd-border bg-surface px-3.5 py-2.5 text-sm outline-none transition-colors placeholder:text-fd-muted-foreground focus:border-sunset focus:ring-4 focus:ring-sunset/15";
 
 /** Success panel — the reference is the only way back to the application, so it leads. */
 function Submitted({ reference, name }: { reference: string; name: string }) {
@@ -98,7 +98,7 @@ function Submitted({ reference, name }: { reference: string; name: string }) {
 
       <Link
         href={`/apply/status?reference=${encodeURIComponent(reference)}`}
-        className="mt-6 inline-flex items-center gap-1.5 rounded-lg bg-fd-primary px-4 py-2 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
+        className="mt-6 btn-primary"
       >
         Check status <ArrowRight className="size-4" />
       </Link>
@@ -186,7 +186,7 @@ export function ApplyForm() {
       <button
         type="submit"
         disabled={pending}
-        className="mt-6 inline-flex w-full items-center justify-center gap-1.5 rounded-lg bg-fd-primary px-4 py-2.5 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+        className="mt-6 btn-primary w-full py-3"
       >
         {pending ? (
           <>
