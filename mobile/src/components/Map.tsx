@@ -42,6 +42,7 @@ const Noop = () => null;
 
 export const Marker  = Maps?.Marker  ?? Noop;
 export const Callout = Maps?.Callout ?? Noop;
+export const Polyline = Maps?.Polyline ?? Noop;
 
 export default MapView;
 

@@ -38,7 +38,7 @@ export default function SplashScreen({ navigation }: any) {
   }, [loading, isAuthenticated]);
 
   return (
-    <LinearGradient colors={[Colors.ink, "#1A1208", "#0A0A0A"]} style={styles.container}>
+    <LinearGradient colors={[Colors.navy, Colors.navyDeep, "#0E1720"]} style={styles.container}>
       {/* Decorative rings */}
       <View style={styles.ring1} />
       <View style={styles.ring2} />
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   container:   { flex: 1, alignItems: "center", justifyContent: "center" },
   ring1: {
     position: "absolute", width: 340, height: 340, borderRadius: 170,
-    borderWidth: 1, borderColor: "rgba(184,151,106,0.08)",
+    borderWidth: 1, borderColor: "rgba(255,109,29,0.08)",
     top: "25%", right: "-20%",
   },
   ring2: {

@@ -3,11 +3,9 @@ import { View, ActivityIndicator, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import {
-  PlayfairDisplay_400Regular,
-  PlayfairDisplay_400Regular_Italic,
-  PlayfairDisplay_600SemiBold,
-  PlayfairDisplay_700Bold,
-} from "@expo-google-fonts/playfair-display";
+  PlusJakartaSans_700Bold,
+  PlusJakartaSans_800ExtraBold,
+} from "@expo-google-fonts/plus-jakarta-sans";
 import {
   DMSans_300Light,
   DMSans_400Regular,
@@ -22,10 +20,8 @@ import { Colors } from "./src/theme";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
-    PlayfairDisplay_400Regular,
-    PlayfairDisplay_400Regular_Italic,
-    PlayfairDisplay_600SemiBold,
-    PlayfairDisplay_700Bold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
     DMSans_300Light,
     DMSans_400Regular,
     DMSans_500Medium,
@@ -35,7 +31,7 @@ export default function App() {
   if (!fontsLoaded) {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator color={Colors.clay} size="large" />
+        <ActivityIndicator color={Colors.sunset} size="large" />
       </View>
     );
   }
@@ -55,5 +51,5 @@ export default function App() {
 
 const styles = StyleSheet.create({
   root:    { flex: 1 },
-  loading: { flex: 1, backgroundColor: Colors.ink, alignItems: "center", justifyContent: "center" },
+  loading: { flex: 1, backgroundColor: Colors.navyDeep, alignItems: "center", justifyContent: "center" },
 });
