@@ -112,19 +112,20 @@ export function StopList({
                         aria-label={`Name of stop ${i + 1}`}
                         className="min-w-0 flex-1 rounded-lg bg-transparent px-1.5 py-1 text-sm font-semibold text-ink outline-none focus:bg-fd-muted"
                       />
-                      <select
-                        value={s.day}
-                        onChange={(e) => update(s.uid, { day: Number(e.target.value) })}
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Day for stop ${i + 1}`}
-                        className="rounded-lg border border-line bg-surface px-1.5 py-1 text-xs text-ink-soft"
-                      >
-                        {Array.from({ length: days }, (_, k) => (
-                          <option key={k} value={k + 1}>Day {k + 1}</option>
-                        ))}
-                      </select>
-                    </div>
-                    <div className="mt-1.5 flex items-center justify-end gap-0.5 text-ink-soft">
+                      {days > 1 && (
+                        <select
+                          value={s.day}
+                          onChange={(e) => update(s.uid, { day: Number(e.target.value) })}
+                          onClick={(e) => e.stopPropagation()}
+                          aria-label={`Day for stop ${i + 1}`}
+                          className="rounded-lg border border-line bg-surface px-1 py-1 text-xs text-ink-soft"
+                        >
+                          {Array.from({ length: days }, (_, k) => (
+                            <option key={k} value={k + 1}>Day {k + 1}</option>
+                          ))}
+                        </select>
+                      )}
+                      <span className="flex shrink-0 items-center text-ink-soft">
                       <IconButton label="Move up" disabled={i === 0} onClick={() => move(i, i - 1)}><ArrowUp className="size-3.5" /></IconButton>
                       <IconButton label="Move down" disabled={i === stops.length - 1} onClick={() => move(i, i + 1)}><ArrowDown className="size-3.5" /></IconButton>
                       <IconButton
@@ -134,6 +135,7 @@ export function StopList({
                       >
                         <Trash2 className="size-3.5" />
                       </IconButton>
+                      </span>
                     </div>
                   </li>
                 );
@@ -177,7 +179,7 @@ function IconButton({
       title={label}
       disabled={disabled}
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={cn("inline-flex size-7 items-center justify-center rounded-lg hover:bg-fd-muted disabled:opacity-30", className)}
+      className={cn("inline-flex size-6 items-center justify-center rounded-md hover:bg-fd-muted disabled:opacity-30", className)}
     >
       {children}
     </button>

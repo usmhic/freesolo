@@ -288,7 +288,9 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
 
   // ── Layout ────────────────────────────────────────────────────────────────
   return (
-    <div className="relative flex min-h-0 flex-1 flex-col lg:h-[calc(100dvh-4rem)] lg:flex-row">
+    // Desktop: exactly the viewport under the header (flex-none so the height
+    // isn't overridden by flex growth); the panel scrolls inside it.
+    <div className="relative flex min-h-0 flex-1 flex-col lg:h-[calc(100dvh-4rem)] lg:flex-none lg:flex-row">
       {/* Phone: switch between the list and a full map */}
       <div className="sticky top-16 z-30 flex gap-1 border-b border-line bg-paper/95 p-2 backdrop-blur lg:hidden">
         {(["list", "map"] as const).map((v) => (
@@ -311,7 +313,7 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
           view === "map" && "hidden lg:flex"
         )}
       >
-        <div className="flex-1 space-y-5 overflow-y-auto p-4 pb-36 sm:p-5 lg:pb-5">
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto p-4 pb-40 sm:p-5 lg:pb-5">
           {/* Title + plan menu */}
           <div className="flex items-start gap-2">
             <div className="min-w-0 flex-1">
@@ -472,7 +474,8 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
       </aside>
 
       {/* ── Map ────────────────────────────────────────────────────────── */}
-      <div className={cn("relative min-h-[60dvh] flex-1 lg:min-h-0", view === "list" && "hidden lg:block")}>
+      {/* Phone: fills the screen under the header and the Plan/Map switch. */}
+      <div className={cn("relative h-[calc(100dvh-118px)] lg:h-auto lg:flex-1", view === "list" && "hidden lg:block")}>
         <RouteMap
           stops={draft.stops}
           line={shownRoute?.coordinates}
