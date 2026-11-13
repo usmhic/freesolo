@@ -18,7 +18,7 @@
     "build": "next build",
     "dev": "node ../scripts/with-root-env.mjs --web next dev",
     "start": "node ../scripts/with-root-env.mjs --web next start",
-    "types:check": "fumadocs-mdx && next typegen && tsc --noEmit",
+    "types:check": "next typegen && fumadocs-mdx && tsc --noEmit",
     "postinstall": "fumadocs-mdx",
     "lint": "eslint"
   },
