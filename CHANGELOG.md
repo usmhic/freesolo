@@ -9,6 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Redesigned web app and landing page: a new navy and sunset brand, Plus
+  Jakarta Sans headings, one shared header and footer, and layouts built for
+  phones first. The trips list, trip pages, sign-in and application pages are
+  all rebuilt.
+- Route planner at `/planner`: search for places or click the map to add stops,
+  reorder them, choose how you travel, split the journey into days, and see the
+  distance and time for each leg and day. Signed-in members can save plans,
+  and hosts can show a saved route on a trip they host.
+- Trip pages on the web and in the app show the host's route on a map, with
+  every stop and the leg before it.
+- OpenRouteService routing and place search in the API (`/api/routing/**`),
+  with per-client rate limits and caching. Without `ORS_API_KEY`, routes fall
+  back to marked straight-line estimates and place search is switched off.
+- Saved journey plans (`/api/plans`) in a new `planning` schema, and
+  `PUT`/`DELETE /api/hosting/listings/{id}/route` to put a plan's route on a
+  hosted trip.
+- Configurable map tiles (`NEXT_PUBLIC_MAP_TILE_*`). The default is
+  OpenStreetMap's public tiles.
+- The mobile app uses the same brand colours, heading font and cover colours
+  as the web.
+
 - Public trip pages on the web: `/trips` to browse trips and experiences, and
   `/trips/[id]` with the itinerary, what's included, the host, how full the
   group is, and a sticky join bar on phones. The landing page shows live
@@ -57,6 +78,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Admin listing dates entered as DD/MM/YYYY no longer show "Invalid Date" or
+  swap the day and month.
 - Filled seats now count booked seats, not bookings, so a two-seat booking no
   longer leaves room to oversell. Joining and approving lock the listing row
   so two travelers can't take the last seat at the same time.

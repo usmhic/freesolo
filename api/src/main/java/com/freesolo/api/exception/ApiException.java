@@ -32,6 +32,22 @@ public class ApiException extends RuntimeException {
         return new ApiException(message, HttpStatus.CONFLICT);
     }
 
+    public static ApiException tooManyRequests(String message) {
+        return new ApiException(message, HttpStatus.TOO_MANY_REQUESTS);
+    }
+
+    public static ApiException unavailable(String message) {
+        return new ApiException(message, HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
+    public static ApiException badGateway(String message) {
+        return new ApiException(message, HttpStatus.BAD_GATEWAY);
+    }
+
+    public static ApiException unprocessable(String message) {
+        return new ApiException(message, HttpStatus.UNPROCESSABLE_CONTENT);
+    }
+
     public static ApiException internal(String message) {
         return new ApiException(message, HttpStatus.INTERNAL_SERVER_ERROR);
     }

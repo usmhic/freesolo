@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, MapPin, ShieldCheck, Users } from "lucide-react";
+import { CalendarDays, MapPin, Route, ShieldCheck, Users } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { coverGradient, money, tripDays, whenLabel, type Listing } from "@/lib/listings";
+import { coverGradient, money, parseRoute, tripDays, whenLabel, type Listing } from "@/lib/listings";
+import { formatDistance } from "@/lib/routing";
 
-/** Photo when the host uploaded one; otherwise a gradient with the listing's emoji. */
+/** Photo when the host uploaded one; otherwise a brand gradient with the listing's emoji. */
 export function ListingCover({
   listing,
   className,
@@ -30,20 +31,13 @@ export function ListingCover({
         />
       ) : (
         <>
-          <div
-            aria-hidden
-            className="absolute inset-0 opacity-[0.12]"
-            style={{
-              backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
-              backgroundSize: "18px 18px",
-            }}
-          />
+          <svg aria-hidden className="absolute inset-0 size-full opacity-[0.16]" preserveAspectRatio="none" viewBox="0 0 400 250">
+            <path d="M-10 210 C 80 150, 140 230, 220 160 S 360 90, 420 120" fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="2 10" strokeLinecap="round" />
+            <path d="M-10 90 C 60 60, 130 120, 200 80 S 330 20, 420 40" fill="none" stroke="#fff" strokeWidth="1.5" />
+          </svg>
           <span
             aria-hidden
-            className={cn(
-              "absolute inset-0 flex items-center justify-center text-6xl drop-shadow-sm",
-              emojiClassName
-            )}
+            className={cn("absolute inset-0 flex items-center justify-center text-6xl drop-shadow-md", emojiClassName)}
           >
             {listing.emoji ?? "🧭"}
           </span>
@@ -60,24 +54,24 @@ export function SeatsMeter({ listing, className }: { listing: Listing; className
   const nearlyFull = !full && listing.availableSeats <= 2;
   return (
     <div className={className}>
-      <div className="h-1.5 overflow-hidden rounded-full bg-fd-border">
+      <div className="h-1.5 overflow-hidden rounded-full bg-fd-muted">
         <div
-          className={cn("h-full rounded-full transition-all", nearlyFull || full ? "bg-[#C2410C]" : "bg-[#B8976A]")}
-          style={{ width: `${pct}%` }}
+          className={cn("h-full rounded-full", nearlyFull || full ? "bg-sunset-strong" : "bg-sunset")}
+          style={{ width: `${Math.max(pct, 3)}%` }}
         />
       </div>
-      <p className="mt-1.5 flex items-center justify-between text-xs text-fd-muted-foreground">
-        <span>
-          {listing.filledSeats}/{listing.maxSeats} going
+      <p className="mt-2 flex items-center justify-between text-xs text-ink-soft">
+        <span className="inline-flex items-center gap-1">
+          <Users className="size-3.5" /> {listing.filledSeats} of {listing.maxSeats} going
         </span>
-        <span className={cn(nearlyFull && "font-medium text-[#C2410C]")}>
+        <span className={cn(nearlyFull && "font-semibold text-sunset-strong")}>
           {full
             ? "Group is full"
             : short > 0
               ? `${short} more to confirm`
               : nearlyFull
-                ? `Only ${listing.availableSeats} left`
-                : "Confirmed ✓"}
+                ? `${listing.availableSeats} left`
+                : "Confirmed"}
         </span>
       </p>
     </div>
@@ -87,47 +81,53 @@ export function SeatsMeter({ listing, className }: { listing: Listing; className
 export function ListingCard({ listing, priority }: { listing: Listing; priority?: boolean }) {
   const trip = listing.kind === "trip";
   const days = trip ? tripDays(listing) : null;
+  const route = parseRoute(listing.route);
   return (
     <Link
       href={`/trips/${listing.id}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-fd-border bg-fd-card transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/5"
+      className="group flex flex-col overflow-hidden rounded-3xl border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-navy/10 focus-visible:outline-2 focus-visible:outline-sunset"
     >
-      <div className="relative">
+      <div className="relative overflow-hidden">
         <ListingCover
           listing={listing}
           priority={priority}
-          className="aspect-[16/10] transition-transform duration-500 group-hover:scale-[1.03]"
+          className="aspect-[4/3] transition-transform duration-500 group-hover:scale-[1.04]"
         />
         <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-3">
-          <span className="rounded-full bg-black/55 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white backdrop-blur">
-            {trip ? `Trip${days ? ` · ${days} days` : ""}` : "Experience"}
+          <span className="rounded-full bg-white/95 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-navy shadow-sm">
+            {trip ? `${days ? `${days} days` : "Trip"}` : "Experience"}
           </span>
-          <span className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-semibold text-[#0A0A0A] shadow-sm">
-            {money(listing.price, listing.currency)}
-          </span>
+          {listing.joinPolicy === "approval" && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-navy/85 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">
+              <ShieldCheck className="size-3" /> Host picks
+            </span>
+          )}
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-4">
+      <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <p className="flex items-center gap-1.5 text-xs text-fd-muted-foreground">
-            <CalendarDays className="size-3.5" /> {whenLabel(listing)}
-            <span aria-hidden>·</span>
-            <MapPin className="size-3.5" /> {listing.city}
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-ink-soft">
+            <span className="inline-flex items-center gap-1"><MapPin className="size-3.5" /> {listing.city}</span>
+            <span className="inline-flex items-center gap-1"><CalendarDays className="size-3.5" /> {whenLabel(listing)}</span>
+            {route && (
+              <span className="inline-flex items-center gap-1"><Route className="size-3.5" /> {formatDistance(route.distanceMeters)}</span>
+            )}
           </p>
-          <h3 className="mt-1.5 font-display text-lg font-semibold leading-snug tracking-tight group-hover:underline group-hover:decoration-[#B8976A] group-hover:underline-offset-4">
+          <h3 className="mt-2 font-display text-lg font-bold leading-snug tracking-tight text-ink group-hover:text-sunset-strong">
             {listing.title}
           </h3>
         </div>
 
-        <div className="mt-auto flex items-center gap-2 text-xs text-fd-muted-foreground">
-          <HostAvatar host={listing.host} size={22} />
-          <span className="truncate">Hosted by {listing.host.name ?? "a FreeSolo member"}</span>
-          {listing.joinPolicy === "approval" && (
-            <span className="ml-auto inline-flex shrink-0 items-center gap-1 rounded-full bg-fd-muted px-2 py-0.5 font-medium text-fd-foreground">
-              <ShieldCheck className="size-3" /> Host picks
-            </span>
-          )}
+        <div className="mt-auto flex items-center justify-between gap-3">
+          <span className="flex min-w-0 items-center gap-2 text-sm text-ink-soft">
+            <HostAvatar host={listing.host} size={26} />
+            <span className="truncate">{listing.host.name ?? "A FreeSolo member"}</span>
+          </span>
+          <span className="shrink-0 text-right">
+            <span className="font-display text-lg font-extrabold text-ink">{money(listing.price, listing.currency)}</span>
+            <span className="block text-[11px] leading-none text-ink-soft">per person</span>
+          </span>
         </div>
 
         <SeatsMeter listing={listing} />
@@ -136,13 +136,7 @@ export function ListingCard({ listing, priority }: { listing: Listing; priority?
   );
 }
 
-export function HostAvatar({
-  host,
-  size = 40,
-}: {
-  host: Listing["host"];
-  size?: number;
-}) {
+export function HostAvatar({ host, size = 40 }: { host: Listing["host"]; size?: number }) {
   const initial = (host.name ?? "F")[0]?.toUpperCase();
   return host.image ? (
     <Image
@@ -156,19 +150,22 @@ export function HostAvatar({
     />
   ) : (
     <span
-      className="inline-flex shrink-0 items-center justify-center rounded-full bg-[#B8976A] font-display font-semibold text-white"
-      style={{ width: size, height: size, fontSize: size * 0.45 }}
+      className="inline-flex shrink-0 items-center justify-center rounded-full bg-navy font-display font-bold text-white"
+      style={{ width: size, height: size, fontSize: size * 0.42 }}
     >
       {initial}
     </span>
   );
 }
 
-export function EmptyListings({ children }: { children: React.ReactNode }) {
+export function EmptyListings({ children, action }: { children: React.ReactNode; action?: React.ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-fd-border px-6 py-16 text-center">
-      <Users className="size-8 text-[#B8976A]" />
-      <p className="max-w-md text-sm text-fd-muted-foreground">{children}</p>
+    <div className="flex flex-col items-center gap-4 rounded-3xl border border-dashed border-line bg-surface/60 px-6 py-16 text-center">
+      <span className="flex size-14 items-center justify-center rounded-2xl bg-sunset-soft text-sunset">
+        <Route className="size-6" />
+      </span>
+      <p className="max-w-md text-sm leading-relaxed text-ink-soft">{children}</p>
+      {action}
     </div>
   );
 }

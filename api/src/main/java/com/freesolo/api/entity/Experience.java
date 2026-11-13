@@ -108,6 +108,10 @@ public class Experience {
     @Builder.Default
     private String included = "[]";
 
+    /** JSON route copied from one of the host's plans; null when the trip has none. */
+    @Column(columnDefinition = "TEXT")
+    private String route;
+
     @Column(name = "join_policy", nullable = false)
     @Builder.Default
     private String joinPolicy = JOIN_INSTANT;

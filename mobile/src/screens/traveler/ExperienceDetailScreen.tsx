@@ -11,14 +11,17 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapView, { Marker } from "../../components/Map";
+import MapView, { Marker, Polyline } from "../../components/Map";
 import { Colors, Fonts, Spacing, Radius, Shadow } from "../../theme";
 import { Button, Card, ProgressBar } from "../../components/UI";
 import { apiFetch } from "../../lib/api";
 import { useAuth } from "../../context/AuthContext";
 import { ListingCover } from "../../components/ListingCover";
 import { LinearGradient } from "expo-linear-gradient";
-import { ItineraryDay, isTrip, needsApproval, parseList, tripDays, whenLabel } from "../../lib/listing";
+import {
+  ItineraryDay, formatDistance, formatDuration, isTrip, modeLabel, needsApproval, parseList, parseRoute,
+  regionFor, tripDays, whenLabel,
+} from "../../lib/listing";
 
 const { width } = Dimensions.get("window");
 
@@ -62,6 +65,8 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   const days = trip ? tripDays(exp) : null;
   const itinerary = parseList<ItineraryDay>(exp.itinerary);
   const included = parseList(exp.included);
+  const tripRoute = parseRoute(exp.route);
+  const routeLine = tripRoute?.coordinates.map(([lng, lat]) => ({ latitude: lat, longitude: lng })) ?? [];
   const vetted = needsApproval(exp);
   const isHost = !!user?.id && user.id === exp.host?.id;
   const inGroup = isHost || !!members?.some((m: any) => m.id === user?.id)
@@ -232,6 +237,56 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
             </>
           )}
 
+          {/* ROUTE — attached by the host from their journey plan */}
+          {tripRoute ? (
+            <>
+              <Text style={styles.sectionTitle}>The route</Text>
+              <View style={styles.routeMapContainer}>
+                <MapView style={styles.map} initialRegion={regionFor(routeLine)}>
+                  <Polyline coordinates={routeLine} strokeColor="#FFFFFF" strokeWidth={7} />
+                  <Polyline
+                    coordinates={routeLine}
+                    strokeColor={Colors.sunset}
+                    strokeWidth={4}
+                    lineDashPattern={tripRoute.estimated ? [8, 8] : undefined}
+                  />
+                  {tripRoute.stops.map((s, i) => (
+                    <Marker key={`${s.name}-${i}`} coordinate={{ latitude: s.lat, longitude: s.lng }} title={`${i + 1}. ${s.name}`}>
+                      <View style={styles.stopPin}><Text style={styles.stopPinText}>{i + 1}</Text></View>
+                    </Marker>
+                  ))}
+                </MapView>
+              </View>
+              <View style={styles.routeStats}>
+                <RouteStat label="Distance" value={formatDistance(tripRoute.distanceMeters)} />
+                <RouteStat label="Moving time" value={formatDuration(tripRoute.durationSeconds)} />
+                <RouteStat label="Mode" value={modeLabel(tripRoute.profile)} />
+              </View>
+              <Card style={styles.stopsCard}>
+                {tripRoute.stops.map((s, i) => {
+                  const leg = i > 0 ? tripRoute.legs[i - 1] : undefined;
+                  return (
+                    <View key={`${s.name}-${i}`}>
+                      {leg && (
+                        <Text style={styles.legText}>
+                          ↓ {formatDistance(leg.distanceMeters)} · {formatDuration(leg.durationSeconds)}
+                        </Text>
+                      )}
+                      <View style={styles.stopRow}>
+                        <View style={styles.stopNum}><Text style={styles.stopNumText}>{i + 1}</Text></View>
+                        <Text style={styles.stopName} numberOfLines={1}>{s.name}</Text>
+                        {s.day ? <Text style={styles.stopDay}>Day {s.day}</Text> : null}
+                      </View>
+                    </View>
+                  );
+                })}
+              </Card>
+              {tripRoute.estimated && (
+                <Text style={styles.routeNote}>Distances are straight-line estimates — road and trail times weren't available when this route was saved.</Text>
+              )}
+            </>
+          ) : null}
+
           {/* MAP */}
           {exp.lat && exp.lng ? (
             <>
@@ -327,6 +382,15 @@ export default function ExperienceDetailScreen({ navigation, route }: any) {
   );
 }
 
+function RouteStat({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={styles.routeStat}>
+      <Text style={styles.routeStatLabel}>{label}</Text>
+      <Text style={styles.routeStatValue} numberOfLines={1}>{value}</Text>
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: Colors.paper },
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
@@ -383,6 +447,24 @@ const styles = StyleSheet.create({
   venueName: { fontFamily: Fonts.bodyMedium, fontSize: 14, color: Colors.ink },
   venueAddress: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginTop: 3 },
   mapContainer: { borderRadius: Radius.lg, overflow: "hidden", height: 180, marginBottom: Spacing.md },
+  routeMapContainer: { borderRadius: Radius.lg, overflow: "hidden", height: 240, marginBottom: Spacing.sm },
+  stopPin: {
+    width: 26, height: 26, borderRadius: 13, backgroundColor: Colors.navy, borderWidth: 2, borderColor: Colors.white,
+    alignItems: "center", justifyContent: "center",
+  },
+  stopPinText: { fontFamily: Fonts.bodySemiBold, fontSize: 12, color: Colors.white },
+  routeStats: { flexDirection: "row", gap: Spacing.sm, marginBottom: Spacing.sm },
+  routeStat: { flex: 1, backgroundColor: Colors.surface, borderRadius: Radius.md, borderWidth: 1, borderColor: Colors.line, padding: 10 },
+  routeStatLabel: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted },
+  routeStatValue: { fontFamily: Fonts.bodySemiBold, fontSize: 14, color: Colors.ink, marginTop: 2 },
+  stopsCard: { padding: 14, marginBottom: Spacing.sm },
+  legText: { fontFamily: Fonts.body, fontSize: 11, color: Colors.muted, marginLeft: 38, marginVertical: 4 },
+  stopRow: { flexDirection: "row", alignItems: "center", gap: 10 },
+  stopNum: { width: 28, height: 28, borderRadius: 14, backgroundColor: Colors.navy, alignItems: "center", justifyContent: "center" },
+  stopNumText: { fontFamily: Fonts.bodySemiBold, fontSize: 12, color: Colors.white },
+  stopName: { flex: 1, fontFamily: Fonts.bodySemiBold, fontSize: 14, color: Colors.ink },
+  stopDay: { fontFamily: Fonts.bodyMedium, fontSize: 11, color: Colors.sunset },
+  routeNote: { fontFamily: Fonts.body, fontSize: 12, color: Colors.muted, marginBottom: Spacing.sm },
   map: { flex: 1 },
   reviewCard: { padding: 14, marginBottom: 10 },
   reviewHeader: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 8 },

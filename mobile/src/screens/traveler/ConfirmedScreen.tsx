@@ -23,7 +23,7 @@ export default function ConfirmedScreen({ navigation, route }: any) {
   }, []);
 
   return (
-    <LinearGradient colors={[Colors.ink, "#1A1208", "#0A0A0A"]} style={styles.gradient}>
+    <LinearGradient colors={[Colors.navy, Colors.navyDeep, "#0E1720"]} style={styles.gradient}>
       <SafeAreaView style={styles.safe}>
         {/* Decorative ring */}
         <View style={styles.ring} />
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   safe:     { flex: 1, paddingHorizontal: Spacing.lg },
   ring: {
     position: "absolute", width: 400, height: 400, borderRadius: 200,
-    borderWidth: 1, borderColor: "rgba(184,151,106,0.1)",
+    borderWidth: 1, borderColor: "rgba(255,109,29,0.1)",
     top: "10%", right: "-30%", pointerEvents: "none",
   } as any,
   content: { flex: 1, alignItems: "center", justifyContent: "center", gap: 20 },

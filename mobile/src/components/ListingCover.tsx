@@ -2,15 +2,15 @@ import React from "react";
 import { Image, StyleSheet, Text, View, ViewStyle } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-// Same palette as web/lib/listings.ts `coverGradient`, so a listing without a
+// Same palette as web/lib/listings.ts `COVERS`, so a listing without a
 // photo gets the same cover on the site and in the app.
 const COVERS: [string, string][] = [
-  ["#2B2118", "#B8976A"],
-  ["#1E2A24", "#6B8F71"],
-  ["#1B2633", "#4A7FA5"],
-  ["#2E1A12", "#8B4513"],
-  ["#231F2E", "#8A7FA8"],
-  ["#2A2420", "#C9A27A"],
+  ["#233846", "#2F6F8F"],
+  ["#233846", "#FF6D1D"],
+  ["#1F3A33", "#3F7A5A"],
+  ["#3A2418", "#F08A4B"],
+  ["#1E2D44", "#5B7FBF"],
+  ["#2B2F3A", "#C98B5A"],
 ];
 
 export function coverColors(id: string): [string, string] {

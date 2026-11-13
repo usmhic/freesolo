@@ -17,24 +17,18 @@ export default async function StatusPage({
 
   return (
     <div className="flex flex-1 flex-col">
-      <section className="relative overflow-hidden border-b border-fd-border">
+      <section className="relative overflow-hidden">
         <div
-          className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, var(--color-fd-border) 1px, transparent 0)",
-            backgroundSize: "32px 32px",
-          }}
+          aria-hidden
+          className="pointer-events-none absolute -left-40 -top-40 -z-10 size-[520px] rounded-full bg-sunset/10 blur-3xl"
         />
-        <div className="mx-auto max-w-xl px-6 py-16 sm:py-20">
+        <div className="mx-auto w-full max-w-xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="text-center">
-            <span className="rounded-full border border-fd-border bg-fd-card px-3 py-1 text-xs font-medium text-fd-muted-foreground">
-              🔎 Application lookup
-            </span>
-            <h1 className="mt-5 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            <p className="eyebrow">Application lookup</p>
+            <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
               Where&apos;s my application?
             </h1>
-            <p className="mt-3 text-balance text-sm text-fd-muted-foreground sm:text-base">
+            <p className="mt-3 text-balance text-ink-soft">
               Paste your reference below. We keep status behind a reference rather than an email
               address so nobody can look up whether someone else applied.
             </p>
@@ -44,14 +38,14 @@ export default async function StatusPage({
             <StatusForm initialReference={reference ?? ""} />
           </div>
 
-          <p className="mt-8 text-center text-sm text-fd-muted-foreground">
+          <p className="mt-8 text-center text-sm text-ink-soft">
             Lost the reference? It&apos;s in the confirmation email we sent when you applied. Still
             stuck —{" "}
-            <Link href="/docs/faq" className="underline underline-offset-2 hover:text-fd-foreground">
+            <Link href="/docs/faq" className="font-semibold text-sunset hover:underline">
               the FAQ can help
             </Link>
             . Haven&apos;t applied yet?{" "}
-            <Link href="/apply" className="underline underline-offset-2 hover:text-fd-foreground">
+            <Link href="/apply" className="font-semibold text-sunset hover:underline">
               Start here
             </Link>
             .

@@ -1,6 +1,9 @@
 package com.freesolo.api.controller;
 
 import com.freesolo.api.dto.business.BusinessResponse;
+import com.freesolo.api.dto.experience.ExperienceResponse;
+import com.freesolo.api.dto.planning.AttachRouteRequest;
+import com.freesolo.api.service.PlanService;
 import com.freesolo.api.dto.hosting.DecideJoinRequest;
 import com.freesolo.api.dto.hosting.HostedListingResponse;
 import com.freesolo.api.dto.hosting.JoinRequestResponse;
@@ -27,6 +30,7 @@ public class HostingController {
     private final BookingService bookingService;
     private final BusinessService businessService;
     private final UserService userService;
+    private final PlanService planService;
 
     /** GET /api/hosting/listings */
     @GetMapping("/listings")
@@ -38,6 +42,25 @@ public class HostingController {
     @GetMapping("/venues")
     public ResponseEntity<List<BusinessResponse>> venues(@AuthenticationPrincipal UserPrincipal principal) {
         return ResponseEntity.ok(businessService.getOwnedBy(principal.getId()));
+    }
+
+    /** PUT /api/hosting/listings/{id}/route — show one of your plans' routes on this listing. */
+    @PutMapping("/listings/{id}/route")
+    public ResponseEntity<ExperienceResponse> attachRoute(
+            @PathVariable String id,
+            @AuthenticationPrincipal UserPrincipal principal,
+            @Valid @RequestBody AttachRouteRequest req) {
+        // Coordinated here so the experiences module needn't depend on planning.
+        String route = planService.toTripRoute(principal.getId(), req.planId());
+        return ResponseEntity.ok(experienceService.setRoute(principal.getId(), id, route));
+    }
+
+    /** DELETE /api/hosting/listings/{id}/route */
+    @DeleteMapping("/listings/{id}/route")
+    public ResponseEntity<ExperienceResponse> removeRoute(
+            @PathVariable String id,
+            @AuthenticationPrincipal UserPrincipal principal) {
+        return ResponseEntity.ok(experienceService.setRoute(principal.getId(), id, null));
     }
 
     /** GET /api/hosting/listings/{id}/requests — join requests and the current group. */

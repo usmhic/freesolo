@@ -21,7 +21,9 @@ public final class ModuleCatalog {
             new Module("engagement", DomainSchemas.ENGAGEMENT,
                     "Notifications and email campaigns", List.of("identity")),
             new Module("media", DomainSchemas.MEDIA,
-                    "Uploads and event photos", List.of("identity", "experiences", "bookings"))
+                    "Uploads and event photos", List.of("identity", "experiences", "bookings")),
+            new Module("planning", DomainSchemas.PLANNING,
+                    "Members' saved journey plans: stops, travel mode, and computed routes", List.of("identity"))
     );
 
     private ModuleCatalog() {

@@ -12,6 +12,7 @@ export function baseOptions(): BaseLayoutProps {
     },
     links: [
       { text: 'Trips', url: '/trips', active: 'nested-url' },
+      { text: 'Planner', url: '/planner' },
       { text: 'Docs', url: '/docs', active: 'nested-url' },
       { text: 'Privacy', url: '/privacy' },
       { text: 'Terms', url: '/terms' },

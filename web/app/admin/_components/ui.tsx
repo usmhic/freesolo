@@ -1,4 +1,5 @@
 import { cn } from "@/lib/cn";
+import { parseDate } from "@/lib/listings";
 import type { ReactNode } from "react";
 
 const STATUS_STYLES: Record<string, string> = {
@@ -104,7 +105,13 @@ export function Money({ amount, currency = "EUR" }: { amount: number; currency?:
 }
 
 export function fmtDate(d: Date | string) {
-  return new Date(d).toLocaleDateString("en-IE", { year: "numeric", month: "short", day: "numeric" });
+  // Listing dates are DD/MM/YYYY strings, which `new Date()` misreads.
+  const parsed = typeof d === "string" ? parseDate(d) : null;
+  const date = parsed ?? new Date(d);
+  if (isNaN(date.getTime())) return typeof d === "string" ? d : "—";
+  return date.toLocaleDateString("en-IE", {
+    year: "numeric", month: "short", day: "numeric", ...(parsed ? { timeZone: "UTC" } : {}),
+  });
 }
 
 export function fmtDateTime(d: Date | string) {

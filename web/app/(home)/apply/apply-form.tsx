@@ -51,7 +51,7 @@ export function ApplyForm() {
         </p>
         <Link
           href="/"
-          className="inline-flex items-center justify-center rounded-lg bg-fd-primary px-4 py-2 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90"
+          className="btn-primary"
         >
           Back to home
         </Link>
@@ -72,7 +72,7 @@ export function ApplyForm() {
           value={story}
           onChange={(e) => setStory(e.target.value)}
           placeholder="Describe one of your solo travel experiences. Where did you go? What did you discover? What made it authentic and memorable?"
-          className="w-full resize-none rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm outline-none ring-fd-ring focus:ring-2"
+          className="w-full resize-none rounded-xl border border-fd-border bg-surface px-3.5 py-2.5 text-sm outline-none ring-fd-ring focus:ring-2"
         />
         <p className={`text-right text-xs ${story.length >= MIN_STORY_LENGTH ? "text-fd-foreground" : "text-fd-muted-foreground"}`}>
           {story.length} / {MIN_STORY_LENGTH} min
@@ -91,7 +91,7 @@ export function ApplyForm() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="you@example.com"
-          className="w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm outline-none ring-fd-ring focus:ring-2"
+          className="w-full rounded-xl border border-fd-border bg-surface px-3.5 py-2.5 text-sm outline-none ring-fd-ring focus:ring-2"
         />
       </div>
 
@@ -107,7 +107,7 @@ export function ApplyForm() {
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="+1 234 567 8900"
-          className="w-full rounded-lg border border-fd-border bg-fd-background px-3 py-2 text-sm outline-none ring-fd-ring focus:ring-2"
+          className="w-full rounded-xl border border-fd-border bg-surface px-3.5 py-2.5 text-sm outline-none ring-fd-ring focus:ring-2"
         />
       </div>
 
@@ -118,7 +118,7 @@ export function ApplyForm() {
       <button
         type="submit"
         disabled={!canSubmit || loading}
-        className="w-full rounded-lg bg-fd-primary px-3 py-2 text-sm font-medium text-fd-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="btn-primary w-full py-3"
       >
         {loading ? "Submitting…" : "Submit application"}
       </button>

@@ -22,6 +22,7 @@ public class AppProperties {
     private String appStoreUrl;
     private String playStoreUrl;
     private OAuth oauth = new OAuth();
+    private Ors ors = new Ors();
 
     @Data
     public static class Jwt {
@@ -59,6 +60,14 @@ public class AppProperties {
     @Data
     public static class Expo {
         private String accessToken;
+    }
+
+    /** OpenRouteService: geocoding and directions for the trip planner. Optional. */
+    @Data
+    public static class Ors {
+        private String apiKey;
+        private String baseUrl = "https://api.openrouteservice.org";
+        private int timeoutMs = 8000;
     }
 
     @Data

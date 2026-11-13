@@ -20,8 +20,15 @@ FROM base AS builder
 # supplying these only at runtime has no effect on either.
 ARG SPRING_BOOT_API_URL=https://api.freesolo.osas.cloud
 ARG APP_URL=https://freesolo.osas.cloud
+# Optional map tile provider; empty means OpenStreetMap's public tiles.
+ARG NEXT_PUBLIC_MAP_TILE_URL=
+ARG NEXT_PUBLIC_MAP_TILE_DARK_URL=
+ARG NEXT_PUBLIC_MAP_TILE_ATTRIBUTION=
 ENV SPRING_BOOT_API_URL=${SPRING_BOOT_API_URL} \
-    NEXT_PUBLIC_APP_URL=${APP_URL}
+    NEXT_PUBLIC_APP_URL=${APP_URL} \
+    NEXT_PUBLIC_MAP_TILE_URL=${NEXT_PUBLIC_MAP_TILE_URL} \
+    NEXT_PUBLIC_MAP_TILE_DARK_URL=${NEXT_PUBLIC_MAP_TILE_DARK_URL} \
+    NEXT_PUBLIC_MAP_TILE_ATTRIBUTION=${NEXT_PUBLIC_MAP_TILE_ATTRIBUTION}
 
 COPY --link --from=deps /app/node_modules ./node_modules
 COPY --link . .

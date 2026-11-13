@@ -9,7 +9,7 @@ const { width } = Dimensions.get("window");
 
 const STEPS = [
   {
-    icon: "🌍", color: "#B8976A",
+    icon: "🌍", color: "#FF6D1D",
     title: "Your city,\nyour expertise",
     body: "You live somewhere amazing. Become a local host and share it — hidden galleries, secret markets, sunrise hikes. Your knowledge is someone else's dream trip.",
   },
@@ -24,7 +24,7 @@ const STEPS = [
     body: "Seats confirm only once the minimum group commits. FreeSolo holds the reservation — you settle with the venue directly, on the day.",
   },
   {
-    icon: "✈️", color: "#B8976A",
+    icon: "✈️", color: "#FF6D1D",
     title: "Hosts open\ntheir own city",
     body: "Register a venue, publish an experience, and meet travelers who chose your city. FreeSolo brings you the group; you run the day.",
   },

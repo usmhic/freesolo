@@ -68,6 +68,7 @@ services:
       MINIO_PUBLIC_URL: ${STORAGE_URL:-http://localhost:9000}
       MINIO_ACCESS_KEY: freesolo
       MINIO_SECRET_KEY: ${MINIO_PASSWORD:?Copy .env.example to .env}
+      ORS_API_KEY: ${ORS_API_KEY:-}
     ports:
       - "${API_PORT:-8080}:8080"
     healthcheck:
@@ -84,6 +85,10 @@ services:
         APP_URL: ${APP_URL:-http://localhost:3000}
         # The server-side proxy reaches the API over the Compose network.
         SPRING_BOOT_API_URL: http://api:8080
+        # Inlined into the browser bundle at build time; empty means OSM tiles.
+        NEXT_PUBLIC_MAP_TILE_URL: ${NEXT_PUBLIC_MAP_TILE_URL:-}
+        NEXT_PUBLIC_MAP_TILE_DARK_URL: ${NEXT_PUBLIC_MAP_TILE_DARK_URL:-}
+        NEXT_PUBLIC_MAP_TILE_ATTRIBUTION: ${NEXT_PUBLIC_MAP_TILE_ATTRIBUTION:-}
     restart: unless-stopped
     depends_on:
       api:
