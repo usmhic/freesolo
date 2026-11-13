@@ -155,16 +155,16 @@ stack.
 | Variable | Purpose |
 |---|---|
 | `APP_URL` | Public web URL and allowed browser origin |
-| `API_URL` | Public API URL baked into the web `/api/**` proxy at build time (default `https://api.freesolo.osas.cloud`) |
-| `STORAGE_URL` | Public MinIO URL returned for uploaded files |
+| `SPRING_BOOT_API_URL` | API URL for the web app when run natively (Compose uses its internal network) |
+| `MINIO_PUBLIC_URL` | Public MinIO URL returned for uploaded files |
 | `ADMIN_EMAIL` | Email that receives the administrator role |
 | `POSTGRES_PASSWORD` | PostgreSQL password |
 | `MINIO_PASSWORD` | MinIO password shared with the API |
 | `JWT_SECRET` | Signing secret shared by the API and web app |
 
-⚠️ Change every password and secret before deployment. Optional Resend, OAuth, and Expo
-integration variables are documented in [api/README.md](./api/README.md) and can be supplied by the
-deployment platform without expanding the default local configuration.
+⚠️ Change every password and secret before deployment. Optional OpenRouteService, Resend,
+OAuth, and Expo keys are listed at the bottom of the template; other API settings have working
+defaults, documented in [api/README.md](./api/README.md).
 
 ## Mobile apps
 
