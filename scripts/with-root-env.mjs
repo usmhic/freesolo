@@ -7,6 +7,10 @@ const envPath = fileURLToPath(new URL('../.env', import.meta.url));
 const local = existsSync(envPath) ? parseEnv(readFileSync(envPath, 'utf8')) : {};
 delete local.NODE_ENV;
 const env = { ...local, ...process.env };
+// .env keeps one name per value; fill in the names each app reads.
+env.NEXT_PUBLIC_APP_URL ??= env.APP_URL;
+env.FRONTEND_URL ??= env.APP_URL;
+env.MINIO_SECRET_KEY ??= env.MINIO_PASSWORD;
 const args = process.argv.slice(2);
 const app = args[0]?.startsWith('--') ? args.shift() : undefined;
 if (app === '--web') env.PORT = process.env.PORT ?? env.WEB_PORT ?? '3000';

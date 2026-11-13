@@ -62,6 +62,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Trimmed `.env.example` to the 25 keys a local setup needs, in clear groups.
+  Values that only repeated an API default are gone, and each value now has
+  one name: `STORAGE_URL` is now `MINIO_PUBLIC_URL`, and the native-run script
+  derives `NEXT_PUBLIC_APP_URL`, `FRONTEND_URL` and `MINIO_SECRET_KEY`. Recreate
+  your `.env` from the template.
 - Only approved members can join a listing, and groups cap at twelve
   travelers. Hosts can only list experiences at venues they own.
 - The landing page and help center now lead with group trips.
