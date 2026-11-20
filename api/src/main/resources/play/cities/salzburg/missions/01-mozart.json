@@ -1,0 +1,144 @@
+{
+  "id": "salzburg-mozart",
+  "lat": 47.8,
+  "lng": 13.04333,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "yellow",
+    "gelb",
+    "jaune",
+    "amarillo",
+    "mustard",
+    "yellow ochre",
+    "ochre",
+    "أصفر",
+    "الأصفر",
+    "صفراء",
+    "اصفر"
+  ],
+  "rubric": "Correct if the player says yellow.",
+  "sources": [
+    {
+      "label": "Mozart's Birthplace — Salzburg tourism",
+      "url": "https://salzburg.info/en/sights/top10/mozarts-birthplace"
+    },
+    {
+      "label": "Mozart's birthplace — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Mozart%27s_birthplace"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-mozart.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg,_Getreidegasse_9,_Mozarts_Geburtshaus.jpg",
+    "author": "Andreas Stiasny",
+    "license": "CC BY-SA 3.0 at"
+  },
+  "text": {
+    "en": {
+      "title": "The yellow house",
+      "place": "Mozart's Birthplace, Getreidegasse 9",
+      "era": "1756",
+      "hook": "Walk down Getreidegasse, a narrow lane of wrought-iron shop signs, to number 9.",
+      "challenge": "What colour is the front of the house where Mozart was born?",
+      "hints": [
+        "Stand back across the lane and look up.",
+        "Think sunflowers."
+      ],
+      "story": "Wolfgang Amadeus Mozart was born here on 27 January 1756, in the family's flat on the third floor, where the Mozarts lived for 26 years. As a small child he toured Europe as a prodigy with his sister Nannerl. The house has been a museum since the 1880s.",
+      "facts": [
+        {
+          "value": "1756",
+          "label": "Mozart born, 27 Jan"
+        },
+        {
+          "value": "3rd floor",
+          "label": "family flat"
+        },
+        {
+          "value": "26 years",
+          "label": "the Mozarts lived here"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La maison jaune",
+      "place": "Maison natale de Mozart, Getreidegasse 9",
+      "era": "1756",
+      "hook": "Descendez la Getreidegasse, une ruelle étroite aux enseignes en fer forgé, jusqu'au numéro 9.",
+      "challenge": "De quelle couleur est la façade de la maison où naquit Mozart ?",
+      "hints": [
+        "Reculez de l'autre côté de la ruelle et levez les yeux.",
+        "Pensez aux tournesols."
+      ],
+      "story": "Wolfgang Amadeus Mozart naquit ici le 27 janvier 1756, dans l'appartement familial du troisième étage, où les Mozart vécurent 26 ans. Tout petit, il fit le tour de l'Europe en enfant prodige avec sa sœur Nannerl. La maison est un musée depuis les années 1880.",
+      "facts": [
+        {
+          "value": "1756",
+          "label": "naissance de Mozart, 27 janv."
+        },
+        {
+          "value": "3e étage",
+          "label": "appartement familial"
+        },
+        {
+          "value": "26 ans",
+          "label": "les Mozart y ont vécu"
+        }
+      ]
+    },
+    "es": {
+      "title": "La casa amarilla",
+      "place": "Casa natal de Mozart, Getreidegasse 9",
+      "era": "1756",
+      "hook": "Baja por la Getreidegasse, una calle estrecha de rótulos de hierro forjado, hasta el número 9.",
+      "challenge": "¿De qué color es la fachada de la casa donde nació Mozart?",
+      "hints": [
+        "Ponte al otro lado de la calle y mira hacia arriba.",
+        "Piensa en los girasoles."
+      ],
+      "story": "Wolfgang Amadeus Mozart nació aquí el 27 de enero de 1756, en el piso familiar de la tercera planta, donde los Mozart vivieron 26 años. De muy pequeño recorrió Europa como niño prodigio con su hermana Nannerl. La casa es un museo desde la década de 1880.",
+      "facts": [
+        {
+          "value": "1756",
+          "label": "nace Mozart, 27 ene."
+        },
+        {
+          "value": "3.ª planta",
+          "label": "piso familiar"
+        },
+        {
+          "value": "26 años",
+          "label": "vivieron aquí"
+        }
+      ]
+    },
+    "ar": {
+      "title": "البيت الأصفر",
+      "place": "بيت ميلاد موزارت، غيترايدغاسه 9",
+      "era": "1756",
+      "hook": "انزل في شارع غيترايدغاسه، زقاق ضيق تتدلى فيه لافتات حديدية مشغولة، حتى الرقم 9.",
+      "challenge": "ما لون واجهة البيت الذي وُلد فيه موزارت؟",
+      "hints": [
+        "قف في الجهة المقابلة من الزقاق وارفع عينيك.",
+        "فكّر في زهرة دوّار الشمس."
+      ],
+      "story": "وُلد فولفغانغ أماديوس موزارت هنا في 27 يناير 1756، في شقة العائلة بالطابق الثالث، حيث عاش آل موزارت 26 عامًا. وفي طفولته المبكرة جال في أوروبا عبقريًا صغيرًا مع أخته نانيرل. والبيت متحف منذ ثمانينيات القرن التاسع عشر.",
+      "facts": [
+        {
+          "value": "1756",
+          "label": "مولد موزارت، 27 يناير"
+        },
+        {
+          "value": "الطابق 3",
+          "label": "شقة العائلة"
+        },
+        {
+          "value": "26 عامًا",
+          "label": "عاشها آل موزارت هنا"
+        }
+      ]
+    }
+  }
+}

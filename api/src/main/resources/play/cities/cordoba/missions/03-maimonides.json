@@ -1,0 +1,145 @@
+{
+  "id": "cordoba-maimonides",
+  "lat": 37.8806,
+  "lng": -4.7836,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "maimonides",
+    "moses maimonides",
+    "maimonide",
+    "rambam",
+    "moshe ben maimon",
+    "musa ibn maymun",
+    "maimonides statue",
+    "maïmonide",
+    "maimónides",
+    "ابن ميمون",
+    "موسى بن ميمون",
+    "ميمونيدس"
+  ],
+  "rubric": "Correct if the player names Maimonides (Moses ben Maimon, Rambam).",
+  "sources": [
+    {
+      "label": "Monumento a Maimónides — Andalucía tourism",
+      "url": "https://andalucia.org/en/cordoba-cultural-tourism-monumento-a-maimonides"
+    },
+    {
+      "label": "Córdoba's Judería — Andalucia.com",
+      "url": "https://andalucia.com/cities/cordoba/juderia.htm"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/cordoba-maimonides.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Ben_Maim%C3%B3nides._C%C3%B3rdoba,_Espa%C3%B1a-eue.jpg",
+    "author": "Lmbuga (Luis Miguel Bugallo Sánchez)",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The philosopher in the Jewish Quarter",
+      "place": "Plaza de Tiberíades, Judería",
+      "era": "1138",
+      "hook": "In the lanes of the Judería there's a tiny square with a seated bronze figure in a turban, a book on his lap.",
+      "challenge": "Who is the seated philosopher?",
+      "hints": [
+        "The name is carved on the statue's base.",
+        "He was a Jewish philosopher and doctor, born in this city."
+      ],
+      "story": "Maimonides was born in Córdoba in 1138 and became one of the greatest Jewish thinkers — a philosopher and physician who wrote in Arabic and Hebrew. He left as a young man when the Almohads persecuted non-Muslims, and died in Egypt; he is buried in Tiberias, which is why this little square is called Plaza de Tiberíades. A few steps away stands the synagogue of 1315, one of only three medieval synagogues left in Spain.",
+      "facts": [
+        {
+          "value": "1138",
+          "label": "born in Córdoba"
+        },
+        {
+          "value": "1315",
+          "label": "the synagogue"
+        },
+        {
+          "value": "1 of 3",
+          "label": "medieval synagogues left in Spain"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le philosophe du quartier juif",
+      "place": "Place de Tibériade, Judería",
+      "era": "1138",
+      "hook": "Dans les ruelles de la Judería, une minuscule place abrite une figure de bronze assise, en turban, un livre sur les genoux.",
+      "challenge": "Qui est ce philosophe assis ?",
+      "hints": [
+        "Le nom est gravé sur le socle de la statue.",
+        "C'était un philosophe et médecin juif, né dans cette ville."
+      ],
+      "story": "Maïmonide naquit à Cordoue en 1138 et devint l'un des plus grands penseurs juifs — philosophe et médecin qui écrivait en arabe et en hébreu. Il partit jeune quand les Almohades persécutèrent les non-musulmans, et mourut en Égypte ; il est enterré à Tibériade, d'où le nom de cette petite place. À quelques pas se trouve la synagogue de 1315, l'une des trois seules synagogues médiévales encore debout en Espagne.",
+      "facts": [
+        {
+          "value": "1138",
+          "label": "né à Cordoue"
+        },
+        {
+          "value": "1315",
+          "label": "la synagogue"
+        },
+        {
+          "value": "1 sur 3",
+          "label": "synagogues médiévales d'Espagne"
+        }
+      ]
+    },
+    "es": {
+      "title": "El filósofo de la Judería",
+      "place": "Plaza de Tiberíades, Judería",
+      "era": "1138",
+      "hook": "En las callejas de la Judería hay una plaza diminuta con una figura de bronce sentada, con turbante y un libro en el regazo.",
+      "challenge": "¿Quién es el filósofo sentado?",
+      "hints": [
+        "El nombre está grabado en la base de la estatua.",
+        "Fue un filósofo y médico judío nacido en esta ciudad."
+      ],
+      "story": "Maimónides nació en Córdoba en 1138 y llegó a ser uno de los mayores pensadores judíos: filósofo y médico que escribía en árabe y en hebreo. Se marchó de joven cuando los almohades persiguieron a los no musulmanes, y murió en Egipto; está enterrado en Tiberíades, por eso esta placita se llama así. A pocos pasos está la sinagoga de 1315, una de las tres únicas sinagogas medievales que quedan en España.",
+      "facts": [
+        {
+          "value": "1138",
+          "label": "nace en Córdoba"
+        },
+        {
+          "value": "1315",
+          "label": "la sinagoga"
+        },
+        {
+          "value": "1 de 3",
+          "label": "sinagogas medievales de España"
+        }
+      ]
+    },
+    "ar": {
+      "title": "الفيلسوف في حيّ اليهود",
+      "place": "ساحة طبرية، حيّ اليهود",
+      "era": "1138",
+      "hook": "في أزقة حي اليهود ساحة صغيرة جدًا فيها تمثال برونزي لرجل جالس بعمامة، على حجره كتاب.",
+      "challenge": "من هذا الفيلسوف الجالس؟",
+      "hints": [
+        "الاسم منقوش على قاعدة التمثال.",
+        "كان فيلسوفًا وطبيبًا يهوديًا وُلد في هذه المدينة."
+      ],
+      "story": "وُلد موسى بن ميمون في قرطبة سنة 1138 وصار من أعظم المفكرين اليهود — فيلسوفًا وطبيبًا كتب بالعربية والعبرية. غادرها شابًا حين اضطهد الموحّدون غير المسلمين، وتوفي في مصر، ودُفن في طبرية، ولهذا تحمل الساحة الصغيرة اسمها. وعلى بعد خطوات الكنيس الذي بُني سنة 1315، وهو واحد من ثلاثة كنُس فقط باقية من العصور الوسطى في إسبانيا.",
+      "facts": [
+        {
+          "value": "1138",
+          "label": "مولده في قرطبة"
+        },
+        {
+          "value": "1315",
+          "label": "الكنيس"
+        },
+        {
+          "value": "1 من 3",
+          "label": "كنُس وسيطة باقية في إسبانيا"
+        }
+      ]
+    }
+  }
+}

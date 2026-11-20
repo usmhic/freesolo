@@ -1,0 +1,131 @@
+{
+  "id": "porto-sao-bento",
+  "lat": 41.14556,
+  "lng": -8.61033,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "ceuta",
+    "سبتة"
+  ],
+  "rubric": "Correct if the player names Ceuta, the North African city taken by Portugal in 1415.",
+  "sources": [
+    {
+      "label": "São Bento railway station — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/S%C3%A3o_Bento_railway_station"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-sao-bento.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Esta%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Porto_-_S%C3%A3o_Bento.JPG",
+    "author": "HombreDHojalata",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The station painted in blue",
+      "place": "São Bento Station",
+      "era": "1415 & 1916",
+      "hook": "Step into the entrance hall. Its walls hold about 20,000 hand-painted tiles, and they tell Portugal's story like a giant comic book.",
+      "challenge": "One of the big tile panels shows a Portuguese prince conquering a city in North Africa. Which city?",
+      "hints": [
+        "Look for the panel full of soldiers, ships and a prince on horseback.",
+        "It's a port city on the African side of the Strait of Gibraltar, still Spanish today."
+      ],
+      "story": "The tiles (azulejos) were painted by Jorge Colaço and finished around 1916, when the station opened on the site of an old convent. The panel you found shows the conquest of Ceuta in 1415, the first step of Portugal's Age of Discovery. Prince Henry, later called 'the Navigator', fought there. He was born right here in Porto.",
+      "facts": [
+        {
+          "value": "~20,000",
+          "label": "painted tiles"
+        },
+        {
+          "value": "1916",
+          "label": "station opens"
+        },
+        {
+          "value": "1415",
+          "label": "conquest of Ceuta"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La gare peinte en bleu",
+      "place": "Gare de São Bento",
+      "era": "1415 et 1916",
+      "hook": "Entrez dans le hall. Ses murs portent environ 20 000 azulejos peints à la main, qui racontent l'histoire du Portugal comme une bande dessinée géante.",
+      "challenge": "Un des grands panneaux montre un prince portugais conquérant une ville d'Afrique du Nord. Laquelle ?",
+      "hints": [
+        "Cherchez le panneau rempli de soldats, de navires et d'un prince à cheval.",
+        "C'est une ville portuaire du côté africain du détroit de Gibraltar, encore espagnole aujourd'hui."
+      ],
+      "story": "Les azulejos ont été peints par Jorge Colaço et achevés vers 1916, quand la gare ouvrit à l'emplacement d'un ancien couvent. Le panneau que vous avez trouvé montre la conquête de Ceuta en 1415, le premier pas de l'âge des Découvertes portugais. Le prince Henri, plus tard surnommé « le Navigateur », y combattit. Il était né ici même, à Porto.",
+      "facts": [
+        {
+          "value": "~20 000",
+          "label": "azulejos peints"
+        },
+        {
+          "value": "1916",
+          "label": "ouverture de la gare"
+        },
+        {
+          "value": "1415",
+          "label": "conquête de Ceuta"
+        }
+      ]
+    },
+    "es": {
+      "title": "La estación pintada de azul",
+      "place": "Estación de São Bento",
+      "era": "1415 y 1916",
+      "hook": "Entra en el vestíbulo. Sus paredes tienen unos 20.000 azulejos pintados a mano que cuentan la historia de Portugal como un cómic gigante.",
+      "challenge": "Uno de los grandes paneles muestra a un príncipe portugués conquistando una ciudad del norte de África. ¿Cuál?",
+      "hints": [
+        "Busca el panel lleno de soldados, barcos y un príncipe a caballo.",
+        "Es una ciudad portuaria del lado africano del estrecho de Gibraltar, todavía española hoy."
+      ],
+      "story": "Los azulejos los pintó Jorge Colaço y se terminaron hacia 1916, cuando la estación abrió en el solar de un antiguo convento. El panel que has encontrado muestra la conquista de Ceuta en 1415, el primer paso de la era de los Descubrimientos portuguesa. El príncipe Enrique, llamado después «el Navegante», luchó allí. Había nacido aquí mismo, en Oporto.",
+      "facts": [
+        {
+          "value": "~20.000",
+          "label": "azulejos pintados"
+        },
+        {
+          "value": "1916",
+          "label": "abre la estación"
+        },
+        {
+          "value": "1415",
+          "label": "conquista de Ceuta"
+        }
+      ]
+    },
+    "ar": {
+      "title": "المحطة المرسومة بالأزرق",
+      "place": "محطة ساو بينتو",
+      "era": "1415 و1916",
+      "hook": "ادخل البهو. تحمل جدرانه نحو 20 ألف بلاطة مرسومة باليد، تروي تاريخ البرتغال كقصة مصوّرة عملاقة.",
+      "challenge": "تُظهر إحدى اللوحات الكبيرة أميرًا برتغاليًا يفتح مدينة في شمال أفريقيا. ما هي؟",
+      "hints": [
+        "ابحث عن اللوحة المليئة بالجنود والسفن وأمير على حصانه.",
+        "مدينة ميناء على الضفة الأفريقية لمضيق جبل طارق، وما زالت إسبانية حتى اليوم."
+      ],
+      "story": "رسم البلاطَ خورخي كولاسو، واكتمل نحو 1916 حين افتُتحت المحطة في موقع دير قديم. واللوحة التي وجدتها تصوّر احتلال سبتة سنة 1415، أول خطوة في عصر الاستكشافات البرتغالي. وقد قاتل هناك الأمير هنري، الذي لُقّب لاحقًا بـ«الملاح». وكان قد وُلد هنا، في بورتو نفسها.",
+      "facts": [
+        {
+          "value": "~20000",
+          "label": "بلاطة مرسومة"
+        },
+        {
+          "value": "1916",
+          "label": "افتتاح المحطة"
+        },
+        {
+          "value": "1415",
+          "label": "احتلال سبتة"
+        }
+      ]
+    }
+  }
+}

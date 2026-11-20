@@ -1,0 +1,134 @@
+{
+  "id": "porto-alminhas",
+  "lat": 41.1405,
+  "lng": -8.6131,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "1809"
+  ],
+  "rubric": "Correct if the player says 1809.",
+  "sources": [
+    {
+      "label": "Porto Boat Bridge disaster — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Porto_Boat_Bridge_disaster"
+    },
+    {
+      "label": "Ponte das Barcas disaster — Museu Nacional Soares dos Reis",
+      "url": "https://museusoaresdosreis.gov.pt/colecao/ponte-das-barcas-disaster/?lang=en"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-alminhas.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Alminhas_da_Ponte_2024.jpg",
+    "author": "Joseolgon",
+    "license": "CC BY 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The bridge of boats",
+      "place": "Alminhas da Ponte, Ribeira",
+      "era": "1809",
+      "hook": "On the Ribeira riverside, near the old bridge, look for a small bronze memorial on the wall where people often leave candles and flowers.",
+      "challenge": "It remembers a disaster on a bridge made of boats. In what year did it happen?",
+      "hints": [
+        "It happened while Napoleon's army was invading Portugal.",
+        "The early 1800s — the year the French marshal Soult took Porto."
+      ],
+      "story": "On 29 March 1809, French troops under Marshal Soult attacked Porto. Crowds fled across the Ponte das Barcas, a bridge made of boats tied together over the Douro. It gave way under the weight, and a great many people drowned — estimates run into the thousands. The bronze relief of the 'Alminhas da Ponte', by the sculptor Teixeira Lopes, marks the spot where the bridge met the quay, and people still leave candles there.",
+      "facts": [
+        {
+          "value": "1809",
+          "label": "29 March"
+        },
+        {
+          "value": "Soult",
+          "label": "French marshal"
+        },
+        {
+          "value": "Thousands",
+          "label": "estimated dead"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le pont de bateaux",
+      "place": "Alminhas da Ponte, Ribeira",
+      "era": "1809",
+      "hook": "Sur les quais de Ribeira, près du vieux pont, cherchez un petit mémorial en bronze sur le mur où l'on dépose souvent bougies et fleurs.",
+      "challenge": "Il rappelle une catastrophe sur un pont fait de bateaux. En quelle année eut-elle lieu ?",
+      "hints": [
+        "C'était pendant l'invasion du Portugal par l'armée de Napoléon.",
+        "Au début du XIXe siècle — l'année où le maréchal français Soult prit Porto."
+      ],
+      "story": "Le 29 mars 1809, les troupes françaises du maréchal Soult attaquèrent Porto. La foule s'enfuit par la Ponte das Barcas, un pont de bateaux attachés les uns aux autres sur le Douro. Il céda sous le poids et un très grand nombre de personnes se noyèrent — les estimations se comptent en milliers. Le relief en bronze des « Alminhas da Ponte », du sculpteur Teixeira Lopes, marque l'endroit où le pont touchait le quai, et l'on y dépose encore des bougies.",
+      "facts": [
+        {
+          "value": "1809",
+          "label": "29 mars"
+        },
+        {
+          "value": "Soult",
+          "label": "maréchal français"
+        },
+        {
+          "value": "Des milliers",
+          "label": "de morts estimés"
+        }
+      ]
+    },
+    "es": {
+      "title": "El puente de barcas",
+      "place": "Alminhas da Ponte, Ribeira",
+      "era": "1809",
+      "hook": "En el muelle de la Ribeira, cerca del puente viejo, busca un pequeño memorial de bronce en la pared donde la gente suele dejar velas y flores.",
+      "challenge": "Recuerda una tragedia en un puente hecho de barcas. ¿En qué año ocurrió?",
+      "hints": [
+        "Pasó mientras el ejército de Napoleón invadía Portugal.",
+        "A principios del siglo XIX, el año en que el mariscal francés Soult tomó Oporto."
+      ],
+      "story": "El 29 de marzo de 1809, las tropas francesas del mariscal Soult atacaron Oporto. La multitud huyó por la Ponte das Barcas, un puente de barcas atadas sobre el Duero. Cedió bajo el peso y muchísima gente se ahogó; las estimaciones llegan a miles. El relieve de bronce de las «Alminhas da Ponte», del escultor Teixeira Lopes, marca el punto donde el puente tocaba el muelle, y aún se dejan velas allí.",
+      "facts": [
+        {
+          "value": "1809",
+          "label": "29 de marzo"
+        },
+        {
+          "value": "Soult",
+          "label": "mariscal francés"
+        },
+        {
+          "value": "Miles",
+          "label": "de muertos estimados"
+        }
+      ]
+    },
+    "ar": {
+      "title": "جسر القوارب",
+      "place": "ألمينياش دا بونتي، ريبيرا",
+      "era": "1809",
+      "hook": "على رصيف ريبيرا قرب الجسر القديم، ابحث عن نصب برونزي صغير على الجدار يترك عنده الناس الشموع والزهور.",
+      "challenge": "يخلّد كارثة وقعت على جسر مصنوع من القوارب. في أي سنة حدثت؟",
+      "hints": [
+        "وقعت حين كان جيش نابليون يغزو البرتغال.",
+        "في مطلع القرن التاسع عشر — السنة التي استولى فيها المارشال الفرنسي سولت على بورتو."
+      ],
+      "story": "في 29 مارس 1809 هاجمت القوات الفرنسية بقيادة المارشال سولت مدينة بورتو. ففرّت الحشود عبر «جسر القوارب»، وهو قوارب مربوطة بعضها ببعض فوق نهر دورو. انهار الجسر تحت الثقل وغرق عدد هائل من الناس — تُقدَّر أعدادهم بالآلاف. ويحدّد النقش البرونزي «ألمينياش دا بونتي»، من عمل النحات تيشيرا لوبيش، المكانَ الذي كان الجسر يلامس فيه الرصيف، وما زال الناس يتركون الشموع هناك.",
+      "facts": [
+        {
+          "value": "1809",
+          "label": "29 مارس"
+        },
+        {
+          "value": "سولت",
+          "label": "مارشال فرنسي"
+        },
+        {
+          "value": "الآلاف",
+          "label": "ضحايا بالتقدير"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "id": "rotterdam-erasmus",
+  "lat": 51.9215,
+  "lng": 4.4846,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "book",
+    "a book",
+    "open book",
+    "his book",
+    "boek",
+    "livre",
+    "libro",
+    "bible",
+    "un livre",
+    "un libro",
+    "كتاب",
+    "كتابا",
+    "الكتاب"
+  ],
+  "rubric": "Correct if the player says a book.",
+  "sources": [
+    {
+      "label": "Statue of Erasmus — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Statue_of_Erasmus"
+    },
+    {
+      "label": "Netherlands' oldest statue turns 400 — NL Times",
+      "url": "https://nltimes.nl/2022/04/27/netherlands-oldest-statue-turns-400-years-old"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-erasmus.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_standbeeld_Erasmus.jpg",
+    "author": "Wikimedia Commons",
+    "license": "CC BY 1.0"
+  },
+  "text": {
+    "en": {
+      "title": "The scholar with a book",
+      "place": "Statue of Erasmus, Grotekerkplein",
+      "era": "1622",
+      "hook": "Next to the big brick St Lawrence Church stands a bronze man in a long gown and a scholar's cap.",
+      "challenge": "What is the statue holding?",
+      "hints": [
+        "Look at his hands.",
+        "He's reading."
+      ],
+      "story": "Desiderius Erasmus, born in Rotterdam around 1466, became the most famous scholar in Europe — witty, independent and a champion of learning. This statue by Hendrick de Keyser was unveiled in 1622 and is the oldest public bronze statue in the Netherlands. It survived the war. The church behind it, the Laurenskerk, is the last big medieval building in the centre: gutted in 1940, then rebuilt.",
+      "facts": [
+        {
+          "value": "1622",
+          "label": "unveiled"
+        },
+        {
+          "value": "Oldest",
+          "label": "bronze statue in the NL"
+        },
+        {
+          "value": "c.1466",
+          "label": "Erasmus born"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le savant au livre",
+      "place": "Statue d'Érasme, Grotekerkplein",
+      "era": "1622",
+      "hook": "À côté de la grande église de brique Saint-Laurent se tient un homme de bronze en longue robe et bonnet de savant.",
+      "challenge": "Que tient la statue ?",
+      "hints": [
+        "Regardez ses mains.",
+        "Il est en train de lire."
+      ],
+      "story": "Didier Érasme, né à Rotterdam vers 1466, devint le savant le plus célèbre d'Europe — spirituel, indépendant et champion du savoir. Cette statue de Hendrick de Keyser, inaugurée en 1622, est la plus ancienne statue publique en bronze des Pays-Bas. Elle a survécu à la guerre. L'église derrière elle, la Laurenskerk, est le dernier grand édifice médiéval du centre : éventrée en 1940, puis reconstruite.",
+      "facts": [
+        {
+          "value": "1622",
+          "label": "inauguration"
+        },
+        {
+          "value": "La plus ancienne",
+          "label": "statue de bronze des Pays-Bas"
+        },
+        {
+          "value": "v. 1466",
+          "label": "naissance d'Érasme"
+        }
+      ]
+    },
+    "es": {
+      "title": "El sabio del libro",
+      "place": "Estatua de Erasmo, Grotekerkplein",
+      "era": "1622",
+      "hook": "Junto a la gran iglesia de ladrillo de San Lorenzo hay un hombre de bronce con toga larga y gorro de erudito.",
+      "challenge": "¿Qué sostiene la estatua?",
+      "hints": [
+        "Mírale las manos.",
+        "Está leyendo."
+      ],
+      "story": "Erasmo de Róterdam, nacido aquí hacia 1466, llegó a ser el erudito más famoso de Europa: ingenioso, independiente y defensor del saber. Esta estatua de Hendrick de Keyser se inauguró en 1622 y es la estatua pública de bronce más antigua de los Países Bajos. Sobrevivió a la guerra. La iglesia que hay detrás, la Laurenskerk, es el último gran edificio medieval del centro: quedó destripada en 1940 y luego se reconstruyó.",
+      "facts": [
+        {
+          "value": "1622",
+          "label": "inauguración"
+        },
+        {
+          "value": "La más antigua",
+          "label": "estatua de bronce de los Países Bajos"
+        },
+        {
+          "value": "c. 1466",
+          "label": "nace Erasmo"
+        }
+      ]
+    },
+    "ar": {
+      "title": "العالِم صاحب الكتاب",
+      "place": "تمثال إيراسموس، ساحة الكنيسة الكبرى",
+      "era": "1622",
+      "hook": "بجانب كنيسة القديس لورنس الكبيرة المبنية بالآجر يقف رجل برونزي بثوب طويل وقبعة العلماء.",
+      "challenge": "ماذا يحمل التمثال؟",
+      "hints": [
+        "انظر إلى يديه.",
+        "إنه يقرأ."
+      ],
+      "story": "إيراسموس، المولود في روتردام نحو سنة 1466، صار أشهر علماء أوروبا — ظريفًا ومستقلًا ومدافعًا عن العلم. هذا التمثال من صنع هندريك دي كايزر وكُشف عنه سنة 1622، وهو أقدم تمثال برونزي عام في هولندا. وقد نجا من الحرب. والكنيسة خلفه، كنيسة لورنس، هي آخر مبنى كبير من العصور الوسطى في المركز: احترقت من الداخل سنة 1940 ثم أُعيد بناؤها.",
+      "facts": [
+        {
+          "value": "1622",
+          "label": "الكشف عنه"
+        },
+        {
+          "value": "الأقدم",
+          "label": "تمثال برونزي في هولندا"
+        },
+        {
+          "value": "نحو 1466",
+          "label": "مولد إيراسموس"
+        }
+      ]
+    }
+  }
+}

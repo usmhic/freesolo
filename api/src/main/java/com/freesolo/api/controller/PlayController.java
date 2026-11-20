@@ -2,6 +2,7 @@ package com.freesolo.api.controller;
 
 import com.freesolo.api.dto.play.PlayDtos.*;
 import com.freesolo.api.security.UserPrincipal;
+import com.freesolo.api.service.Languages;
 import com.freesolo.api.service.LeaderboardService;
 import com.freesolo.api.service.PlayService;
 import com.freesolo.api.service.RateLimiter;
@@ -15,7 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * The city history game. Browsing and free lessons are open to everyone;
+ * The city history game. Content and messages come back in the player's
+ * language (see {@link Languages}). Browsing and free lessons are open to everyone;
  * saved progress and city packs need a signed-in player. Answer checks are
  * rate-limited because each one may call the AI judge.
  */
@@ -37,38 +39,41 @@ public class PlayController {
     }
 
     @GetMapping("/cities")
-    public ResponseEntity<List<CitySummary>> cities(@AuthenticationPrincipal UserPrincipal principal) {
-        return ResponseEntity.ok(playService.cities(userId(principal)));
+    public ResponseEntity<List<CitySummary>> cities(@AuthenticationPrincipal UserPrincipal principal, HttpServletRequest request) {
+        return ResponseEntity.ok(playService.cities(userId(principal), lang(request)));
     }
 
     @GetMapping("/cities/{id}")
-    public ResponseEntity<CityView> city(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id) {
-        return ResponseEntity.ok(playService.city(userId(principal), id));
+    public ResponseEntity<CityView> city(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id,
+                                         HttpServletRequest request) {
+        return ResponseEntity.ok(playService.city(userId(principal), id, lang(request)));
     }
 
     /** POST /api/play/cities/{id}/unlock — the city pack (free during the pilot). */
     @PostMapping("/cities/{id}/unlock")
-    public ResponseEntity<CityView> unlock(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id) {
-        return ResponseEntity.ok(playService.unlock(principal.getId(), id));
+    public ResponseEntity<CityView> unlock(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id,
+                                           HttpServletRequest request) {
+        return ResponseEntity.ok(playService.unlock(principal.getId(), id, lang(request)));
     }
 
     @GetMapping("/lessons/{id}")
-    public ResponseEntity<LessonView> lesson(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id) {
-        return ResponseEntity.ok(playService.lesson(userId(principal), id));
+    public ResponseEntity<LessonView> lesson(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id,
+                                             HttpServletRequest request) {
+        return ResponseEntity.ok(playService.lesson(userId(principal), id, lang(request)));
     }
 
     @PostMapping("/lessons/{id}/attempts")
     public ResponseEntity<AttemptResult> attempt(@AuthenticationPrincipal UserPrincipal principal, @PathVariable String id,
                                                  @Valid @RequestBody AttemptRequest req, HttpServletRequest request) {
         rateLimiter.check("play-attempts", clientKey(principal, request), ATTEMPTS_PER_MINUTE);
-        return ResponseEntity.ok(playService.attempt(userId(principal), id, req));
+        return ResponseEntity.ok(playService.attempt(userId(principal), id, req, lang(request)));
     }
 
     @PostMapping("/journeys")
     public ResponseEntity<JourneyView> journey(@AuthenticationPrincipal UserPrincipal principal,
                                                @Valid @RequestBody JourneyRequest req, HttpServletRequest request) {
         rateLimiter.check("play-journeys", clientKey(principal, request), JOURNEYS_PER_MINUTE);
-        return ResponseEntity.ok(playService.journey(userId(principal), req));
+        return ResponseEntity.ok(playService.journey(userId(principal), req, lang(request)));
     }
 
     /** GET /api/play/leaderboard?period=all|week — the global ranking, with your own row when signed in. */
@@ -81,6 +86,11 @@ public class PlayController {
     @GetMapping("/me")
     public ResponseEntity<PlayerView> me(@AuthenticationPrincipal UserPrincipal principal) {
         return ResponseEntity.ok(playService.player(principal.getId()));
+    }
+
+    /** The player's language: {@code ?lang=}, then Accept-Language, then English. */
+    private static String lang(HttpServletRequest request) {
+        return Languages.resolve(request.getParameter("lang"), request.getHeader("Accept-Language"));
     }
 
     private static String userId(UserPrincipal principal) {

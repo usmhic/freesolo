@@ -1,0 +1,148 @@
+{
+  "id": "rotterdam-delfshaven",
+  "lat": 51.909,
+  "lng": 4.449,
+  "minutes": 10,
+  "points": 250,
+  "free": false,
+  "accepted": [
+    "pilgrims",
+    "pilgrim fathers",
+    "the pilgrims",
+    "the pilgrim fathers",
+    "pelgrimvaders",
+    "pilgrim",
+    "pèlerins",
+    "pères pèlerins",
+    "les pères pèlerins",
+    "peregrinos",
+    "padres peregrinos",
+    "los padres peregrinos",
+    "الحجاج",
+    "الآباء الحجاج",
+    "حجاج"
+  ],
+  "rubric": "Correct if the player says the Pilgrims / Pilgrim Fathers.",
+  "sources": [
+    {
+      "label": "Pilgrim Fathers Church — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pilgrim_Fathers_Church"
+    },
+    {
+      "label": "Delfshaven — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Delfshaven"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-delfshaven.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_pelgrimskerk.jpg",
+    "author": "F.Eveleens",
+    "license": "CC BY 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "The Pilgrims' last harbour",
+      "place": "Pilgrim Fathers Church, Delfshaven",
+      "era": "1620",
+      "hook": "Take the metro or tram west to Delfshaven, the old harbour the 1940 bombs missed, and find the church on the quay.",
+      "challenge": "In 1620 a famous group of English Protestants sailed from this quay on their way to America. What are they called?",
+      "hints": [
+        "The church is named after them.",
+        "They're remembered every Thanksgiving in the US."
+      ],
+      "story": "The Pilgrims had lived in exile in Leiden. In the summer of 1620 they prayed on this quay, then sailed on the Speedwell to England, where they moved to the Mayflower and crossed to America. The church is now known as the Pilgrim Fathers Church, and Delfshaven is one of the few corners of old Rotterdam to survive the war.",
+      "facts": [
+        {
+          "value": "1620",
+          "label": "the Pilgrims sail"
+        },
+        {
+          "value": "Speedwell",
+          "label": "then the Mayflower"
+        },
+        {
+          "value": "Survived",
+          "label": "the 1940 bombs"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le dernier port des Pèlerins",
+      "place": "Église des Pères pèlerins, Delfshaven",
+      "era": "1620",
+      "hook": "Prenez le métro ou le tram vers l'ouest jusqu'à Delfshaven, le vieux port épargné par les bombes de 1940, et trouvez l'église sur le quai.",
+      "challenge": "En 1620, un célèbre groupe de protestants anglais partit de ce quai pour l'Amérique. Comment les appelle-t-on ?",
+      "hints": [
+        "L'église porte leur nom.",
+        "On se souvient d'eux à chaque Thanksgiving aux États-Unis."
+      ],
+      "story": "Les Pèlerins vivaient en exil à Leyde. À l'été 1620, ils prièrent sur ce quai, puis partirent sur le Speedwell vers l'Angleterre, où ils passèrent sur le Mayflower pour traverser vers l'Amérique. L'église s'appelle aujourd'hui l'église des Pères pèlerins, et Delfshaven est l'un des rares coins du vieux Rotterdam à avoir survécu à la guerre.",
+      "facts": [
+        {
+          "value": "1620",
+          "label": "départ des Pèlerins"
+        },
+        {
+          "value": "Speedwell",
+          "label": "puis le Mayflower"
+        },
+        {
+          "value": "Survivant",
+          "label": "des bombes de 1940"
+        }
+      ]
+    },
+    "es": {
+      "title": "El último puerto de los Peregrinos",
+      "place": "Iglesia de los Padres Peregrinos, Delfshaven",
+      "era": "1620",
+      "hook": "Toma el metro o el tranvía hacia el oeste hasta Delfshaven, el viejo puerto que las bombas de 1940 no tocaron, y busca la iglesia del muelle.",
+      "challenge": "En 1620 un famoso grupo de protestantes ingleses zarpó de este muelle rumbo a América. ¿Cómo se les llama?",
+      "hints": [
+        "La iglesia lleva su nombre.",
+        "En Estados Unidos se les recuerda cada Acción de Gracias."
+      ],
+      "story": "Los Peregrinos vivían exiliados en Leiden. En el verano de 1620 rezaron en este muelle y zarparon en el Speedwell hacia Inglaterra, donde pasaron al Mayflower para cruzar a América. La iglesia se conoce hoy como Iglesia de los Padres Peregrinos, y Delfshaven es uno de los pocos rincones del viejo Róterdam que sobrevivió a la guerra.",
+      "facts": [
+        {
+          "value": "1620",
+          "label": "zarpan los Peregrinos"
+        },
+        {
+          "value": "Speedwell",
+          "label": "y luego el Mayflower"
+        },
+        {
+          "value": "Sobrevivió",
+          "label": "a las bombas de 1940"
+        }
+      ]
+    },
+    "ar": {
+      "title": "آخر ميناء للحجّاج",
+      "place": "كنيسة الآباء الحجّاج، دلفسهافن",
+      "era": "1620",
+      "hook": "خذ المترو أو الترام غربًا إلى دلفسهافن، الميناء القديم الذي نجا من قنابل 1940، وابحث عن الكنيسة على الرصيف.",
+      "challenge": "في 1620 أبحرت من هذا الرصيف جماعة شهيرة من البروتستانت الإنجليز في طريقها إلى أمريكا. ماذا يُسمّون؟",
+      "hints": [
+        "الكنيسة تحمل اسمهم.",
+        "يتذكرهم الأمريكيون في كل عيد شكر."
+      ],
+      "story": "عاش «الحجّاج» منفيين في لايدن. وفي صيف 1620 صلّوا على هذا الرصيف، ثم أبحروا على السفينة «سبيدويل» إلى إنجلترا، حيث انتقلوا إلى «ماي فلاور» وعبروا إلى أمريكا. تُعرف الكنيسة اليوم بكنيسة الآباء الحجّاج، ودلفسهافن من الزوايا القليلة في روتردام القديمة التي نجت من الحرب.",
+      "facts": [
+        {
+          "value": "1620",
+          "label": "إبحار الحجّاج"
+        },
+        {
+          "value": "سبيدويل",
+          "label": "ثم ماي فلاور"
+        },
+        {
+          "value": "نجت",
+          "label": "من قنابل 1940"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "id": "tangier-legation",
+  "lat": 35.78398,
+  "lng": -5.81068,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "united states",
+    "usa",
+    "us",
+    "u s",
+    "u s a",
+    "america",
+    "american",
+    "united states of america",
+    "etats unis",
+    "estados unidos",
+    "eeuu",
+    "ee uu",
+    "états unis",
+    "الولايات المتحدة",
+    "الولايات المتحدة الأمريكية",
+    "أمريكا",
+    "امريكا"
+  ],
+  "rubric": "Correct if the player names the United States / America.",
+  "sources": [
+    {
+      "label": "1821: Sultan Moulay Slimane gives the Legation to the US — TALIM",
+      "url": "https://legation.org/1821-sultan-moulay-slimane-gives-tangier-legation-to-us"
+    },
+    {
+      "label": "American Legation, Tangier — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/American_Legation,_Tangier"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-legation.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Museo_del_Antiguo_Legado_Estadounidense,_T%C3%A1nger,_Marruecos,_2015-12-11,_DD_44-46_HDR.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "America's oldest home abroad",
+      "place": "Tangier American Legation",
+      "era": "1821",
+      "hook": "Down a narrow lane in the lower medina stands a building with a very unexpected owner — look for the flag and the plaque by the door.",
+      "challenge": "Which country has owned this building since 1821?",
+      "hints": [
+        "Look at the flag and the plaque at the entrance.",
+        "It's a country across the Atlantic that was only a few decades old in 1821."
+      ],
+      "story": "In 1821 Sultan Moulay Suliman gave this building to the United States. It was the first property the US government ever acquired for a diplomatic mission, and it is still the only US National Historic Landmark in a foreign country. The friendship is older still: Morocco was among the very first countries to recognise the young United States, in 1777. Today it's a museum and cultural centre.",
+      "facts": [
+        {
+          "value": "1821",
+          "label": "gift to the US"
+        },
+        {
+          "value": "1st",
+          "label": "US property abroad"
+        },
+        {
+          "value": "1777",
+          "label": "Morocco recognises the US"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La plus vieille maison américaine à l'étranger",
+      "place": "Légation américaine de Tanger",
+      "era": "1821",
+      "hook": "Au bout d'une ruelle de la médina basse se trouve un bâtiment au propriétaire bien inattendu — regardez le drapeau et la plaque près de la porte.",
+      "challenge": "Quel pays possède ce bâtiment depuis 1821 ?",
+      "hints": [
+        "Regardez le drapeau et la plaque à l'entrée.",
+        "Un pays de l'autre côté de l'Atlantique, qui n'avait que quelques décennies en 1821."
+      ],
+      "story": "En 1821, le sultan Moulay Slimane offrit ce bâtiment aux États-Unis. Ce fut la première propriété acquise par le gouvernement américain pour une mission diplomatique, et c'est toujours le seul monument historique national américain situé à l'étranger. L'amitié est plus ancienne encore : le Maroc fut parmi les tout premiers pays à reconnaître les jeunes États-Unis, en 1777. C'est aujourd'hui un musée et un centre culturel.",
+      "facts": [
+        {
+          "value": "1821",
+          "label": "don aux États-Unis"
+        },
+        {
+          "value": "1re",
+          "label": "propriété américaine à l'étranger"
+        },
+        {
+          "value": "1777",
+          "label": "le Maroc reconnaît les États-Unis"
+        }
+      ]
+    },
+    "es": {
+      "title": "La casa estadounidense más antigua del extranjero",
+      "place": "Legación Americana de Tánger",
+      "era": "1821",
+      "hook": "Al fondo de un callejón de la medina baja hay un edificio con un dueño muy inesperado: mira la bandera y la placa junto a la puerta.",
+      "challenge": "¿Qué país es dueño de este edificio desde 1821?",
+      "hints": [
+        "Mira la bandera y la placa de la entrada.",
+        "Un país al otro lado del Atlántico que en 1821 solo tenía unas décadas."
+      ],
+      "story": "En 1821, el sultán Mulay Slimán regaló este edificio a Estados Unidos. Fue la primera propiedad que el gobierno estadounidense adquirió para una misión diplomática, y sigue siendo el único Monumento Histórico Nacional de EE. UU. en el extranjero. La amistad es aún más antigua: Marruecos fue de los primeros países en reconocer a los jóvenes Estados Unidos, en 1777. Hoy es un museo y centro cultural.",
+      "facts": [
+        {
+          "value": "1821",
+          "label": "regalo a EE. UU."
+        },
+        {
+          "value": "1.ª",
+          "label": "propiedad de EE. UU. en el extranjero"
+        },
+        {
+          "value": "1777",
+          "label": "Marruecos reconoce a EE. UU."
+        }
+      ]
+    },
+    "ar": {
+      "title": "أقدم بيت أمريكي خارج أمريكا",
+      "place": "المفوضية الأمريكية بطنجة",
+      "era": "1821",
+      "hook": "في نهاية زقاق ضيق من المدينة السفلى يقوم مبنى له مالك غير متوقع — انظر إلى العلم واللوحة بجانب الباب.",
+      "challenge": "أيّ دولة تملك هذا المبنى منذ 1821؟",
+      "hints": [
+        "انظر إلى العلم واللوحة عند المدخل.",
+        "دولة على الضفة الأخرى من الأطلسي لم يتجاوز عمرها بضعة عقود سنة 1821."
+      ],
+      "story": "في 1821 أهدى السلطان المولى سليمان هذا المبنى إلى الولايات المتحدة. كان أول عقار تمتلكه الحكومة الأمريكية لبعثة دبلوماسية، وما زال المعلم التاريخي الوطني الأمريكي الوحيد خارج البلاد. والصداقة أقدم من ذلك: فقد كان المغرب من أوائل الدول التي اعترفت بالولايات المتحدة الفتية سنة 1777. وهو اليوم متحف ومركز ثقافي.",
+      "facts": [
+        {
+          "value": "1821",
+          "label": "هدية إلى الولايات المتحدة"
+        },
+        {
+          "value": "الأول",
+          "label": "عقار أمريكي في الخارج"
+        },
+        {
+          "value": "1777",
+          "label": "المغرب يعترف بالولايات المتحدة"
+        }
+      ]
+    }
+  }
+}

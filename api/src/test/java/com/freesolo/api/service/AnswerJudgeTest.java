@@ -80,8 +80,33 @@ class AnswerJudgeTest {
     }
 
     @Test
+    void matchingUnderstandsArabicFrenchAndSpanish() {
+        assertThat(AnswerJudge.matches("الولايات المتحدة", List.of("الولايات المتحدة"))).isTrue();
+        assertThat(AnswerJudge.matches("إنها سبتة", List.of("سبتة"))).isTrue();      // ة/ه and the hamza folded
+        assertThat(AnswerJudge.matches("سَبْتَة", List.of("سبتة"))).isTrue();          // diacritics ignored
+        assertThat(AnswerJudge.matches("٧٧٤", List.of("774"))).isTrue();             // Arabic-Indic digits
+        assertThat(AnswerJudge.matches("Il y en a deux", List.of("2"))).isTrue();
+        assertThat(AnswerJudge.matches("Dos tableros", List.of("2"))).isTrue();
+        assertThat(AnswerJudge.matches("اثنان", List.of("2"))).isTrue();
+    }
+
+    @Test
+    void feedbackComesBackInThePlayersLanguage() {
+        assertThat(judge(false).judge(BRIDGE, "deux", null, "fr").feedback()).isEqualTo("Bravo !");
+        assertThat(judge(false).judge(BRIDGE, "tres", null, "es").feedback()).startsWith("Casi");
+        assertThatThrownBy(() -> judge(false).judge(BRIDGE, " ", null, "ar")).hasMessage("اكتب إجابة أو أضف صورة");
+    }
+
+    @Test
+    void theAiIsToldWhichLanguageToAnswerIn() {
+        judge(true).judge(BRIDGE, "one up top, one by the water", null, "es");
+
+        assertThat(lastBody.get()).contains("written in Spanish");
+    }
+
+    @Test
     void aMatchingAnswerNeverCallsTheAi() {
-        var verdict = judge(true).judge(BRIDGE, "two", null);
+        var verdict = judge(true).judge(BRIDGE, "two", null, "en");
 
         assertThat(verdict.correct()).isTrue();
         assertThat(verdict.judgedBy()).isEqualTo("match");
@@ -90,17 +115,17 @@ class AnswerJudgeTest {
 
     @Test
     void withoutAiAWrongAnswerIsJustWrongAndPhotosAreRefused() {
-        var verdict = judge(false).judge(BRIDGE, "three", null);
+        var verdict = judge(false).judge(BRIDGE, "three", null, "en");
         assertThat(verdict.correct()).isFalse();
 
-        assertThatThrownBy(() -> judge(false).judge(BRIDGE, null, PHOTO))
+        assertThatThrownBy(() -> judge(false).judge(BRIDGE, null, PHOTO, "en"))
                 .isInstanceOf(ApiException.class)
                 .satisfies(e -> assertThat(((ApiException) e).getStatus().value()).isEqualTo(422));
     }
 
     @Test
     void theAiJudgesParaphrasesAndPhotos() {
-        var verdict = judge(true).judge(BRIDGE, "one up top, one by the water", PHOTO);
+        var verdict = judge(true).judge(BRIDGE, "one up top, one by the water", PHOTO, "en");
 
         assertThat(verdict.correct()).isTrue();
         assertThat(verdict.judgedBy()).isEqualTo("ai");
@@ -114,7 +139,7 @@ class AnswerJudgeTest {
     void verdictJsonIsFoundEvenWithTextAroundIt() {
         reply = message("Here you go:\n{\"correct\": false, \"feedback\": \"Look up higher.\"}");
 
-        var verdict = judge(true).judge(BRIDGE, "a big one", null);
+        var verdict = judge(true).judge(BRIDGE, "a big one", null, "en");
 
         assertThat(verdict.correct()).isFalse();
         assertThat(verdict.feedback()).isEqualTo("Look up higher.");
@@ -125,7 +150,7 @@ class AnswerJudgeTest {
         status = 500;
         reply = "{\"error\":{}}";
 
-        var verdict = judge(true).judge(BRIDGE, "a big one", null);
+        var verdict = judge(true).judge(BRIDGE, "a big one", null, "en");
 
         assertThat(verdict.correct()).isFalse();
         assertThat(verdict.judgedBy()).isEqualTo("match");
@@ -133,8 +158,8 @@ class AnswerJudgeTest {
 
     @Test
     void rejectsEmptyAnswersAndNonImagePhotos() {
-        assertThatThrownBy(() -> judge(true).judge(BRIDGE, "  ", null)).isInstanceOf(ApiException.class);
-        assertThatThrownBy(() -> judge(true).judge(BRIDGE, null, "data:text/html;base64,PGh0bWw+"))
+        assertThatThrownBy(() -> judge(true).judge(BRIDGE, "  ", null, "en")).isInstanceOf(ApiException.class);
+        assertThatThrownBy(() -> judge(true).judge(BRIDGE, null, "data:text/html;base64,PGh0bWw+", "en"))
                 .isInstanceOf(ApiException.class);
     }
 }

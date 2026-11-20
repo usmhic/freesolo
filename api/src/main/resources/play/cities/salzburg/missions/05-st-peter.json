@@ -1,0 +1,155 @@
+{
+  "id": "salzburg-st-peter",
+  "lat": 47.797,
+  "lng": 13.0453,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "catacombs",
+    "catacomb",
+    "caves",
+    "cave",
+    "chapels",
+    "chapel",
+    "rooms",
+    "katakomben",
+    "hermitages",
+    "catacombes",
+    "grottes",
+    "grotte",
+    "chapelles",
+    "catacumbas",
+    "cuevas",
+    "cueva",
+    "capillas",
+    "سراديب",
+    "سراديب الموتى",
+    "كهوف",
+    "كهف",
+    "مغارات"
+  ],
+  "rubric": "Correct if the player says catacombs / caves / chapels cut into the rock.",
+  "sources": [
+    {
+      "label": "St. Peter's Abbey — Salzburg tourism",
+      "url": "https://www.salzburg.info/en/st.peter-s-abbey-salzburg-archabbey_az_14358"
+    },
+    {
+      "label": "Saint Peter's Abbey, Salzburg — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Saint_Peter%27s_Abbey,_Salzburg"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-st-peter.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg",
+    "author": "Wikimedia Commons",
+    "license": "Public domain"
+  },
+  "text": {
+    "en": {
+      "title": "Caves in the cliff",
+      "place": "St Peter's Abbey and cemetery",
+      "era": "696",
+      "hook": "Walk into St Peter's cemetery, between the wrought-iron graves, to the rock wall of the Mönchsberg. Look up at the openings in the cliff.",
+      "challenge": "What has been carved into the cliff above the cemetery?",
+      "hints": [
+        "There are doors, windows and stairs in the rock.",
+        "The sign at the entrance calls them 'Katakomben'."
+      ],
+      "story": "St Rupert founded St Peter's Abbey around 696, making it the oldest monastery in the German-speaking world with an unbroken history. The 'catacombs' cut into the rock above the cemetery were probably not tombs at all, but early Christian places to meet and pray. The cemetery also inspired a scene in The Sound of Music.",
+      "facts": [
+        {
+          "value": "696",
+          "label": "founded by St Rupert"
+        },
+        {
+          "value": "Oldest",
+          "label": "monastery, unbroken"
+        },
+        {
+          "value": "Catacombs",
+          "label": "in the cliff"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Des grottes dans la falaise",
+      "place": "Abbaye et cimetière Saint-Pierre",
+      "era": "696",
+      "hook": "Entrez dans le cimetière Saint-Pierre, entre les tombes en fer forgé, jusqu'à la paroi rocheuse du Mönchsberg. Levez les yeux vers les ouvertures de la falaise.",
+      "challenge": "Qu'a-t-on creusé dans la falaise au-dessus du cimetière ?",
+      "hints": [
+        "Il y a des portes, des fenêtres et des escaliers dans la roche.",
+        "Le panneau de l'entrée les appelle « Katakomben »."
+      ],
+      "story": "Saint Rupert fonda l'abbaye Saint-Pierre vers 696 : c'est le plus ancien monastère du monde germanophone à l'histoire ininterrompue. Les « catacombes » creusées dans la roche au-dessus du cimetière n'étaient sans doute pas des tombes, mais des lieux de réunion et de prière des premiers chrétiens. Le cimetière a aussi inspiré une scène de La Mélodie du bonheur.",
+      "facts": [
+        {
+          "value": "696",
+          "label": "fondée par saint Rupert"
+        },
+        {
+          "value": "Le plus ancien",
+          "label": "monastère ininterrompu"
+        },
+        {
+          "value": "Catacombes",
+          "label": "dans la falaise"
+        }
+      ]
+    },
+    "es": {
+      "title": "Cuevas en el acantilado",
+      "place": "Abadía y cementerio de San Pedro",
+      "era": "696",
+      "hook": "Entra en el cementerio de San Pedro, entre tumbas de hierro forjado, hasta la pared de roca del Mönchsberg. Mira hacia arriba, a las aberturas del acantilado.",
+      "challenge": "¿Qué se ha excavado en el acantilado sobre el cementerio?",
+      "hints": [
+        "Hay puertas, ventanas y escaleras en la roca.",
+        "El cartel de la entrada las llama «Katakomben»."
+      ],
+      "story": "San Ruperto fundó la abadía de San Pedro hacia el año 696: es el monasterio más antiguo del mundo germanohablante con una historia ininterrumpida. Las «catacumbas» excavadas en la roca sobre el cementerio probablemente no eran tumbas, sino lugares de reunión y oración de los primeros cristianos. El cementerio también inspiró una escena de Sonrisas y lágrimas.",
+      "facts": [
+        {
+          "value": "696",
+          "label": "fundada por san Ruperto"
+        },
+        {
+          "value": "El más antiguo",
+          "label": "monasterio ininterrumpido"
+        },
+        {
+          "value": "Catacumbas",
+          "label": "en el acantilado"
+        }
+      ]
+    },
+    "ar": {
+      "title": "كهوف في الجرف",
+      "place": "دير القديس بطرس ومقبرته",
+      "era": "696",
+      "hook": "ادخل مقبرة القديس بطرس بين القبور ذات الحديد المشغول حتى الجدار الصخري لتل مونخسبرغ. ارفع عينيك إلى الفتحات في الجرف.",
+      "challenge": "ما الذي نُحت في الجرف فوق المقبرة؟",
+      "hints": [
+        "في الصخر أبواب ونوافذ وسلالم.",
+        "اللافتة عند المدخل تسمّيها «كاتاكومبن»."
+      ],
+      "story": "أسّس القديس روبرت دير القديس بطرس نحو سنة 696، وهو أقدم دير في العالم الناطق بالألمانية بتاريخ متصل لم ينقطع. و«السراديب» المنحوتة في الصخر فوق المقبرة لم تكن على الأرجح قبورًا، بل أماكن اجتماع وصلاة للمسيحيين الأوائل. وقد ألهمت المقبرة أيضًا مشهدًا في فيلم «صوت الموسيقى».",
+      "facts": [
+        {
+          "value": "696",
+          "label": "أسسه القديس روبرت"
+        },
+        {
+          "value": "الأقدم",
+          "label": "دير بتاريخ متصل"
+        },
+        {
+          "value": "السراديب",
+          "label": "في الجرف"
+        }
+      ]
+    }
+  }
+}

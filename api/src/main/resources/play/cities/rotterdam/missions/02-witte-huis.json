@@ -1,0 +1,145 @@
+{
+  "id": "rotterdam-witte-huis",
+  "lat": 51.91883,
+  "lng": 4.49175,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "skyscraper",
+    "high rise",
+    "highrise",
+    "high rise building",
+    "tall building",
+    "tower block",
+    "hoogbouw",
+    "office tower",
+    "gratte-ciel",
+    "gratte ciel",
+    "immeuble de grande hauteur",
+    "rascacielos",
+    "edificio alto",
+    "ناطحة سحاب",
+    "ناطحة السحاب",
+    "برج"
+  ],
+  "rubric": "Correct if the player says a skyscraper / high-rise.",
+  "sources": [
+    {
+      "label": "Witte Huis — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Witte_Huis"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-witte-huis.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_Het_Witte_Huis_1900.jpg",
+    "author": "Wikimedia Commons",
+    "license": "Public domain"
+  },
+  "text": {
+    "en": {
+      "title": "The skyscraper that survived",
+      "place": "Witte Huis (White House)",
+      "era": "1898",
+      "hook": "Find the white Art Nouveau tower by the Oude Haven, with little turrets on its roof.",
+      "challenge": "When it was built, it was the first building of its kind in Europe. What kind?",
+      "hints": [
+        "Count its floors and compare it with the buildings of 1898.",
+        "Today we'd call it a ten-storey tower."
+      ],
+      "story": "The Witte Huis was finished in 1898. At about 43 metres and ten floors, it's often called Europe's first skyscraper — a 'hoogbouw' modelled on American office towers. In May 1940 it was one of the few buildings in central Rotterdam to survive the bombing, which is why it now looks so much older than its neighbours.",
+      "facts": [
+        {
+          "value": "1898",
+          "label": "built"
+        },
+        {
+          "value": "~43 m",
+          "label": "ten floors"
+        },
+        {
+          "value": "Survived",
+          "label": "the 1940 bombs"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le gratte-ciel qui a survécu",
+      "place": "Witte Huis (Maison blanche)",
+      "era": "1898",
+      "hook": "Trouvez la tour blanche Art nouveau près de l'Oude Haven, avec de petites tourelles sur le toit.",
+      "challenge": "À sa construction, ce fut le premier bâtiment de son genre en Europe. Lequel ?",
+      "hints": [
+        "Comptez ses étages et comparez avec les bâtiments de 1898.",
+        "Aujourd'hui, on parlerait d'une tour de dix étages."
+      ],
+      "story": "Le Witte Huis fut achevé en 1898. Avec environ 43 mètres et dix étages, on l'appelle souvent le premier gratte-ciel d'Europe — un « hoogbouw » inspiré des tours de bureaux américaines. En mai 1940, ce fut l'un des rares bâtiments du centre à survivre au bombardement, d'où son air bien plus ancien que ses voisins.",
+      "facts": [
+        {
+          "value": "1898",
+          "label": "construction"
+        },
+        {
+          "value": "~43 m",
+          "label": "dix étages"
+        },
+        {
+          "value": "Survivant",
+          "label": "des bombes de 1940"
+        }
+      ]
+    },
+    "es": {
+      "title": "El rascacielos que sobrevivió",
+      "place": "Witte Huis (Casa Blanca)",
+      "era": "1898",
+      "hook": "Busca la torre blanca modernista junto al Oude Haven, con pequeños torreones en el tejado.",
+      "challenge": "Cuando se construyó fue el primer edificio de su tipo en Europa. ¿De qué tipo?",
+      "hints": [
+        "Cuenta sus plantas y compáralo con los edificios de 1898.",
+        "Hoy lo llamaríamos una torre de diez plantas."
+      ],
+      "story": "El Witte Huis se terminó en 1898. Con unos 43 metros y diez plantas, se le suele llamar el primer rascacielos de Europa: un «hoogbouw» inspirado en las torres de oficinas estadounidenses. En mayo de 1940 fue uno de los pocos edificios del centro que sobrevivió al bombardeo, por eso parece mucho más antiguo que sus vecinos.",
+      "facts": [
+        {
+          "value": "1898",
+          "label": "construcción"
+        },
+        {
+          "value": "~43 m",
+          "label": "diez plantas"
+        },
+        {
+          "value": "Sobrevivió",
+          "label": "a las bombas de 1940"
+        }
+      ]
+    },
+    "ar": {
+      "title": "ناطحة السحاب التي نجت",
+      "place": "البيت الأبيض (ڤيته هاوس)",
+      "era": "1898",
+      "hook": "ابحث عن البرج الأبيض بطراز الفن الجديد قرب الميناء القديم، وعلى سطحه أبراج صغيرة.",
+      "challenge": "حين بُني كان أول مبنى من نوعه في أوروبا. من أي نوع؟",
+      "hints": [
+        "عُدّ طوابقه وقارنه بمباني سنة 1898.",
+        "اليوم نسمّيه برجًا من عشرة طوابق."
+      ],
+      "story": "اكتمل «البيت الأبيض» سنة 1898. بارتفاع نحو 43 مترًا وعشرة طوابق، كثيرًا ما يُسمّى أول ناطحة سحاب في أوروبا — مبنى عالٍ على طراز أبراج المكاتب الأمريكية. وفي مايو 1940 كان من المباني القليلة في المركز التي نجت من القصف، ولهذا يبدو أقدم بكثير من جيرانه.",
+      "facts": [
+        {
+          "value": "1898",
+          "label": "البناء"
+        },
+        {
+          "value": "~43 م",
+          "label": "عشرة طوابق"
+        },
+        {
+          "value": "نجا",
+          "label": "من قنابل 1940"
+        }
+      ]
+    }
+  }
+}

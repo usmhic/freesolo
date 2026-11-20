@@ -13,7 +13,6 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
-import tools.jackson.databind.json.JsonMapper;
 
 import java.util.List;
 
@@ -30,48 +29,40 @@ class PlayServiceTest {
     @Mock LessonProgressRepository progressRepository;
     @Mock CityUnlockRepository unlockRepository;
 
-    static final List<Source> SRC = List.of(new Source("s", "https://example.org"));
-    static LessonContent lesson(String id, double lat, double lng, boolean free) {
-        return new LessonContent(id, id, id, lat, lng, "era", 10, 200, free, "hook", "challenge", List.of("yes"),
-                "rubric", List.of("h1", "h2"), "story " + id, SRC, List.of(new Fact("1886", "opened")), null);
-    }
-    static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null, List.of(
-            lesson("far", 0, 0.03, true), lesson("near", 0, 0.01, true), lesson("mid", 0, 0.02, false)));
-
     PlayService service;
 
     @BeforeEach
     void setUp() {
-        service = new PlayService(new PlayContent(List.of(TOWN)), judge, routingService, progressRepository, unlockRepository);
-        lenient().when(judge.judge(any(), any(), any())).thenReturn(new AnswerJudge.Verdict(true, "Spot on!", "match"));
+        service = new PlayService(PlayFixtures.town(), judge, routingService, progressRepository, unlockRepository);
+        lenient().when(judge.judge(any(), any(), any(), any())).thenReturn(new AnswerJudge.Verdict(true, "Spot on!", "match"));
     }
 
     @Test
     void packLessonsAreLockedUntilTheCityIsUnlocked() {
-        assertThatThrownBy(() -> service.lesson(null, "mid"))
+        assertThatThrownBy(() -> service.lesson(null, "town-mid", "en"))
                 .isInstanceOf(ApiException.class)
                 .satisfies(e -> assertThat(((ApiException) e).getStatus()).isEqualTo(HttpStatus.FORBIDDEN));
 
         when(unlockRepository.findByUserId("ana")).thenReturn(List.of(CityUnlock.builder().userId("ana").cityId("town").build()));
-        assertThat(service.lesson("ana", "mid").card().locked()).isFalse();
+        assertThat(service.lesson("ana", "town-mid", "en").card().locked()).isFalse();
     }
 
     @Test
     void aCorrectAnswerSavesStardustOnceForASignedInPlayer() {
-        var result = service.attempt("ana", "near", new AttemptRequest("yes", null, 1));
+        var result = service.attempt("ana", "town-near", new AttemptRequest("yes", null, 1), "en");
 
         assertThat(result.correct()).isTrue();
-        assertThat(result.story()).isEqualTo("story near");
+        assertThat(result.story()).isEqualTo("story town-near en");
         assertThat(result.facts()).extracting(Fact::value).containsExactly("1886");
         assertThat(result.stardustEarned()).isEqualTo(160); // 200 points, one hint costs a fifth
         var saved = ArgumentCaptor.forClass(LessonProgress.class);
         verify(progressRepository).saveAndFlush(saved.capture());
-        assertThat(saved.getValue().getLessonId()).isEqualTo("near");
+        assertThat(saved.getValue().getLessonId()).isEqualTo("town-near");
         assertThat(saved.getValue().getCityId()).isEqualTo("town");
 
         when(progressRepository.findByUserIdOrderBySolvedAtDesc("ana")).thenReturn(List.of(
-                LessonProgress.builder().userId("ana").lessonId("near").cityId("town").stardust(160).build()));
-        var again = service.attempt("ana", "near", new AttemptRequest("yes", null, 0));
+                LessonProgress.builder().userId("ana").lessonId("town-near").cityId("town").stardust(160).build()));
+        var again = service.attempt("ana", "town-near", new AttemptRequest("yes", null, 0), "en");
         assertThat(again.alreadySolved()).isTrue();
         assertThat(again.stardustEarned()).isZero();
         verify(progressRepository, times(1)).saveAndFlush(any());
@@ -79,7 +70,7 @@ class PlayServiceTest {
 
     @Test
     void aGuestEarnsStardustWithoutAnythingSaved() {
-        var result = service.attempt(null, "near", new AttemptRequest("yes", null, 0));
+        var result = service.attempt(null, "town-near", new AttemptRequest("yes", null, 0), "en");
 
         assertThat(result.stardustEarned()).isEqualTo(200);
         assertThat(result.player()).isNull();
@@ -88,9 +79,9 @@ class PlayServiceTest {
 
     @Test
     void aWrongAnswerRevealsNothing() {
-        when(judge.judge(any(), any(), any())).thenReturn(new AnswerJudge.Verdict(false, "Look again", "match"));
+        when(judge.judge(any(), any(), any(), any())).thenReturn(new AnswerJudge.Verdict(false, "Look again", "match"));
 
-        var result = service.attempt(null, "near", new AttemptRequest("no", null, 0));
+        var result = service.attempt(null, "town-near", new AttemptRequest("no", null, 0), "en");
 
         assertThat(result.correct()).isFalse();
         assertThat(result.story()).isNull();
@@ -102,11 +93,11 @@ class PlayServiceTest {
     void journeysWalkNearestFirstAndSplitAcrossDays() {
         when(routingService.route(eq("foot-walking"), anyList())).thenThrow(ApiException.unavailable("no route"));
 
-        var journey = service.journey(null, new JourneyRequest("town", "2026-12-01", 2));
+        var journey = service.journey(null, new JourneyRequest("town", "2026-12-01", 2), "en");
 
         assertThat(journey.days()).hasSize(2);
-        assertThat(journey.days().get(0).lessons()).extracting(LessonCard::id).containsExactly("near", "mid");
-        assertThat(journey.days().get(1).lessons()).extracting(LessonCard::id).containsExactly("far");
+        assertThat(journey.days().get(0).lessons()).extracting(LessonCard::id).containsExactly("town-near", "town-mid");
+        assertThat(journey.days().get(1).lessons()).extracting(LessonCard::id).containsExactly("town-far");
         assertThat(journey.route()).isNull();
     }
 
@@ -123,23 +114,12 @@ class PlayServiceTest {
     }
 
     @Test
-    void theShippedCityContentLoadsAndIsValid() throws Exception {
-        var content = new PlayContent(JsonMapper.builder().build());
-
-        assertThat(content.cities()).extracting(CityContent::id)
-                .containsExactly("tangier", "porto", "cordoba", "rotterdam", "salzburg");
-        assertThat(content.cities()).allSatisfy(c -> assertThat(c.lessons()).hasSizeGreaterThanOrEqualTo(6));
-        assertThat(content.cities().stream().flatMap(c -> c.lessons().stream())).allSatisfy(l -> {
-            assertThat(l.sources()).isNotEmpty();
-            assertThat(l.accepted()).isNotEmpty();
-        });
-    }
-
-    @Test
-    void invalidContentIsRejected() {
-        var noSources = new LessonContent("xx", "x", "x", 0, 0, "e", 1, 100, true, "h", "c", List.of("a"), "r", List.of(),
-                "s", List.of(), null, null);
-        assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null,
-                List.of(noSources))))).isInstanceOf(IllegalStateException.class).hasMessageContaining("cites a source");
+    void contentAndLockedMessagesFollowTheLanguage() {
+        assertThat(service.lesson(null, "town-near", "fr").card().title()).isEqualTo("town-near (fr)");
+        assertThatThrownBy(() -> service.lesson(null, "town-mid", "es"))
+                .isInstanceOf(ApiException.class).hasMessageContaining("Desbloquea");
+        var result = service.attempt(null, "town-near", new AttemptRequest("yes", null, 0), "ar");
+        assertThat(result.story()).isEqualTo("story town-near ar");
+        verify(judge).judge(any(), eq("yes"), isNull(), eq("ar"));
     }
 }

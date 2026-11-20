@@ -37,37 +37,38 @@ public class PlayService {
         return StarRanks.all();
     }
 
-    public List<CitySummary> cities(String userId) {
+    public List<CitySummary> cities(String userId, String lang) {
         Progress p = progress(userId);
-        return content.cities().stream().map(c -> summary(c, p)).toList();
+        return content.cities(lang).stream().map(c -> summary(c, p)).toList();
     }
 
-    public CityView city(String userId, String cityId) {
-        CityContent c = content.city(cityId);
+    public CityView city(String userId, String cityId, String lang) {
+        CityContent c = content.city(cityId, lang);
         Progress p = progress(userId);
         return new CityView(summary(c, p), c.lessons().stream().map(l -> card(l, c.id(), p)).toList());
     }
 
-    public LessonView lesson(String userId, String lessonId) {
-        LessonContent l = content.lesson(lessonId);
+    public LessonView lesson(String userId, String lessonId, String lang) {
+        LessonContent l = content.lesson(lessonId, lang);
         String cityId = content.cityOf(lessonId);
+        String cityName = content.city(cityId, lang).name();
         Progress p = progress(userId);
         LessonCard card = card(l, cityId, p);
-        if (card.locked()) throw ApiException.forbidden("Unlock the " + content.city(cityId).name() + " pack to play this lesson");
-        return new LessonView(card, cityId, content.city(cityId).name(), l.challenge(), l.hints(), judge.aiEnabled());
+        if (card.locked()) throw ApiException.forbidden(PlayMessages.get(lang, PlayMessages.PACK_LOCKED, cityName));
+        return new LessonView(card, cityId, cityName, l.challenge(), l.hints(), judge.aiEnabled());
     }
 
     @Transactional
-    public AttemptResult attempt(String userId, String lessonId, AttemptRequest req) {
-        LessonContent l = content.lesson(lessonId);
+    public AttemptResult attempt(String userId, String lessonId, AttemptRequest req, String lang) {
+        LessonContent l = content.lesson(lessonId, lang);
         String cityId = content.cityOf(lessonId);
         Progress before = progress(userId);
         if (card(l, cityId, before).locked()) {
-            throw ApiException.forbidden("Unlock the " + content.city(cityId).name() + " pack to play this lesson");
+            throw ApiException.forbidden(PlayMessages.get(lang, PlayMessages.PACK_LOCKED, content.city(cityId, lang).name()));
         }
         int hints = Math.min(Math.max(req.hintsUsed(), 0), l.hints().size());
 
-        AnswerJudge.Verdict verdict = judge.judge(l, req.answer(), req.photo());
+        AnswerJudge.Verdict verdict = judge.judge(l, req.answer(), req.photo(), lang);
         if (!verdict.correct()) {
             return new AttemptResult(false, verdict.feedback(), verdict.judgedBy(), null, null, null, 0, false,
                     userId == null ? null : player(userId));
@@ -92,12 +93,12 @@ public class PlayService {
 
     /** Pilot: unlocking a city pack is free while payments aren't built. */
     @Transactional
-    public CityView unlock(String userId, String cityId) {
-        content.city(cityId);
+    public CityView unlock(String userId, String cityId, String lang) {
+        content.city(cityId, lang);
         if (!unlockRepository.existsByUserIdAndCityId(userId, cityId)) {
             unlockRepository.save(CityUnlock.builder().userId(userId).cityId(cityId).build());
         }
-        return city(userId, cityId);
+        return city(userId, cityId, lang);
     }
 
     public PlayerView player(String userId) {
@@ -112,8 +113,8 @@ public class PlayService {
      * Orders a city's lessons into a walk (nearest next stop, starting from the
      * one closest to the centre) and splits it evenly over the days of the trip.
      */
-    public JourneyView journey(String userId, JourneyRequest req) {
-        CityContent c = content.city(req.cityId());
+    public JourneyView journey(String userId, JourneyRequest req, String lang) {
+        CityContent c = content.city(req.cityId(), lang);
         Progress p = progress(userId);
         List<LessonContent> order = walkingOrder(c);
         int days = Math.min(Math.max(req.days(), 1), order.size());

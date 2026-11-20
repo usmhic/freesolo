@@ -1,0 +1,140 @@
+{
+  "id": "rotterdam-hotel-new-york",
+  "lat": 51.90417,
+  "lng": 4.48417,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "new york",
+    "new york city",
+    "nyc",
+    "ny",
+    "nueva york",
+    "نيويورك",
+    "نيو يورك"
+  ],
+  "rubric": "Correct if the player says New York.",
+  "sources": [
+    {
+      "label": "Hotel New York (Rotterdam) — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hotel_New_York_(Rotterdam)"
+    },
+    {
+      "label": "Hotel New York fact sheet — Holland America Line",
+      "url": "https://www.hollandamerica.com/content/dam/hal/inventory-assets/newsroom/presskits/History/hotel-new-york-fact-sheet-final-ada.pdf"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-hotel-new-york.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_hotel_newyork.jpg",
+    "author": "F.Eveleens",
+    "license": "CC BY 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "The building of goodbyes",
+      "place": "Hotel New York, Wilhelminapier",
+      "era": "1901–1977",
+      "hook": "At the tip of the Wilhelminapier, find the building with two copper-green towers — once the head office of a famous shipping line.",
+      "challenge": "Most ships that left from here sailed to one city — today it's the building's name. Which city?",
+      "hints": [
+        "Read the big letters on the roof.",
+        "It's America's biggest city."
+      ],
+      "story": "From 1901 this was the head office of the Holland America Line. For decades, emigrants from all over Europe spent their last night nearby before boarding ships to New York; the line carried close to two million people to new lives across the Atlantic. The company moved its head office to Seattle in 1977, and in 1993 the building reopened as Hotel New York.",
+      "facts": [
+        {
+          "value": "1901",
+          "label": "Holland America Line HQ"
+        },
+        {
+          "value": "~2 million",
+          "label": "passengers"
+        },
+        {
+          "value": "1993",
+          "label": "becomes a hotel"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le bâtiment des adieux",
+      "place": "Hotel New York, Wilhelminapier",
+      "era": "1901–1977",
+      "hook": "Au bout de la Wilhelminapier, trouvez le bâtiment aux deux tours vert-de-gris — autrefois le siège d'une célèbre compagnie maritime.",
+      "challenge": "La plupart des navires partant d'ici allaient vers une ville — qui donne aujourd'hui son nom au bâtiment. Laquelle ?",
+      "hints": [
+        "Lisez les grandes lettres sur le toit.",
+        "C'est la plus grande ville d'Amérique."
+      ],
+      "story": "À partir de 1901, ce fut le siège de la Holland America Line. Pendant des décennies, des émigrants venus de toute l'Europe passaient tout près leur dernière nuit avant d'embarquer pour New York ; la compagnie emmena près de deux millions de personnes vers une nouvelle vie de l'autre côté de l'Atlantique. Le siège déménagea à Seattle en 1977, et le bâtiment rouvrit en 1993 sous le nom d'Hotel New York.",
+      "facts": [
+        {
+          "value": "1901",
+          "label": "siège de la Holland America Line"
+        },
+        {
+          "value": "~2 millions",
+          "label": "de passagers"
+        },
+        {
+          "value": "1993",
+          "label": "devient un hôtel"
+        }
+      ]
+    },
+    "es": {
+      "title": "El edificio de las despedidas",
+      "place": "Hotel New York, Wilhelminapier",
+      "era": "1901–1977",
+      "hook": "En la punta del Wilhelminapier, busca el edificio con dos torres de cobre verde: antigua sede de una famosa naviera.",
+      "challenge": "La mayoría de los barcos que salían de aquí iban a una ciudad, que hoy da nombre al edificio. ¿Cuál?",
+      "hints": [
+        "Lee las grandes letras del tejado.",
+        "Es la ciudad más grande de Estados Unidos."
+      ],
+      "story": "Desde 1901 fue la sede de la Holland America Line. Durante décadas, emigrantes de toda Europa pasaban cerca su última noche antes de embarcar hacia Nueva York; la naviera llevó a casi dos millones de personas a una nueva vida al otro lado del Atlántico. La sede se trasladó a Seattle en 1977, y en 1993 el edificio reabrió como Hotel New York.",
+      "facts": [
+        {
+          "value": "1901",
+          "label": "sede de la Holland America Line"
+        },
+        {
+          "value": "~2 millones",
+          "label": "de pasajeros"
+        },
+        {
+          "value": "1993",
+          "label": "se hace hotel"
+        }
+      ]
+    },
+    "ar": {
+      "title": "مبنى الوداع",
+      "place": "فندق نيويورك، رصيف فيلهلمينا",
+      "era": "1901–1977",
+      "hook": "في طرف رصيف فيلهلمينا ابحث عن المبنى ذي البرجين النحاسيين الأخضرين — كان مقرًا لشركة ملاحة شهيرة.",
+      "challenge": "أغلب السفن التي غادرت من هنا اتجهت إلى مدينة — هي اليوم اسم المبنى. ما هي؟",
+      "hints": [
+        "اقرأ الحروف الكبيرة على السطح.",
+        "إنها أكبر مدينة في أمريكا."
+      ],
+      "story": "منذ 1901 كان هذا المبنى مقر شركة «هولندا أمريكا لاين». ولعقود، كان مهاجرون من أنحاء أوروبا يقضون ليلتهم الأخيرة قربه قبل الإبحار إلى نيويورك، وقد حملت الشركة قرابة مليوني شخص إلى حياة جديدة عبر الأطلسي. انتقل المقر إلى سياتل سنة 1977، وأُعيد افتتاح المبنى سنة 1993 باسم «فندق نيويورك».",
+      "facts": [
+        {
+          "value": "1901",
+          "label": "مقر هولندا أمريكا لاين"
+        },
+        {
+          "value": "~2 مليون",
+          "label": "مسافر"
+        },
+        {
+          "value": "1993",
+          "label": "تحوّله إلى فندق"
+        }
+      ]
+    }
+  }
+}

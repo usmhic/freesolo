@@ -1,0 +1,144 @@
+{
+  "id": "rotterdam-erasmus-bridge",
+  "lat": 51.90917,
+  "lng": 4.48667,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "swan",
+    "the swan",
+    "zwaan",
+    "de zwaan",
+    "cygne",
+    "le cygne",
+    "cisne",
+    "el cisne",
+    "بجعة",
+    "البجعة",
+    "بجعه"
+  ],
+  "rubric": "Correct if the player says a swan.",
+  "sources": [
+    {
+      "label": "The best of Rotterdam's architecture — Culture Trip",
+      "url": "https://theculturetrip.com/articles/stunning-structures-the-best-of-rotterdam-s-architecture"
+    },
+    {
+      "label": "Erasmusbrug — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Erasmusbrug"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-erasmus-bridge.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Erasmusbrug,_September_2019.jpg",
+    "author": "Martin Falbisoner",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The Swan",
+      "place": "Erasmus Bridge",
+      "era": "1996",
+      "hook": "Walk onto the white bridge with the tall, bent pylon and its fan of cables.",
+      "challenge": "Locals gave the bridge an animal nickname because of its shape. What animal?",
+      "hints": [
+        "Look at the pylon from the side: long white neck, bent head.",
+        "It's a white water bird."
+      ],
+      "story": "Designed by Ben van Berkel and opened in 1996, the Erasmus Bridge links the old centre to the south bank. Its bent white pylon looks like the neck of a swan — hence 'De Zwaan'. The bridge helped turn Kop van Zuid, a run-down harbour district, into a new part of the city.",
+      "facts": [
+        {
+          "value": "1996",
+          "label": "opened"
+        },
+        {
+          "value": "The Swan",
+          "label": "nickname"
+        },
+        {
+          "value": "Van Berkel",
+          "label": "architect"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le Cygne",
+      "place": "Pont Érasme",
+      "era": "1996",
+      "hook": "Avancez sur le pont blanc au grand pylône coudé et à l'éventail de câbles.",
+      "challenge": "Les habitants lui ont donné un surnom d'animal à cause de sa forme. Lequel ?",
+      "hints": [
+        "Regardez le pylône de profil : long cou blanc, tête penchée.",
+        "C'est un oiseau aquatique blanc."
+      ],
+      "story": "Conçu par Ben van Berkel et inauguré en 1996, le pont Érasme relie le vieux centre à la rive sud. Son pylône blanc coudé évoque le cou d'un cygne — d'où son surnom, « De Zwaan ». Le pont a aidé à transformer Kop van Zuid, un quartier portuaire délaissé, en nouveau morceau de ville.",
+      "facts": [
+        {
+          "value": "1996",
+          "label": "inauguration"
+        },
+        {
+          "value": "Le Cygne",
+          "label": "surnom"
+        },
+        {
+          "value": "Van Berkel",
+          "label": "architecte"
+        }
+      ]
+    },
+    "es": {
+      "title": "El Cisne",
+      "place": "Puente Erasmus",
+      "era": "1996",
+      "hook": "Sal al puente blanco con el alto pilono doblado y su abanico de cables.",
+      "challenge": "Los vecinos le pusieron un apodo de animal por su forma. ¿Qué animal?",
+      "hints": [
+        "Mira el pilono de perfil: cuello largo y blanco, cabeza inclinada.",
+        "Es un ave acuática blanca."
+      ],
+      "story": "Diseñado por Ben van Berkel e inaugurado en 1996, el puente Erasmus une el centro antiguo con la orilla sur. Su pilono blanco doblado recuerda el cuello de un cisne; de ahí el apodo «De Zwaan». El puente ayudó a convertir Kop van Zuid, un barrio portuario venido a menos, en una nueva parte de la ciudad.",
+      "facts": [
+        {
+          "value": "1996",
+          "label": "inauguración"
+        },
+        {
+          "value": "El Cisne",
+          "label": "apodo"
+        },
+        {
+          "value": "Van Berkel",
+          "label": "arquitecto"
+        }
+      ]
+    },
+    "ar": {
+      "title": "البجعة",
+      "place": "جسر إيراسموس",
+      "era": "1996",
+      "hook": "سِر على الجسر الأبيض ذي الصارية العالية المنحنية ومروحة الكابلات.",
+      "challenge": "أطلق عليه السكان لقب حيوان بسبب شكله. أيّ حيوان؟",
+      "hints": [
+        "انظر إلى الصارية من الجانب: عنق أبيض طويل ورأس منحنٍ.",
+        "إنه طائر مائي أبيض."
+      ],
+      "story": "صمّم جسرَ إيراسموس بن فان بيركل وافتُتح سنة 1996، ويصل المركز القديم بالضفة الجنوبية. تشبه صاريته البيضاء المنحنية عنق بجعة — ومن هنا لقبه «البجعة». وقد ساعد الجسر على تحويل كوب فان زاود، وهو حي ميناء مهمل، إلى جزء جديد من المدينة.",
+      "facts": [
+        {
+          "value": "1996",
+          "label": "الافتتاح"
+        },
+        {
+          "value": "البجعة",
+          "label": "اللقب"
+        },
+        {
+          "value": "فان بيركل",
+          "label": "المهندس"
+        }
+      ]
+    }
+  }
+}

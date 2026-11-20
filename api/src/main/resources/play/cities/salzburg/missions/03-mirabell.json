@@ -1,0 +1,142 @@
+{
+  "id": "salzburg-mirabell",
+  "lat": 47.80556,
+  "lng": 13.04194,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "pegasus",
+    "pegaso",
+    "pegasos",
+    "pegase",
+    "pégase",
+    "بيغاسوس",
+    "بيجاسوس",
+    "الحصان المجنح",
+    "حصان مجنح"
+  ],
+  "rubric": "Correct if the player says Pegasus.",
+  "sources": [
+    {
+      "label": "Mirabell Palace & Gardens — Salzburg tourism",
+      "url": "https://salzburg.info/en/sights/top10/mirabell-palace-gardens"
+    },
+    {
+      "label": "Schloss Mirabell — Lonely Planet",
+      "url": "https://www.lonelyplanet.com/austria/salzburg/attractions/schloss-mirabell/a/poi-sig/425387/358606"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-mirabell.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Palatul_Mirabell1.jpg",
+    "author": "Cezar Suceveanu",
+    "license": "CC BY-SA 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "A palace built for love",
+      "place": "Mirabell Palace and Gardens",
+      "era": "1606",
+      "hook": "Walk into the Mirabell Gardens and find the fountain with a winged horse rearing up in the middle.",
+      "challenge": "Which winged horse from Greek myth is the statue?",
+      "hints": [
+        "A winged horse from Greek myth.",
+        "Its name starts with 'Peg…'."
+      ],
+      "story": "Prince-Archbishop Wolf Dietrich von Raitenau built this palace around 1606 for Salome Alt, the woman he loved and the mother of his many children — around fifteen. When he fell from power in 1612, his successor threw her out and renamed the palace Mirabell: 'wonderful and beautiful'. The copper Pegasus dates from 1661. In The Sound of Music, Maria and the children dance around it singing 'Do-Re-Mi'.",
+      "facts": [
+        {
+          "value": "1606",
+          "label": "built for Salome Alt"
+        },
+        {
+          "value": "~15",
+          "label": "children"
+        },
+        {
+          "value": "1661",
+          "label": "the Pegasus"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Un palais bâti par amour",
+      "place": "Château et jardins Mirabell",
+      "era": "1606",
+      "hook": "Entrez dans les jardins Mirabell et trouvez la fontaine où un cheval ailé se cabre au centre.",
+      "challenge": "Quel cheval ailé de la mythologie grecque représente la statue ?",
+      "hints": [
+        "Un cheval ailé de la mythologie grecque.",
+        "Son nom commence par « Pég… »."
+      ],
+      "story": "Vers 1606, le prince-archevêque Wolf Dietrich von Raitenau fit bâtir ce palais pour Salomé Alt, la femme qu'il aimait et la mère de ses nombreux enfants — une quinzaine. Quand il perdit le pouvoir en 1612, son successeur la chassa et rebaptisa le palais Mirabell, « admirable et beau ». Le Pégase de cuivre date de 1661. Dans La Mélodie du bonheur, Maria et les enfants dansent autour en chantant « Do-Ré-Mi ».",
+      "facts": [
+        {
+          "value": "1606",
+          "label": "bâti pour Salomé Alt"
+        },
+        {
+          "value": "~15",
+          "label": "enfants"
+        },
+        {
+          "value": "1661",
+          "label": "le Pégase"
+        }
+      ]
+    },
+    "es": {
+      "title": "Un palacio construido por amor",
+      "place": "Palacio y jardines de Mirabell",
+      "era": "1606",
+      "hook": "Entra en los jardines de Mirabell y busca la fuente con un caballo alado encabritado en el centro.",
+      "challenge": "¿Qué caballo alado de la mitología griega es la estatua?",
+      "hints": [
+        "Un caballo alado de la mitología griega.",
+        "Su nombre empieza por «Peg…»."
+      ],
+      "story": "Hacia 1606, el príncipe-arzobispo Wolf Dietrich von Raitenau construyó este palacio para Salome Alt, la mujer a la que amaba y madre de sus muchos hijos, unos quince. Cuando perdió el poder en 1612, su sucesor la echó y rebautizó el palacio como Mirabell, «admirable y bello». El Pegaso de cobre es de 1661. En Sonrisas y lágrimas, María y los niños bailan a su alrededor cantando «Do-Re-Mi».",
+      "facts": [
+        {
+          "value": "1606",
+          "label": "construido para Salome Alt"
+        },
+        {
+          "value": "~15",
+          "label": "hijos"
+        },
+        {
+          "value": "1661",
+          "label": "el Pegaso"
+        }
+      ]
+    },
+    "ar": {
+      "title": "قصر بُني من أجل الحب",
+      "place": "قصر وحدائق ميرابيل",
+      "era": "1606",
+      "hook": "ادخل حدائق ميرابيل وابحث عن النافورة التي يقف في وسطها حصان مجنّح على قائمتيه الخلفيتين.",
+      "challenge": "ما اسم الحصان المجنّح من الأساطير الإغريقية الذي يمثّله التمثال؟",
+      "hints": [
+        "حصان مجنّح من الأساطير الإغريقية.",
+        "يبدأ اسمه بـ«بيغا…»."
+      ],
+      "story": "نحو سنة 1606 بنى الأمير الأسقف فولف ديتريش فون رايتيناو هذا القصر لسالومه ألت، المرأة التي أحبها وأمّ أولاده الكثيرين — نحو خمسة عشر. وحين فقد السلطة سنة 1612 طردها خليفته وأعاد تسمية القصر «ميرابيل»، أي «رائع وجميل». ويعود تمثال بيغاسوس النحاسي إلى سنة 1661. وفي فيلم «صوت الموسيقى» ترقص ماريا والأطفال حوله وهم يغنّون «دو ري مي».",
+      "facts": [
+        {
+          "value": "1606",
+          "label": "بُني لسالومه ألت"
+        },
+        {
+          "value": "~15",
+          "label": "ولدًا"
+        },
+        {
+          "value": "1661",
+          "label": "تمثال بيغاسوس"
+        }
+      ]
+    }
+  }
+}

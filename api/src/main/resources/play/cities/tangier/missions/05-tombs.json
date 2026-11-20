@@ -1,0 +1,151 @@
+{
+  "id": "tangier-tombs",
+  "lat": 35.7901,
+  "lng": -5.8193,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "tombs",
+    "tomb",
+    "graves",
+    "grave",
+    "burials",
+    "burial",
+    "sarcophagi",
+    "sarcophagus",
+    "coffins",
+    "necropolis",
+    "cemetery",
+    "tombes",
+    "tombe",
+    "tombeaux",
+    "sepultures",
+    "tumbas",
+    "tumba",
+    "sepulturas",
+    "قبور",
+    "قبر",
+    "مقابر",
+    "مقبرة"
+  ],
+  "rubric": "Correct if the player says they are tombs / graves / burials.",
+  "sources": [
+    {
+      "label": "Roman-Punic Necropolis — Atlas Obscura",
+      "url": "https://www.atlasobscura.com/places/roman-punic-necropolis"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-tombs.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:So-called_phoenician_tombs_in_Tangier_(43979).jpg",
+    "author": "Ideophagous",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "Graves cut into the cliff",
+      "place": "Phoenician tombs, Marshan",
+      "era": "2,000+ years ago",
+      "hook": "On the clifftop at Marshan, west of the Kasbah, there are strange rectangular hollows cut into the rock, facing the sea.",
+      "challenge": "What are those hollows carved into the rock?",
+      "hints": [
+        "They're about the size and shape of a person lying down.",
+        "This was a place for the dead."
+      ],
+      "story": "These are ancient tombs, cut into the rock more than two thousand years ago — around a hundred of them. Tangier began as a Phoenician trading post, Tingis, probably by the 8th century BC, and later became part of the Roman world. Its people buried their dead here, looking out over the strait that made the city rich.",
+      "facts": [
+        {
+          "value": "~100",
+          "label": "rock-cut tombs"
+        },
+        {
+          "value": "2,000+",
+          "label": "years old"
+        },
+        {
+          "value": "Tingis",
+          "label": "the ancient city"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Des tombes taillées dans la falaise",
+      "place": "Tombeaux phéniciens, Marshan",
+      "era": "il y a plus de 2 000 ans",
+      "hook": "Sur la falaise du Marshan, à l'ouest de la Kasbah, d'étranges creux rectangulaires sont taillés dans la roche, face à la mer.",
+      "challenge": "Que sont ces creux taillés dans la roche ?",
+      "hints": [
+        "Ils ont à peu près la taille et la forme d'une personne allongée.",
+        "C'était un lieu pour les morts."
+      ],
+      "story": "Ce sont des tombes antiques, taillées dans la roche il y a plus de deux mille ans — une centaine au total. Tanger est née comme comptoir phénicien, Tingis, sans doute dès le VIIIe siècle av. J.-C., avant d'entrer dans le monde romain. Ses habitants enterraient leurs morts ici, face au détroit qui fit la richesse de la ville.",
+      "facts": [
+        {
+          "value": "~100",
+          "label": "tombes taillées dans la roche"
+        },
+        {
+          "value": "2 000+",
+          "label": "ans"
+        },
+        {
+          "value": "Tingis",
+          "label": "la cité antique"
+        }
+      ]
+    },
+    "es": {
+      "title": "Tumbas talladas en el acantilado",
+      "place": "Tumbas fenicias, Marshan",
+      "era": "hace más de 2.000 años",
+      "hook": "En el acantilado de Marshan, al oeste de la Kasba, hay unos huecos rectangulares tallados en la roca, mirando al mar.",
+      "challenge": "¿Qué son esos huecos tallados en la roca?",
+      "hints": [
+        "Tienen más o menos el tamaño y la forma de una persona tumbada.",
+        "Era un lugar para los muertos."
+      ],
+      "story": "Son tumbas antiguas, talladas en la roca hace más de dos mil años: unas cien en total. Tánger nació como factoría fenicia, Tingis, probablemente ya en el siglo VIII a. C., y después formó parte del mundo romano. Sus habitantes enterraban aquí a sus muertos, frente al estrecho que hizo rica a la ciudad.",
+      "facts": [
+        {
+          "value": "~100",
+          "label": "tumbas talladas en la roca"
+        },
+        {
+          "value": "2.000+",
+          "label": "años"
+        },
+        {
+          "value": "Tingis",
+          "label": "la ciudad antigua"
+        }
+      ]
+    },
+    "ar": {
+      "title": "قبور منحوتة في الجرف",
+      "place": "المقابر الفينيقية، مرشان",
+      "era": "قبل أكثر من 2000 عام",
+      "hook": "على جرف مرشان غرب القصبة، تجد تجاويف مستطيلة غريبة منحوتة في الصخر، تطلّ على البحر.",
+      "challenge": "ما هذه التجاويف المنحوتة في الصخر؟",
+      "hints": [
+        "حجمها وشكلها تقريبًا بحجم إنسان مستلقٍ.",
+        "كان هذا مكانًا للموتى."
+      ],
+      "story": "إنها قبور قديمة نُحتت في الصخر قبل أكثر من ألفي عام — نحو مئة قبر. بدأت طنجة مركزًا تجاريًا فينيقيًا اسمه «تينجيس»، ربما منذ القرن الثامن قبل الميلاد، ثم صارت جزءًا من العالم الروماني. وكان أهلها يدفنون موتاهم هنا، قبالة المضيق الذي صنع ثروة المدينة.",
+      "facts": [
+        {
+          "value": "~100",
+          "label": "قبر منحوت في الصخر"
+        },
+        {
+          "value": "+2000",
+          "label": "عام"
+        },
+        {
+          "value": "تينجيس",
+          "label": "المدينة القديمة"
+        }
+      ]
+    }
+  }
+}

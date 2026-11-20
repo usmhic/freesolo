@@ -1,0 +1,134 @@
+{
+  "id": "salzburg-cathedral",
+  "lat": 47.79778,
+  "lng": 13.04694,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "774"
+  ],
+  "rubric": "Correct if the player says 774.",
+  "sources": [
+    {
+      "label": "Salzburg Cathedral — Salzburg tourism",
+      "url": "https://www.salzburg.info/en/sights/churches-cemeteries/salzburger-cathedral"
+    },
+    {
+      "label": "Salzburg Cathedral — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Salzburg_Cathedral"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-cathedral.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Cathedral_1.jpg",
+    "author": "Bede735c",
+    "license": "CC BY-SA 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "Three dates on the gates",
+      "place": "Salzburg Cathedral",
+      "era": "774–1959",
+      "hook": "Stand in front of the cathedral and look at the three iron gates in its marble front. Each one carries a year.",
+      "challenge": "The years mark the times the cathedral was consecrated. Which is the oldest?",
+      "hints": [
+        "Read the numbers on the wrought-iron gates.",
+        "It's a three-digit year."
+      ],
+      "story": "A cathedral has stood here since the 8th century; the first was consecrated in 774. After a fire, Prince-Archbishop Paris Lodron consecrated the Baroque cathedral you see in 1628. A bomb hit the dome in 1944, and the restored cathedral was consecrated again in 1959. Mozart was baptised here the day after he was born.",
+      "facts": [
+        {
+          "value": "774",
+          "label": "first consecration"
+        },
+        {
+          "value": "1628",
+          "label": "Baroque cathedral"
+        },
+        {
+          "value": "1959",
+          "label": "after war damage"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Trois dates sur les grilles",
+      "place": "Cathédrale de Salzbourg",
+      "era": "774–1959",
+      "hook": "Placez-vous devant la cathédrale et regardez les trois grilles de fer de sa façade de marbre. Chacune porte une année.",
+      "challenge": "Ces années marquent les consécrations de la cathédrale. Quelle est la plus ancienne ?",
+      "hints": [
+        "Lisez les chiffres sur les grilles en fer forgé.",
+        "C'est une année à trois chiffres."
+      ],
+      "story": "Une cathédrale se dresse ici depuis le VIIIe siècle ; la première fut consacrée en 774. Après un incendie, le prince-archevêque Paris Lodron consacra en 1628 la cathédrale baroque que vous voyez. Une bombe toucha la coupole en 1944, et la cathédrale restaurée fut à nouveau consacrée en 1959. Mozart y fut baptisé le lendemain de sa naissance.",
+      "facts": [
+        {
+          "value": "774",
+          "label": "première consécration"
+        },
+        {
+          "value": "1628",
+          "label": "cathédrale baroque"
+        },
+        {
+          "value": "1959",
+          "label": "après la guerre"
+        }
+      ]
+    },
+    "es": {
+      "title": "Tres fechas en las rejas",
+      "place": "Catedral de Salzburgo",
+      "era": "774–1959",
+      "hook": "Colócate frente a la catedral y mira las tres rejas de hierro de su fachada de mármol. Cada una lleva un año.",
+      "challenge": "Los años marcan las veces que se consagró la catedral. ¿Cuál es el más antiguo?",
+      "hints": [
+        "Lee los números de las rejas de hierro forjado.",
+        "Es un año de tres cifras."
+      ],
+      "story": "Aquí hay una catedral desde el siglo VIII; la primera se consagró en 774. Tras un incendio, el príncipe-arzobispo Paris Lodron consagró en 1628 la catedral barroca que ves. Una bomba alcanzó la cúpula en 1944, y la catedral restaurada se consagró de nuevo en 1959. Mozart fue bautizado aquí al día siguiente de nacer.",
+      "facts": [
+        {
+          "value": "774",
+          "label": "primera consagración"
+        },
+        {
+          "value": "1628",
+          "label": "catedral barroca"
+        },
+        {
+          "value": "1959",
+          "label": "tras la guerra"
+        }
+      ]
+    },
+    "ar": {
+      "title": "ثلاثة تواريخ على البوابات",
+      "place": "كاتدرائية سالزبورغ",
+      "era": "774–1959",
+      "hook": "قف أمام الكاتدرائية وانظر إلى البوابات الحديدية الثلاث في واجهتها الرخامية. على كل منها سنة.",
+      "challenge": "تشير السنوات إلى مرات تكريس الكاتدرائية. ما أقدمها؟",
+      "hints": [
+        "اقرأ الأرقام على البوابات الحديدية المشغولة.",
+        "إنها سنة من ثلاثة أرقام."
+      ],
+      "story": "تقوم هنا كاتدرائية منذ القرن الثامن، وكُرّست الأولى سنة 774. وبعد حريق، كرّس الأمير الأسقف باريس لودرون سنة 1628 الكاتدرائية الباروكية التي تراها. أصابت قنبلة القبة سنة 1944، وكُرّست الكاتدرائية المرمّمة من جديد سنة 1959. وفيها عُمّد موزارت في اليوم التالي لولادته.",
+      "facts": [
+        {
+          "value": "774",
+          "label": "التكريس الأول"
+        },
+        {
+          "value": "1628",
+          "label": "الكاتدرائية الباروكية"
+        },
+        {
+          "value": "1959",
+          "label": "بعد أضرار الحرب"
+        }
+      ]
+    }
+  }
+}

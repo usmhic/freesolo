@@ -1,0 +1,45 @@
+{
+  "id": "porto",
+  "order": 2,
+  "emoji": "🍷",
+  "colors": [
+    "#16457A",
+    "#E07A2F"
+  ],
+  "center": [
+    41.1441,
+    -8.6123
+  ],
+  "photo": {
+    "url": "/play/photos/city-porto.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Puente_Don_Luis_I,_Oporto,_Portugal,_2012-05-09,_DD_13.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 3.0"
+  },
+  "text": {
+    "en": {
+      "name": "Porto",
+      "country": "Portugal",
+      "tagline": "Tiles, bridges and a royal wedding on the Douro",
+      "intro": "Porto gave Portugal its name and Prince Henry the Navigator his birthplace. Climb its steep streets from the river to the tile-covered churches and you walk through eight centuries — a royal wedding, an Italian architect's tower, and a bridge from Eiffel's circle."
+    },
+    "fr": {
+      "name": "Porto",
+      "country": "Portugal",
+      "tagline": "Azulejos, ponts et un mariage royal sur le Douro",
+      "intro": "Porto a donné son nom au Portugal et vu naître Henri le Navigateur. Grimpez ses rues escarpées, du fleuve aux églises couvertes d'azulejos, et vous traversez huit siècles — un mariage royal, la tour d'un architecte italien et un pont né dans l'entourage d'Eiffel."
+    },
+    "es": {
+      "name": "Oporto",
+      "country": "Portugal",
+      "tagline": "Azulejos, puentes y una boda real junto al Duero",
+      "intro": "Oporto dio nombre a Portugal y vio nacer a Enrique el Navegante. Sube sus calles empinadas, del río a las iglesias cubiertas de azulejos, y recorrerás ocho siglos: una boda real, la torre de un arquitecto italiano y un puente salido del círculo de Eiffel."
+    },
+    "ar": {
+      "name": "بورتو",
+      "country": "البرتغال",
+      "tagline": "بلاط مزخرف وجسور وزفاف ملكي على نهر دورو",
+      "intro": "أعطت بورتو البرتغالَ اسمه، وفيها وُلد الأمير هنري الملاح. اصعد شوارعها المنحدرة من النهر إلى الكنائس المكسوّة بالبلاط المزخرف، وستعبر ثمانية قرون — زفاف ملكي، وبرج مهندس إيطالي، وجسر خرج من دائرة إيفل."
+    }
+  }
+}

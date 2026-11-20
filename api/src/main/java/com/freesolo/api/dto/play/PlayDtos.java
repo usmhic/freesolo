@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Map;
 
 /** Requests and responses for the city history game ({@code /api/play}). */
 public final class PlayDtos {
@@ -14,7 +15,7 @@ public final class PlayDtos {
     private PlayDtos() {
     }
 
-    // ── Curated content, as stored in play/cities/*.json ─────────────────────
+    // ── Content files (play/cities/<city>/city.json and missions/*.json) ────
 
     public record Source(String label, String url) {}
 
@@ -24,12 +25,32 @@ public final class PlayDtos {
     /** A key fact shown big after solving: {@code value} ("1886") over {@code label} ("opened"). */
     public record Fact(String value, String label) {}
 
-    public record LessonContent(String id, String title, String place, double lat, double lng, String era,
-                                int minutes, int points, boolean free, String hook, String challenge, List<String> accepted,
-                                String rubric, List<String> hints, String story, List<Source> sources,
-                                List<Fact> facts, Photo photo) {}
+    /** A city's words in one language. */
+    public record CityText(String name, String country, String tagline, String intro) {}
 
-    /** {@code colors}: two hex colours for the city's cover; {@code order}: position in the city list. */
+    /** {@code text} holds the city's words in every supported language. */
+    public record CityFile(String id, int order, String emoji, List<String> colors, double[] center, Photo photo,
+                           Map<String, CityText> text) {}
+
+    /** A mission's words in one language. */
+    public record MissionText(String title, String place, String era, String hook, String challenge,
+                              List<String> hints, String story, List<Fact> facts) {}
+
+    /**
+     * One mission. {@code accepted} lists correct answers in any language; {@code rubric}
+     * tells the AI judge (in English) what counts as correct.
+     */
+    public record MissionFile(String id, double lat, double lng, int minutes, int points, boolean free,
+                              List<String> accepted, String rubric, List<Source> sources, Photo photo,
+                              Map<String, MissionText> text) {}
+
+    // ── Content in one language, as the game uses it ─────────────────────────
+
+    public record LessonContent(String id, String title, String place, double lat, double lng, String era,
+                                int minutes, int points, boolean free, String hook, String challenge,
+                                List<String> accepted, String rubric, List<String> hints, String story,
+                                List<Source> sources, List<Fact> facts, Photo photo) {}
+
     public record CityContent(String id, String name, String country, String emoji, String tagline, String intro,
                               List<String> colors, int order, double[] center, Photo photo,
                               List<LessonContent> lessons) {}

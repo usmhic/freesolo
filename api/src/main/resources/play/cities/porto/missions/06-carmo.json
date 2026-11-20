@@ -1,0 +1,148 @@
+{
+  "id": "porto-carmo",
+  "lat": 41.1472,
+  "lng": -8.6163,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "house",
+    "a house",
+    "tiny house",
+    "narrow house",
+    "small house",
+    "home",
+    "casa",
+    "hidden house",
+    "building",
+    "maison",
+    "une maison",
+    "petite maison",
+    "maison cachée",
+    "casa escondida",
+    "una casa",
+    "منزل",
+    "بيت",
+    "دار",
+    "بيت صغير"
+  ],
+  "rubric": "Correct if the player says there is a very narrow house (a building people lived in) between the two churches.",
+  "sources": [
+    {
+      "label": "Carmo and Carmelitas Churches — Atlas Obscura",
+      "url": "https://www.atlasobscura.com/places/carmo-and-carmelitas-churches"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-carmo.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Igreja_do_Carmo_(Porto)_2.jpg",
+    "author": "T meltzer",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The house between two churches",
+      "place": "Carmo and Carmelitas churches",
+      "era": "1600s–1700s",
+      "hook": "Find the two churches standing side by side — one with a huge blue-and-white tiled wall. They look joined, but they aren't.",
+      "challenge": "Look closely at the gap between the two churches. What's hidden there?",
+      "hints": [
+        "The gap isn't empty — it has windows and a door.",
+        "It's barely wider than your outstretched arms, and people lived in it."
+      ],
+      "story": "Between the Carmelitas church (for nuns) and the Carmo church (for friars) sits a house only about one to one and a half metres wide. The usual explanation is that it kept the nuns and friars apart, so the two churches never shared a wall — and people lived in it until the 1980s. The big tile panel on the Carmo's side wall was added in 1912. The two churches and the hidden house became a National Monument together in 2013.",
+      "facts": [
+        {
+          "value": "~1 m",
+          "label": "wide"
+        },
+        {
+          "value": "1980s",
+          "label": "last residents"
+        },
+        {
+          "value": "1912",
+          "label": "tile panel"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La maison entre deux églises",
+      "place": "Églises du Carmo et des Carmelitas",
+      "era": "XVIIe–XVIIIe s.",
+      "hook": "Trouvez les deux églises côte à côte — l'une avec un immense mur d'azulejos bleus et blancs. Elles semblent collées, mais ne le sont pas.",
+      "challenge": "Regardez bien l'espace entre les deux églises. Qu'y a-t-il de caché ?",
+      "hints": [
+        "L'espace n'est pas vide : il a des fenêtres et une porte.",
+        "C'est à peine plus large que vos bras tendus, et des gens y ont vécu."
+      ],
+      "story": "Entre l'église des Carmelitas (pour les religieuses) et celle du Carmo (pour les frères) se trouve une maison d'à peine un mètre à un mètre et demi de large. L'explication habituelle : séparer religieuses et frères, pour que les deux églises ne partagent jamais un mur — et des gens y ont vécu jusque dans les années 1980. Le grand panneau d'azulejos sur le flanc du Carmo date de 1912. Les deux églises et la maison cachée sont classées monument national ensemble depuis 2013.",
+      "facts": [
+        {
+          "value": "~1 m",
+          "label": "de large"
+        },
+        {
+          "value": "années 1980",
+          "label": "derniers habitants"
+        },
+        {
+          "value": "1912",
+          "label": "panneau d'azulejos"
+        }
+      ]
+    },
+    "es": {
+      "title": "La casa entre dos iglesias",
+      "place": "Iglesias del Carmo y de las Carmelitas",
+      "era": "siglos XVII–XVIII",
+      "hook": "Busca las dos iglesias una junto a otra; una con una enorme pared de azulejos azules y blancos. Parecen unidas, pero no lo están.",
+      "challenge": "Mira con atención el hueco entre las dos iglesias. ¿Qué se esconde ahí?",
+      "hints": [
+        "El hueco no está vacío: tiene ventanas y una puerta.",
+        "Apenas es más ancho que tus brazos abiertos, y vivía gente en él."
+      ],
+      "story": "Entre la iglesia de las Carmelitas (para monjas) y la del Carmo (para frailes) hay una casa de apenas un metro o metro y medio de ancho. La explicación habitual es que separaba a monjas y frailes, para que las dos iglesias nunca compartieran pared, y vivió gente en ella hasta los años ochenta. El gran panel de azulejos del lateral del Carmo se añadió en 1912. Las dos iglesias y la casa escondida son Monumento Nacional juntas desde 2013.",
+      "facts": [
+        {
+          "value": "~1 m",
+          "label": "de ancho"
+        },
+        {
+          "value": "años 80",
+          "label": "últimos vecinos"
+        },
+        {
+          "value": "1912",
+          "label": "panel de azulejos"
+        }
+      ]
+    },
+    "ar": {
+      "title": "البيت بين كنيستين",
+      "place": "كنيستا كارمو وكارميليتاس",
+      "era": "القرنان 17–18",
+      "hook": "ابحث عن الكنيستين المتجاورتين — إحداهما بجدار هائل من البلاط الأزرق والأبيض. تبدوان ملتصقتين، لكنهما ليستا كذلك.",
+      "challenge": "انظر جيدًا إلى الفجوة بين الكنيستين. ما الذي يختبئ هناك؟",
+      "hints": [
+        "الفجوة ليست فارغة: فيها نوافذ وباب.",
+        "لا تكاد تزيد على امتداد ذراعيك، وقد عاش فيها أناس."
+      ],
+      "story": "بين كنيسة كارميليتاس (للراهبات) وكنيسة كارمو (للرهبان) يقوم بيت لا يتجاوز عرضه مترًا إلى متر ونصف. والتفسير المعتاد أنه كان يفصل الراهبات عن الرهبان، كي لا تتشارك الكنيستان جدارًا أبدًا — وقد سكنه أناس حتى الثمانينيات. أما لوحة البلاط الكبيرة على جانب كنيسة كارمو فأُضيفت سنة 1912. وصُنّفت الكنيستان والبيت المخفي معًا معلمًا وطنيًا سنة 2013.",
+      "facts": [
+        {
+          "value": "~1 م",
+          "label": "العرض"
+        },
+        {
+          "value": "الثمانينيات",
+          "label": "آخر السكان"
+        },
+        {
+          "value": "1912",
+          "label": "لوحة البلاط"
+        }
+      ]
+    }
+  }
+}

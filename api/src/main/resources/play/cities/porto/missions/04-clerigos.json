@@ -1,0 +1,142 @@
+{
+  "id": "porto-clerigos",
+  "lat": 41.14567,
+  "lng": -8.61458,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "nasoni",
+    "nicolau nasoni",
+    "niccolo nasoni",
+    "ناسوني",
+    "نيكولاو ناسوني"
+  ],
+  "rubric": "Correct if the player names Nicolau (Niccolò) Nasoni. Accept spelling mistakes.",
+  "sources": [
+    {
+      "label": "Clérigos Church — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Cl%C3%A9rigos_Church"
+    },
+    {
+      "label": "Nicolau Nasoni — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Nicolau_Nasoni"
+    },
+    {
+      "label": "Clérigos history — Torre dos Clérigos",
+      "url": "https://torredosclerigos.pt/en/292-years-of-history"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-clerigos.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Torre_de_los_Cl%C3%A9rigos,_Oporto,_Portugal,_2012-05-09,_DD_01.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "The tower sailors steered by",
+      "place": "Clérigos Tower",
+      "era": "1754–1763",
+      "hook": "Find the slender Baroque tower that rises above the rooftops. For a long time, ships coming up the river used it as a landmark.",
+      "challenge": "The tower was designed by an Italian architect who spent most of his life in Porto. What was his surname?",
+      "hints": [
+        "He was born in Tuscany and worked on many Porto churches.",
+        "His surname starts with N."
+      ],
+      "story": "Nicolau Nasoni came from Tuscany, settled in Porto and shaped its Baroque look. The tower was built between 1754 and 1763 and is about 75 metres tall. For many years it was the tallest building in Portugal and a guide for ships on the Douro. Nasoni asked to be buried in the Clérigos church at its foot.",
+      "facts": [
+        {
+          "value": "1754–63",
+          "label": "built"
+        },
+        {
+          "value": "~75 m",
+          "label": "tall"
+        },
+        {
+          "value": "Nasoni",
+          "label": "Tuscan architect"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La tour qui guidait les marins",
+      "place": "Tour des Clérigos",
+      "era": "1754–1763",
+      "hook": "Trouvez la fine tour baroque qui dépasse les toits. Longtemps, les navires remontant le fleuve s'en servaient de repère.",
+      "challenge": "La tour fut dessinée par un architecte italien qui passa l'essentiel de sa vie à Porto. Quel était son nom de famille ?",
+      "hints": [
+        "Il est né en Toscane et a travaillé sur de nombreuses églises de Porto.",
+        "Son nom commence par N."
+      ],
+      "story": "Nicolau Nasoni venait de Toscane ; il s'installa à Porto et façonna son visage baroque. La tour fut bâtie entre 1754 et 1763 et mesure environ 75 mètres. Pendant des années, ce fut le plus haut édifice du Portugal et un guide pour les navires sur le Douro. Nasoni demanda à être enterré dans l'église des Clérigos, à son pied.",
+      "facts": [
+        {
+          "value": "1754–63",
+          "label": "construction"
+        },
+        {
+          "value": "~75 m",
+          "label": "de haut"
+        },
+        {
+          "value": "Nasoni",
+          "label": "architecte toscan"
+        }
+      ]
+    },
+    "es": {
+      "title": "La torre que guiaba a los marinos",
+      "place": "Torre de los Clérigos",
+      "era": "1754–1763",
+      "hook": "Busca la esbelta torre barroca que sobresale entre los tejados. Durante mucho tiempo, los barcos que subían por el río la usaban como referencia.",
+      "challenge": "La torre la diseñó un arquitecto italiano que pasó casi toda su vida en Oporto. ¿Cuál era su apellido?",
+      "hints": [
+        "Nació en la Toscana y trabajó en muchas iglesias de Oporto.",
+        "Su apellido empieza por N."
+      ],
+      "story": "Nicolau Nasoni vino de la Toscana, se instaló en Oporto y dio forma a su aspecto barroco. La torre se construyó entre 1754 y 1763 y mide unos 75 metros. Durante muchos años fue el edificio más alto de Portugal y una guía para los barcos en el Duero. Nasoni pidió ser enterrado en la iglesia de los Clérigos, a sus pies.",
+      "facts": [
+        {
+          "value": "1754–63",
+          "label": "construcción"
+        },
+        {
+          "value": "~75 m",
+          "label": "de altura"
+        },
+        {
+          "value": "Nasoni",
+          "label": "arquitecto toscano"
+        }
+      ]
+    },
+    "ar": {
+      "title": "البرج الذي اهتدى به البحّارة",
+      "place": "برج كليريغوس",
+      "era": "1754–1763",
+      "hook": "ابحث عن البرج الباروكي النحيل الذي يعلو فوق الأسطح. لطالما اهتدت به السفن الصاعدة في النهر.",
+      "challenge": "صمّم البرجَ مهندس إيطالي أمضى معظم حياته في بورتو. ما اسم عائلته؟",
+      "hints": [
+        "وُلد في توسكانا وعمل في كثير من كنائس بورتو.",
+        "يبدأ اسم عائلته بحرف N (ن)."
+      ],
+      "story": "جاء نيكولاو ناسوني من توسكانا، واستقر في بورتو وصاغ طابعها الباروكي. بُني البرج بين 1754 و1763 ويبلغ ارتفاعه نحو 75 مترًا. ولسنوات طويلة كان أعلى مبنى في البرتغال ودليلًا للسفن على نهر دورو. وقد طلب ناسوني أن يُدفن في كنيسة كليريغوس عند قدم البرج.",
+      "facts": [
+        {
+          "value": "1754–63",
+          "label": "البناء"
+        },
+        {
+          "value": "~75 م",
+          "label": "الارتفاع"
+        },
+        {
+          "value": "ناسوني",
+          "label": "مهندس من توسكانا"
+        }
+      ]
+    }
+  }
+}

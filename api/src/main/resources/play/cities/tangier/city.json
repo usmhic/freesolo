@@ -1,0 +1,45 @@
+{
+  "id": "tangier",
+  "order": 1,
+  "emoji": "🕌",
+  "colors": [
+    "#1E5A8A",
+    "#F2A541"
+  ],
+  "center": [
+    35.7855,
+    -5.8125
+  ],
+  "photo": {
+    "url": "/play/photos/city-tangier.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Tanger_cor.jpg",
+    "author": "Ifni95",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "name": "Tangier",
+      "country": "Morocco",
+      "tagline": "Where Africa looks across at Europe",
+      "intro": "Phoenician traders, Romans, Portuguese, English and a whole committee of foreign powers have all held this port on the Strait of Gibraltar. Its history is a tug-of-war between two continents — and you can still see both from the Kasbah walls."
+    },
+    "fr": {
+      "name": "Tanger",
+      "country": "Maroc",
+      "tagline": "Là où l'Afrique regarde l'Europe",
+      "intro": "Marchands phéniciens, Romains, Portugais, Anglais et tout un comité de puissances étrangères ont tenu ce port sur le détroit de Gibraltar. Son histoire est un bras de fer entre deux continents — et des remparts de la Kasbah, on voit encore les deux."
+    },
+    "es": {
+      "name": "Tánger",
+      "country": "Marruecos",
+      "tagline": "Donde África mira a Europa",
+      "intro": "Comerciantes fenicios, romanos, portugueses, ingleses y todo un comité de potencias extranjeras han dominado este puerto del estrecho de Gibraltar. Su historia es un pulso entre dos continentes, y desde las murallas de la Kasba aún se ven los dos."
+    },
+    "ar": {
+      "name": "طنجة",
+      "country": "المغرب",
+      "tagline": "حيث تطلّ أفريقيا على أوروبا",
+      "intro": "تعاقب على هذا الميناء المطلّ على مضيق جبل طارق تجّار فينيقيون ورومان وبرتغاليون وإنجليز، بل ولجنة كاملة من القوى الأجنبية. تاريخه شدّ وجذب بين قارتين — ومن أسوار القصبة ما زلت ترى القارتين معًا."
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "id": "tangier-ibn-battuta",
+  "lat": 35.7872,
+  "lng": -5.8139,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "ibn battuta",
+    "ibn batuta",
+    "ibn battouta",
+    "ibn batouta",
+    "battuta",
+    "battouta",
+    "ibn batutah",
+    "ابن بطوطة",
+    "بطوطة"
+  ],
+  "rubric": "Correct if the player names Ibn Battuta (any spelling).",
+  "sources": [
+    {
+      "label": "Ibn Battuta — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Ibn_Battuta"
+    },
+    {
+      "label": "Tomb of Ibn Battuta — Lonely Planet",
+      "url": "https://www.lonelyplanet.com/morocco/tangier/attractions/tomb-of-ibn-battuta/a/poi-sig/1545757/355513"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-ibn-battuta.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Inside_Ibn_Battuta%27s_Tomb_-_Tangier.jpg",
+    "author": "Anass Sedrati",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The man who walked the world",
+      "place": "Tomb of Ibn Battuta, Kasbah quarter",
+      "era": "1304–1350s",
+      "hook": "In the lanes below the Kasbah, on a street that carries his name, is a small tomb said to belong to Tangier's most famous son.",
+      "challenge": "He left Tangier in 1325, aged 21, and travelled for nearly 30 years. What is his name?",
+      "hints": [
+        "Read the street sign on the lane.",
+        "His name begins with 'Ibn B…'."
+      ],
+      "story": "Ibn Battuta was born here in 1304. He set out on the pilgrimage to Mecca and simply kept going — across North Africa, the Middle East, India, China and al-Andalus — covering more ground than any traveller before him. Back in Morocco he dictated his journeys to the scholar Ibn Juzayy; the book is known as the Rihla. Nobody can prove he is really buried in this tomb, but it keeps his memory alive in his home town.",
+      "facts": [
+        {
+          "value": "1304",
+          "label": "born in Tangier"
+        },
+        {
+          "value": "1325",
+          "label": "sets off, aged 21"
+        },
+        {
+          "value": "~30",
+          "label": "years on the road"
+        }
+      ]
+    },
+    "fr": {
+      "title": "L'homme qui fit le tour du monde à pied",
+      "place": "Tombeau d'Ibn Battûta, quartier de la Kasbah",
+      "era": "1304–années 1350",
+      "hook": "Dans les ruelles sous la Kasbah, dans une rue qui porte son nom, se trouve un petit tombeau qu'on dit être celui du plus célèbre enfant de Tanger.",
+      "challenge": "Il quitta Tanger en 1325, à 21 ans, et voyagea près de 30 ans. Comment s'appelle-t-il ?",
+      "hints": [
+        "Lisez la plaque de la ruelle.",
+        "Son nom commence par « Ibn B… »."
+      ],
+      "story": "Ibn Battûta est né ici en 1304. Il partit en pèlerinage vers La Mecque et ne s'arrêta plus — Afrique du Nord, Moyen-Orient, Inde, Chine et al-Andalus — parcourant plus de terres qu'aucun voyageur avant lui. De retour au Maroc, il dicta ses voyages au lettré Ibn Juzayy ; le livre est connu sous le nom de Rihla. Nul ne peut prouver qu'il repose vraiment dans ce tombeau, mais celui-ci garde sa mémoire vivante dans sa ville natale.",
+      "facts": [
+        {
+          "value": "1304",
+          "label": "naît à Tanger"
+        },
+        {
+          "value": "1325",
+          "label": "part, à 21 ans"
+        },
+        {
+          "value": "~30",
+          "label": "ans sur la route"
+        }
+      ]
+    },
+    "es": {
+      "title": "El hombre que recorrió el mundo",
+      "place": "Tumba de Ibn Battuta, barrio de la Kasba",
+      "era": "1304–años 1350",
+      "hook": "En las callejuelas bajo la Kasba, en una calle que lleva su nombre, hay una pequeña tumba que se atribuye al hijo más famoso de Tánger.",
+      "challenge": "Salió de Tánger en 1325, con 21 años, y viajó casi 30 años. ¿Cómo se llama?",
+      "hints": [
+        "Lee la placa de la calle.",
+        "Su nombre empieza por «Ibn B…»."
+      ],
+      "story": "Ibn Battuta nació aquí en 1304. Partió en peregrinación a La Meca y ya no se detuvo: el norte de África, Oriente Medio, la India, China y al-Ándalus, recorriendo más tierras que ningún viajero anterior. De vuelta en Marruecos dictó sus viajes al erudito Ibn Yuzay; el libro se conoce como la Rihla. Nadie puede demostrar que esté enterrado en esta tumba, pero mantiene viva su memoria en su ciudad natal.",
+      "facts": [
+        {
+          "value": "1304",
+          "label": "nace en Tánger"
+        },
+        {
+          "value": "1325",
+          "label": "parte, con 21 años"
+        },
+        {
+          "value": "~30",
+          "label": "años de camino"
+        }
+      ]
+    },
+    "ar": {
+      "title": "الرجل الذي طاف العالم",
+      "place": "ضريح ابن بطوطة، حي القصبة",
+      "era": "1304–خمسينيات القرن 14",
+      "hook": "في الأزقة تحت القصبة، في زقاق يحمل اسمه، ضريح صغير يقال إنه لأشهر أبناء طنجة.",
+      "challenge": "غادر طنجة سنة 1325 وهو في الحادية والعشرين، وسافر قرابة 30 عامًا. ما اسمه؟",
+      "hints": [
+        "اقرأ لافتة الزقاق.",
+        "يبدأ اسمه بـ«ابن ب…»."
+      ],
+      "story": "وُلد ابن بطوطة هنا سنة 1304. خرج حاجًّا إلى مكة ثم لم يتوقف — شمال أفريقيا والشرق الأوسط والهند والصين والأندلس — فقطع من الأرض أكثر مما قطعه أي رحّالة قبله. وعند عودته إلى المغرب أملى رحلاته على العالم ابن جزي، فعُرف الكتاب باسم «الرحلة». لا أحد يستطيع أن يثبت أنه مدفون حقًّا في هذا الضريح، لكنه يُبقي ذكراه حيّة في مدينته.",
+      "facts": [
+        {
+          "value": "1304",
+          "label": "مولده في طنجة"
+        },
+        {
+          "value": "1325",
+          "label": "انطلاقه في الحادية والعشرين"
+        },
+        {
+          "value": "~30",
+          "label": "عامًا من الترحال"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,156 @@
+{
+  "id": "salzburg-sphaera",
+  "lat": 47.7972,
+  "lng": 13.0476,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "man",
+    "a man",
+    "person",
+    "a person",
+    "figure",
+    "a figure",
+    "statue",
+    "mann",
+    "guy",
+    "human",
+    "homme",
+    "un homme",
+    "personne",
+    "une personne",
+    "hombre",
+    "un hombre",
+    "persona",
+    "una persona",
+    "figura",
+    "رجل",
+    "شخص",
+    "إنسان",
+    "تمثال رجل"
+  ],
+  "rubric": "Correct if the player says a man / a person / a figure.",
+  "sources": [
+    {
+      "label": "Sphaera — Salzburg tourism",
+      "url": "https://salzburg.info/en/sights/walk-of-modern-art/sphaera"
+    },
+    {
+      "label": "Sphaera, Stephan Balkenhol, 2007 — Salzburg Foundation",
+      "url": "https://salzburgfoundation.at/?p=978"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-sphaera.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Kapitelplatz_Sphaera_(Stephan_Balkenhol)-8104.jpg",
+    "author": "Isiwal",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "A man on a golden ball",
+      "place": "Sphaera, Kapitelplatz",
+      "era": "2007",
+      "hook": "On Kapitelplatz, beside the cathedral, a huge golden ball sits on the cobblestones.",
+      "challenge": "What is standing on top of the golden ball?",
+      "hints": [
+        "Look right up at the top.",
+        "He's wearing a white shirt and black trousers."
+      ],
+      "story": "Sphaera, by German sculptor Stephan Balkenhol, arrived in 2007 as part of Salzburg's Walk of Modern Art: an ordinary man in a white shirt and black trousers, standing calmly on a giant golden sphere. Balkenhol leaves the meaning open — in a city of prince-archbishops and Baroque saints, he's simply a person looking out over the square.",
+      "facts": [
+        {
+          "value": "2007",
+          "label": "installed"
+        },
+        {
+          "value": "Balkenhol",
+          "label": "sculptor"
+        },
+        {
+          "value": "Gold",
+          "label": "giant sphere"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Un homme sur une boule d'or",
+      "place": "Sphaera, Kapitelplatz",
+      "era": "2007",
+      "hook": "Sur la Kapitelplatz, à côté de la cathédrale, une énorme boule dorée repose sur les pavés.",
+      "challenge": "Qu'y a-t-il debout au sommet de la boule dorée ?",
+      "hints": [
+        "Regardez tout en haut.",
+        "Il porte une chemise blanche et un pantalon noir."
+      ],
+      "story": "Sphaera, du sculpteur allemand Stephan Balkenhol, est arrivée en 2007 dans le cadre de la promenade d'art moderne de Salzbourg : un homme ordinaire en chemise blanche et pantalon noir, debout, calme, sur une gigantesque sphère dorée. Balkenhol laisse le sens ouvert — dans une ville de princes-archevêques et de saints baroques, c'est simplement quelqu'un qui regarde la place.",
+      "facts": [
+        {
+          "value": "2007",
+          "label": "installation"
+        },
+        {
+          "value": "Balkenhol",
+          "label": "sculpteur"
+        },
+        {
+          "value": "Or",
+          "label": "sphère géante"
+        }
+      ]
+    },
+    "es": {
+      "title": "Un hombre sobre una bola de oro",
+      "place": "Sphaera, Kapitelplatz",
+      "era": "2007",
+      "hook": "En la Kapitelplatz, junto a la catedral, una enorme bola dorada descansa sobre los adoquines.",
+      "challenge": "¿Qué hay de pie encima de la bola dorada?",
+      "hints": [
+        "Mira arriba del todo.",
+        "Lleva camisa blanca y pantalón negro."
+      ],
+      "story": "Sphaera, del escultor alemán Stephan Balkenhol, llegó en 2007 dentro del Paseo de Arte Moderno de Salzburgo: un hombre corriente con camisa blanca y pantalón negro, de pie y tranquilo sobre una gigantesca esfera dorada. Balkenhol deja el significado abierto: en una ciudad de príncipes-arzobispos y santos barrocos, es simplemente una persona que mira la plaza.",
+      "facts": [
+        {
+          "value": "2007",
+          "label": "instalación"
+        },
+        {
+          "value": "Balkenhol",
+          "label": "escultor"
+        },
+        {
+          "value": "Oro",
+          "label": "esfera gigante"
+        }
+      ]
+    },
+    "ar": {
+      "title": "رجل فوق كرة ذهبية",
+      "place": "سفيرا، ساحة كابيتل",
+      "era": "2007",
+      "hook": "في ساحة كابيتل بجانب الكاتدرائية، كرة ذهبية ضخمة تستقر على الحجارة.",
+      "challenge": "ما الذي يقف فوق الكرة الذهبية؟",
+      "hints": [
+        "انظر إلى الأعلى تمامًا.",
+        "يرتدي قميصًا أبيض وبنطالًا أسود."
+      ],
+      "story": "وصل «سفيرا»، من عمل النحات الألماني شتيفان بالكنهول، سنة 2007 ضمن «ممشى الفن الحديث» في سالزبورغ: رجل عادي بقميص أبيض وبنطال أسود يقف بهدوء فوق كرة ذهبية عملاقة. ويترك بالكنهول المعنى مفتوحًا — ففي مدينة الأمراء الأساقفة والقديسين الباروكيين، هو مجرد إنسان يتأمل الساحة.",
+      "facts": [
+        {
+          "value": "2007",
+          "label": "تنصيبه"
+        },
+        {
+          "value": "بالكنهول",
+          "label": "النحات"
+        },
+        {
+          "value": "ذهب",
+          "label": "كرة عملاقة"
+        }
+      ]
+    }
+  }
+}
