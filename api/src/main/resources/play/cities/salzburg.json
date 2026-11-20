@@ -14,13 +14,19 @@
     47.799,
     13.045
   ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Salzburg_%2848489551981%29.jpg/1280px-Salzburg_%2848489551981%29.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg_(48489551981).jpg",
+    "author": "Jorge Franganillo",
+    "license": "CC BY 2.0"
+  },
   "lessons": [
     {
       "id": "salzburg-mozart",
       "title": "The yellow house",
       "place": "Mozart's Birthplace, Getreidegasse 9",
       "lat": 47.8,
-      "lng": 13.0434,
+      "lng": 13.04333,
       "era": "1756",
       "minutes": 10,
       "free": true,
@@ -50,14 +56,34 @@
           "label": "Mozart's birthplace — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Mozart%27s_birthplace"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1756",
+          "label": "Mozart born, 27 Jan"
+        },
+        {
+          "value": "3rd floor",
+          "label": "family flat"
+        },
+        {
+          "value": "26 years",
+          "label": "the Mozarts lived here"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Salzburg%2C_Getreidegasse_9%2C_Mozarts_Geburtshaus.jpg/1280px-Salzburg%2C_Getreidegasse_9%2C_Mozarts_Geburtshaus.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Salzburg,_Getreidegasse_9,_Mozarts_Geburtshaus.jpg",
+        "author": "Andreas Stiasny",
+        "license": "CC BY-SA 3.0 at"
+      }
     },
     {
       "id": "salzburg-cathedral",
       "title": "Three dates on the gates",
       "place": "Salzburg Cathedral",
-      "lat": 47.798,
-      "lng": 13.0468,
+      "lat": 47.79778,
+      "lng": 13.04694,
       "era": "774–1959",
       "minutes": 10,
       "free": true,
@@ -81,14 +107,34 @@
           "label": "Salzburg Cathedral — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Salzburg_Cathedral"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "774",
+          "label": "first consecration"
+        },
+        {
+          "value": "1628",
+          "label": "Baroque cathedral"
+        },
+        {
+          "value": "1959",
+          "label": "after war damage"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Salzburg_Cathedral_1.jpg/1280px-Salzburg_Cathedral_1.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Cathedral_1.jpg",
+        "author": "Bede735c",
+        "license": "CC BY-SA 3.0"
+      }
     },
     {
       "id": "salzburg-mirabell",
       "title": "A palace built for love",
       "place": "Mirabell Palace and Gardens",
-      "lat": 47.8057,
-      "lng": 13.042,
+      "lat": 47.80556,
+      "lng": 13.04194,
       "era": "1606",
       "minutes": 10,
       "free": true,
@@ -115,14 +161,34 @@
           "label": "Schloss Mirabell — Lonely Planet",
           "url": "https://www.lonelyplanet.com/austria/salzburg/attractions/schloss-mirabell/a/poi-sig/425387/358606"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1606",
+          "label": "built for Salome Alt"
+        },
+        {
+          "value": "~15",
+          "label": "children"
+        },
+        {
+          "value": "1661",
+          "label": "the Pegasus"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Palatul_Mirabell1.jpg/1280px-Palatul_Mirabell1.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Palatul_Mirabell1.jpg",
+        "author": "Cezar Suceveanu",
+        "license": "CC BY-SA 3.0"
+      }
     },
     {
       "id": "salzburg-fortress",
       "title": "The castle nobody took",
       "place": "Hohensalzburg Fortress",
-      "lat": 47.7949,
-      "lng": 13.0476,
+      "lat": 47.795,
+      "lng": 13.04722,
       "era": "1077",
       "minutes": 10,
       "free": false,
@@ -153,7 +219,27 @@
           "label": "Hohensalzburg Fortress — History Hit",
           "url": "https://www.historyhit.com/locations/hohensalzburg-fortress/"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1077",
+          "label": "building begins"
+        },
+        {
+          "value": "1525",
+          "label": "besieged, never taken"
+        },
+        {
+          "value": "Huge",
+          "label": "one of Europe's largest castles"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Salzburg_-_Festung_Hohensalzburg.JPG/1280px-Salzburg_-_Festung_Hohensalzburg.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Salzburg_-_Festung_Hohensalzburg.JPG",
+        "author": "C.Stadler/Bwag",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "salzburg-st-peter",
@@ -192,7 +278,27 @@
           "label": "Saint Peter's Abbey, Salzburg — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Saint_Peter%27s_Abbey,_Salzburg"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "696",
+          "label": "founded by St Rupert"
+        },
+        {
+          "value": "Oldest",
+          "label": "monastery, unbroken"
+        },
+        {
+          "value": "Catacombs",
+          "label": "in the cliff"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg/1280px-Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg",
+        "author": "Wikimedia Commons",
+        "license": "Public domain"
+      }
     },
     {
       "id": "salzburg-sphaera",
@@ -232,7 +338,27 @@
           "label": "Sphaera, Stephan Balkenhol, 2007 — Salzburg Foundation",
           "url": "https://salzburgfoundation.at/?p=978"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "2007",
+          "label": "installed"
+        },
+        {
+          "value": "Balkenhol",
+          "label": "sculptor"
+        },
+        {
+          "value": "Gold",
+          "label": "giant sphere"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_Kapitelplatz_Sphaera_%28Stephan_Balkenhol%29-8104.jpg/1280px-Salzburg_Kapitelplatz_Sphaera_%28Stephan_Balkenhol%29-8104.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Kapitelplatz_Sphaera_(Stephan_Balkenhol)-8104.jpg",
+        "author": "Isiwal",
+        "license": "CC BY-SA 4.0"
+      }
     }
   ]
 }

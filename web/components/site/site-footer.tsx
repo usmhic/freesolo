@@ -33,6 +33,7 @@ const COLUMNS = [
     links: [
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms" },
+      { href: "/docs/photo-credits", label: "Photo credits" },
       { href: "https://github.com/usmhic/freesolo", label: "Open source" },
     ],
   },

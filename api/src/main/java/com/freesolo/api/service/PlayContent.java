@@ -51,6 +51,7 @@ public class PlayContent {
         require(city.colors() != null && city.colors().size() == 2
                 && city.colors().stream().allMatch(c -> c != null && c.matches("#[0-9A-Fa-f]{6}")), city.id() + ": colors must be two hex colours");
         require(city.lessons() != null && !city.lessons().isEmpty(), city.id() + ": a city needs lessons");
+        requirePhoto(city.photo(), city.id());
         for (LessonContent l : city.lessons()) {
             require(l.id() != null && l.id().matches("[a-z0-9-]{2,64}"), city.id() + ": bad lesson id " + l.id());
             require(!lessons.containsKey(l.id()), "Duplicate lesson " + l.id());
@@ -59,6 +60,8 @@ public class PlayContent {
             require(l.hints() != null && l.hints().size() <= 5, l.id() + ": at most five hints");
             require(notBlank(l.challenge()) && notBlank(l.story()) && notBlank(l.hook()), l.id() + ": hook, challenge and story are required");
             require(l.sources() != null && !l.sources().isEmpty(), l.id() + ": every lesson cites a source");
+            require(l.facts() == null || l.facts().size() <= 3, l.id() + ": at most three key facts");
+            requirePhoto(l.photo(), l.id());
             lessons.put(l.id(), l);
             lessonCity.put(l.id(), city.id());
         }
@@ -83,6 +86,18 @@ public class PlayContent {
 
     public String cityOf(String lessonId) {
         return lessonCity.get(lessonId);
+    }
+
+    /**
+     * Photos are optional. They're Wikimedia Commons images, resized and served
+     * by the web app from /play/photos/, and each carries its licence credit.
+     */
+    private static void requirePhoto(com.freesolo.api.dto.play.PlayDtos.Photo photo, String owner) {
+        if (photo == null) return;
+        require(photo.url() != null && (photo.url().matches("/play/photos/[a-z0-9-]+\\.webp")
+                || photo.url().startsWith("https://upload.wikimedia.org/")), owner + ": photos are served from /play/photos/ or Wikimedia");
+        require(photo.page() != null && photo.page().startsWith("https://commons.wikimedia.org/"), owner + ": a photo links to its Commons page");
+        require(notBlank(photo.author()) && notBlank(photo.license()) && notBlank(photo.page()), owner + ": a photo needs its author, licence and page");
     }
 
     private static boolean notBlank(String s) {

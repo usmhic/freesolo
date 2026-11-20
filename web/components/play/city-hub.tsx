@@ -8,6 +8,7 @@ import { api, ClientApiError } from "@/lib/client-api";
 import { RouteMap } from "@/components/map/route-map";
 import { cityGradient, readGuest, serverGuest, subscribeGuest, type JourneyView, type LessonCard } from "@/lib/play";
 import { LevelPath } from "./level-path";
+import { PlacePhoto } from "./place-photo";
 import { RankChip } from "./star-badge";
 import { usePlayer } from "./use-player";
 
@@ -153,16 +154,19 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
     <div>
       {/* City hero */}
       <section className="relative overflow-hidden text-white" style={{ background: cityGradient(city) }}>
-        <svg aria-hidden className="absolute inset-0 size-full opacity-20" viewBox="0 0 800 300" preserveAspectRatio="none">
-          <path d="M-20 260 C 160 160, 300 300, 460 180 S 700 60, 820 120" fill="none" stroke="#fff" strokeWidth="3" strokeDasharray="3 14" strokeLinecap="round" />
-        </svg>
-        <span aria-hidden className="pointer-events-none absolute -bottom-4 -right-4 text-[8rem] leading-none opacity-20 drop-shadow-2xl sm:right-12 sm:text-[12rem] sm:opacity-90">{city.emoji}</span>
+        <PlacePhoto photo={city.photo} width={1280} alt="" className="absolute inset-0" priority />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${city.colors[0]}F2 0%, ${city.colors[0]}B3 45%, ${city.colors[0]}33 100%)` }} />
+        {city.photo && (
+          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 right-3 z-10 max-w-[60%] truncate text-[10px] text-white/70 hover:text-white">
+            📷 {city.photo.author} · {city.photo.license}
+          </a>
+        )}
         <div className="container-page relative z-10 py-8 sm:py-12">
           <Link href="/play" className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> All cities</Link>
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">{city.country}</p>
           <h1 className="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{city.name}</h1>
           <p className="mt-2 font-display text-xl font-bold text-white/90">{city.tagline}</p>
-          <p className="mt-4 max-w-2xl leading-relaxed text-white/85 lg:max-w-3xl">{city.intro}</p>
+          <p className="mt-4 line-clamp-3 max-w-2xl leading-relaxed text-white/90 sm:line-clamp-none">{city.intro}</p>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {next ? (
               <Link href={`/play/lessons/${next.id}`} className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">

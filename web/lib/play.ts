@@ -5,21 +5,24 @@
 import type { RouteResult } from "@/components/planner/types";
 
 export interface Source { label: string; url: string }
+export interface Photo { url: string; page: string; author: string; license: string }
+export interface Fact { value: string; label: string }
 export interface Rank { key: string; name: string; minStardust: number; nextAt: number | null; nextName: string | null }
 export interface CitySummary {
   id: string; name: string; country: string; emoji: string; tagline: string; intro: string;
-  colors: [string, string]; center: [number, number];
+  colors: [string, string]; center: [number, number]; photo: Photo | null;
   lessons: number; freeLessons: number; unlocked: boolean; solved: number;
 }
 export interface LessonCard {
   id: string; title: string; place: string; lat: number; lng: number; era: string; minutes: number;
-  free: boolean; locked: boolean; solved: boolean; hook: string;
+  free: boolean; locked: boolean; solved: boolean; hook: string; photo: Photo | null;
 }
 export interface CityView { city: CitySummary; lessons: LessonCard[] }
 export interface LessonView { card: LessonCard; cityId: string; cityName: string; challenge: string; hints: string[]; aiJudge: boolean }
 export interface PlayerView { stardust: number; rank: Rank; solvedLessonIds: string[]; unlockedCityIds: string[] }
 export interface AttemptResult {
   correct: boolean; feedback: string; judgedBy: "ai" | "match"; story: string | null; sources: Source[] | null;
+  facts: Fact[] | null;
   stardustEarned: number; alreadySolved: boolean; player: PlayerView | null;
 }
 export interface JourneyView { city: CitySummary; startDate: string | null; days: { day: number; lessons: LessonCard[] }[]; route: RouteResult | null }
@@ -104,3 +107,17 @@ export function solvedIn(cityId: string, serverSolved: number, guest: GuestProgr
 
 export const cityGradient = (c: Pick<CitySummary, "colors">) =>
   `linear-gradient(135deg, ${c.colors[0]} 0%, ${c.colors[0]} 35%, ${c.colors[1]} 130%)`;
+
+/**
+ * The right size of a place photo. Photos are served from /play/photos/ in
+ * two widths: 960px (`name.webp`) and 330px (`name-330.webp`) for thumbnails.
+ */
+export function thumb(url: string, width: 330 | 500 | 960 | 1280): string {
+  if (url.startsWith("/play/photos/")) return width <= 500 ? url.replace(/\.webp$/, "-330.webp") : url;
+  // Wikimedia thumbnails come in standard widths only.
+  return url.replace(/\/(\d+)px-/, `/${width <= 330 ? 330 : width <= 500 ? 500 : width <= 960 ? 960 : 1280}px-`);
+}
+
+/** Videos about a place, as a YouTube search — always current, never a dead link. */
+export const videoSearch = (place: string, city: string) =>
+  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${place} ${city} history`)}`;

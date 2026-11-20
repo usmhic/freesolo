@@ -18,6 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - A simple game funnel: pick a city, set your days, and follow a winding path
   of levels next to the map; each win shows your next level, nudges you to the
   city pack once the free levels are done, and celebrates a finished city.
+- Levels are visual: a photo of every place (veiled until you solve it, so it
+  can't give the answer away), key facts as big chips, a short story you can
+  expand or listen to, video links, and a postcard collection in My sky.
+  Photos come from Wikimedia Commons, are served by the web app, and are
+  credited on each photo and on a Photo credits page. Map pins now use
+  Wikipedia's coordinates where an article has them.
 - Answers are checked against each level's accepted answers; with
   `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` set, Claude also judges your own
   wording, other languages and photos, and nudges you when you're close.

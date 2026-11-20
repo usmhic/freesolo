@@ -8,6 +8,7 @@ import { api } from "@/lib/client-api";
 import { RANK_STYLE, rankProgress, type CitySummary, type CityView } from "@/lib/play";
 import { NightSky } from "./night-sky";
 import { StarOrb } from "./star-badge";
+import { PlacePhoto } from "./place-photo";
 import { usePlayer } from "./use-player";
 
 export function SkyScreen({ signedIn }: { signedIn: boolean }) {
@@ -28,6 +29,8 @@ export function SkyScreen({ signedIn }: { signedIn: boolean }) {
   const lit = player.solved.size;
   const playedCities = (cities ?? []).filter((c) => c.lessons.some((l) => player.solved.has(l.id)));
   const skyCities = playedCities.length ? playedCities : (cities ?? []).slice(0, 1);
+  const postcards = (cities ?? []).flatMap((c) =>
+    c.lessons.filter((l) => player.solved.has(l.id)).map((lesson) => ({ lesson, city: c.city })));
 
   return (
     <div className="container-page py-8 sm:py-12">
@@ -108,6 +111,27 @@ export function SkyScreen({ signedIn }: { signedIn: boolean }) {
           </p>
           {lit === 0 && (
             <Link href="/play" className="btn-primary mt-5">Light your first star <ArrowRight className="size-4" /></Link>
+          )}
+
+          {postcards.length > 0 && (
+            <section className="mt-10">
+              <h2 className="text-xs font-bold uppercase tracking-[0.14em] text-ink-soft">Your postcards · {postcards.length}</h2>
+              <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {postcards.map(({ lesson, city }, i) => (
+                  <li key={lesson.id}>
+                    <Link
+                      href={`/play/lessons/${lesson.id}`}
+                      className="group block overflow-hidden rounded-2xl bg-surface p-1.5 shadow-sm ring-1 ring-line transition hover:-translate-y-0.5 hover:shadow-md"
+                      style={{ rotate: `${[-1.5, 1, -0.5, 1.5][i % 4]}deg` }}
+                    >
+                      <PlacePhoto photo={lesson.photo} width={330} alt={lesson.place} colors={city.colors} emoji={city.emoji} className="aspect-[4/3] rounded-xl" />
+                      <p className="truncate px-1 pt-1.5 text-xs font-semibold text-ink">{lesson.title}</p>
+                      <p className="truncate px-1 pb-0.5 text-[11px] text-ink-soft">{city.emoji} {city.name} · {lesson.era}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
         </div>
       </div>

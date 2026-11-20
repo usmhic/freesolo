@@ -33,9 +33,9 @@ class PlayServiceTest {
     static final List<Source> SRC = List.of(new Source("s", "https://example.org"));
     static LessonContent lesson(String id, double lat, double lng, boolean free) {
         return new LessonContent(id, id, id, lat, lng, "era", 10, free, "hook", "challenge", List.of("yes"),
-                "rubric", List.of("h1", "h2"), "story " + id, SRC);
+                "rubric", List.of("h1", "h2"), "story " + id, SRC, List.of(new Fact("1886", "opened")), null);
     }
-    static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, List.of(
+    static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null, List.of(
             lesson("far", 0, 0.03, true), lesson("near", 0, 0.01, true), lesson("mid", 0, 0.02, false)));
 
     PlayService service;
@@ -62,6 +62,7 @@ class PlayServiceTest {
 
         assertThat(result.correct()).isTrue();
         assertThat(result.story()).isEqualTo("story near");
+        assertThat(result.facts()).extracting(Fact::value).containsExactly("1886");
         assertThat(result.stardustEarned()).isEqualTo(75);
         var saved = ArgumentCaptor.forClass(LessonProgress.class);
         verify(progressRepository).saveAndFlush(saved.capture());
@@ -94,6 +95,7 @@ class PlayServiceTest {
         assertThat(result.correct()).isFalse();
         assertThat(result.story()).isNull();
         assertThat(result.sources()).isNull();
+        assertThat(result.facts()).isNull();
     }
 
     @Test
@@ -134,8 +136,8 @@ class PlayServiceTest {
     @Test
     void invalidContentIsRejected() {
         var noSources = new LessonContent("xx", "x", "x", 0, 0, "e", 1, true, "h", "c", List.of("a"), "r", List.of(),
-                "s", List.of());
-        assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0},
+                "s", List.of(), null, null);
+        assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null,
                 List.of(noSources))))).isInstanceOf(IllegalStateException.class).hasMessageContaining("cites a source");
     }
 }

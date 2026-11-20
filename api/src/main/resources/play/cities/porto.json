@@ -14,13 +14,19 @@
     41.1441,
     -8.6123
   ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Puente_Don_Luis_I%2C_Oporto%2C_Portugal%2C_2012-05-09%2C_DD_13.JPG/1280px-Puente_Don_Luis_I%2C_Oporto%2C_Portugal%2C_2012-05-09%2C_DD_13.JPG",
+    "page": "https://commons.wikimedia.org/wiki/File:Puente_Don_Luis_I,_Oporto,_Portugal,_2012-05-09,_DD_13.JPG",
+    "author": "Diego Delso",
+    "license": "CC BY-SA 3.0"
+  },
   "lessons": [
     {
       "id": "porto-sao-bento",
       "title": "The station painted in blue",
       "place": "São Bento Station",
-      "lat": 41.1456,
-      "lng": -8.6105,
+      "lat": 41.14556,
+      "lng": -8.61033,
       "era": "1415 & 1916",
       "minutes": 10,
       "free": true,
@@ -40,14 +46,34 @@
           "label": "São Bento railway station — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/S%C3%A3o_Bento_railway_station"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "~20,000",
+          "label": "painted tiles"
+        },
+        {
+          "value": "1916",
+          "label": "station opens"
+        },
+        {
+          "value": "1415",
+          "label": "conquest of Ceuta"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Esta%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Porto_-_S%C3%A3o_Bento.JPG/1280px-Esta%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Porto_-_S%C3%A3o_Bento.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Esta%C3%A7%C3%A3o_Ferrovi%C3%A1ria_de_Porto_-_S%C3%A3o_Bento.JPG",
+        "author": "HombreDHojalata",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "porto-se",
       "title": "A church built like a castle",
       "place": "Porto Cathedral (Sé)",
       "lat": 41.1428,
-      "lng": -8.611,
+      "lng": -8.6113,
       "era": "1100s–1387",
       "minutes": 10,
       "free": true,
@@ -85,14 +111,34 @@
           "label": "Anglo-Portuguese Alliance — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Anglo-Portuguese_Alliance"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1100s",
+          "label": "building begins"
+        },
+        {
+          "value": "1387",
+          "label": "royal wedding"
+        },
+        {
+          "value": "Oldest",
+          "label": "alliance still in force"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Porto%2C_S%C3%A9_do_Porto_%289%29.jpg/1280px-Porto%2C_S%C3%A9_do_Porto_%289%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Porto,_S%C3%A9_do_Porto_(9).jpg",
+        "author": "Laszlo Daroczy from Miskolc, Hungary",
+        "license": "CC BY 2.0"
+      }
     },
     {
       "id": "porto-luis-bridge",
       "title": "The bridge from Eiffel's workshop",
       "place": "Dom Luís I Bridge",
-      "lat": 41.1399,
-      "lng": -8.6094,
+      "lat": 41.13986,
+      "lng": -8.60934,
       "era": "1886",
       "minutes": 10,
       "free": true,
@@ -117,14 +163,34 @@
           "label": "Dom Luís I Bridge — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Dom_Lu%C3%ADs_I_Bridge"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1886",
+          "label": "opened"
+        },
+        {
+          "value": "2",
+          "label": "decks"
+        },
+        {
+          "value": "Seyrig",
+          "label": "Eiffel's former partner"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dom_Lu%C3%ADs_I_Bridge_%2836961760686%29.jpg/1280px-Dom_Lu%C3%ADs_I_Bridge_%2836961760686%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Dom_Lu%C3%ADs_I_Bridge_(36961760686).jpg",
+        "author": "Deensel",
+        "license": "CC BY 2.0"
+      }
     },
     {
       "id": "porto-clerigos",
       "title": "The tower sailors steered by",
       "place": "Clérigos Tower",
-      "lat": 41.1457,
-      "lng": -8.6146,
+      "lat": 41.14567,
+      "lng": -8.61458,
       "era": "1754–1763",
       "minutes": 10,
       "free": false,
@@ -154,14 +220,34 @@
           "label": "Clérigos history — Torre dos Clérigos",
           "url": "https://torredosclerigos.pt/en/292-years-of-history"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1754–63",
+          "label": "built"
+        },
+        {
+          "value": "~75 m",
+          "label": "tall"
+        },
+        {
+          "value": "Nasoni",
+          "label": "Tuscan architect"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Torre_de_los_Cl%C3%A9rigos%2C_Oporto%2C_Portugal%2C_2012-05-09%2C_DD_01.JPG/1280px-Torre_de_los_Cl%C3%A9rigos%2C_Oporto%2C_Portugal%2C_2012-05-09%2C_DD_01.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Torre_de_los_Cl%C3%A9rigos,_Oporto,_Portugal,_2012-05-09,_DD_01.JPG",
+        "author": "Diego Delso",
+        "license": "CC BY-SA 3.0"
+      }
     },
     {
       "id": "porto-lello",
       "title": "Myth or history?",
       "place": "Livraria Lello",
-      "lat": 41.1469,
-      "lng": -8.6149,
+      "lat": 41.14694,
+      "lng": -8.61472,
       "era": "1906",
       "minutes": 10,
       "free": false,
@@ -188,7 +274,27 @@
           "label": "The neo-Gothic building — Livraria Lello",
           "url": "https://livrarialello.pt/en/neo-gothic-building/"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1906",
+          "label": "opened"
+        },
+        {
+          "value": "Art & Science",
+          "label": "on the façade"
+        },
+        {
+          "value": "Myth",
+          "label": "the Harry Potter story"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Lello_Bookshop_9_April_2026.jpg/1280px-Lello_Bookshop_9_April_2026.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Lello_Bookshop_9_April_2026.jpg",
+        "author": "Guinness323",
+        "license": "CC0"
+      }
     },
     {
       "id": "porto-carmo",
@@ -223,7 +329,27 @@
           "label": "Carmo and Carmelitas Churches — Atlas Obscura",
           "url": "https://www.atlasobscura.com/places/carmo-and-carmelitas-churches"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "~1 m",
+          "label": "wide"
+        },
+        {
+          "value": "1980s",
+          "label": "last residents"
+        },
+        {
+          "value": "1912",
+          "label": "tile panel"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Igreja_do_Carmo_%28Porto%29_2.jpg/1280px-Igreja_do_Carmo_%28Porto%29_2.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Igreja_do_Carmo_(Porto)_2.jpg",
+        "author": "T meltzer",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "porto-alminhas",
@@ -254,7 +380,27 @@
           "label": "Ponte das Barcas disaster — Museu Nacional Soares dos Reis",
           "url": "https://museusoaresdosreis.gov.pt/colecao/ponte-das-barcas-disaster/?lang=en"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1809",
+          "label": "29 March"
+        },
+        {
+          "value": "Soult",
+          "label": "French marshal"
+        },
+        {
+          "value": "Thousands",
+          "label": "estimated dead"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Alminhas_da_Ponte_2024.jpg/1280px-Alminhas_da_Ponte_2024.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Alminhas_da_Ponte_2024.jpg",
+        "author": "Joseolgon",
+        "license": "CC BY 4.0"
+      }
     }
   ]
 }

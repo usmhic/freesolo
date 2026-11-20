@@ -14,13 +14,19 @@
     51.916,
     4.48
   ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/A_view_of_Rotterdam%2C_taken_from_the_roof_of_the_Maassilo%2C_Rotterdam%2C_The_Netherlands.jpg/1280px-A_view_of_Rotterdam%2C_taken_from_the_roof_of_the_Maassilo%2C_Rotterdam%2C_The_Netherlands.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:A_view_of_Rotterdam,_taken_from_the_roof_of_the_Maassilo,_Rotterdam,_The_Netherlands.jpg",
+    "author": "Rob Oo",
+    "license": "CC BY 2.0"
+  },
   "lessons": [
     {
       "id": "rotterdam-destroyed-city",
       "title": "A city without a heart",
       "place": "The Destroyed City, Plein 1940",
-      "lat": 51.9172,
-      "lng": 4.4824,
+      "lat": 51.9176,
+      "lng": 4.4831,
       "era": "1940",
       "minutes": 10,
       "free": true,
@@ -51,14 +57,34 @@
           "label": "Unveiling of The Destroyed City — Anne Frank House",
           "url": "https://www.annefrank.org/en/timeline/178/unveiling-of-the-destroyed-city/"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "14 May 1940",
+          "label": "the bombing"
+        },
+        {
+          "value": "~900",
+          "label": "killed"
+        },
+        {
+          "value": "1953",
+          "label": "statue unveiled"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Rotterdam_zadkine_monument.jpg/1280px-Rotterdam_zadkine_monument.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_zadkine_monument.jpg",
+        "author": "F.Eveleens",
+        "license": "CC BY 3.0"
+      }
     },
     {
       "id": "rotterdam-witte-huis",
       "title": "The skyscraper that survived",
       "place": "Witte Huis (White House)",
-      "lat": 51.9183,
-      "lng": 4.4892,
+      "lat": 51.91883,
+      "lng": 4.49175,
       "era": "1898",
       "minutes": 10,
       "free": true,
@@ -85,7 +111,27 @@
           "label": "Witte Huis — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Witte_Huis"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1898",
+          "label": "built"
+        },
+        {
+          "value": "~43 m",
+          "label": "ten floors"
+        },
+        {
+          "value": "Survived",
+          "label": "the 1940 bombs"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Rotterdam_Het_Witte_Huis_1900.jpg/1280px-Rotterdam_Het_Witte_Huis_1900.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_Het_Witte_Huis_1900.jpg",
+        "author": "Wikimedia Commons",
+        "license": "Public domain"
+      }
     },
     {
       "id": "rotterdam-erasmus",
@@ -123,7 +169,27 @@
           "label": "Netherlands' oldest statue turns 400 — NL Times",
           "url": "https://nltimes.nl/2022/04/27/netherlands-oldest-statue-turns-400-years-old"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1622",
+          "label": "unveiled"
+        },
+        {
+          "value": "Oldest",
+          "label": "bronze statue in the NL"
+        },
+        {
+          "value": "c.1466",
+          "label": "Erasmus born"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rotterdam_standbeeld_Erasmus.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_standbeeld_Erasmus.jpg",
+        "author": "Wikimedia Commons",
+        "license": "CC BY 1.0"
+      }
     },
     {
       "id": "rotterdam-cube-houses",
@@ -158,14 +224,34 @@
           "label": "Cube house architecture — MasterClass",
           "url": "https://www.masterclass.com/articles/cube-house-architecture-guide"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "45°",
+          "label": "tilt"
+        },
+        {
+          "value": "1984",
+          "label": "finished"
+        },
+        {
+          "value": "38",
+          "label": "houses built"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Cube_houses_%28DSC_3076%29.jpg/1280px-Cube_houses_%28DSC_3076%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Cube_houses_(DSC_3076).jpg",
+        "author": "Trougnouf (Benoit Brummer)",
+        "license": "CC BY 4.0"
+      }
     },
     {
       "id": "rotterdam-erasmus-bridge",
       "title": "The Swan",
       "place": "Erasmus Bridge",
-      "lat": 51.9093,
-      "lng": 4.4868,
+      "lat": 51.90917,
+      "lng": 4.48667,
       "era": "1996",
       "minutes": 10,
       "free": false,
@@ -193,14 +279,34 @@
           "label": "Erasmusbrug — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Erasmusbrug"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1996",
+          "label": "opened"
+        },
+        {
+          "value": "The Swan",
+          "label": "nickname"
+        },
+        {
+          "value": "Van Berkel",
+          "label": "architect"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Erasmusbrug%2C_September_2019.jpg/1280px-Erasmusbrug%2C_September_2019.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Erasmusbrug,_September_2019.jpg",
+        "author": "Martin Falbisoner",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "rotterdam-hotel-new-york",
       "title": "The building of goodbyes",
       "place": "Hotel New York, Wilhelminapier",
-      "lat": 51.903,
-      "lng": 4.4834,
+      "lat": 51.90417,
+      "lng": 4.48417,
       "era": "1901–1977",
       "minutes": 10,
       "free": false,
@@ -227,14 +333,34 @@
           "label": "Hotel New York fact sheet — Holland America Line",
           "url": "https://www.hollandamerica.com/content/dam/hal/inventory-assets/newsroom/presskits/History/hotel-new-york-fact-sheet-final-ada.pdf"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1901",
+          "label": "Holland America Line HQ"
+        },
+        {
+          "value": "~2 million",
+          "label": "passengers"
+        },
+        {
+          "value": "1993",
+          "label": "becomes a hotel"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Rotterdam_hotel_newyork.jpg/1280px-Rotterdam_hotel_newyork.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_hotel_newyork.jpg",
+        "author": "F.Eveleens",
+        "license": "CC BY 3.0"
+      }
     },
     {
       "id": "rotterdam-delfshaven",
       "title": "The Pilgrims' last harbour",
       "place": "Pilgrim Fathers Church, Delfshaven",
-      "lat": 51.9078,
-      "lng": 4.4458,
+      "lat": 51.909,
+      "lng": 4.449,
       "era": "1620",
       "minutes": 10,
       "free": false,
@@ -263,7 +389,27 @@
           "label": "Delfshaven — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Delfshaven"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1620",
+          "label": "the Pilgrims sail"
+        },
+        {
+          "value": "Speedwell",
+          "label": "then the Mayflower"
+        },
+        {
+          "value": "Survived",
+          "label": "the 1940 bombs"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rotterdam_pelgrimskerk.jpg/1280px-Rotterdam_pelgrimskerk.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_pelgrimskerk.jpg",
+        "author": "F.Eveleens",
+        "license": "CC BY 3.0"
+      }
     }
   ]
 }

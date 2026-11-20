@@ -24,7 +24,7 @@ class AnswerJudgeTest {
 
     static final LessonContent BRIDGE = new LessonContent("bridge", "Bridge", "Dom Luís I Bridge", 41.1, -8.6, "1886", 10,
             true, "hook", "How many decks?", List.of("2", "two decks"), "Two decks.", List.of("h1"), "story",
-            List.of(new Source("s", "https://example.org")));
+            List.of(new Source("s", "https://example.org")), List.of(), null);
     static final String PHOTO = "data:image/png;base64,iVBORw0KGgo=";
 
     HttpServer server;

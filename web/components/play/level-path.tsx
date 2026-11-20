@@ -2,9 +2,10 @@ import Link from "next/link";
 import { Check, Lock } from "lucide-react";
 import { cn } from "@/lib/cn";
 import type { LessonCard } from "@/lib/play";
+import { PlacePhoto } from "./place-photo";
 
 const ROW = 96; // px per level; fixed so the trail can be drawn through the node centres
-const NODE = 56;
+const NODE = 60;
 const OFFSETS = [0, 1, 2, 1]; // a gentle zigzag, in steps
 
 /**
@@ -41,14 +42,30 @@ export function LevelPath({
                 {current && <span className="absolute -inset-1.5 animate-pulse rounded-full ring-4 ring-sunset/40" />}
                 <span
                   className={cn(
-                    "relative flex size-full items-center justify-center rounded-full border-4 font-display text-lg font-extrabold shadow-md transition group-hover:scale-105",
-                    l.solved && "border-sunset/30 bg-sunset text-white",
-                    !l.solved && l.locked && "border-line bg-fd-muted text-ink-soft",
-                    !l.solved && !l.locked && current && "border-sunset bg-navy text-white dark:bg-sunset",
-                    !l.solved && !l.locked && !current && "border-line bg-surface text-ink"
+                    "relative block size-full overflow-hidden rounded-full border-4 shadow-md transition group-hover:scale-105",
+                    l.solved ? "border-sunset" : current ? "border-sunset" : "border-surface ring-1 ring-line"
                   )}
                 >
-                  {l.solved ? <Check className="size-6" strokeWidth={3} /> : l.locked ? <Lock className="size-5" /> : numbers.get(l.id)}
+                  <PlacePhoto
+                    photo={l.photo}
+                    width={330}
+                    alt=""
+                    colors={["#233846", "#55626C"]}
+                    className="absolute inset-0"
+                    veiled={l.locked && !l.solved}
+                    imgClassName={cn(!l.solved && "grayscale", !l.solved && !l.locked && "opacity-90")}
+                  />
+                  {l.locked && !l.solved && (
+                    <span className="absolute inset-0 flex items-center justify-center bg-navy/45 text-white"><Lock className="size-5" /></span>
+                  )}
+                </span>
+                <span
+                  className={cn(
+                    "absolute -bottom-1 -right-1 flex size-6 items-center justify-center rounded-full border-2 border-paper font-display text-[11px] font-extrabold",
+                    l.solved ? "bg-sunset text-white" : l.locked ? "bg-fd-muted text-ink-soft" : "bg-navy text-white dark:bg-sunset"
+                  )}
+                >
+                  {l.solved ? <Check className="size-3.5" strokeWidth={3.5} /> : numbers.get(l.id)}
                 </span>
               </span>
               <span className={cn("min-w-0 flex-1 rounded-2xl px-3 py-2 transition group-hover:bg-surface", current && "bg-surface shadow-sm ring-1 ring-sunset/30")}>

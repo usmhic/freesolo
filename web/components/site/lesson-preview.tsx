@@ -11,15 +11,20 @@ export function LessonPreview() {
           <span className="font-semibold text-ink-soft">🍷 Porto · Level 3 of 7</span>
           <span className="inline-flex items-center gap-1.5 font-semibold text-ink"><StarOrb rankKey="protostar" size={18} /> Protostar · ✨ 250</span>
         </div>
+        <div className="relative h-44 overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/play/photos/porto-luis-bridge.webp" alt="Dom Luís I Bridge, Porto" className="absolute inset-0 size-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+          <div className="absolute left-4 top-3 flex gap-2 text-[11px] font-semibold">
+            <span className="rounded-full bg-sunset px-2.5 py-1 text-white">1886</span>
+            <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">10 min</span>
+          </div>
+          <div className="absolute inset-x-4 bottom-3 text-white">
+            <p className="font-display text-xl font-extrabold leading-tight drop-shadow">The bridge from Eiffel&apos;s workshop</p>
+            <p className="mt-0.5 flex items-center gap-1 text-sm text-white/90"><MapPin className="size-3.5 text-sunset" /> Dom Luís I Bridge</p>
+          </div>
+        </div>
         <div className="space-y-4 p-5">
-          <div className="flex gap-2 text-[11px] font-semibold">
-            <span className="rounded-full bg-sunset-soft px-2.5 py-1 text-sunset">1886</span>
-            <span className="rounded-full bg-fd-muted px-2.5 py-1 text-ink-soft">10 min</span>
-          </div>
-          <div>
-            <p className="font-display text-xl font-extrabold leading-tight">The bridge from Eiffel&apos;s workshop</p>
-            <p className="mt-1 flex items-center gap-1 text-sm text-ink-soft"><MapPin className="size-3.5 text-sunset" /> Dom Luís I Bridge</p>
-          </div>
           <div className="rounded-2xl bg-paper p-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-sunset">Your challenge</p>
             <p className="mt-1.5 font-semibold">Count them: how many decks does the bridge have?</p>

@@ -14,6 +14,12 @@
     35.7855,
     -5.8125
   ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Tanger_cor.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Tanger_cor.jpg",
+    "author": "Ifni95",
+    "license": "CC BY-SA 4.0"
+  },
   "lessons": [
     {
       "id": "tangier-grand-socco",
@@ -49,14 +55,34 @@
           "label": "Tangier Speech — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Tangier_Speech"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1947",
+          "label": "the Sultan's speech"
+        },
+        {
+          "value": "Mohammed V",
+          "label": "the speaker"
+        },
+        {
+          "value": "1956",
+          "label": "Tangier rejoins Morocco"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Grand_Socco_Tangier.jpg/1280px-Grand_Socco_Tangier.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Grand_Socco_Tangier.jpg",
+        "author": "Chris Yunker",
+        "license": "CC BY-SA 2.0"
+      }
     },
     {
       "id": "tangier-legation",
       "title": "America's oldest home abroad",
       "place": "Tangier American Legation",
-      "lat": 35.7834,
-      "lng": -5.8103,
+      "lat": 35.78398,
+      "lng": -5.81068,
       "era": "1821",
       "minutes": 10,
       "free": true,
@@ -88,14 +114,34 @@
           "label": "American Legation, Tangier — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/American_Legation,_Tangier"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1821",
+          "label": "gift to the US"
+        },
+        {
+          "value": "1st",
+          "label": "US property abroad"
+        },
+        {
+          "value": "1777",
+          "label": "Morocco recognises the US"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Museo_del_Antiguo_Legado_Estadounidense%2C_T%C3%A1nger%2C_Marruecos%2C_2015-12-11%2C_DD_44-46_HDR.JPG/1280px-Museo_del_Antiguo_Legado_Estadounidense%2C_T%C3%A1nger%2C_Marruecos%2C_2015-12-11%2C_DD_44-46_HDR.JPG",
+        "page": "https://commons.wikimedia.org/wiki/File:Museo_del_Antiguo_Legado_Estadounidense,_T%C3%A1nger,_Marruecos,_2015-12-11,_DD_44-46_HDR.JPG",
+        "author": "Diego Delso",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "tangier-kasbah",
       "title": "The palace on the cliff",
       "place": "Kasbah Museum (Dar el Makhzen)",
-      "lat": 35.7889,
-      "lng": -5.8131,
+      "lat": 35.78861,
+      "lng": -5.81278,
       "era": "1684",
       "minutes": 10,
       "free": true,
@@ -125,14 +171,34 @@
           "label": "Kasbah Mosque, Tangier — Wikipedia",
           "url": "https://en.wikipedia.org/wiki/Kasbah_Mosque,_Tangier"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1662–84",
+          "label": "English rule"
+        },
+        {
+          "value": "14 km",
+          "label": "to Europe, at the narrowest"
+        },
+        {
+          "value": "Museum",
+          "label": "the palace today"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Kasbah_Museum_of_Tangier_17092021_003.jpg/1280px-Kasbah_Museum_of_Tangier_17092021_003.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Kasbah_Museum_of_Tangier_17092021_003.jpg",
+        "author": "Yamen",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "tangier-petit-socco",
       "title": "The Interzone",
       "place": "Petit Socco",
-      "lat": 35.7864,
-      "lng": -5.8108,
+      "lat": 35.7854,
+      "lng": -5.8106,
       "era": "1920s–1956",
       "minutes": 10,
       "free": false,
@@ -161,7 +227,27 @@
           "label": "The International Zone: Expat Writers in Tangier — Culture Trip",
           "url": "https://theculturetrip.com/africa/morocco/articles/the-international-zone-expat-writers-in-tangier/"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1920s–56",
+          "label": "International Zone"
+        },
+        {
+          "value": "1947",
+          "label": "Paul Bowles arrives"
+        },
+        {
+          "value": "Interzone",
+          "label": "Burroughs' nickname"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Morocco_Tangier_Petit_Socco.jpg/1280px-Morocco_Tangier_Petit_Socco.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Morocco_Tangier_Petit_Socco.jpg",
+        "author": "Boubloub",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "tangier-tombs",
@@ -198,7 +284,27 @@
           "label": "Roman-Punic Necropolis — Atlas Obscura",
           "url": "https://www.atlasobscura.com/places/roman-punic-necropolis"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "~100",
+          "label": "rock-cut tombs"
+        },
+        {
+          "value": "2,000+",
+          "label": "years old"
+        },
+        {
+          "value": "Tingis",
+          "label": "the ancient city"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/So-called_phoenician_tombs_in_Tangier_%2843979%29.jpg/1280px-So-called_phoenician_tombs_in_Tangier_%2843979%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:So-called_phoenician_tombs_in_Tangier_(43979).jpg",
+        "author": "Ideophagous",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "tangier-ibn-battuta",
@@ -235,14 +341,34 @@
           "label": "Tomb of Ibn Battuta — Lonely Planet",
           "url": "https://www.lonelyplanet.com/morocco/tangier/attractions/tomb-of-ibn-battuta/a/poi-sig/1545757/355513"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1304",
+          "label": "born in Tangier"
+        },
+        {
+          "value": "1325",
+          "label": "sets off, aged 21"
+        },
+        {
+          "value": "~30",
+          "label": "years on the road"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Inside_Ibn_Battuta%27s_Tomb_-_Tangier.jpg/1280px-Inside_Ibn_Battuta%27s_Tomb_-_Tangier.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Inside_Ibn_Battuta%27s_Tomb_-_Tangier.jpg",
+        "author": "Anass Sedrati",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "tangier-cervantes",
       "title": "A Spanish theatre in Morocco",
       "place": "Gran Teatro Cervantes",
-      "lat": 35.7822,
-      "lng": -5.8099,
+      "lat": 35.782,
+      "lng": -5.8107,
       "era": "1913",
       "minutes": 10,
       "free": false,
@@ -263,7 +389,27 @@
           "label": "Morocco recovers the Gran Teatro Cervantes — Atalayar",
           "url": "https://www.atalayar.com/en/articulo/culture/morocco-seeks-recover-splendour-great-cervantes-theatre-tangiers/20230302134102182002.html"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1913",
+          "label": "opened"
+        },
+        {
+          "value": "1928",
+          "label": "given to Spain"
+        },
+        {
+          "value": "2023",
+          "label": "handed to Morocco"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Gran_Teatro_Cervantes2.jpg/1280px-Gran_Teatro_Cervantes2.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Gran_Teatro_Cervantes2.jpg",
+        "author": "Cosmo45",
+        "license": "CC BY 2.0"
+      }
     }
   ]
 }

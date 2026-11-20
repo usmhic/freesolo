@@ -69,7 +69,7 @@ public class PlayService {
 
         AnswerJudge.Verdict verdict = judge.judge(l, req.answer(), req.photo());
         if (!verdict.correct()) {
-            return new AttemptResult(false, verdict.feedback(), verdict.judgedBy(), null, null, 0, false,
+            return new AttemptResult(false, verdict.feedback(), verdict.judgedBy(), null, null, null, 0, false,
                     userId == null ? null : player(userId));
         }
 
@@ -85,7 +85,8 @@ public class PlayService {
                 earned = 0;
             }
         }
-        return new AttemptResult(true, verdict.feedback(), verdict.judgedBy(), l.story(), l.sources(), earned, already,
+        return new AttemptResult(true, verdict.feedback(), verdict.judgedBy(), l.story(), l.sources(),
+                l.facts() == null ? List.of() : l.facts(), earned, already,
                 userId == null ? null : player(userId));
     }
 
@@ -151,13 +152,13 @@ public class PlayService {
         int free = (int) c.lessons().stream().filter(LessonContent::free).count();
         int solved = (int) c.lessons().stream().filter(l -> p.solved().contains(l.id())).count();
         return new CitySummary(c.id(), c.name(), c.country(), c.emoji(), c.tagline(), c.intro(), c.colors(),
-                c.center(), c.lessons().size(), free, p.unlockedCities().contains(c.id()), solved);
+                c.center(), c.photo(), c.lessons().size(), free, p.unlockedCities().contains(c.id()), solved);
     }
 
     private LessonCard card(LessonContent l, String cityId, Progress p) {
         boolean locked = !l.free() && !p.unlockedCities().contains(cityId);
         return new LessonCard(l.id(), l.title(), l.place(), l.lat(), l.lng(), l.era(), l.minutes(), l.free(), locked,
-                p.solved().contains(l.id()), l.hook());
+                p.solved().contains(l.id()), l.hook(), l.photo());
     }
 
     static List<LessonContent> walkingOrder(CityContent c) {

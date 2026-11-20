@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowLeft, ArrowRight, BookOpen, Camera, Check, ExternalLink, Lightbulb, Loader2, Lock, MapPin, Sparkles, X,
+  ArrowLeft, ArrowRight, BookOpen, Camera, Check, Lightbulb, Loader2, Lock, MapPin, Sparkles, X,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { api, ClientApiError } from "@/lib/client-api";
 import { RouteMap } from "@/components/map/route-map";
 import { rankFor, recordGuestSolve, type AttemptResult, type CityView, type LessonView, type Rank } from "@/lib/play";
 import { StarOrb } from "./star-badge";
+import { PlacePhoto } from "./place-photo";
+import { StoryCard } from "./story-card";
 import { usePlayer } from "./use-player";
 
 /** Shrinks a phone photo to at most 1280px before it's sent for checking. */
@@ -149,14 +151,21 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
 
       <div className="mt-5 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
         <div className="min-w-0 space-y-5">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
-              <span className="rounded-full bg-sunset-soft px-2.5 py-1 text-sunset">{l.era}</span>
-              <span className="rounded-full bg-fd-muted px-2.5 py-1 text-ink-soft">{l.minutes} min</span>
-              {solvedBefore && !won && <span className="rounded-full bg-sage/15 px-2.5 py-1 text-sage">Solved ✓</span>}
+          <div className="relative -mx-4 overflow-hidden sm:mx-0 sm:rounded-3xl">
+            <PlacePhoto photo={l.photo} width={1280} alt={l.place} credit colors={["#233846", "#16242F"]} className="aspect-[4/3] sm:aspect-[16/9]" priority veiled={!won && !solvedBefore} />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
+            {l.photo && !won && !solvedBefore && (
+              <span className="absolute right-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-semibold text-white backdrop-blur">🔒 Solve to reveal</span>
+            )}
+            <div className="absolute left-4 top-4 flex flex-wrap gap-2 text-xs font-semibold">
+              <span className="rounded-full bg-sunset px-2.5 py-1 text-white">{l.era}</span>
+              <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">{l.minutes} min</span>
+              {solvedBefore && !won && <span className="rounded-full bg-sage px-2.5 py-1 text-white">Solved ✓</span>}
             </div>
-            <h1 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{l.title}</h1>
-            <p className="mt-1 flex items-center gap-1.5 text-ink-soft"><MapPin className="size-4 text-sunset" /> {l.place}</p>
+            <div className="absolute inset-x-4 bottom-7 text-white sm:inset-x-6">
+              <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight drop-shadow sm:text-4xl">{l.title}</h1>
+              <p className="mt-1 flex items-center gap-1.5 text-white/90"><MapPin className="size-4 text-sunset" /> {l.place}</p>
+            </div>
           </div>
 
           <p className="text-lg leading-relaxed text-ink">{l.hook}</p>
@@ -243,20 +252,9 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                   </div>
                 )}
               </div>
-              <div className="space-y-4 p-6">
-                <p className="eyebrow flex items-center gap-1.5"><BookOpen className="size-3.5" /> The story</p>
-                <p className="leading-relaxed text-ink">{result!.story}</p>
-                {result!.sources && (
-                  <ul className="space-y-1 text-sm">
-                    {result!.sources.map((s) => (
-                      <li key={s.url}>
-                        <a href={s.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-ink-soft hover:text-sunset">
-                          <ExternalLink className="size-3.5" /> {s.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              <div className="space-y-4 p-5 sm:p-6">
+                <p className="eyebrow flex items-center gap-1.5"><BookOpen className="size-3.5" /> What happened here</p>
+                <StoryCard facts={result!.facts ?? []} story={result!.story ?? ""} sources={result!.sources ?? []} place={l.place} city={lesson.cityName} />
                 {cityComplete ? (
                   <div className="rounded-2xl bg-sunset-soft p-4 text-sm text-ink">
                     <p className="font-display text-lg font-bold">🏆 You&apos;ve solved all of {lesson.cityName}!</p>
@@ -289,7 +287,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
         </div>
 
         <div className="space-y-3">
-          <div className="isolate h-[260px] overflow-hidden rounded-3xl border border-line lg:h-[380px]">
+          <div className="isolate h-[200px] overflow-hidden rounded-3xl border border-line lg:h-[340px]">
             <RouteMap stops={[{ name: l.place, lat: l.lat, lng: l.lng }]} fitMaxZoom={16} className="h-full w-full" />
           </div>
           <a

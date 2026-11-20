@@ -14,13 +14,19 @@
     37.8795,
     -4.78
   ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/C%C3%B3rdoba_aerial_2.jpg/1280px-C%C3%B3rdoba_aerial_2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_aerial_2.jpg",
+    "author": "kallerna",
+    "license": "CC BY-SA 4.0"
+  },
   "lessons": [
     {
       "id": "cordoba-mezquita",
       "title": "A forest of striped arches",
       "place": "Mosque–Cathedral (Mezquita)",
-      "lat": 37.8789,
-      "lng": -4.7794,
+      "lat": 37.87917,
+      "lng": -4.77972,
       "era": "785",
       "minutes": 10,
       "free": true,
@@ -50,14 +56,34 @@
           "label": "Córdoba's Mosque-Cathedral — National Geographic",
           "url": "https://www.nationalgeographic.com/history/history-magazine/article/cordobas-mosque-cathedral-showcases-spains-muslim-heritage"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "785",
+          "label": "building begins"
+        },
+        {
+          "value": "856",
+          "label": "columns remain"
+        },
+        {
+          "value": "1236",
+          "label": "becomes a cathedral"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Mezquita_de_C%C3%B3rdoba_desde_el_aire_%28C%C3%B3rdoba%2C_Espa%C3%B1a%29.jpg/1280px-Mezquita_de_C%C3%B3rdoba_desde_el_aire_%28C%C3%B3rdoba%2C_Espa%C3%B1a%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Mezquita_de_C%C3%B3rdoba_desde_el_aire_(C%C3%B3rdoba,_Espa%C3%B1a).jpg",
+        "author": "Toni Castillo Quero",
+        "license": "CC BY-SA 2.0"
+      }
     },
     {
       "id": "cordoba-roman-bridge",
       "title": "Two thousand years over the river",
       "place": "Roman Bridge",
-      "lat": 37.8763,
-      "lng": -4.7774,
+      "lat": 37.87667,
+      "lng": -4.77806,
       "era": "1st century BC",
       "minutes": 10,
       "free": true,
@@ -83,7 +109,27 @@
           "label": "The Roman Bridge of Cordoba — Ancient Origins",
           "url": "https://www.ancient-origins.net/node/13820"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1st c. BC",
+          "label": "Roman origin"
+        },
+        {
+          "value": "16",
+          "label": "arches"
+        },
+        {
+          "value": "Calahorra",
+          "label": "tower museum"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Puente_Romano_Cordoba.jpg/1280px-Puente_Romano_Cordoba.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Puente_Romano_Cordoba.jpg",
+        "author": "Rafesmar",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "cordoba-maimonides",
@@ -120,14 +166,34 @@
           "label": "Córdoba's Judería — Andalucia.com",
           "url": "https://andalucia.com/cities/cordoba/juderia.htm"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1138",
+          "label": "born in Córdoba"
+        },
+        {
+          "value": "1315",
+          "label": "the synagogue"
+        },
+        {
+          "value": "1 of 3",
+          "label": "medieval synagogues left in Spain"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ben_Maim%C3%B3nides._C%C3%B3rdoba%2C_Espa%C3%B1a-eue.jpg/1280px-Ben_Maim%C3%B3nides._C%C3%B3rdoba%2C_Espa%C3%B1a-eue.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Ben_Maim%C3%B3nides._C%C3%B3rdoba,_Espa%C3%B1a-eue.jpg",
+        "author": "Lmbuga (Luis Miguel Bugallo Sánchez)",
+        "license": "CC BY-SA 4.0"
+      }
     },
     {
       "id": "cordoba-alcazar",
       "title": "Where Columbus pitched his plan",
       "place": "Alcázar de los Reyes Cristianos",
-      "lat": 37.8768,
-      "lng": -4.7832,
+      "lat": 37.87722,
+      "lng": -4.78194,
       "era": "1486",
       "minutes": 10,
       "free": false,
@@ -157,7 +223,27 @@
           "label": "Alcázar de los Reyes Cristianos — Fascinating Spain",
           "url": "https://www.fascinatingspain.com/articulo/monuments-of-spain/alcazar-de-los-reyes-cristianos-in-cordoba/20230919072626071152.html"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1486",
+          "label": "Columbus's audience"
+        },
+        {
+          "value": "1492",
+          "label": "the answer"
+        },
+        {
+          "value": "Inquisition",
+          "label": "later housed here"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Cordoba-6_%2848026780817%29.jpg/1280px-Cordoba-6_%2848026780817%29.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:Cordoba-6_(48026780817).jpg",
+        "author": "Ajay Suresh from New York, NY, USA",
+        "license": "CC BY 2.0"
+      }
     },
     {
       "id": "cordoba-flores",
@@ -184,13 +270,27 @@
       "rubric": "Correct if the player says flowers, flowerpots or plants (geraniums, carnations).",
       "hints": [
         "Look up at the walls, not the ground.",
-        "They're bright red and hung in blue pots."
+        "They're bright red and hang all over the walls."
       ],
       "story": "Córdoba's houses are built around cool inner patios — a tradition with Roman and Islamic roots — and families fill them with pots of geraniums and carnations. Every May the city holds its Patios Festival, when people open their courtyards to visitors; it is recognised by UNESCO. And from the end of this alley, the bell tower of the Mosque–Cathedral is framed perfectly between the white walls.",
       "sources": [
         {
           "label": "Calleja de las Flores — Córdoba tourism",
           "url": "https://turismodecordoba.org/calleja-de-las-flores-alley-of-the-flowers"
+        }
+      ],
+      "facts": [
+        {
+          "value": "May",
+          "label": "Patios Festival"
+        },
+        {
+          "value": "UNESCO",
+          "label": "recognised"
+        },
+        {
+          "value": "Geraniums",
+          "label": "& carnations"
         }
       ]
     },
@@ -226,7 +326,27 @@
           "label": "Plaza de la Corredera — Lonely Planet",
           "url": "https://www.lonelyplanet.com/spain/cordoba/attractions/plaza-de-la-corredera/a/poi-sig/484234/360732"
         }
-      ]
+      ],
+      "facts": [
+        {
+          "value": "1600s",
+          "label": "arcaded square"
+        },
+        {
+          "value": "Bullfights",
+          "label": "seen from balconies"
+        },
+        {
+          "value": "Rare",
+          "label": "in Andalusia"
+        }
+      ],
+      "photo": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg/1280px-C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg",
+        "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg",
+        "author": "Benjamin Smith",
+        "license": "CC BY-SA 4.0"
+      }
     }
   ]
 }
