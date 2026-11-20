@@ -32,7 +32,7 @@ class PlayServiceTest {
 
     static final List<Source> SRC = List.of(new Source("s", "https://example.org"));
     static LessonContent lesson(String id, double lat, double lng, boolean free) {
-        return new LessonContent(id, id, id, lat, lng, "era", 10, free, "hook", "challenge", List.of("yes"),
+        return new LessonContent(id, id, id, lat, lng, "era", 10, 200, free, "hook", "challenge", List.of("yes"),
                 "rubric", List.of("h1", "h2"), "story " + id, SRC, List.of(new Fact("1886", "opened")), null);
     }
     static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null, List.of(
@@ -63,14 +63,14 @@ class PlayServiceTest {
         assertThat(result.correct()).isTrue();
         assertThat(result.story()).isEqualTo("story near");
         assertThat(result.facts()).extracting(Fact::value).containsExactly("1886");
-        assertThat(result.stardustEarned()).isEqualTo(75);
+        assertThat(result.stardustEarned()).isEqualTo(160); // 200 points, one hint costs a fifth
         var saved = ArgumentCaptor.forClass(LessonProgress.class);
         verify(progressRepository).saveAndFlush(saved.capture());
         assertThat(saved.getValue().getLessonId()).isEqualTo("near");
         assertThat(saved.getValue().getCityId()).isEqualTo("town");
 
         when(progressRepository.findByUserIdOrderBySolvedAtDesc("ana")).thenReturn(List.of(
-                LessonProgress.builder().userId("ana").lessonId("near").cityId("town").stardust(75).build()));
+                LessonProgress.builder().userId("ana").lessonId("near").cityId("town").stardust(160).build()));
         var again = service.attempt("ana", "near", new AttemptRequest("yes", null, 0));
         assertThat(again.alreadySolved()).isTrue();
         assertThat(again.stardustEarned()).isZero();
@@ -81,7 +81,7 @@ class PlayServiceTest {
     void aGuestEarnsStardustWithoutAnythingSaved() {
         var result = service.attempt(null, "near", new AttemptRequest("yes", null, 0));
 
-        assertThat(result.stardustEarned()).isEqualTo(150);
+        assertThat(result.stardustEarned()).isEqualTo(200);
         assertThat(result.player()).isNull();
         verify(progressRepository, never()).saveAndFlush(any());
     }
@@ -117,7 +117,9 @@ class PlayServiceTest {
         assertThat(StarRanks.rankFor(150).nextName()).isEqualTo("White Dwarf");
         assertThat(StarRanks.rankFor(9000).key()).isEqualTo("black-hole");
         assertThat(StarRanks.rankFor(9000).nextAt()).isNull();
-        assertThat(StarRanks.stardustFor(5)).isEqualTo(50);
+        assertThat(StarRanks.stardustFor(150, 0)).isEqualTo(150);
+        assertThat(StarRanks.stardustFor(150, 1)).isEqualTo(120);
+        assertThat(StarRanks.stardustFor(150, 5)).isEqualTo(75);
     }
 
     @Test
@@ -135,7 +137,7 @@ class PlayServiceTest {
 
     @Test
     void invalidContentIsRejected() {
-        var noSources = new LessonContent("xx", "x", "x", 0, 0, "e", 1, true, "h", "c", List.of("a"), "r", List.of(),
+        var noSources = new LessonContent("xx", "x", "x", 0, 0, "e", 1, 100, true, "h", "c", List.of("a"), "r", List.of(),
                 "s", List.of(), null, null);
         assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, null,
                 List.of(noSources))))).isInstanceOf(IllegalStateException.class).hasMessageContaining("cites a source");

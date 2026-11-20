@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowLeft, ArrowRight, BookOpen, Camera, Check, Lightbulb, Loader2, Lock, MapPin, Sparkles, X,
+  ArrowLeft, ArrowRight, BookOpen, Camera, Check, Lightbulb, Loader2, Lock, MapPin, Sparkles, Trophy, X,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { api, ClientApiError } from "@/lib/client-api";
@@ -159,6 +159,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
             )}
             <div className="absolute left-4 top-4 flex flex-wrap gap-2 text-xs font-semibold">
               <span className="rounded-full bg-sunset px-2.5 py-1 text-white">{l.era}</span>
+              <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">✨ {l.points}</span>
               <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">{l.minutes} min</span>
               {solvedBefore && !won && <span className="rounded-full bg-sage px-2.5 py-1 text-white">Solved ✓</span>}
             </div>
@@ -222,7 +223,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                   ))}
                   {hints < lesson.hints.length && (
                     <button type="button" onClick={() => setHints((n) => n + 1)} className="btn-ghost btn-sm -ml-2 text-ink-soft">
-                      <Lightbulb className="size-4" /> {hints === 0 ? "Need a hint?" : "Another hint"} <span className="text-xs">(less stardust)</span>
+                      <Lightbulb className="size-4" /> {hints === 0 ? "Need a hint?" : "Another hint"} <span className="text-xs">(−{Math.round(l.points * 0.2)} ✨)</span>
                     </button>
                   )}
                 </div>
@@ -278,6 +279,11 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                   )}
                   <Link href="/sky" className="btn-outline flex-1"><Sparkles className="size-4" /> See my sky</Link>
                 </div>
+                {signedIn && result!.stardustEarned > 0 && (
+                  <Link href="/ranking" className="flex items-center justify-center gap-1.5 text-sm font-semibold text-ink-soft hover:text-sunset">
+                    <Trophy className="size-4" /> See where you rank
+                  </Link>
+                )}
                 {!signedIn && result!.stardustEarned > 0 && (
                   <p className="text-xs text-ink-soft">Your stars are saved in this browser. <Link href="/sign-in" className="font-semibold text-sunset">Sign in</Link> to keep them everywhere.</p>
                 )}

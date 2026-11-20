@@ -25,8 +25,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   credited on each photo and on a Photo credits page. Map pins now use
   Wikipedia's coordinates where an article has them.
 - Answers are checked against each level's accepted answers; with
-  `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` set, Claude also judges your own
-  wording, other languages and photos, and nudges you when you're close.
+  `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` set, an AI model on OpenRouter
+  also judges your own wording, other languages and photos, and nudges you
+  when you're close.
+- Every mission is worth points (✨ 100–250, a fifth less per hint), and a
+  global ranking — all time and this week, with a podium — shows who's lit
+  up the most of the sky.
 - Stardust and star ranks from Nebula to Black Hole, earned in any city and
   never sold, and "My sky": a night sky with a star for every solved level and
   a constellation per city.

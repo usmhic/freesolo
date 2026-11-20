@@ -25,7 +25,7 @@ public final class PlayDtos {
     public record Fact(String value, String label) {}
 
     public record LessonContent(String id, String title, String place, double lat, double lng, String era,
-                                int minutes, boolean free, String hook, String challenge, List<String> accepted,
+                                int minutes, int points, boolean free, String hook, String challenge, List<String> accepted,
                                 String rubric, List<String> hints, String story, List<Source> sources,
                                 List<Fact> facts, Photo photo) {}
 
@@ -41,11 +41,11 @@ public final class PlayDtos {
 
     public record CitySummary(String id, String name, String country, String emoji, String tagline, String intro,
                               List<String> colors, double[] center, Photo photo, int lessons, int freeLessons,
-                              boolean unlocked, int solved) {}
+                              int points, boolean unlocked, int solved) {}
 
     /** What a player sees before solving: never the accepted answers or the story. */
     public record LessonCard(String id, String title, String place, double lat, double lng, String era,
-                             int minutes, boolean free, boolean locked, boolean solved, String hook, Photo photo) {}
+                             int minutes, int points, boolean free, boolean locked, boolean solved, String hook, Photo photo) {}
 
     public record CityView(CitySummary city, List<LessonCard> lessons) {}
 
@@ -58,6 +58,13 @@ public final class PlayDtos {
                                 List<Fact> facts, int stardustEarned, boolean alreadySolved, PlayerView player) {}
 
     public record JourneyDay(int day, List<LessonCard> lessons) {}
+
+    /** One row of the global ranking. Names are shortened ("Hana O.") so the board stays friendly. */
+    public record Standing(int position, String name, String initial, int stardust, int solved, int cities,
+                           Rank rank, boolean me) {}
+
+    /** {@code me} is the signed-in player's own row, even when it's outside the top list. */
+    public record Leaderboard(String period, int players, List<Standing> top, Standing me) {}
 
     public record JourneyView(CitySummary city, String startDate, List<JourneyDay> days, RouteResult route) {}
 

@@ -2,6 +2,7 @@ package com.freesolo.api.controller;
 
 import com.freesolo.api.dto.play.PlayDtos.*;
 import com.freesolo.api.security.UserPrincipal;
+import com.freesolo.api.service.LeaderboardService;
 import com.freesolo.api.service.PlayService;
 import com.freesolo.api.service.RateLimiter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,6 +28,7 @@ public class PlayController {
     static final int JOURNEYS_PER_MINUTE = 20;
 
     private final PlayService playService;
+    private final LeaderboardService leaderboardService;
     private final RateLimiter rateLimiter;
 
     @GetMapping("/ranks")
@@ -67,6 +69,13 @@ public class PlayController {
                                                @Valid @RequestBody JourneyRequest req, HttpServletRequest request) {
         rateLimiter.check("play-journeys", clientKey(principal, request), JOURNEYS_PER_MINUTE);
         return ResponseEntity.ok(playService.journey(userId(principal), req));
+    }
+
+    /** GET /api/play/leaderboard?period=all|week — the global ranking, with your own row when signed in. */
+    @GetMapping("/leaderboard")
+    public ResponseEntity<Leaderboard> leaderboard(@AuthenticationPrincipal UserPrincipal principal,
+                                                   @RequestParam(defaultValue = "all") String period) {
+        return ResponseEntity.ok(leaderboardService.leaderboard(period, userId(principal)));
     }
 
     @GetMapping("/me")

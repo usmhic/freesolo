@@ -7,6 +7,7 @@ const COLUMNS = [
     links: [
       { href: "/play", label: "Play a city" },
       { href: "/sky", label: "My sky" },
+      { href: "/ranking", label: "Global ranking" },
       { href: "/trips", label: "Group trips" },
       { href: "/planner", label: "Trip planner" },
     ],

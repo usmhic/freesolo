@@ -69,8 +69,8 @@ services:
       MINIO_ACCESS_KEY: freesolo
       MINIO_SECRET_KEY: ${MINIO_PASSWORD:?Copy .env.example to .env}
       ORS_API_KEY: ${ORS_API_KEY:-}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-      ANTHROPIC_MODEL: ${ANTHROPIC_MODEL:-}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-}
     ports:
       - "${API_PORT:-8080}:8080"
     healthcheck:

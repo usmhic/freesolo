@@ -115,7 +115,7 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
   const rank = player.rank;
 
   const packCard = locked.length > 0 && (
-    <div className={cn("card overflow-hidden", freeDone && "ring-2 ring-sunset")}>
+    <div id="pack" className={cn("card scroll-mt-24 overflow-hidden", freeDone && "ring-2 ring-sunset")}>
       <div className="flex items-start gap-4 p-5">
         <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-navy text-white dark:bg-sunset"><Lock className="size-5" /></span>
         <div>
@@ -174,8 +174,14 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
               </Link>
             ) : complete ? (
               <Link href="/sky" className="btn bg-white px-6 py-3 text-[15px] text-navy"><Trophy className="size-4" /> City complete — see your sky</Link>
+            ) : locked.length > 0 ? (
+              <a href="#pack" className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">
+                <Lock className="size-4" /> Unlock {locked.length} more missions
+              </a>
             ) : null}
-            <span className="rounded-full bg-black/20 px-3.5 py-2 text-sm font-semibold backdrop-blur">{solved}/{all.length} solved</span>
+            <span className="rounded-full bg-black/25 px-3.5 py-2 text-sm font-semibold backdrop-blur">
+              {solved}/{all.length} solved · ✨ {all.filter((l) => !l.solved).reduce((n, l) => n + l.points, 0).toLocaleString("en")} to win
+            </span>
           </div>
         </div>
       </section>

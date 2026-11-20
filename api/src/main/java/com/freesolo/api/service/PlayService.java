@@ -74,7 +74,7 @@ public class PlayService {
         }
 
         boolean already = before.solved().contains(lessonId);
-        int earned = already ? 0 : StarRanks.stardustFor(hints);
+        int earned = already ? 0 : StarRanks.stardustFor(l.points(), hints);
         if (userId != null && !already) {
             try {
                 progressRepository.saveAndFlush(LessonProgress.builder()
@@ -152,12 +152,13 @@ public class PlayService {
         int free = (int) c.lessons().stream().filter(LessonContent::free).count();
         int solved = (int) c.lessons().stream().filter(l -> p.solved().contains(l.id())).count();
         return new CitySummary(c.id(), c.name(), c.country(), c.emoji(), c.tagline(), c.intro(), c.colors(),
-                c.center(), c.photo(), c.lessons().size(), free, p.unlockedCities().contains(c.id()), solved);
+                c.center(), c.photo(), c.lessons().size(), free, c.lessons().stream().mapToInt(LessonContent::points).sum(),
+                p.unlockedCities().contains(c.id()), solved);
     }
 
     private LessonCard card(LessonContent l, String cityId, Progress p) {
         boolean locked = !l.free() && !p.unlockedCities().contains(cityId);
-        return new LessonCard(l.id(), l.title(), l.place(), l.lat(), l.lng(), l.era(), l.minutes(), l.free(), locked,
+        return new LessonCard(l.id(), l.title(), l.place(), l.lat(), l.lng(), l.era(), l.minutes(), l.points(), l.free(), locked,
                 p.solved().contains(l.id()), l.hook(), l.photo());
     }
 

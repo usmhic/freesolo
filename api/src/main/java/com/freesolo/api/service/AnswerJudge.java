@@ -22,10 +22,10 @@ import java.util.regex.Pattern;
  * Decides whether a player's answer solves a lesson.
  *
  * <p>Typed answers are first matched against the lesson's accepted answers
- * (accents, case and punctuation ignored). When that fails and Claude is
- * configured, Claude judges the answer against the lesson's rubric, so
- * paraphrases, other languages and photos count. Without Claude, matching is
- * the whole check and photos can't be judged.
+ * (accents, case and punctuation ignored). When that fails and an AI model
+ * is configured (through OpenRouter), the model judges the answer against the
+ * lesson's rubric, so paraphrases, other languages and photos count. Without
+ * one, matching is the whole check and photos can't be judged.
  */
 @Service
 @Slf4j
@@ -83,7 +83,7 @@ public class AnswerJudge {
             return new Verdict(false, "Not quite — look again, or take a hint.", "match");
         }
         try {
-            return askClaude(lesson, text, image);
+            return askModel(lesson, text, image);
         } catch (RuntimeException e) {
             log.warn("AI judge unavailable for {}: {}", lesson.id(), e.getMessage());
             if (text.isEmpty()) throw ApiException.unavailable("We couldn't check your photo right now — try typing your answer");
@@ -115,7 +115,7 @@ public class AnswerJudge {
         return false;
     }
 
-    // ── Claude ───────────────────────────────────────────────────────────────
+    // ── AI (OpenRouter) ───────────────────────────────────────────────────────────────
 
     record Image(String mediaType, String data) {}
 
@@ -127,12 +127,8 @@ public class AnswerJudge {
         return new Image(m.group(1), m.group(2).replaceAll("\\s", ""));
     }
 
-    private Verdict askClaude(LessonContent lesson, String answer, Image image) {
+    private Verdict askModel(LessonContent lesson, String answer, Image image) {
         List<Map<String, Object>> content = new ArrayList<>();
-        if (image != null) {
-            content.add(Map.of("type", "image",
-                    "source", Map.of("type", "base64", "media_type", image.mediaType(), "data", image.data())));
-        }
         content.add(Map.of("type", "text", "text", """
                 Place: %s
                 Challenge: %s
@@ -141,18 +137,28 @@ public class AnswerJudge {
                 <player_answer>%s</player_answer>"""
                 .formatted(lesson.place(), lesson.challenge(), String.join(" | ", lesson.accepted()), lesson.rubric(),
                         answer.isEmpty() ? "(no text — judge the photo)" : answer)));
+        if (image != null) {
+            content.add(Map.of("type", "image_url",
+                    "image_url", Map.of("url", "data:" + image.mediaType() + ";base64," + image.data())));
+        }
 
         Map<String, Object> body = Map.of(
                 "model", props.getAi().getModel(),
                 "max_tokens", 300,
-                "system", SYSTEM,
-                "messages", List.of(Map.of("role", "user", "content", content)));
+                "temperature", 0,
+                "messages", List.of(
+                        Map.of("role", "system", "content", SYSTEM),
+                        Map.of("role", "user", "content", content)));
 
         // Bytes both ways, as UTF-8, so accented answers and replies survive intact.
-        byte[] response = client.post().uri("/v1/messages")
-                .header("x-api-key", props.getAi().getApiKey())
-                .header("anthropic-version", "2023-06-01")
-                .contentType(MediaType.APPLICATION_JSON)
+        var request = client.post().uri("/chat/completions")
+                .header("Authorization", "Bearer " + props.getAi().getApiKey())
+                .header("X-Title", props.getAi().getAppName())
+                .contentType(MediaType.APPLICATION_JSON);
+        if (props.getAi().getAppUrl() != null && !props.getAi().getAppUrl().isBlank()) {
+            request = request.header("HTTP-Referer", props.getAi().getAppUrl());
+        }
+        byte[] response = request
                 .body(jsonMapper.writeValueAsString(body).getBytes(StandardCharsets.UTF_8))
                 .retrieve()
                 .body(byte[].class);
@@ -160,12 +166,8 @@ public class AnswerJudge {
     }
 
     Verdict parseVerdict(String response) {
-        JsonNode root = jsonMapper.readTree(response);
-        StringBuilder text = new StringBuilder();
-        for (JsonNode block : root.path("content")) {
-            if ("text".equals(block.path("type").asString())) text.append(block.path("text").asString());
-        }
-        String t = text.toString();
+        // OpenRouter answers in the OpenAI chat-completions shape.
+        String t = jsonMapper.readTree(response).path("choices").path(0).path("message").path("content").asString();
         int start = t.indexOf('{');
         int end = t.lastIndexOf('}');
         if (start < 0 || end <= start) throw new IllegalStateException("No JSON verdict in the reply");

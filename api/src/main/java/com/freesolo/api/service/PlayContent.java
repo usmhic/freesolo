@@ -61,6 +61,7 @@ public class PlayContent {
             require(notBlank(l.challenge()) && notBlank(l.story()) && notBlank(l.hook()), l.id() + ": hook, challenge and story are required");
             require(l.sources() != null && !l.sources().isEmpty(), l.id() + ": every lesson cites a source");
             require(l.facts() == null || l.facts().size() <= 3, l.id() + ": at most three key facts");
+            require(l.points() >= 50 && l.points() <= 500 && l.points() % 10 == 0, l.id() + ": points must be 50–500, in tens");
             requirePhoto(l.photo(), l.id());
             lessons.put(l.id(), l);
             lessonCity.put(l.id(), city.id());

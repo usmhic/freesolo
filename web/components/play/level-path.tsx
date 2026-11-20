@@ -74,7 +74,10 @@ export function LevelPath({
                   {l.free && !l.solved && <span className="shrink-0 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-bold uppercase text-sage">Free</span>}
                   {current && <span className="shrink-0 rounded-full bg-sunset px-2 py-0.5 text-[10px] font-bold uppercase text-white">Next</span>}
                 </span>
-                <span className="block truncate text-sm text-ink-soft">{l.place} · {l.era}</span>
+                <span className="flex items-center gap-2 text-sm text-ink-soft">
+                  <span className="truncate">{l.place}</span>
+                  <span className={cn("shrink-0 text-xs font-bold", l.solved ? "text-ink-soft/60 line-through" : "text-sunset")}>✨ {l.points}</span>
+                </span>
               </span>
             </Link>
           </li>

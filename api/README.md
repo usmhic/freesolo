@@ -50,9 +50,9 @@ For native API work, start `db`, `minio`, and `minio-init` with Compose, then ru
 The root `.env.example` contains only the variable names required by the default
 Compose stack, with intentionally empty values. Optional integrations use
 `RESEND_API_KEY`, `EMAIL_FROM`, `EXPO_ACCESS_TOKEN`, `ORS_API_KEY`,
-`ANTHROPIC_API_KEY` with `ANTHROPIC_MODEL` (the Claude model that judges game
-answers and photos; without both, answers are matched against each lesson's
-accepted list), `GOOGLE_*`, and `APPLE_*`; inject them through your deployment
+`OPENROUTER_API_KEY` with `OPENROUTER_MODEL` (any vision-capable model on
+[OpenRouter](https://openrouter.ai/models), which judges game answers and
+photos; without both, answers are matched against each lesson's accepted list), `GOOGLE_*`, and `APPLE_*`; inject them through your deployment
 platform when enabling those features. `application.yml` contains only non-secret defaults.
 
 ## API overview
@@ -102,6 +102,7 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `POST` | `/api/play/lessons/{id}/attempts` | Check an answer or photo; returns the story and stardust when correct (15/min per client) |
 | `POST` | `/api/play/journeys` | Order a city's levels into a walk split over the trip's days (public) |
 | `GET` | `/api/play/me` | The player's stardust, rank, solved levels and unlocked cities |
+| `GET` | `/api/play/leaderboard?period=all\|week` | Global ranking: top 50 by stardust, plus your own position when signed in (public) |
 | `PUT`/`DELETE` | `/api/hosting/listings/{id}/route` | Show one of your plans' routes on a listing you host |
 | `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
 | `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |

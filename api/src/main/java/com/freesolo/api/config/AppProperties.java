@@ -72,15 +72,19 @@ public class AppProperties {
     }
 
     /**
-     * Claude, used to judge game answers (text and photos). Optional: without
-     * a key and model, answers are checked against each lesson's accepted list.
+     * OpenRouter, used to judge game answers (text and photos) with any model
+     * it offers. Optional: without a key and model, answers are checked
+     * against each lesson's accepted list.
      */
     @Data
     public static class Ai {
         private String apiKey;
         private String model;
-        private String baseUrl = "https://api.anthropic.com";
+        private String baseUrl = "https://openrouter.ai/api/v1";
         private int timeoutMs = 20000;
+        /** Sent as OpenRouter's HTTP-Referer / X-Title so usage is attributed to the app. */
+        private String appUrl;
+        private String appName = "FreeSolo";
     }
 
     @Data

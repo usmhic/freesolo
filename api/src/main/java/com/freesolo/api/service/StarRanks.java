@@ -10,10 +10,8 @@ import java.util.List;
  */
 public final class StarRanks {
 
-    /** Stardust for a solved lesson, plus a bonus for solving it without hints. */
-    public static final int LESSON_STARDUST = 100;
-    public static final int NO_HINT_BONUS = 50;
-    public static final int HINT_PENALTY = 25;
+    /** Each hint costs a fifth of a mission's points, down to half of them. */
+    static final double HINT_COST = 0.2;
 
     record Step(String key, String name, int min) {}
 
@@ -29,9 +27,10 @@ public final class StarRanks {
     private StarRanks() {
     }
 
-    public static int stardustFor(int hintsUsed) {
-        if (hintsUsed <= 0) return LESSON_STARDUST + NO_HINT_BONUS;
-        return Math.max(LESSON_STARDUST / 2, LESSON_STARDUST - HINT_PENALTY * hintsUsed);
+    /** Stardust for solving a mission worth {@code points}, rounded to 5. */
+    public static int stardustFor(int points, int hintsUsed) {
+        double share = Math.max(0.5, 1 - HINT_COST * Math.max(0, hintsUsed));
+        return (int) Math.round(points * share / 5.0) * 5;
     }
 
     public static Rank rankFor(int stardust) {

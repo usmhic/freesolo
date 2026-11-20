@@ -80,7 +80,7 @@ and every fact cites a source.
 | API | Java 21, Spring Boot, Spring Security, Flyway, PostgreSQL |
 | Web | Next.js, React, TypeScript, Tailwind CSS, Leaflet, Fumadocs |
 | Maps | OpenRouteService (routing and place search, called by the API), OpenStreetMap tiles |
-| AI | Claude (optional) judges game answers and photos, called by the API |
+| AI | Any model on OpenRouter (optional) judges game answers and photos, called by the API |
 | Mobile | Expo and React Native |
 | Storage | MinIO (S3-compatible) |
 | Delivery | Docker Compose, GitHub Actions, GHCR |

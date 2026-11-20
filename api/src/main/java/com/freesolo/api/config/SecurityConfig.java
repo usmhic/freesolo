@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/routing/directions").permitAll()
                 // The history game: anyone can browse cities and play free lessons
                 .requestMatchers(HttpMethod.GET, "/api/play/ranks", "/api/play/cities", "/api/play/cities/{id}",
-                        "/api/play/lessons/{id}").permitAll()
+                        "/api/play/lessons/{id}", "/api/play/leaderboard").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/play/journeys", "/api/play/lessons/{id}/attempts").permitAll()
                 // Application submission (unauthenticated)
                 .requestMatchers(HttpMethod.POST, "/api/applications").permitAll()

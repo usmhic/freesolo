@@ -11,11 +11,11 @@ export interface Rank { key: string; name: string; minStardust: number; nextAt: 
 export interface CitySummary {
   id: string; name: string; country: string; emoji: string; tagline: string; intro: string;
   colors: [string, string]; center: [number, number]; photo: Photo | null;
-  lessons: number; freeLessons: number; unlocked: boolean; solved: number;
+  lessons: number; freeLessons: number; points: number; unlocked: boolean; solved: number;
 }
 export interface LessonCard {
   id: string; title: string; place: string; lat: number; lng: number; era: string; minutes: number;
-  free: boolean; locked: boolean; solved: boolean; hook: string; photo: Photo | null;
+  points: number; free: boolean; locked: boolean; solved: boolean; hook: string; photo: Photo | null;
 }
 export interface CityView { city: CitySummary; lessons: LessonCard[] }
 export interface LessonView { card: LessonCard; cityId: string; cityName: string; challenge: string; hints: string[]; aiJudge: boolean }
@@ -25,6 +25,15 @@ export interface AttemptResult {
   facts: Fact[] | null;
   stardustEarned: number; alreadySolved: boolean; player: PlayerView | null;
 }
+export interface Standing {
+  position: number; name: string; initial: string; stardust: number; solved: number; cities: number;
+  rank: Rank; me: boolean;
+}
+export interface Leaderboard { period: "all" | "week"; players: number; top: Standing[]; me: Standing | null }
+
+/** Points with the stardust sparkle: "✨ 1,050". */
+export const sparkle = (n: number) => `✨ ${n.toLocaleString("en")}`;
+
 export interface JourneyView { city: CitySummary; startDate: string | null; days: { day: number; lessons: LessonCard[] }[]; route: RouteResult | null }
 
 /** How each rank looks. Names and thresholds come from the API. */

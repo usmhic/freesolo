@@ -19,11 +19,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-/** Answer checks, with Claude's Messages API stood in for by a local server. */
+/** Answer checks, with OpenRouter's chat-completions API stood in for by a local server. */
 class AnswerJudgeTest {
 
     static final LessonContent BRIDGE = new LessonContent("bridge", "Bridge", "Dom Luís I Bridge", 41.1, -8.6, "1886", 10,
-            true, "hook", "How many decks?", List.of("2", "two decks"), "Two decks.", List.of("h1"), "story",
+            100, true, "hook", "How many decks?", List.of("2", "two decks"), "Two decks.", List.of("h1"), "story",
             List.of(new Source("s", "https://example.org")), List.of(), null);
     static final String PHOTO = "data:image/png;base64,iVBORw0KGgo=";
 
@@ -35,14 +35,15 @@ class AnswerJudgeTest {
     final JsonMapper json = JsonMapper.builder().build();
 
     static String message(String text) {
-        return "{\"content\":[{\"type\":\"text\",\"text\":" + JsonMapper.builder().build().writeValueAsString(text) + "}]}";
+        return "{\"choices\":[{\"message\":{\"role\":\"assistant\",\"content\":"
+                + JsonMapper.builder().build().writeValueAsString(text) + "}}]}";
     }
 
     @BeforeEach
     void start() throws IOException {
         server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
-        server.createContext("/v1/messages", exchange -> {
-            lastKey.set(exchange.getRequestHeaders().getFirst("x-api-key"));
+        server.createContext("/chat/completions", exchange -> {
+            lastKey.set(exchange.getRequestHeaders().getFirst("Authorization"));
             lastBody.set(new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8));
             byte[] out = reply.getBytes(StandardCharsets.UTF_8);
             exchange.sendResponseHeaders(status, out.length);
@@ -104,8 +105,8 @@ class AnswerJudgeTest {
         assertThat(verdict.correct()).isTrue();
         assertThat(verdict.judgedBy()).isEqualTo("ai");
         assertThat(verdict.feedback()).isEqualTo("Yes — two decks!");
-        assertThat(lastKey.get()).isEqualTo("test-key");
-        assertThat(lastBody.get()).contains("\"model\":\"test-model\"", "\"media_type\":\"image/png\"",
+        assertThat(lastKey.get()).isEqualTo("Bearer test-key");
+        assertThat(lastBody.get()).contains("\"model\":\"test-model\"", "\"image_url\"", "data:image/png;base64,",
                 "<player_answer>one up top, one by the water</player_answer>");
     }
 

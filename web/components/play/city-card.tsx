@@ -16,7 +16,7 @@ export function CityCard({ city, solved = 0, className }: { city: CitySummary; s
         <PlacePhoto photo={city.photo} width={500} emoji={city.emoji} colors={city.colors} alt={city.name} className="absolute inset-0" imgClassName="transition duration-500 group-hover:scale-105" />
         <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, transparent 35%, ${city.colors[0]}E6 100%)` }} />
         <span className="absolute left-3 top-3 rounded-full bg-black/35 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur">
-          {city.lessons} levels · {city.freeLessons} free
+          {city.lessons} missions · ✨ {city.points.toLocaleString("en")}
         </span>
         <span className="absolute bottom-3 left-4 flex items-center gap-2 text-white">
           <span className="text-2xl drop-shadow">{city.emoji}</span>
