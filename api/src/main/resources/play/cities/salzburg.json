@@ -15,7 +15,7 @@
     13.045
   ],
   "photo": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Salzburg_%2848489551981%29.jpg/1280px-Salzburg_%2848489551981%29.jpg",
+    "url": "/play/photos/city-salzburg.webp",
     "page": "https://commons.wikimedia.org/wiki/File:Salzburg_(48489551981).jpg",
     "author": "Jorge Franganillo",
     "license": "CC BY 2.0"
@@ -72,7 +72,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Salzburg%2C_Getreidegasse_9%2C_Mozarts_Geburtshaus.jpg/1280px-Salzburg%2C_Getreidegasse_9%2C_Mozarts_Geburtshaus.jpg",
+        "url": "/play/photos/salzburg-mozart.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Salzburg,_Getreidegasse_9,_Mozarts_Geburtshaus.jpg",
         "author": "Andreas Stiasny",
         "license": "CC BY-SA 3.0 at"
@@ -123,7 +123,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Salzburg_Cathedral_1.jpg/1280px-Salzburg_Cathedral_1.jpg",
+        "url": "/play/photos/salzburg-cathedral.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Cathedral_1.jpg",
         "author": "Bede735c",
         "license": "CC BY-SA 3.0"
@@ -177,7 +177,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Palatul_Mirabell1.jpg/1280px-Palatul_Mirabell1.jpg",
+        "url": "/play/photos/salzburg-mirabell.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Palatul_Mirabell1.jpg",
         "author": "Cezar Suceveanu",
         "license": "CC BY-SA 3.0"
@@ -235,7 +235,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Salzburg_-_Festung_Hohensalzburg.JPG/1280px-Salzburg_-_Festung_Hohensalzburg.JPG",
+        "url": "/play/photos/salzburg-fortress.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Salzburg_-_Festung_Hohensalzburg.JPG",
         "author": "C.Stadler/Bwag",
         "license": "CC BY-SA 4.0"
@@ -294,7 +294,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg/1280px-Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg",
+        "url": "/play/photos/salzburg-st-peter.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Cemetery_at_St._Peter%27s_in_Salzburg_2.jpg",
         "author": "Wikimedia Commons",
         "license": "Public domain"
@@ -354,7 +354,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_Kapitelplatz_Sphaera_%28Stephan_Balkenhol%29-8104.jpg/1280px-Salzburg_Kapitelplatz_Sphaera_%28Stephan_Balkenhol%29-8104.jpg",
+        "url": "/play/photos/salzburg-sphaera.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Salzburg_Kapitelplatz_Sphaera_(Stephan_Balkenhol)-8104.jpg",
         "author": "Isiwal",
         "license": "CC BY-SA 4.0"

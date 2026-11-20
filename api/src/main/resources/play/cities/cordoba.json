@@ -15,7 +15,7 @@
     -4.78
   ],
   "photo": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/C%C3%B3rdoba_aerial_2.jpg/1280px-C%C3%B3rdoba_aerial_2.jpg",
+    "url": "/play/photos/city-cordoba.webp",
     "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_aerial_2.jpg",
     "author": "kallerna",
     "license": "CC BY-SA 4.0"
@@ -72,7 +72,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Mezquita_de_C%C3%B3rdoba_desde_el_aire_%28C%C3%B3rdoba%2C_Espa%C3%B1a%29.jpg/1280px-Mezquita_de_C%C3%B3rdoba_desde_el_aire_%28C%C3%B3rdoba%2C_Espa%C3%B1a%29.jpg",
+        "url": "/play/photos/cordoba-mezquita.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Mezquita_de_C%C3%B3rdoba_desde_el_aire_(C%C3%B3rdoba,_Espa%C3%B1a).jpg",
         "author": "Toni Castillo Quero",
         "license": "CC BY-SA 2.0"
@@ -125,7 +125,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Puente_Romano_Cordoba.jpg/1280px-Puente_Romano_Cordoba.jpg",
+        "url": "/play/photos/cordoba-roman-bridge.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Puente_Romano_Cordoba.jpg",
         "author": "Rafesmar",
         "license": "CC BY-SA 4.0"
@@ -182,7 +182,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Ben_Maim%C3%B3nides._C%C3%B3rdoba%2C_Espa%C3%B1a-eue.jpg/1280px-Ben_Maim%C3%B3nides._C%C3%B3rdoba%2C_Espa%C3%B1a-eue.jpg",
+        "url": "/play/photos/cordoba-maimonides.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Ben_Maim%C3%B3nides._C%C3%B3rdoba,_Espa%C3%B1a-eue.jpg",
         "author": "Lmbuga (Luis Miguel Bugallo Sánchez)",
         "license": "CC BY-SA 4.0"
@@ -239,7 +239,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Cordoba-6_%2848026780817%29.jpg/1280px-Cordoba-6_%2848026780817%29.jpg",
+        "url": "/play/photos/cordoba-alcazar.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Cordoba-6_(48026780817).jpg",
         "author": "Ajay Suresh from New York, NY, USA",
         "license": "CC BY 2.0"
@@ -342,7 +342,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg/1280px-C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg",
+        "url": "/play/photos/cordoba-corredera.webp",
         "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg",
         "author": "Benjamin Smith",
         "license": "CC BY-SA 4.0"

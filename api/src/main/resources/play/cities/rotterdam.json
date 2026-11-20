@@ -15,7 +15,7 @@
     4.48
   ],
   "photo": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/A_view_of_Rotterdam%2C_taken_from_the_roof_of_the_Maassilo%2C_Rotterdam%2C_The_Netherlands.jpg/1280px-A_view_of_Rotterdam%2C_taken_from_the_roof_of_the_Maassilo%2C_Rotterdam%2C_The_Netherlands.jpg",
+    "url": "/play/photos/city-rotterdam.webp",
     "page": "https://commons.wikimedia.org/wiki/File:A_view_of_Rotterdam,_taken_from_the_roof_of_the_Maassilo,_Rotterdam,_The_Netherlands.jpg",
     "author": "Rob Oo",
     "license": "CC BY 2.0"
@@ -73,7 +73,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Rotterdam_zadkine_monument.jpg/1280px-Rotterdam_zadkine_monument.jpg",
+        "url": "/play/photos/rotterdam-destroyed-city.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_zadkine_monument.jpg",
         "author": "F.Eveleens",
         "license": "CC BY 3.0"
@@ -127,7 +127,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Rotterdam_Het_Witte_Huis_1900.jpg/1280px-Rotterdam_Het_Witte_Huis_1900.jpg",
+        "url": "/play/photos/rotterdam-witte-huis.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_Het_Witte_Huis_1900.jpg",
         "author": "Wikimedia Commons",
         "license": "Public domain"
@@ -185,7 +185,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rotterdam_standbeeld_Erasmus.jpg",
+        "url": "/play/photos/rotterdam-erasmus.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_standbeeld_Erasmus.jpg",
         "author": "Wikimedia Commons",
         "license": "CC BY 1.0"
@@ -240,7 +240,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Cube_houses_%28DSC_3076%29.jpg/1280px-Cube_houses_%28DSC_3076%29.jpg",
+        "url": "/play/photos/rotterdam-cube-houses.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Cube_houses_(DSC_3076).jpg",
         "author": "Trougnouf (Benoit Brummer)",
         "license": "CC BY 4.0"
@@ -295,7 +295,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Erasmusbrug%2C_September_2019.jpg/1280px-Erasmusbrug%2C_September_2019.jpg",
+        "url": "/play/photos/rotterdam-erasmus-bridge.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Erasmusbrug,_September_2019.jpg",
         "author": "Martin Falbisoner",
         "license": "CC BY-SA 4.0"
@@ -349,7 +349,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Rotterdam_hotel_newyork.jpg/1280px-Rotterdam_hotel_newyork.jpg",
+        "url": "/play/photos/rotterdam-hotel-new-york.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_hotel_newyork.jpg",
         "author": "F.Eveleens",
         "license": "CC BY 3.0"
@@ -405,7 +405,7 @@
         }
       ],
       "photo": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Rotterdam_pelgrimskerk.jpg/1280px-Rotterdam_pelgrimskerk.jpg",
+        "url": "/play/photos/rotterdam-delfshaven.webp",
         "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_pelgrimskerk.jpg",
         "author": "F.Eveleens",
         "license": "CC BY 3.0"
