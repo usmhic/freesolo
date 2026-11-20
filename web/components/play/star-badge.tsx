@@ -1,4 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/cn";
+import { useI18n } from "@/lib/i18n/client";
+import type { Dict } from "@/lib/i18n/dictionaries/en";
 import { RANK_STYLE } from "@/lib/play";
 
 /** A glowing orb for a star rank. */
@@ -13,13 +17,23 @@ export function StarOrb({ rankKey, size = 40, className }: { rankKey: string; si
   );
 }
 
+type RankKey = keyof Dict["ranks"];
+
+/** A rank's name and blurb in the visitor's language. */
+export function useRankText() {
+  const { t } = useI18n();
+  return (key: string) => t.ranks[key as RankKey] ?? t.ranks.nebula;
+}
+
 /** Compact rank chip: orb, rank name and stardust. */
-export function RankChip({ rankKey, name, stardust }: { rankKey: string; name: string; stardust: number }) {
+export function RankChip({ rankKey, stardust }: { rankKey: string; stardust: number }) {
+  const { num } = useI18n();
+  const name = useRankText()(rankKey).name;
   return (
     <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface py-1 pl-1 pr-3.5 text-sm">
       <StarOrb rankKey={rankKey} size={28} />
       <span className="font-semibold text-ink">{name}</span>
-      <span className="text-ink-soft">✨ {stardust.toLocaleString("en")}</span>
+      <span className="text-ink-soft">✨ {num(stardust)}</span>
     </span>
   );
 }

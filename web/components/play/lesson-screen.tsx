@@ -7,9 +7,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { api, ClientApiError } from "@/lib/client-api";
+import { useI18n } from "@/lib/i18n/client";
 import { RouteMap } from "@/components/map/route-map";
 import { rankFor, recordGuestSolve, type AttemptResult, type CityView, type LessonView, type Rank } from "@/lib/play";
-import { StarOrb } from "./star-badge";
+import { StarOrb, useRankText } from "./star-badge";
 import { PlacePhoto } from "./place-photo";
 import { StoryCard } from "./story-card";
 import { usePlayer } from "./use-player";
@@ -26,6 +27,8 @@ async function toDataUrl(file: File): Promise<string> {
 }
 
 export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedIn: boolean }) {
+  const { t, fill } = useI18n();
+  const rankText = useRankText();
   const player = usePlayer(signedIn);
   const [lesson, setLesson] = useState<LessonView | null>(null);
   const [city, setCity] = useState<CityView | null>(null);
@@ -53,10 +56,10 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
       .catch((e) => {
         if (!live) return;
         if (e instanceof ClientApiError && e.status === 403) setLockedCity(e.message);
-        else setLoadError(e instanceof Error ? e.message : "Couldn't load this level");
+        else setLoadError(e instanceof Error ? e.message : t.mission.loadError);
       });
     return () => { live = false; };
-  }, [lessonId]);
+  }, [lessonId, t.mission.loadError]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -84,7 +87,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
       }
       if (before && after && after.key !== before.key) setRankUp(after);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Couldn't check your answer");
+      setError(err instanceof Error ? err.message : t.mission.checkError);
     } finally {
       setChecking(false);
     }
@@ -95,7 +98,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
     try {
       setPhoto(await toDataUrl(file));
     } catch {
-      setError("That photo couldn't be read — try another one");
+      setError(t.mission.photoError);
     }
   }
 
@@ -104,11 +107,11 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
       <Shell>
         <div className="card mx-auto max-w-lg p-8 text-center">
           <span className="mx-auto flex size-14 items-center justify-center rounded-2xl bg-navy text-white dark:bg-sunset"><Lock className="size-6" /></span>
-          <h1 className="mt-5 font-display text-2xl font-extrabold">This level is in the city pack</h1>
-          <p className="mt-2 text-ink-soft">{lockedCity}. Packs are free while we&apos;re in pilot.</p>
+          <h1 className="mt-5 font-display text-2xl font-extrabold">{t.mission.lockedTitle}</h1>
+          <p className="mt-2 text-ink-soft">{lockedCity}. {t.mission.lockedLead}</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/play" className="btn-primary">Back to the cities</Link>
-            {!signedIn && <Link href={`/sign-in?next=${encodeURIComponent("/play")}`} className="btn-outline">Sign in</Link>}
+            <Link href="/play" className="btn-primary">{t.mission.backToCities}</Link>
+            {!signedIn && <Link href={`/sign-in?next=${encodeURIComponent("/play")}`} className="btn-outline">{t.common.signIn}</Link>}
           </div>
         </div>
       </Shell>
@@ -135,11 +138,11 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
     <Shell>
       <div className="flex items-center justify-between gap-3">
         <Link href={`/play/${lesson.cityId}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft hover:text-ink">
-          <ArrowLeft className="size-4" /> {lesson.cityName} journey
+          <ArrowLeft className="size-4" /> {fill(t.mission.back, { city: lesson.cityName })}
         </Link>
         {idx >= 0 && (
           <span className="flex items-center gap-2 text-xs font-semibold text-ink-soft">
-            Level {idx + 1} of {order.length}
+            {fill(t.mission.ofTotal, { n: idx + 1, total: order.length })}
             <span className="hidden gap-1 sm:flex" aria-hidden>
               {order.map((x) => (
                 <span key={x.id} className={cn("size-1.5 rounded-full", x.id === l.id ? "w-4 bg-sunset" : (x.solved || player.solved.has(x.id)) ? "bg-sunset/50" : "bg-line")} />
@@ -155,13 +158,13 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
             <PlacePhoto photo={l.photo} width={1280} alt={l.place} credit colors={["#233846", "#16242F"]} className="aspect-[4/3] sm:aspect-[16/9]" priority veiled={!won && !solvedBefore} />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-transparent" />
             {l.photo && !won && !solvedBefore && (
-              <span className="absolute right-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-semibold text-white backdrop-blur">🔒 Solve to reveal</span>
+              <span className="absolute end-4 top-4 rounded-full bg-black/45 px-3 py-1 text-xs font-semibold text-white backdrop-blur">{t.mission.reveal}</span>
             )}
-            <div className="absolute left-4 top-4 flex flex-wrap gap-2 text-xs font-semibold">
+            <div className="absolute start-4 top-4 flex flex-wrap gap-2 text-xs font-semibold">
               <span className="rounded-full bg-sunset px-2.5 py-1 text-white">{l.era}</span>
               <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">✨ {l.points}</span>
-              <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">{l.minutes} min</span>
-              {solvedBefore && !won && <span className="rounded-full bg-sage px-2.5 py-1 text-white">Solved ✓</span>}
+              <span className="rounded-full bg-black/40 px-2.5 py-1 text-white backdrop-blur">{fill(t.common.min, { n: l.minutes })}</span>
+              {solvedBefore && !won && <span className="rounded-full bg-sage px-2.5 py-1 text-white">{t.mission.solved}</span>}
             </div>
             <div className="absolute inset-x-4 bottom-7 text-white sm:inset-x-6">
               <h1 className="font-display text-3xl font-extrabold leading-tight tracking-tight drop-shadow sm:text-4xl">{l.title}</h1>
@@ -173,15 +176,15 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
 
           {!won ? (
             <form onSubmit={submit} className="card space-y-4 p-5 sm:p-6">
-              <p className="eyebrow">Your challenge</p>
+              <p className="eyebrow">{t.mission.challenge}</p>
               <p className="font-display text-xl font-bold leading-snug">{lesson.challenge}</p>
 
               <div key={shake} className={cn(shake > 0 && "animate-[shake_0.35s_ease-in-out]")}>
                 <input
                   value={answer}
                   onChange={(e) => setAnswer(e.target.value.slice(0, 500))}
-                  placeholder="Type what you found…"
-                  aria-label="Your answer"
+                  placeholder={t.mission.placeholder}
+                  aria-label={t.mission.answerLabel}
                   className="field h-12 text-base"
                 />
               </div>
@@ -192,17 +195,17 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                   {photo ? (
                     <span className="relative">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={photo} alt="Your photo" className="size-16 rounded-xl object-cover" />
-                      <button type="button" onClick={() => setPhoto(null)} aria-label="Remove photo" className="absolute -right-2 -top-2 flex size-6 items-center justify-center rounded-full bg-ink text-paper">
+                      <img src={photo} alt={t.mission.answerLabel} className="size-16 rounded-xl object-cover" />
+                      <button type="button" onClick={() => setPhoto(null)} aria-label={t.mission.removePhoto} className="absolute -end-2 -top-2 flex size-6 items-center justify-center rounded-full bg-ink text-paper">
                         <X className="size-3.5" />
                       </button>
                     </span>
                   ) : (
                     <button type="button" onClick={() => fileRef.current?.click()} className="btn-outline btn-sm">
-                      <Camera className="size-4" /> Add a photo
+                      <Camera className="size-4" /> {t.mission.addPhoto}
                     </button>
                   )}
-                  <span className="text-xs text-ink-soft">A photo of what you found counts too.</span>
+                  <span className="text-xs text-ink-soft">{t.mission.photoHint}</span>
                 </div>
               )}
 
@@ -213,7 +216,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
 
               <button type="submit" disabled={checking || (!answer.trim() && !photo)} className="btn-primary w-full py-3 text-[15px]">
                 {checking ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />}
-                {checking ? "Checking…" : "Check my answer"}
+                {checking ? t.mission.checking : t.mission.check}
               </button>
 
               {lesson.hints.length > 0 && (
@@ -222,8 +225,8 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                     <p key={i} className="flex gap-2 text-sm text-ink"><Lightbulb className="mt-0.5 size-4 shrink-0 text-sunset" /> {h}</p>
                   ))}
                   {hints < lesson.hints.length && (
-                    <button type="button" onClick={() => setHints((n) => n + 1)} className="btn-ghost btn-sm -ml-2 text-ink-soft">
-                      <Lightbulb className="size-4" /> {hints === 0 ? "Need a hint?" : "Another hint"} <span className="text-xs">(−{Math.round(l.points * 0.2)} ✨)</span>
+                    <button type="button" onClick={() => setHints((n) => n + 1)} className="btn-ghost btn-sm -ms-2 text-ink-soft">
+                      <Lightbulb className="size-4" /> {hints === 0 ? t.mission.needHint : t.mission.anotherHint} <span className="text-xs">{fill(t.mission.hintCost, { n: Math.round(l.points * 0.2) })}</span>
                     </button>
                   )}
                 </div>
@@ -240,52 +243,52 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                     <p className="font-display text-2xl font-extrabold">{result!.feedback}</p>
                     <p className="text-white/80">
                       {result!.stardustEarned > 0
-                        ? `+${result!.stardustEarned} stardust · you lit a star over ${lesson.cityName}`
-                        : "Already in your sky — great to revisit."}
-                      {result!.judgedBy === "ai" && " · checked by AI"}
+                        ? fill(t.mission.earned, { n: result!.stardustEarned, city: lesson.cityName })
+                        : t.mission.revisit}
+                      {result!.judgedBy === "ai" && t.mission.byAi}
                     </p>
                   </div>
                 </div>
                 {rankUp && (
                   <div className="mt-5 flex items-center gap-3 rounded-2xl bg-white/10 p-3">
                     <StarOrb rankKey={rankUp.key} size={40} />
-                    <p className="text-sm"><span className="font-bold">You&apos;re now a {rankUp.name}!</span> Your star just evolved.</p>
+                    <p className="text-sm"><span className="font-bold">{fill(t.mission.rankUp, { rank: rankText(rankUp.key).name })}</span> {t.mission.rankUpLead}</p>
                   </div>
                 )}
               </div>
               <div className="space-y-4 p-5 sm:p-6">
-                <p className="eyebrow flex items-center gap-1.5"><BookOpen className="size-3.5" /> What happened here</p>
+                <p className="eyebrow flex items-center gap-1.5"><BookOpen className="size-3.5" /> {t.mission.whatHappened}</p>
                 <StoryCard facts={result!.facts ?? []} story={result!.story ?? ""} sources={result!.sources ?? []} place={l.place} city={lesson.cityName} />
                 {cityComplete ? (
                   <div className="rounded-2xl bg-sunset-soft p-4 text-sm text-ink">
-                    <p className="font-display text-lg font-bold">🏆 You&apos;ve solved all of {lesson.cityName}!</p>
-                    <p className="mt-1 text-ink-soft">Its constellation is complete. Ready for another city?</p>
+                    <p className="font-display text-lg font-bold">{fill(t.mission.cityDone, { city: lesson.cityName })}</p>
+                    <p className="mt-1 text-ink-soft">{t.mission.cityDoneLead}</p>
                   </div>
                 ) : !nextLesson && lockedLeft > 0 ? (
                   <div className="rounded-2xl border border-sunset/40 bg-sunset-soft p-4 text-sm">
-                    <p className="font-display text-lg font-bold text-ink">That&apos;s every free level in {lesson.cityName}.</p>
-                    <p className="mt-1 text-ink-soft">{lockedLeft} more levels are waiting in the city pack — free during the pilot.</p>
+                    <p className="font-display text-lg font-bold text-ink">{fill(t.mission.freeDone, { city: lesson.cityName })}</p>
+                    <p className="mt-1 text-ink-soft">{fill(t.mission.freeDoneLead, { n: lockedLeft })}</p>
                   </div>
                 ) : null}
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                   {nextLesson ? (
-                    <Link href={`/play/lessons/${nextLesson.id}`} className="btn-primary flex-1">Next level <ArrowRight className="size-4" /></Link>
+                    <Link href={`/play/lessons/${nextLesson.id}`} className="btn-primary flex-1">{t.mission.nextMission} <ArrowRight className="size-4" /></Link>
                   ) : cityComplete ? (
-                    <Link href="/play" className="btn-primary flex-1">Pick another city <ArrowRight className="size-4" /></Link>
+                    <Link href="/play" className="btn-primary flex-1">{t.mission.anotherCity} <ArrowRight className="size-4" /></Link>
                   ) : lockedLeft > 0 ? (
-                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1"><Lock className="size-4" /> Unlock the city pack</Link>
+                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1"><Lock className="size-4" /> {t.mission.unlockPack}</Link>
                   ) : (
-                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1">Back to {lesson.cityName}</Link>
+                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1">{fill(t.mission.backTo, { city: lesson.cityName })}</Link>
                   )}
-                  <Link href="/sky" className="btn-outline flex-1"><Sparkles className="size-4" /> See my sky</Link>
+                  <Link href="/sky" className="btn-outline flex-1"><Sparkles className="size-4" /> {t.mission.seeSky}</Link>
                 </div>
                 {signedIn && result!.stardustEarned > 0 && (
                   <Link href="/ranking" className="flex items-center justify-center gap-1.5 text-sm font-semibold text-ink-soft hover:text-sunset">
-                    <Trophy className="size-4" /> See where you rank
+                    <Trophy className="size-4" /> {t.mission.seeRank}
                   </Link>
                 )}
                 {!signedIn && result!.stardustEarned > 0 && (
-                  <p className="text-xs text-ink-soft">Your stars are saved in this browser. <Link href="/sign-in" className="font-semibold text-sunset">Sign in</Link> to keep them everywhere.</p>
+                  <p className="text-xs text-ink-soft">{t.mission.savedHere} <Link href="/sign-in" className="font-semibold text-sunset">{t.common.signIn}</Link> {t.mission.keepThem}</p>
                 )}
               </div>
             </div>
@@ -302,7 +305,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
             rel="noreferrer"
             className="btn-outline w-full"
           >
-            <MapPin className="size-4" /> Walk me there
+            <MapPin className="size-4" /> {t.mission.walk}
           </a>
         </div>
       </div>

@@ -14,7 +14,8 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   try {
     res = await fetch(path, {
       ...init,
-      headers: { "Content-Type": "application/json", ...(init.headers ?? {}) },
+      // The API answers in the page's language (content, feedback and errors).
+      headers: { "Content-Type": "application/json", "Accept-Language": document.documentElement.lang || "en", ...(init.headers ?? {}) },
       credentials: "same-origin",
     });
   } catch {

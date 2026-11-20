@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, CalendarDays, Loader2, Lock, Map as MapIcon, Min
 import { cn } from "@/lib/cn";
 import { api, ClientApiError } from "@/lib/client-api";
 import { RouteMap } from "@/components/map/route-map";
+import { useI18n } from "@/lib/i18n/client";
 import { cityGradient, readGuest, serverGuest, subscribeGuest, type JourneyView, type LessonCard } from "@/lib/play";
 import { LevelPath } from "./level-path";
 import { PlacePhoto } from "./place-photo";
@@ -30,15 +31,16 @@ function saveTrip(cityId: string, trip: Trip) {
   } catch { /* not saved */ }
 }
 
-function dayLabel(startDate: string, day: number) {
+function dayDate(startDate: string, day: number) {
   if (!startDate) return null;
   const d = new Date(startDate + "T12:00:00");
   d.setDate(d.getDate() + day - 1);
-  return d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  return d;
 }
 
 /** Step two of the game: a city's journey — its story, your days, and the level path. */
 export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolean }) {
+  const { t, num, day: fmtDay, fill } = useI18n();
   const player = usePlayer(signedIn);
   const guest = useSyncExternalStore(subscribeGuest, readGuest, serverGuest);
   const [trip, setTrip] = useState<Trip | null>(null);
@@ -93,8 +95,8 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
   if (notFound) {
     return (
       <div className="container-page py-20 text-center">
-        <h1 className="font-display text-3xl font-extrabold">We don&apos;t have that city yet</h1>
-        <Link href="/play" className="btn-primary mt-6">Pick another city</Link>
+        <h1 className="font-display text-3xl font-extrabold">{t.city.notFound}</h1>
+        <Link href="/play" className="btn-primary mt-6">{t.city.pickAnother}</Link>
       </div>
     );
   }
@@ -119,20 +121,20 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
       <div className="flex items-start gap-4 p-5">
         <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-navy text-white dark:bg-sunset"><Lock className="size-5" /></span>
         <div>
-          <p className="font-display text-lg font-bold">{freeDone ? `Keep going in ${city.name}` : `${city.name} city pack`}</p>
+          <p className="font-display text-lg font-bold">{fill(freeDone ? t.city.packTitleDone : t.city.packTitle, { city: city.name })}</p>
           <p className="mt-1 text-sm text-ink-soft">
-            {locked.length} more levels with deeper stories — yours to replay for good.{" "}
-            <span className="font-semibold text-ink">Free during the pilot.</span>
+            {fill(t.city.packLead, { n: locked.length })}{" "}
+            <span className="font-semibold text-ink">{t.city.packPilot}</span>
           </p>
         </div>
       </div>
       <div className="border-t border-line p-4">
         {signedIn ? (
           <button type="button" onClick={unlock} disabled={unlocking} className="btn-primary w-full">
-            {unlocking ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />} Unlock {locked.length} levels
+            {unlocking ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />} {fill(t.city.unlock, { n: locked.length })}
           </button>
         ) : (
-          <Link href={`/sign-in?next=${encodeURIComponent(`/play/${cityId}`)}`} className="btn-dark w-full">Sign in to unlock</Link>
+          <Link href={`/sign-in?next=${encodeURIComponent(`/play/${cityId}`)}`} className="btn-dark w-full">{t.city.signInToUnlock}</Link>
         )}
       </div>
     </div>
@@ -157,12 +159,12 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
         <PlacePhoto photo={city.photo} width={1280} alt="" className="absolute inset-0" priority />
         <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${city.colors[0]}F2 0%, ${city.colors[0]}B3 45%, ${city.colors[0]}33 100%)` }} />
         {city.photo && (
-          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 right-3 z-10 max-w-[60%] truncate text-[10px] text-white/70 hover:text-white">
+          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 end-3 z-10 max-w-[60%] truncate text-[10px] text-white/70 hover:text-white">
             📷 {city.photo.author} · {city.photo.license}
           </a>
         )}
         <div className="container-page relative z-10 py-8 sm:py-12">
-          <Link href="/play" className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> All cities</Link>
+          <Link href="/play" className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> {t.city.allCities}</Link>
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">{city.country}</p>
           <h1 className="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{city.name}</h1>
           <p className="mt-2 font-display text-xl font-bold text-white/90">{city.tagline}</p>
@@ -170,17 +172,17 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
           <div className="mt-6 flex flex-wrap items-center gap-3">
             {next ? (
               <Link href={`/play/lessons/${next.id}`} className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">
-                {solved === 0 ? "Start level 1" : `Continue · level ${numbers.get(next.id)}`} <ArrowRight className="size-4" />
+                {solved === 0 ? t.city.start : fill(t.city.continue, { n: numbers.get(next.id) ?? 1 })} <ArrowRight className="size-4" />
               </Link>
             ) : complete ? (
-              <Link href="/sky" className="btn bg-white px-6 py-3 text-[15px] text-navy"><Trophy className="size-4" /> City complete — see your sky</Link>
+              <Link href="/sky" className="btn bg-white px-6 py-3 text-[15px] text-navy"><Trophy className="size-4" /> {t.city.complete}</Link>
             ) : locked.length > 0 ? (
               <a href="#pack" className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">
-                <Lock className="size-4" /> Unlock {locked.length} more missions
+                <Lock className="size-4" /> {fill(t.city.unlockMore, { n: locked.length })}
               </a>
             ) : null}
             <span className="rounded-full bg-black/25 px-3.5 py-2 text-sm font-semibold backdrop-blur">
-              {solved}/{all.length} solved · ✨ {all.filter((l) => !l.solved).reduce((n, l) => n + l.points, 0).toLocaleString("en")} to win
+              {fill(t.city.solvedToWin, { solved, total: all.length, points: num(all.filter((l) => !l.solved).reduce((n, l) => n + l.points, 0)) })}
             </span>
           </div>
         </div>
@@ -190,22 +192,22 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
         {/* Trip controls */}
         <div className="card flex flex-wrap items-center gap-x-6 gap-y-4 p-4 sm:p-5">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-semibold">Days in {city.name}</span>
-            <button type="button" aria-label="Fewer days" onClick={() => changeTrip({ ...trip, days: Math.max(1, trip.days - 1) })} className="btn-outline size-9 p-0"><Minus className="size-4" /></button>
+            <span className="text-sm font-semibold">{fill(t.city.days, { city: city.name })}</span>
+            <button type="button" aria-label={t.city.fewer} onClick={() => changeTrip({ ...trip, days: Math.max(1, trip.days - 1) })} className="btn-outline size-9 p-0"><Minus className="size-4" /></button>
             <span className="w-6 text-center font-display text-lg font-bold" aria-live="polite">{trip.days}</span>
-            <button type="button" aria-label="More days" onClick={() => changeTrip({ ...trip, days: Math.min(7, trip.days + 1) })} className="btn-outline size-9 p-0"><Plus className="size-4" /></button>
+            <button type="button" aria-label={t.city.more} onClick={() => changeTrip({ ...trip, days: Math.min(7, trip.days + 1) })} className="btn-outline size-9 p-0"><Plus className="size-4" /></button>
           </div>
           <label className="flex items-center gap-3">
-            <span className="text-sm font-semibold">Arriving</span>
+            <span className="text-sm font-semibold">{t.city.arriving}</span>
             <span className="relative">
-              <CalendarDays className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
-              <input type="date" value={trip.startDate} onChange={(e) => changeTrip({ ...trip, startDate: e.target.value })} className="field w-auto py-2 pl-9" />
+              <CalendarDays className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
+              <input type="date" value={trip.startDate} onChange={(e) => changeTrip({ ...trip, startDate: e.target.value })} className="field w-auto py-2 ps-9" />
             </span>
           </label>
-          <div className="ml-auto flex items-center gap-2">
-            {rank && <RankChip rankKey={rank.key} name={rank.name} stardust={player.stardust} />}
+          <div className="ms-auto flex items-center gap-2">
+            {rank && <RankChip rankKey={rank.key} stardust={player.stardust} />}
             <button type="button" onClick={() => setShowMap((v) => !v)} className="btn-outline btn-sm lg:hidden" aria-expanded={showMap}>
-              <MapIcon className="size-4" /> {showMap ? "Hide map" : "Map"}
+              <MapIcon className="size-4" /> {showMap ? t.city.hideMap : t.city.map}
             </button>
           </div>
         </div>
@@ -213,7 +215,7 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
         {complete && (
           <div className="mt-6 flex items-center gap-4 rounded-3xl bg-sunset-soft p-5">
             <Trophy className="size-8 shrink-0 text-sunset" />
-            <p className="text-ink"><span className="font-display font-bold">You&apos;ve solved all of {city.name}!</span> Its constellation is complete in your sky.</p>
+            <p className="text-ink"><span className="font-display font-bold">{fill(t.city.completeBanner, { city: city.name })}</span> {t.city.completeBannerLead}</p>
           </div>
         )}
         {error && <p className="mt-4 text-sm text-red-600 dark:text-red-400">{error}</p>}
@@ -224,8 +226,8 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
             {days.map((d) => (
               <section key={d.day} aria-label={`Day ${d.day}`}>
                 <h2 className="mb-2 flex items-baseline gap-2">
-                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-sunset">Day {d.day}</span>
-                  {dayLabel(trip.startDate, d.day) && <span className="text-xs text-ink-soft">{dayLabel(trip.startDate, d.day)}</span>}
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-sunset">{fill(t.city.day, { n: d.day })}</span>
+                  {dayDate(trip.startDate, d.day) && <span className="text-xs text-ink-soft">{fmtDay(dayDate(trip.startDate, d.day)!)}</span>}
                 </h2>
                 <LevelPath lessons={d.lessons} numbers={numbers} currentId={next?.id ?? null} />
               </section>
@@ -234,7 +236,7 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
           </div>
           <div className="hidden lg:sticky lg:top-24 lg:block lg:self-start">
             {map}
-            <p className="mt-2 text-xs text-ink-soft">Walking order · map numbers match your levels</p>
+            <p className="mt-2 text-xs text-ink-soft">{t.city.walkingOrder}</p>
           </div>
         </div>
       </div>

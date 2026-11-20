@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
+import { getLang } from "@/lib/i18n/server";
 import { RankingScreen } from "@/components/play/ranking-screen";
 
 export const metadata: Metadata = {
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function RankingPage() {
-  const session = await getSession();
-  return <RankingScreen signedIn={!!session} />;
+  const [session, lang] = await Promise.all([getSession(), getLang()]);
+  return <RankingScreen key={lang} signedIn={!!session} />;
 }

@@ -31,20 +31,17 @@ export interface Standing {
 }
 export interface Leaderboard { period: "all" | "week"; players: number; top: Standing[]; me: Standing | null }
 
-/** Points with the stardust sparkle: "✨ 1,050". */
-export const sparkle = (n: number) => `✨ ${n.toLocaleString("en")}`;
-
 export interface JourneyView { city: CitySummary; startDate: string | null; days: { day: number; lessons: LessonCard[] }[]; route: RouteResult | null }
 
-/** How each rank looks. Names and thresholds come from the API. */
-export const RANK_STYLE: Record<string, { orb: string; glow: string; blurb: string }> = {
-  nebula: { orb: "radial-gradient(circle at 35% 35%, #F3C4FF, #9B6BFF 45%, #3B2A6B 80%)", glow: "#9B6BFF", blurb: "A cloud of curiosity. Every explorer starts here." },
-  protostar: { orb: "radial-gradient(circle at 35% 35%, #FFF2C6, #FFB547 50%, #8A4A12 85%)", glow: "#FFB547", blurb: "Your first lesson lit you up. Keep going." },
-  "white-dwarf": { orb: "radial-gradient(circle at 35% 35%, #FFFFFF, #DCE8FF 55%, #8EA6D1 90%)", glow: "#DCE8FF", blurb: "Small, bright and dense with stories." },
-  "red-giant": { orb: "radial-gradient(circle at 35% 35%, #FFD0B8, #FF5A36 50%, #7A1E10 90%)", glow: "#FF5A36", blurb: "You've grown big on history. Harder riddles await." },
-  "blue-giant": { orb: "radial-gradient(circle at 35% 35%, #E0F4FF, #3FA9FF 50%, #123B7A 90%)", glow: "#3FA9FF", blurb: "Hot, bright, and leading the way for others." },
-  supernova: { orb: "radial-gradient(circle at 50% 50%, #FFFFFF 5%, #FFD36B 25%, #FF6D1D 55%, #6B1A00 90%)", glow: "#FF6D1D", blurb: "An explosion of knowledge. Whole cities, solved." },
-  "black-hole": { orb: "radial-gradient(circle at 50% 50%, #000 38%, #FF6D1D 46%, #FFB547 52%, #1B1030 70%)", glow: "#FF8A3D", blurb: "The rarest rank. You pull other explorers in." },
+/** How each rank looks. Names and blurbs are in the dictionaries; thresholds come from the API. */
+export const RANK_STYLE: Record<string, { orb: string; glow: string }> = {
+  nebula: { orb: "radial-gradient(circle at 35% 35%, #F3C4FF, #9B6BFF 45%, #3B2A6B 80%)", glow: "#9B6BFF" },
+  protostar: { orb: "radial-gradient(circle at 35% 35%, #FFF2C6, #FFB547 50%, #8A4A12 85%)", glow: "#FFB547" },
+  "white-dwarf": { orb: "radial-gradient(circle at 35% 35%, #FFFFFF, #DCE8FF 55%, #8EA6D1 90%)", glow: "#DCE8FF" },
+  "red-giant": { orb: "radial-gradient(circle at 35% 35%, #FFD0B8, #FF5A36 50%, #7A1E10 90%)", glow: "#FF5A36" },
+  "blue-giant": { orb: "radial-gradient(circle at 35% 35%, #E0F4FF, #3FA9FF 50%, #123B7A 90%)", glow: "#3FA9FF" },
+  supernova: { orb: "radial-gradient(circle at 50% 50%, #FFFFFF 5%, #FFD36B 25%, #FF6D1D 55%, #6B1A00 90%)", glow: "#FF6D1D" },
+  "black-hole": { orb: "radial-gradient(circle at 50% 50%, #000 38%, #FF6D1D 46%, #FFB547 52%, #1B1030 70%)", glow: "#FF8A3D" },
 };
 
 // ── Guest progress (signed-out players) ──────────────────────────────────────
@@ -128,5 +125,5 @@ export function thumb(url: string, width: 330 | 500 | 960 | 1280): string {
 }
 
 /** Videos about a place, as a YouTube search — always current, never a dead link. */
-export const videoSearch = (place: string, city: string) =>
-  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${place} ${city} history`)}`;
+export const videoSearch = (place: string, city: string, historyWord: string) =>
+  `https://www.youtube.com/results?search_query=${encodeURIComponent(`${place} ${city} ${historyWord}`)}`;

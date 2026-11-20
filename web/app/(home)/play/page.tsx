@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
+import { getLang } from "@/lib/i18n/server";
 import { PlayGallery } from "@/components/play/play-gallery";
 
 export const metadata: Metadata = {
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function PlayPage() {
-  const session = await getSession();
-  return <PlayGallery signedIn={!!session} />;
+  const [session, lang] = await Promise.all([getSession(), getLang()]);
+  return <PlayGallery key={lang} signedIn={!!session} />;
 }

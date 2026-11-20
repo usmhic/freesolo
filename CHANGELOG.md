@@ -38,6 +38,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Free levels need no account; signed-out progress stays in the browser.
 - A Help Center page on playing, and a game-first landing page. Group trips
   stay as the way to play together.
+- The game speaks English, French, Spanish and Arabic. Pick a language in the
+  header; the landing page, game screens and every city and mission follow it,
+  and Arabic is laid out right to left with its own typeface. The API serves
+  content in the language asked for (`?lang=` or `Accept-Language`), answers
+  are accepted in any of the four, and the AI judge replies in the player's
+  language.
+- Game content is one JSON file per city and per mission, with a guide in
+  `api/src/main/resources/play/README.md`. `node scripts/new-mission.mjs <city>
+  <slug>` scaffolds a mission in all four languages, and the API refuses to
+  start on incomplete content, naming the file and field to fix.
 
 - Redesigned web app and landing page: a new navy and sunset brand, Plus
   Jakarta Sans headings, one shared header and footer, and layouts built for
@@ -110,6 +120,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   under `api/`, `web/`, and `mobile/`.
 - Aligned package, web, container, Compose, documentation, and workflow metadata
   with the usmhic open-source ecosystem.
+
+### Removed
+
+- Leftover web helpers from the Prisma era (`lib/api.ts`, `lib/route-config.ts`)
+  and a duplicate application form, plus unused API repository queries.
 
 ### Fixed
 

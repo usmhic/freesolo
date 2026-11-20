@@ -60,8 +60,9 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
    Want company? Apply to join and travel with a small, vetted group.
 
 Playable now: Tangier, Porto, Córdoba, Rotterdam and Salzburg. The first levels in every city are free with no account. City packs unlock the rest (free during
-the pilot). Lessons live in [`api/src/main/resources/play/cities`](./api/src/main/resources/play/cities),
-and every fact cites a source.
+the pilot). Play in English, French, Spanish or Arabic. Lessons live in
+[`api/src/main/resources/play/cities`](./api/src/main/resources/play/cities), one JSON file per mission,
+and every fact cites a source. See the [content guide](./api/src/main/resources/play/README.md) to add a city or mission.
 
 ## 🗺️ What's inside
 

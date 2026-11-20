@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
+import { getLang } from "@/lib/i18n/server";
 import { CityHub } from "@/components/play/city-hub";
 
 export const metadata: Metadata = {
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function CityPage({ params }: { params: Promise<{ city: string }> }) {
-  const [session, { city }] = await Promise.all([getSession(), params]);
-  return <CityHub key={city} cityId={city} signedIn={!!session} />;
+  const [session, lang, { city }] = await Promise.all([getSession(), getLang(), params]);
+  return <CityHub key={`${city}-${lang}`} cityId={city} signedIn={!!session} />;
 }

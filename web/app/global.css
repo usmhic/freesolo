@@ -150,6 +150,7 @@
 
 /* Leaflet sits under our own UI; keep its controls in the brand. */
 .leaflet-container {
+  direction: ltr; /* maps don't mirror in right-to-left languages */
   font-family: var(--font-body), system-ui, sans-serif;
   background: #E9EEF1;
 }
@@ -164,6 +165,19 @@
 }
 .leaflet-bar a {
   color: var(--navy) !important;
+}
+
+/* Arabic: one typeface for body and headings, no Latin letter-spacing, and
+   arrows that point the way the page reads. */
+html[lang="ar"] {
+  --font-body: var(--font-arabic);
+  --font-display: var(--font-arabic);
+}
+html[lang="ar"] body * {
+  letter-spacing: normal !important;
+}
+[dir="rtl"] :is(.lucide-arrow-right, .lucide-arrow-left, .lucide-chevron-right, .lucide-chevron-left) {
+  transform: scaleX(-1);
 }
 
 @keyframes shake {

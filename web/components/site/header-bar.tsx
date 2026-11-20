@@ -6,20 +6,23 @@ import { useEffect, useState } from "react";
 import { ArrowRight, LogOut, Map, Menu, Route, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { FreeSoloLogo } from "@/components/logo";
+import { useI18n } from "@/lib/i18n/client";
+import { LanguageSwitcher } from "./language-switcher";
 import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
-  { href: "/play", label: "Play" },
-  { href: "/sky", label: "My sky" },
-  { href: "/ranking", label: "Ranking" },
-  { href: "/trips", label: "Group trips" },
-  { href: "/planner", label: "Planner" },
-  { href: "/docs", label: "Help" },
-];
+  { href: "/play", key: "play" },
+  { href: "/sky", key: "sky" },
+  { href: "/ranking", key: "ranking" },
+  { href: "/trips", key: "trips" },
+  { href: "/planner", key: "planner" },
+  { href: "/docs", key: "help" },
+] as const;
 
 type HeaderUser = { name: string; email: string; role: string } | null;
 
 export function HeaderBar({ user }: { user: HeaderUser }) {
+  const { t } = useI18n();
   const pathname = usePathname();
   const router = useRouter();
   // The menu belongs to the page it was opened on, so navigating closes it.
@@ -56,11 +59,11 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
       )}
     >
       <div className="container-page flex h-16 items-center gap-4">
-        <Link href="/" aria-label="FreeSolo home" className="shrink-0">
+        <Link href="/" aria-label={t.nav.home} className="shrink-0">
           <FreeSoloLogo />
         </Link>
 
-        <nav aria-label="Main" className="ml-6 hidden items-center gap-1 md:flex">
+        <nav aria-label="Main" className="ms-6 hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -71,20 +74,21 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
                 active(item.href) ? "bg-fd-muted text-ink" : "text-ink-soft hover:text-ink"
               )}
             >
-              {item.label}
+              {t.nav[item.key]}
             </Link>
           ))}
         </nav>
 
-        <div className="ml-auto hidden items-center gap-2 md:flex">
+        <div className="ms-auto hidden items-center gap-2 lg:flex">
+          <LanguageSwitcher />
           <ThemeToggle />
           {user ? (
             <>
               <Link href="/planner" className="btn-ghost btn-sm">
-                <Route className="size-4" /> My plans
+                <Route className="size-4" /> {t.nav.myPlans}
               </Link>
               {(user.role === "admin" || user.role === "business") && (
-                <Link href="/admin" className="btn-ghost btn-sm">Dashboard</Link>
+                <Link href="/admin" className="btn-ghost btn-sm">{t.nav.dashboard}</Link>
               )}
               <span
                 title={user.email}
@@ -92,28 +96,28 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
               >
                 {user.name[0]?.toUpperCase()}
               </span>
-              <button type="button" onClick={signOut} className="btn-ghost btn-sm" aria-label="Sign out">
+              <button type="button" onClick={signOut} className="btn-ghost btn-sm" aria-label={t.nav.signOut}>
                 <LogOut className="size-4" />
               </button>
             </>
           ) : (
             <>
-              <Link href="/sign-in" className="btn-ghost btn-sm">Sign in</Link>
+              <Link href="/sign-in" className="btn-ghost btn-sm">{t.common.signIn}</Link>
               <Link href="/apply" className="btn-primary btn-sm">
-                Apply to join <ArrowRight className="size-4" />
+                {t.nav.join} <ArrowRight className="size-4" />
               </Link>
             </>
           )}
         </div>
 
-        <div className="ml-auto flex items-center gap-1 md:hidden">
+        <div className="ms-auto flex items-center gap-1 lg:hidden">
           <ThemeToggle />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
             className="inline-flex size-10 items-center justify-center rounded-full text-ink hover:bg-fd-muted"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -125,7 +129,7 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
       <div
         id="mobile-nav"
         hidden={!open}
-        className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-paper md:hidden"
+        className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-paper lg:hidden"
       >
         <nav aria-label="Main" className="container-page flex flex-col gap-1 py-6">
           {NAV.map((item) => (
@@ -134,23 +138,24 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
               href={item.href}
               className="flex items-center justify-between rounded-2xl px-4 py-4 font-display text-xl font-bold text-ink hover:bg-fd-muted"
             >
-              {item.label}
+              {t.nav[item.key]}
               <ArrowRight className="size-5 text-ink-soft" />
             </Link>
           ))}
           <div className="mt-6 grid gap-3 border-t border-line pt-6">
+            <LanguageSwitcher className="justify-self-start" />
             {user ? (
               <>
-                <p className="px-4 text-sm text-ink-soft">Signed in as {user.email}</p>
-                <Link href="/planner" className="btn-outline w-full"><Map className="size-4" /> My plans</Link>
+                <p className="px-4 text-sm text-ink-soft">{t.nav.signedInAs.replace("{email}", user.email)}</p>
+                <Link href="/planner" className="btn-outline w-full"><Map className="size-4" /> {t.nav.myPlans}</Link>
                 <button type="button" onClick={signOut} className="btn-ghost w-full">
-                  <LogOut className="size-4" /> Sign out
+                  <LogOut className="size-4" /> {t.nav.signOut}
                 </button>
               </>
             ) : (
               <>
-                <Link href="/apply" className="btn-primary w-full py-3">Apply to join <ArrowRight className="size-4" /></Link>
-                <Link href="/sign-in" className="btn-outline w-full py-3">Sign in</Link>
+                <Link href="/apply" className="btn-primary w-full py-3">{t.nav.join} <ArrowRight className="size-4" /></Link>
+                <Link href="/sign-in" className="btn-outline w-full py-3">{t.common.signIn}</Link>
               </>
             )}
           </div>

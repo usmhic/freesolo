@@ -6,7 +6,7 @@ import type { CityView } from "@/lib/play";
  * lessons shine; the rest wait as faint points. A city with every lesson
  * solved gets its lines and name in full.
  */
-export function NightSky({ cities, solved, className }: { cities: CityView[]; solved: Set<string>; className?: string }) {
+export function NightSky({ cities, solved, label, className }: { cities: CityView[]; solved: Set<string>; label: string; className?: string }) {
   const W = 800;
   const H = 440;
   const cols = Math.max(1, Math.min(3, cities.length));
@@ -15,7 +15,7 @@ export function NightSky({ cities, solved, className }: { cities: CityView[]; so
   const cellH = H / rows;
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className={className} role="img" aria-label="Your night sky">
+    <svg viewBox={`0 0 ${W} ${H}`} className={className} role="img" aria-label={label}>
       <defs>
         <radialGradient id="sky-bg" cx="50%" cy="0%" r="110%">
           <stop offset="0%" stopColor="#1C3040" />

@@ -68,6 +68,9 @@ This means the browser never needs to know the Spring Boot URL, CORS is transpar
 | Route | Description |
 |---|---|
 | `/` | Landing page |
+| `/play`, `/play/[city]` | The history game: city gallery and a city's level path with its map |
+| `/play/lessons/[id]` | One mission: challenge, hints, answer or photo, then the story |
+| `/sky`, `/ranking` | The player's night sky and rank, and the global ranking |
 | `/trips`, `/trips/[id]` | Browse trips and experiences; trip pages show the host's route on a map |
 | `/planner` | Route planner: stops on a map, real travel times per leg, days, saved plans |
 | `/sign-in` | Member sign-in (email code) |
@@ -85,6 +88,24 @@ This means the browser never needs to know the Spring Boot URL, CORS is transpar
 | `/admin/media` | Media / upload management |
 
 All `/api/**` requests are proxied to the Spring Boot API.
+
+## Languages
+
+The landing page, header, footer and game screens are translated into English,
+French, Spanish and Arabic. Arabic sets `dir="rtl"` on `<html>`, so layouts use
+logical Tailwind utilities (`ms-`, `pe-`, `start-`, `text-start`) rather than
+left/right ones. The choice is stored in the `freesolo-lang` cookie and falls back
+to the browser's `Accept-Language`.
+
+- `lib/i18n/config.ts`: supported languages and helpers.
+- `lib/i18n/dictionaries/en.ts`: the source text. `fr.ts`, `es.ts` and `ar.ts` are
+  typed against it, so a missing key fails `pnpm types:check`.
+- Server components call `getLang()` and `getDictionary(lang)`; client components
+  use `useI18n()` for `t`, number and date formatting.
+
+To add a string, add it to `en.ts`, then to the three other dictionaries. Game
+content (cities and missions) is translated in the API's JSON files instead. The
+help center, trips, planner and admin pages are English only for now.
 
 ## Help center (Fumadocs)
 

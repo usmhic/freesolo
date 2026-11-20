@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getSession } from "@/lib/auth";
+import { getLang } from "@/lib/i18n/server";
 import { LessonScreen } from "@/components/play/lesson-screen";
 
 export const metadata: Metadata = {
@@ -8,6 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default async function LessonPage({ params }: { params: Promise<{ id: string }> }) {
-  const [session, { id }] = await Promise.all([getSession(), params]);
-  return <LessonScreen key={id} lessonId={id} signedIn={!!session} />;
+  const [session, lang, { id }] = await Promise.all([getSession(), getLang(), params]);
+  return <LessonScreen key={`${id}-${lang}`} lessonId={id} signedIn={!!session} />;
 }

@@ -13,8 +13,6 @@ import java.util.List;
 public interface LessonProgressRepository extends JpaRepository<LessonProgress, String> {
     List<LessonProgress> findByUserIdOrderBySolvedAtDesc(String userId);
 
-    boolean existsByUserIdAndLessonId(String userId, String lessonId);
-
     /** A player's total in the ranking window. */
     interface Total {
         String getUserId();

@@ -107,6 +107,10 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
 | `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |
 
+Game endpoints answer in English, French, Spanish or Arabic: pass `?lang=en|fr|es|ar`
+or send `Accept-Language`; anything else falls back to English. Cities and missions are
+JSON files under `src/main/resources/play/`; see its [README](src/main/resources/play/README.md).
+
 Only approved members can join. A join request holds no seat until the host
 accepts it, and every held seat confirms together once the listing reaches its
 minimum group size.
