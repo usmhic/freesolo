@@ -150,8 +150,8 @@ public class PlayService {
     private CitySummary summary(CityContent c, Progress p) {
         int free = (int) c.lessons().stream().filter(LessonContent::free).count();
         int solved = (int) c.lessons().stream().filter(l -> p.solved().contains(l.id())).count();
-        return new CitySummary(c.id(), c.name(), c.country(), c.emoji(), c.tagline(), c.center(),
-                c.lessons().size(), free, p.unlockedCities().contains(c.id()), solved);
+        return new CitySummary(c.id(), c.name(), c.country(), c.emoji(), c.tagline(), c.intro(), c.colors(),
+                c.center(), c.lessons().size(), free, p.unlockedCities().contains(c.id()), solved);
     }
 
     private LessonCard card(LessonContent l, String cityId, Progress p) {

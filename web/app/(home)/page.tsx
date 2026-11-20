@@ -15,6 +15,8 @@ import {
 import { ListingCard } from "@/components/listing-card";
 import { LessonPreview } from "@/components/site/lesson-preview";
 import { StarOrb } from "@/components/play/star-badge";
+import { CityCard } from "@/components/play/city-card";
+import { getPlayCities } from "@/lib/play-server";
 import { getListings } from "@/lib/listings";
 
 export const metadata: Metadata = {
@@ -107,7 +109,10 @@ const FAQ = [
 ];
 
 export default async function HomePage() {
-  const trips = (await getListings({ kind: "trip", limit: 6 })).slice(0, 6);
+  const [trips, cities] = await Promise.all([
+    getListings({ kind: "trip", limit: 6 }).then((t) => t.slice(0, 6)),
+    getPlayCities(),
+  ]);
 
   return (
     <>
@@ -159,6 +164,27 @@ export default async function HomePage() {
           <LessonPreview />
         </div>
       </section>
+
+      {/* ── Cities ───────────────────────────────────────────────────────── */}
+      {cities.length > 0 && (
+        <section className="border-t border-line bg-surface/50 py-20">
+          <div className="container-page">
+            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+              <div className="max-w-xl">
+                <p className="eyebrow">Pick your city</p>
+                <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
+                  {cities.length} cities, {cities.reduce((n, c) => n + c.lessons, 0)} levels of real history
+                </h2>
+                <p className="mt-3 text-ink-soft">The first three levels in every city are free. No account needed.</p>
+              </div>
+              <Link href="/play" className="btn-outline">All cities <ArrowRight className="size-4" /></Link>
+            </div>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+              {cities.map((c) => <CityCard key={c.id} city={c} />)}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── How it works ─────────────────────────────────────────────────── */}
       <section id="how-it-works" className="scroll-mt-20 py-20 sm:py-24">

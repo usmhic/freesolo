@@ -22,16 +22,18 @@ public final class PlayDtos {
                                 int minutes, boolean free, String hook, String challenge, List<String> accepted,
                                 String rubric, List<String> hints, String story, List<Source> sources) {}
 
-    public record CityContent(String id, String name, String country, String emoji, String tagline,
-                              double[] center, List<LessonContent> lessons) {}
+    /** {@code colors}: two hex colours for the city's cover; {@code order}: position in the city list. */
+    public record CityContent(String id, String name, String country, String emoji, String tagline, String intro,
+                              List<String> colors, int order, double[] center, List<LessonContent> lessons) {}
 
     // ── Responses ────────────────────────────────────────────────────────────
 
     /** A star rank. {@code next} is null at the top rank. */
     public record Rank(String key, String name, int minStardust, Integer nextAt, String nextName) {}
 
-    public record CitySummary(String id, String name, String country, String emoji, String tagline,
-                              double[] center, int lessons, int freeLessons, boolean unlocked, int solved) {}
+    public record CitySummary(String id, String name, String country, String emoji, String tagline, String intro,
+                              List<String> colors, double[] center, int lessons, int freeLessons, boolean unlocked,
+                              int solved) {}
 
     /** What a player sees before solving: never the accepted answers or the story. */
     public record LessonCard(String id, String title, String place, double lat, double lng, String era,

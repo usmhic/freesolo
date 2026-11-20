@@ -35,7 +35,7 @@ class PlayServiceTest {
         return new LessonContent(id, id, id, lat, lng, "era", 10, free, "hook", "challenge", List.of("yes"),
                 "rubric", List.of("h1", "h2"), "story " + id, SRC);
     }
-    static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", new double[]{0, 0}, List.of(
+    static final CityContent TOWN = new CityContent("town", "Town", "Land", "🏰", "tag", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0}, List.of(
             lesson("far", 0, 0.03, true), lesson("near", 0, 0.01, true), lesson("mid", 0, 0.02, false)));
 
     PlayService service;
@@ -122,8 +122,10 @@ class PlayServiceTest {
     void theShippedCityContentLoadsAndIsValid() throws Exception {
         var content = new PlayContent(JsonMapper.builder().build());
 
-        assertThat(content.cities()).extracting(CityContent::id).contains("porto");
-        assertThat(content.city("porto").lessons()).allSatisfy(l -> {
+        assertThat(content.cities()).extracting(CityContent::id)
+                .containsExactly("tangier", "porto", "cordoba", "rotterdam", "salzburg");
+        assertThat(content.cities()).allSatisfy(c -> assertThat(c.lessons()).hasSizeGreaterThanOrEqualTo(6));
+        assertThat(content.cities().stream().flatMap(c -> c.lessons().stream())).allSatisfy(l -> {
             assertThat(l.sources()).isNotEmpty();
             assertThat(l.accepted()).isNotEmpty();
         });
@@ -133,7 +135,7 @@ class PlayServiceTest {
     void invalidContentIsRejected() {
         var noSources = new LessonContent("xx", "x", "x", 0, 0, "e", 1, true, "h", "c", List.of("a"), "r", List.of(),
                 "s", List.of());
-        assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", new double[]{0, 0},
+        assertThatThrownBy(() -> new PlayContent(List.of(new CityContent("cc", "C", "L", "", "", "intro", List.of("#000000", "#ffffff"), 1, new double[]{0, 0},
                 List.of(noSources))))).isInstanceOf(IllegalStateException.class).hasMessageContaining("cites a source");
     }
 }

@@ -105,7 +105,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
           <h1 className="mt-5 font-display text-2xl font-extrabold">This level is in the city pack</h1>
           <p className="mt-2 text-ink-soft">{lockedCity}. Packs are free while we&apos;re in pilot.</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-            <Link href="/play" className="btn-primary">Back to my journey</Link>
+            <Link href="/play" className="btn-primary">Back to the cities</Link>
             {!signedIn && <Link href={`/sign-in?next=${encodeURIComponent("/play")}`} className="btn-outline">Sign in</Link>}
           </div>
         </div>
@@ -125,12 +125,27 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
   const idx = order.findIndex((x) => x.id === l.id);
   const nextLesson = idx >= 0 ? order.slice(idx + 1).concat(order.slice(0, idx)).find((x) => !x.locked && !x.solved && !player.solved.has(x.id) && x.id !== l.id) : undefined;
   const won = result?.correct;
+  const lockedLeft = order.filter((x) => x.locked).length;
+  const solvedAfter = order.filter((x) => x.solved || player.solved.has(x.id) || (won && x.id === l.id)).length;
+  const cityComplete = order.length > 0 && solvedAfter === order.length;
 
   return (
     <Shell>
-      <Link href="/play" className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft hover:text-ink">
-        <ArrowLeft className="size-4" /> {lesson.cityName} journey
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href={`/play/${lesson.cityId}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft hover:text-ink">
+          <ArrowLeft className="size-4" /> {lesson.cityName} journey
+        </Link>
+        {idx >= 0 && (
+          <span className="flex items-center gap-2 text-xs font-semibold text-ink-soft">
+            Level {idx + 1} of {order.length}
+            <span className="hidden gap-1 sm:flex" aria-hidden>
+              {order.map((x) => (
+                <span key={x.id} className={cn("size-1.5 rounded-full", x.id === l.id ? "w-4 bg-sunset" : (x.solved || player.solved.has(x.id)) ? "bg-sunset/50" : "bg-line")} />
+              ))}
+            </span>
+          </span>
+        )}
+      </div>
 
       <div className="mt-5 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
         <div className="min-w-0 space-y-5">
@@ -242,11 +257,26 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                     ))}
                   </ul>
                 )}
+                {cityComplete ? (
+                  <div className="rounded-2xl bg-sunset-soft p-4 text-sm text-ink">
+                    <p className="font-display text-lg font-bold">🏆 You&apos;ve solved all of {lesson.cityName}!</p>
+                    <p className="mt-1 text-ink-soft">Its constellation is complete. Ready for another city?</p>
+                  </div>
+                ) : !nextLesson && lockedLeft > 0 ? (
+                  <div className="rounded-2xl border border-sunset/40 bg-sunset-soft p-4 text-sm">
+                    <p className="font-display text-lg font-bold text-ink">That&apos;s every free level in {lesson.cityName}.</p>
+                    <p className="mt-1 text-ink-soft">{lockedLeft} more levels are waiting in the city pack — free during the pilot.</p>
+                  </div>
+                ) : null}
                 <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                   {nextLesson ? (
                     <Link href={`/play/lessons/${nextLesson.id}`} className="btn-primary flex-1">Next level <ArrowRight className="size-4" /></Link>
+                  ) : cityComplete ? (
+                    <Link href="/play" className="btn-primary flex-1">Pick another city <ArrowRight className="size-4" /></Link>
+                  ) : lockedLeft > 0 ? (
+                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1"><Lock className="size-4" /> Unlock the city pack</Link>
                   ) : (
-                    <Link href="/play" className="btn-primary flex-1">Back to my journey</Link>
+                    <Link href={`/play/${lesson.cityId}`} className="btn-primary flex-1">Back to {lesson.cityName}</Link>
                   )}
                   <Link href="/sky" className="btn-outline flex-1"><Sparkles className="size-4" /> See my sky</Link>
                 </div>

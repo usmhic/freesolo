@@ -7,7 +7,8 @@ import type { RouteResult } from "@/components/planner/types";
 export interface Source { label: string; url: string }
 export interface Rank { key: string; name: string; minStardust: number; nextAt: number | null; nextName: string | null }
 export interface CitySummary {
-  id: string; name: string; country: string; emoji: string; tagline: string; center: [number, number];
+  id: string; name: string; country: string; emoji: string; tagline: string; intro: string;
+  colors: [string, string]; center: [number, number];
   lessons: number; freeLessons: number; unlocked: boolean; solved: number;
 }
 export interface LessonCard {
@@ -94,3 +95,12 @@ export function rankProgress(stardust: number, rank: Rank | null) {
   if (!rank || rank.nextAt == null) return 1;
   return Math.min(1, Math.max(0, (stardust - rank.minStardust) / (rank.nextAt - rank.minStardust)));
 }
+
+/** Levels solved in a city, merging server state with this browser's guest progress. */
+export function solvedIn(cityId: string, serverSolved: number, guest: GuestProgress) {
+  const local = Object.values(guest.solved).filter((s) => s.cityId === cityId).length;
+  return Math.max(serverSolved, local);
+}
+
+export const cityGradient = (c: Pick<CitySummary, "colors">) =>
+  `linear-gradient(135deg, ${c.colors[0]} 0%, ${c.colors[0]} 35%, ${c.colors[1]} 130%)`;

@@ -59,7 +59,7 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 4. **Learn and light a star.** The sourced story unlocks, you earn stardust, and your sky fills up.
    Want company? Apply to join and travel with a small, vetted group.
 
-The first levels in every city are free with no account. City packs unlock the rest (free during
+Playable now: Tangier, Porto, Córdoba, Rotterdam and Salzburg. The first levels in every city are free with no account. City packs unlock the rest (free during
 the pilot). Lessons live in [`api/src/main/resources/play/cities`](./api/src/main/resources/play/cities),
 and every fact cites a source.
 

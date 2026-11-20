@@ -12,7 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - FreeSolo becomes a history game for travelers. Tell it where you're
   travelling and for how long, and it turns the city into a walk of levels:
   short lessons tied to real places, each with a challenge you solve on the
-  spot and a sourced story that unlocks when you do. Porto is the pilot city.
+  spot and a sourced story that unlocks when you do.
+- Five cities to play — Tangier, Porto, Córdoba, Rotterdam and Salzburg — with
+  33 researched levels (three free per city), each citing its sources.
+- A simple game funnel: pick a city, set your days, and follow a winding path
+  of levels next to the map; each win shows your next level, nudges you to the
+  city pack once the free levels are done, and celebrates a finished city.
 - Answers are checked against each level's accepted answers; with
   `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` set, Claude also judges your own
   wording, other languages and photos, and nudges you when you're close.

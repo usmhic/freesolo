@@ -28,12 +28,14 @@ public class PlayContent {
     @Autowired
     public PlayContent(JsonMapper jsonMapper) throws IOException {
         Resource[] files = new PathMatchingResourcePatternResolver().getResources("classpath*:play/cities/*.json");
-        Arrays.sort(files, Comparator.comparing(Resource::getFilename));
+        List<CityContent> loaded = new ArrayList<>();
         for (Resource file : files) {
             try (InputStream in = file.getInputStream()) {
-                add(jsonMapper.readValue(in, CityContent.class));
+                loaded.add(jsonMapper.readValue(in, CityContent.class));
             }
         }
+        loaded.sort(Comparator.comparingInt(CityContent::order).thenComparing(CityContent::id));
+        loaded.forEach(this::add);
     }
 
     /** For tests: content built in code. */
@@ -45,6 +47,9 @@ public class PlayContent {
         require(city.id() != null && city.id().matches("[a-z0-9-]{2,64}"), "City id must be lowercase letters, digits or dashes");
         require(!cities.containsKey(city.id()), "Duplicate city " + city.id());
         require(city.center() != null && city.center().length == 2, city.id() + ": center must be [lat, lng]");
+        require(notBlank(city.intro()), city.id() + ": a city needs an intro");
+        require(city.colors() != null && city.colors().size() == 2
+                && city.colors().stream().allMatch(c -> c != null && c.matches("#[0-9A-Fa-f]{6}")), city.id() + ": colors must be two hex colours");
         require(city.lessons() != null && !city.lessons().isEmpty(), city.id() + ": a city needs lessons");
         for (LessonContent l : city.lessons()) {
             require(l.id() != null && l.id().matches("[a-z0-9-]{2,64}"), city.id() + ": bad lesson id " + l.id());
