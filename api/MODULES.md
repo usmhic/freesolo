@@ -16,6 +16,7 @@ separate deployments before they are useful.
 | Engagement | `engagement` | `fs_notifications`, `fs_email_campaigns` | Identity |
 | Media | `media` | `fs_uploads`, `fs_event_photos` | Identity, Experiences, Bookings |
 | Planning | `planning` | `fs_journey_plans` | Identity |
+| Play | `play` | `fs_lesson_progress`, `fs_city_unlocks` | Identity |
 
 `module/DomainSchemas.java` is the source of truth for schema names, and
 `module/ModuleCatalog.java` is the machine-readable ownership/dependency map.
@@ -43,6 +44,11 @@ schema or search-path dependency.
   adapter like email: `RoutingService` keeps the key server-side and is used by
   Planning. A trip's route is copied from the host's plan by the hosting
   controller, so Experiences does not depend on Planning.
+- Play owns players' progress only. Lesson content is curated in the repository
+  (`src/main/resources/play/cities/*.json`) and validated at startup, so every
+  fact is reviewed like code. The AI answer judge (`AnswerJudge`, Claude's
+  Messages API) is an infrastructure adapter like routing: optional, key kept
+  server-side, with plain answer matching when it isn't configured.
 - Email, push, and object-storage adapters remain infrastructure behind
   the owning application service; they are not separate public APIs.
 

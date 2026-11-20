@@ -2,12 +2,13 @@
 
 # 🧗 FreeSolo
 
-### Solo travel, together.
+### Every street has a story. Play it.
 
-**Small-group trips and local experiences for solo travelers, hosted by vetted members.**
-No big-bus tours. No stranger-danger group chats. Just a handful of people
-sharing five days island-hopping, a food crawl, or a sunrise hike — with a host
-who picked the group and knows exactly where to go.
+**A history game for the city you're in.** Tell FreeSolo where you're travelling
+and it turns the city into a walk of short levels: look closely at a real place,
+answer the challenge, and unlock the story of what happened there. Earn stardust,
+climb from Nebula to Black Hole, and — when you want company — join a small group
+trip with other solo travelers.
 
 <br />
 
@@ -51,18 +52,22 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 
 ## ✨ How it works, in one breath
 
-1. **You apply** to join — about five minutes, reviewed by a human.
-2. **You explore** multi-day group trips and few-hour local experiences.
-3. **You ask to join** with a short intro. On most trips the host picks the group; everything
-   confirms once enough people are in.
-4. **You go, you connect, you review.** And when you're planning a trip anyway — host it, and choose
-   who comes along.
+1. **Tell it where.** Pick your city and how many days you're there.
+2. **Get your journey.** The city's levels, ordered into a walk and split across your days.
+3. **Solve on the spot.** Type what you found or snap a photo — answers are matched, and with AI
+   checking switched on, your own words, other languages and photos count too.
+4. **Learn and light a star.** The sourced story unlocks, you earn stardust, and your sky fills up.
+   Want company? Apply to join and travel with a small, vetted group.
+
+The first levels in every city are free with no account. City packs unlock the rest (free during
+the pilot). Lessons live in [`api/src/main/resources/play/cities`](./api/src/main/resources/play/cities),
+and every fact cites a source.
 
 ## 🗺️ What's inside
 
 | | Surface | Highlights |
 |---|---|---|
-| 🌍 | **Web** | Public site, trip pages with route maps, a route planner, Fumadocs help center, OG image generation |
+| 🌍 | **Web** | The city history game (Play, levels, My sky), group trip pages with route maps, a route planner, Fumadocs help center |
 | 🔐 | **Admin** | Applications, businesses, experiences, bookings, reviews, users, media, marketing |
 | 📱 | **Mobile** | Expo app with the trip and experience feed, trip routes, hosting and join requests, maps, notifications, and camera uploads |
 | ⚙️ | **API** | Spring Boot REST API — sole owner of auth, business rules, and the PostgreSQL schema |
@@ -75,6 +80,7 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 | API | Java 21, Spring Boot, Spring Security, Flyway, PostgreSQL |
 | Web | Next.js, React, TypeScript, Tailwind CSS, Leaflet, Fumadocs |
 | Maps | OpenRouteService (routing and place search, called by the API), OpenStreetMap tiles |
+| AI | Claude (optional) judges game answers and photos, called by the API |
 | Mobile | Expo and React Native |
 | Storage | MinIO (S3-compatible) |
 | Delivery | Docker Compose, GitHub Actions, GHCR |

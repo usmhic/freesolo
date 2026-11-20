@@ -9,9 +9,10 @@ import { FreeSoloLogo } from "@/components/logo";
 import { ThemeToggle } from "./theme-toggle";
 
 const NAV = [
-  { href: "/trips", label: "Trips" },
+  { href: "/play", label: "Play" },
+  { href: "/sky", label: "My sky" },
+  { href: "/trips", label: "Group trips" },
   { href: "/planner", label: "Planner" },
-  { href: "/#how-it-works", label: "How it works" },
   { href: "/docs", label: "Help" },
 ];
 

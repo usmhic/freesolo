@@ -9,6 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- FreeSolo becomes a history game for travelers. Tell it where you're
+  travelling and for how long, and it turns the city into a walk of levels:
+  short lessons tied to real places, each with a challenge you solve on the
+  spot and a sourced story that unlocks when you do. Porto is the pilot city.
+- Answers are checked against each level's accepted answers; with
+  `ANTHROPIC_API_KEY` and `ANTHROPIC_MODEL` set, Claude also judges your own
+  wording, other languages and photos, and nudges you when you're close.
+- Stardust and star ranks from Nebula to Black Hole, earned in any city and
+  never sold, and "My sky": a night sky with a star for every solved level and
+  a constellation per city.
+- City packs unlock a city's remaining levels for good (free during the pilot).
+  Free levels need no account; signed-out progress stays in the browser.
+- A Help Center page on playing, and a game-first landing page. Group trips
+  stay as the way to play together.
+
 - Redesigned web app and landing page: a new navy and sunset brand, Plus
   Jakarta Sans headings, one shared header and footer, and layouts built for
   phones first. The trips list, trip pages, sign-in and application pages are

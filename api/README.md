@@ -49,9 +49,11 @@ For native API work, start `db`, `minio`, and `minio-init` with Compose, then ru
 
 The root `.env.example` contains only the variable names required by the default
 Compose stack, with intentionally empty values. Optional integrations use
-`RESEND_API_KEY`, `EMAIL_FROM`, `EXPO_ACCESS_TOKEN`, `GOOGLE_*`, and
-`APPLE_*`; inject them through your deployment platform when enabling those
-features. `application.yml` contains only non-secret defaults.
+`RESEND_API_KEY`, `EMAIL_FROM`, `EXPO_ACCESS_TOKEN`, `ORS_API_KEY`,
+`ANTHROPIC_API_KEY` with `ANTHROPIC_MODEL` (the Claude model that judges game
+answers and photos; without both, answers are matched against each lesson's
+accepted list), `GOOGLE_*`, and `APPLE_*`; inject them through your deployment
+platform when enabling those features. `application.yml` contains only non-secret defaults.
 
 ## API overview
 
@@ -93,6 +95,13 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `POST` | `/api/routing/directions` | Route through `[lng, lat]` stops for a travel mode (public, 20/min per client); `estimated: true` when no OpenRouteService key is set |
 | `GET`/`POST` | `/api/plans` | The member's saved journey plans; the API computes the route on save |
 | `GET`/`PUT`/`DELETE` | `/api/plans/{id}` | One plan (owner only) |
+| `GET` | `/api/play/ranks` | The star ladder, Nebula to Black Hole (public) |
+| `GET` | `/api/play/cities`, `/api/play/cities/{id}` | Playable cities and their levels; never the answers or stories (public) |
+| `POST` | `/api/play/cities/{id}/unlock` | Unlock a city pack (signed in; free during the pilot) |
+| `GET` | `/api/play/lessons/{id}` | A level's challenge and hints (public for free levels) |
+| `POST` | `/api/play/lessons/{id}/attempts` | Check an answer or photo; returns the story and stardust when correct (15/min per client) |
+| `POST` | `/api/play/journeys` | Order a city's levels into a walk split over the trip's days (public) |
+| `GET` | `/api/play/me` | The player's stardust, rank, solved levels and unlocked cities |
 | `PUT`/`DELETE` | `/api/hosting/listings/{id}/route` | Show one of your plans' routes on a listing you host |
 | `GET` | `/api/experiences/{id}/chat` | Group chat, oldest first. Poll with `after=<newest createdAt>`; replies overlap by a minute, so dedupe by `id` |
 | `POST` | `/api/experiences/{id}/chat` | Post to the group chat (host and travelers holding a seat) |

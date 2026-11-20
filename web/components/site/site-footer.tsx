@@ -3,10 +3,11 @@ import { FreeSoloLogo } from "@/components/logo";
 
 const COLUMNS = [
   {
-    title: "Travel",
+    title: "Play",
     links: [
-      { href: "/trips", label: "Browse trips" },
-      { href: "/trips?kind=experience", label: "Local experiences" },
+      { href: "/play", label: "Play a city" },
+      { href: "/sky", label: "My sky" },
+      { href: "/trips", label: "Group trips" },
       { href: "/planner", label: "Trip planner" },
     ],
   },
@@ -22,6 +23,7 @@ const COLUMNS = [
     title: "Help",
     links: [
       { href: "/docs", label: "Help center" },
+      { href: "/docs/play", label: "How the game works" },
       { href: "/docs/trips", label: "How group trips work" },
       { href: "/docs/hosting", label: "Hosting" },
     ],
@@ -43,8 +45,8 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <FreeSoloLogo />
           <p className="mt-4 text-sm leading-relaxed text-ink-soft">
-            Small-group trips for solo travelers. Every member is read by a person, every group
-            stays under twelve, and FreeSolo never takes payment.
+            A history game for the city you&apos;re in. Solve short lessons on the spot, light up
+            your sky, and meet other solo travelers along the way.
           </p>
         </div>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
@@ -66,7 +68,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-line">
         <div className="container-page flex flex-col gap-2 py-5 text-xs text-ink-soft sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} FreeSolo. Made for people who travel alone, but not always by themselves.</p>
+          <p>© {new Date().getFullYear()} FreeSolo. Made for travelers who like to know where they are.</p>
           <p>Maps © OpenStreetMap contributors · Routing by openrouteservice</p>
         </div>
       </div>
