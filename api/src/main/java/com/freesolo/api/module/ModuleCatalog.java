@@ -23,7 +23,9 @@ public final class ModuleCatalog {
             new Module("media", DomainSchemas.MEDIA,
                     "Uploads and event photos", List.of("identity", "experiences", "bookings")),
             new Module("planning", DomainSchemas.PLANNING,
-                    "Members' saved journey plans: stops, travel mode, and computed routes", List.of("identity"))
+                    "Members' saved journey plans: stops, travel mode, and computed routes", List.of("identity")),
+            new Module("play", DomainSchemas.PLAY,
+                    "City history game: lesson progress, stardust, star ranks, and unlocked city packs", List.of("identity"))
     );
 
     private ModuleCatalog() {

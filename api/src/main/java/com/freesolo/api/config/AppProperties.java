@@ -23,6 +23,7 @@ public class AppProperties {
     private String playStoreUrl;
     private OAuth oauth = new OAuth();
     private Ors ors = new Ors();
+    private Ai ai = new Ai();
 
     @Data
     public static class Jwt {
@@ -68,6 +69,18 @@ public class AppProperties {
         private String apiKey;
         private String baseUrl = "https://api.openrouteservice.org";
         private int timeoutMs = 8000;
+    }
+
+    /**
+     * Claude, used to judge game answers (text and photos). Optional: without
+     * a key and model, answers are checked against each lesson's accepted list.
+     */
+    @Data
+    public static class Ai {
+        private String apiKey;
+        private String model;
+        private String baseUrl = "https://api.anthropic.com";
+        private int timeoutMs = 20000;
     }
 
     @Data

@@ -81,6 +81,11 @@ app:
     api-key: ${ORS_API_KEY:}
     base-url: ${ORS_BASE_URL:https://api.openrouteservice.org}
     timeout-ms: ${ORS_TIMEOUT_MS:8000}
+  ai:
+    api-key: ${ANTHROPIC_API_KEY:}
+    model: ${ANTHROPIC_MODEL:}
+    base-url: ${ANTHROPIC_BASE_URL:https://api.anthropic.com}
+    timeout-ms: ${ANTHROPIC_TIMEOUT_MS:20000}
 
   oauth:
     google:

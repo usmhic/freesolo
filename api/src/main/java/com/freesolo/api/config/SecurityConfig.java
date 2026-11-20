@@ -48,6 +48,10 @@ public class SecurityConfig {
                 // Trip planner: anyone can search places and preview routes (rate-limited)
                 .requestMatchers(HttpMethod.GET, "/api/routing/status", "/api/routing/places").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/routing/directions").permitAll()
+                // The history game: anyone can browse cities and play free lessons
+                .requestMatchers(HttpMethod.GET, "/api/play/ranks", "/api/play/cities", "/api/play/cities/{id}",
+                        "/api/play/lessons/{id}").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/play/journeys", "/api/play/lessons/{id}/attempts").permitAll()
                 // Application submission (unauthenticated)
                 .requestMatchers(HttpMethod.POST, "/api/applications").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/applications/{reference}/status").permitAll()
