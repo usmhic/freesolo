@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
 import { Check, Lock } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { useI18n } from "@/lib/i18n/client";
@@ -11,6 +12,20 @@ const ROW = 96; // px per level; fixed so the trail can be drawn through the nod
 const NODE = 60;
 const OFFSETS = [0, 1, 2, 1]; // a gentle zigzag, in steps
 
+/** A narrower zigzag on phones, so titles keep their room. */
+const WIDE = "(min-width: 420px)";
+function useStep() {
+  return useSyncExternalStore(
+    (onChange) => {
+      const query = window.matchMedia(WIDE);
+      query.addEventListener("change", onChange);
+      return () => query.removeEventListener("change", onChange);
+    },
+    () => (window.matchMedia(WIDE).matches ? 30 : 14),
+    () => 14
+  );
+}
+
 /**
  * One day of the journey as a winding trail of level nodes. `numbers` maps a
  * lesson id to its level number across the whole city.
@@ -19,14 +34,13 @@ export function LevelPath({
   lessons,
   numbers,
   currentId,
-  step = 30,
 }: {
   lessons: LessonCard[];
   numbers: Map<string, number>;
   currentId: string | null;
-  step?: number;
 }) {
   const { t, fill } = useI18n();
+  const step = useStep();
   const xs = lessons.map((_, i) => NODE / 2 + OFFSETS[i % OFFSETS.length] * step);
   const points = lessons.map((_, i) => `${xs[i]},${ROW * i + ROW / 2}`).join(" ");
   const width = NODE + 2 * step;
@@ -42,7 +56,7 @@ export function LevelPath({
         const current = l.id === currentId;
         return (
           <li key={l.id} className="absolute inset-x-0" style={{ top: ROW * i, height: ROW }}>
-            <Link href={`/play/lessons/${l.id}`} className="group flex h-full items-center gap-4" aria-label={fill(t.city.missionLabel, { n: numbers.get(l.id) ?? 0, title: l.title }) + (l.solved ? t.city.solvedSuffix : l.locked ? t.city.lockedSuffix : "")}>
+            <Link href={`/play/lessons/${l.id}`} className="group flex h-full items-center gap-3 sm:gap-4" aria-label={fill(t.city.missionLabel, { n: numbers.get(l.id) ?? 0, title: l.title }) + (l.solved ? t.city.solvedSuffix : l.locked ? t.city.lockedSuffix : "")}>
               <span className="relative shrink-0" style={{ marginInlineStart: xs[i] - NODE / 2, width: NODE, height: NODE }}>
                 {current && <span className="absolute -inset-1.5 animate-pulse rounded-full ring-4 ring-sunset/40" />}
                 <span
@@ -74,12 +88,12 @@ export function LevelPath({
                 </span>
               </span>
               <span className={cn("min-w-0 flex-1 rounded-2xl px-3 py-2 transition group-hover:bg-surface", current && "bg-surface shadow-sm ring-1 ring-sunset/30")}>
-                <span className="flex items-center gap-2">
-                  <span className="truncate font-display font-bold text-ink">{l.title}</span>
-                  {l.free && !l.solved && <span className="shrink-0 rounded-full bg-sage/15 px-2 py-0.5 text-[10px] font-bold uppercase text-sage">{t.common.free}</span>}
-                  {current && <span className="shrink-0 rounded-full bg-sunset px-2 py-0.5 text-[10px] font-bold uppercase text-white">{t.common.next}</span>}
+                <span className="flex items-start gap-2">
+                  <span className="line-clamp-2 font-display font-bold leading-snug text-ink">{l.title}</span>
+                  {l.free && !l.solved && <span className="mt-0.5 shrink-0 rounded-full bg-sage/15 px-2 py-0.5 text-[11px] font-bold uppercase text-sage">{t.common.free}</span>}
+                  {current && <span className="mt-0.5 shrink-0 rounded-full bg-sunset px-2 py-0.5 text-[11px] font-bold uppercase text-white">{t.common.next}</span>}
                 </span>
-                <span className="flex items-center gap-2 text-sm text-ink-soft">
+                <span className="mt-0.5 flex items-center gap-2 text-sm text-ink-soft">
                   <span className="truncate">{l.place}</span>
                   <span className={cn("shrink-0 text-xs font-bold", l.solved ? "text-ink-soft/60 line-through" : "text-sunset")}>✨ {l.points}</span>
                 </span>

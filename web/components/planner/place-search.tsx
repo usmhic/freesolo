@@ -81,7 +81,7 @@ export function PlaceSearch({
 
   return (
     <div className="relative">
-      <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
+      <Search className="pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
       <input
         type="search"
         role="combobox"
@@ -102,9 +102,9 @@ export function PlaceSearch({
         }}
         placeholder="Add a place — town, landmark, address…"
         aria-label="Search for a place to add"
-        className="field h-12 rounded-2xl pl-11 pr-10"
+        className="field h-12 rounded-2xl ps-11 pe-10"
       />
-      {loading && <Loader2 className="absolute right-4 top-1/2 size-4 -translate-y-1/2 animate-spin text-ink-soft" />}
+      {loading && <Loader2 className="absolute end-4 top-1/2 size-4 -translate-y-1/2 animate-spin text-ink-soft" />}
       {error && <p className="mt-2 text-xs text-red-600 dark:text-red-400">{error}</p>}
       {open && shown.length > 0 && (
         <ul

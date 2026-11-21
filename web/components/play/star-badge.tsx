@@ -30,7 +30,7 @@ export function RankChip({ rankKey, stardust }: { rankKey: string; stardust: num
   const { num } = useI18n();
   const name = useRankText()(rankKey).name;
   return (
-    <span className="inline-flex items-center gap-2.5 rounded-full border border-line bg-surface py-1 pl-1 pr-3.5 text-sm">
+    <span className="inline-flex items-center gap-2.5 whitespace-nowrap rounded-full border border-line bg-surface py-1 ps-1 pe-3.5 text-sm">
       <StarOrb rankKey={rankKey} size={28} />
       <span className="font-semibold text-ink">{name}</span>
       <span className="text-ink-soft">✨ {num(stardust)}</span>

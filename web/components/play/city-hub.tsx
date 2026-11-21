@@ -159,12 +159,12 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
         <PlacePhoto photo={city.photo} width={1280} alt="" className="absolute inset-0" priority />
         <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${city.colors[0]}F2 0%, ${city.colors[0]}B3 45%, ${city.colors[0]}33 100%)` }} />
         {city.photo && (
-          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 end-3 z-10 max-w-[60%] truncate text-[10px] text-white/70 hover:text-white">
+          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 end-3 z-10 max-w-[60%] truncate py-1 text-[11px] text-white/70 hover:text-white">
             📷 {city.photo.author} · {city.photo.license}
           </a>
         )}
         <div className="container-page relative z-10 py-8 sm:py-12">
-          <Link href="/play" className="inline-flex items-center gap-1.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> {t.city.allCities}</Link>
+          <Link href="/play" className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> {t.city.allCities}</Link>
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">{city.country}</p>
           <h1 className="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{city.name}</h1>
           <p className="mt-2 font-display text-xl font-bold text-white/90">{city.tagline}</p>
@@ -190,23 +190,26 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
 
       <div className="container-page py-8">
         {/* Trip controls */}
-        <div className="card flex flex-wrap items-center gap-x-6 gap-y-4 p-4 sm:p-5">
-          <div className="flex items-center gap-3">
+        {/* Stacked rows on phones, one line from `sm` up. */}
+        <div className="card grid gap-3 p-4 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-4 sm:p-5">
+          <div className="flex items-center justify-between gap-3">
             <span className="text-sm font-semibold">{fill(t.city.days, { city: city.name })}</span>
-            <button type="button" aria-label={t.city.fewer} onClick={() => changeTrip({ ...trip, days: Math.max(1, trip.days - 1) })} className="btn-outline size-9 p-0"><Minus className="size-4" /></button>
-            <span className="w-6 text-center font-display text-lg font-bold" aria-live="polite">{trip.days}</span>
-            <button type="button" aria-label={t.city.more} onClick={() => changeTrip({ ...trip, days: Math.min(7, trip.days + 1) })} className="btn-outline size-9 p-0"><Plus className="size-4" /></button>
+            <span className="flex items-center gap-2">
+              <button type="button" aria-label={t.city.fewer} onClick={() => changeTrip({ ...trip, days: Math.max(1, trip.days - 1) })} className="btn-outline size-10 p-0"><Minus className="size-4" /></button>
+              <span className="w-6 text-center font-display text-lg font-bold" aria-live="polite">{trip.days}</span>
+              <button type="button" aria-label={t.city.more} onClick={() => changeTrip({ ...trip, days: Math.min(7, trip.days + 1) })} className="btn-outline size-10 p-0"><Plus className="size-4" /></button>
+            </span>
           </div>
-          <label className="flex items-center gap-3">
+          <label className="flex items-center justify-between gap-3">
             <span className="text-sm font-semibold">{t.city.arriving}</span>
-            <span className="relative">
+            <span className="relative min-w-0">
               <CalendarDays className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
-              <input type="date" value={trip.startDate} onChange={(e) => changeTrip({ ...trip, startDate: e.target.value })} className="field w-auto py-2 ps-9" />
+              <input type="date" value={trip.startDate} onChange={(e) => changeTrip({ ...trip, startDate: e.target.value })} className="field h-10 w-auto max-w-44 py-0 ps-9" />
             </span>
           </label>
-          <div className="ms-auto flex items-center gap-2">
+          <div className="flex items-center justify-between gap-2 border-t border-line pt-3 sm:ms-auto sm:border-0 sm:pt-0">
             {rank && <RankChip rankKey={rank.key} stardust={player.stardust} />}
-            <button type="button" onClick={() => setShowMap((v) => !v)} className="btn-outline btn-sm lg:hidden" aria-expanded={showMap}>
+            <button type="button" onClick={() => setShowMap((v) => !v)} className="btn-outline h-10 px-4 py-0 lg:hidden" aria-expanded={showMap}>
               <MapIcon className="size-4" /> {showMap ? t.city.hideMap : t.city.map}
             </button>
           </div>

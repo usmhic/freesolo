@@ -37,14 +37,14 @@ export default function PrivacyPage() {
 
         <Section title="2. Information we collect">
           <p>We collect information you provide directly, such as when you:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Create an account (name, email address, profile photo, bio)</li>
             <li>Apply to join as a traveler, host, or business</li>
             <li>Book or list an experience (booking details, party size, guest notes)</li>
             <li>Communicate with us or other users (messages, reviews, support requests)</li>
           </ul>
           <p>We also collect certain information automatically, including:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Device information (device type, operating system, push notification tokens)</li>
             <li>Usage data (pages viewed, features used, approximate location at time of booking)</li>
             <li>Log data (IP address, access times, app version)</li>
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
 
         <Section title="3. How we use your information">
           <p>We use the information we collect to:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Operate, maintain, and improve the Service</li>
             <li>Process and manage bookings</li>
             <li>Verify applications from prospective hosts and businesses</li>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
 
         <Section title="4. How we share your information">
           <p>We do not sell your personal information. We may share information with:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>
               <span className="font-medium text-fd-foreground">Hosts and businesses</span> — when
               you book an experience, the host receives the details necessary to fulfil your
@@ -92,7 +92,7 @@ export default function PrivacyPage() {
 
         <Section title="6. Your rights">
           <p>Depending on where you live, you may have the right to:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Access, correct, or delete the personal information we hold about you</li>
             <li>Object to or restrict certain processing of your information</li>
             <li>Receive a copy of your information in a portable format</li>

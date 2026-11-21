@@ -55,7 +55,8 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
     <header
       className={cn(
         "sticky top-0 z-50 border-b transition-colors",
-        scrolled || open ? "border-line bg-paper/90 backdrop-blur-md" : "border-transparent bg-paper/0"
+        // No backdrop blur while the menu is open: it would make the header the containing block of the fixed menu panel.
+        open ? "border-line bg-paper" : scrolled ? "border-line bg-paper/90 backdrop-blur-md" : "border-transparent bg-paper/0"
       )}
     >
       <div className="container-page flex h-16 items-center gap-4">

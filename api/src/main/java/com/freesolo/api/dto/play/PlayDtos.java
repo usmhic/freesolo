@@ -70,8 +70,9 @@ public final class PlayDtos {
 
     public record CityView(CitySummary city, List<LessonCard> lessons) {}
 
+    /** A mission to play. The story, sources and facts are only filled in once the player has solved it. */
     public record LessonView(LessonCard card, String cityId, String cityName, String challenge, List<String> hints,
-                             boolean aiJudge) {}
+                             boolean aiJudge, String story, List<Source> sources, List<Fact> facts) {}
 
     public record PlayerView(int stardust, Rank rank, List<String> solvedLessonIds, List<String> unlockedCityIds) {}
 

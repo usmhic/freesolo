@@ -58,7 +58,7 @@ export default async function TripPage({ params }: Props) {
       <section className="container-page pt-6">
         <Link
           href={trip ? "/trips?kind=trip" : "/trips?kind=experience"}
-          className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft hover:text-ink"
+          className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-ink-soft hover:text-ink"
         >
           <ArrowLeft className="size-4" /> All {trip ? "trips" : "experiences"}
         </Link>
@@ -135,7 +135,7 @@ export default async function TripPage({ params }: Props) {
                         {s.day ? <span className="text-xs text-ink-soft">Day {s.day}</span> : null}
                       </span>
                       {i > 0 && route.legs[i - 1] ? (
-                        <span className="shrink-0 text-right text-xs text-ink-soft">
+                        <span className="shrink-0 text-end text-xs text-ink-soft">
                           {formatDistance(route.legs[i - 1].distanceMeters)}
                           <br />
                           {formatDuration(route.legs[i - 1].durationSeconds)}
@@ -156,10 +156,10 @@ export default async function TripPage({ params }: Props) {
           {itinerary.length > 0 && (
             <div>
               <SectionTitle>Day by day</SectionTitle>
-              <ol className="relative space-y-7 border-l-2 border-dashed border-line pl-8">
+              <ol className="relative space-y-7 border-s-2 border-dashed border-line ps-8">
                 {itinerary.map((day, i) => (
                   <li key={i} className="relative">
-                    <span className="absolute -left-[47px] flex size-8 items-center justify-center rounded-full bg-sunset text-xs font-bold text-white ring-4 ring-paper">
+                    <span className="absolute -start-[47px] flex size-8 items-center justify-center rounded-full bg-sunset text-xs font-bold text-white ring-4 ring-paper">
                       {i + 1}
                     </span>
                     <p className="text-xs font-semibold uppercase tracking-wide text-sunset">Day {i + 1}</p>

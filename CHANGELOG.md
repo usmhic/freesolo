@@ -128,6 +128,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The phone menu opens again: it was sized to the header while the header's
+  background blur was on, so it never showed.
+- Pages that aren't translated yet (trips, planner, applying, sign-in, legal,
+  help center, admin) stay English and left to right when the site is in
+  Arabic, instead of mirroring English text.
+- Phone layouts: city and trip lists swipe sideways on the landing page, steps
+  and reasons are compact rows, level titles on a city's path wrap instead of
+  being cut off, the trip controls stack neatly, back links and buttons are
+  easier to tap, and reopening a solved mission shows its story.
 - Admin listing dates entered as DD/MM/YYYY no longer show "Invalid Date" or
   swap the day and month.
 - Filled seats now count booked seats, not bookings, so a two-seat booking no

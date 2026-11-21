@@ -18,7 +18,11 @@ export interface LessonCard {
   points: number; free: boolean; locked: boolean; solved: boolean; hook: string; photo: Photo | null;
 }
 export interface CityView { city: CitySummary; lessons: LessonCard[] }
-export interface LessonView { card: LessonCard; cityId: string; cityName: string; challenge: string; hints: string[]; aiJudge: boolean }
+/** The story, sources and facts are only sent once the signed-in player has solved the mission. */
+export interface LessonView {
+  card: LessonCard; cityId: string; cityName: string; challenge: string; hints: string[]; aiJudge: boolean;
+  story: string | null; sources: Source[] | null; facts: Fact[] | null;
+}
 export interface PlayerView { stardust: number; rank: Rank; solvedLessonIds: string[]; unlockedCityIds: string[] }
 export interface AttemptResult {
   correct: boolean; feedback: string; judgedBy: "ai" | "match"; story: string | null; sources: Source[] | null;

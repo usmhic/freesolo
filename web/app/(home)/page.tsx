@@ -80,7 +80,7 @@ export default async function HomePage() {
 
       {/* ── Cities ───────────────────────────────────────────────────────── */}
       {cities.length > 0 && (
-        <section className="border-t border-line bg-surface/50 py-20">
+        <section className="border-t border-line bg-surface/50 py-14 sm:py-20">
           <div className="container-page">
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
               <div className="max-w-xl">
@@ -92,31 +92,33 @@ export default async function HomePage() {
               </div>
               <Link href="/play" className="btn-outline">{t.allCities} <ArrowRight className="size-4" /></Link>
             </div>
-            <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-              {cities.map((c) => <CityCard key={c.id} city={c} />)}
+            <div className="rail mt-8 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5">
+              {cities.map((c) => <CityCard key={c.id} city={c} className="rail-item" />)}
             </div>
           </div>
         </section>
       )}
 
       {/* ── How it works ─────────────────────────────────────────────────── */}
-      <section id="how-it-works" className="scroll-mt-20 py-20 sm:py-24">
+      <section id="how-it-works" className="scroll-mt-20 py-14 sm:py-24">
         <div className="container-page">
           <div className="max-w-2xl">
             <p className="eyebrow">{t.howEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.howTitle}</h2>
           </div>
-          <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <ol className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {t.steps.map(([title, body], i) => {
               const Icon = STEP_ICONS[i];
               return (
-                <li key={title} className="card relative p-6">
-                  <span className="absolute end-5 top-5 font-display text-sm font-bold text-ink-soft/50">0{i + 1}</span>
-                  <span className="flex size-11 items-center justify-center rounded-2xl bg-sunset-soft text-sunset">
+                <li key={title} className="card relative flex gap-4 p-4 sm:block sm:p-6">
+                  <span className="absolute end-4 top-4 font-display text-sm font-bold text-ink-soft/50 sm:end-5 sm:top-5">0{i + 1}</span>
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-sunset-soft text-sunset">
                     <Icon className="size-5" />
                   </span>
-                  <h3 className="mt-5 font-display text-lg font-bold">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+                  <div className="min-w-0 pe-6 sm:pe-0">
+                    <h3 className="font-display text-lg font-bold sm:mt-5">{title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft sm:mt-2">{body}</p>
+                  </div>
                 </li>
               );
             })}
@@ -125,14 +127,14 @@ export default async function HomePage() {
       </section>
 
       {/* ── Star ladder ──────────────────────────────────────────────────── */}
-      <section className="bg-navy py-20 text-white sm:py-24 dark:bg-navy-deep">
+      <section className="bg-navy py-14 text-white sm:py-24 dark:bg-navy-deep">
         <div className="container-page">
           <div className="max-w-2xl">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sunset">{t.rankEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.rankTitle}</h2>
             <p className="mt-4 text-white/75">{t.rankLead}</p>
           </div>
-          <ol className="mt-12 flex snap-x gap-4 overflow-x-auto pb-4 lg:grid lg:grid-cols-7 lg:overflow-visible">
+          <ol className="-mx-4 mt-8 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:mt-12 sm:gap-4 sm:px-0 lg:grid lg:grid-cols-7 lg:overflow-visible">
             {RANK_KEYS.map((key, i) => (
               <li key={key} className="flex min-w-32 snap-start flex-col items-center rounded-3xl border border-white/10 bg-white/5 px-3 py-6 text-center">
                 <StarOrb rankKey={key} size={44 + i * 4} />
@@ -151,21 +153,23 @@ export default async function HomePage() {
       </section>
 
       {/* ── Why it works ─────────────────────────────────────────────────── */}
-      <section className="py-20 sm:py-24">
+      <section className="py-14 sm:py-24">
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">{t.whyEyebrow}</p>
             <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.whyTitle}</h2>
             <p className="mt-4 text-ink-soft">{t.whyLead}</p>
           </div>
-          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {t.why.map(([title, body], i) => {
               const Icon = WHY_ICONS[i];
               return (
-                <div key={title} className="card p-6">
-                  <Icon className="size-6 text-sunset" />
-                  <h3 className="mt-4 font-display text-lg font-bold">{title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">{body}</p>
+                <div key={title} className="card flex gap-4 p-4 sm:block sm:p-6">
+                  <Icon className="mt-0.5 size-6 shrink-0 text-sunset" />
+                  <div className="min-w-0">
+                    <h3 className="font-display text-lg font-bold sm:mt-4">{title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-soft sm:mt-2">{body}</p>
+                  </div>
                 </div>
               );
             })}
@@ -174,7 +178,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Group trips (live) ───────────────────────────────────────────── */}
-      <section className="border-t border-line bg-surface/50 py-20">
+      <section className="border-t border-line bg-surface/50 py-14 sm:py-20">
         <div className="container-page">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div className="max-w-xl">
@@ -185,8 +189,10 @@ export default async function HomePage() {
             <Link href="/trips" className="btn-outline">{t.allTrips} <ArrowRight className="size-4" /></Link>
           </div>
           {trips.length > 0 ? (
-            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {trips.map((trip, i) => <ListingCard key={trip.id} listing={trip} priority={i < 2} />)}
+            <div className="rail mt-8 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+              {trips.map((trip, i) => (
+                <div key={trip.id} className="rail-item [&>a]:flex-1"><ListingCard listing={trip} priority={i < 2} /></div>
+              ))}
             </div>
           ) : (
             <div className="mt-10 grid gap-6 rounded-3xl border border-dashed border-line p-10 text-center">
@@ -200,7 +206,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Host + FAQ ───────────────────────────────────────────────────── */}
-      <section className="border-t border-line py-20 sm:py-24">
+      <section className="border-t border-line py-14 sm:py-24">
         <div className="container-page grid gap-12 lg:grid-cols-[1fr_1.2fr]">
           <div className="card self-start overflow-hidden">
             <div className="bg-sunset-soft p-8">
@@ -232,7 +238,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── Final call ───────────────────────────────────────────────────── */}
-      <section className="py-20">
+      <section className="pb-14 sm:py-20">
         <div className="container-page">
           <div className="relative overflow-hidden rounded-[2rem] bg-sunset px-6 py-14 text-center text-white sm:px-12">
             <svg aria-hidden className="absolute inset-0 size-full opacity-20" viewBox="0 0 800 300" preserveAspectRatio="none">

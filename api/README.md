@@ -98,7 +98,7 @@ Require a valid JWT. See controllers for the full list. The group-trip flow:
 | `GET` | `/api/play/ranks` | The star ladder, Nebula to Black Hole (public) |
 | `GET` | `/api/play/cities`, `/api/play/cities/{id}` | Playable cities and their levels; never the answers or stories (public) |
 | `POST` | `/api/play/cities/{id}/unlock` | Unlock a city pack (signed in; free during the pilot) |
-| `GET` | `/api/play/lessons/{id}` | A level's challenge and hints (public for free levels) |
+| `GET` | `/api/play/lessons/{id}` | A level's challenge and hints, plus its story once the player has solved it (public for free levels) |
 | `POST` | `/api/play/lessons/{id}/attempts` | Check an answer or photo; returns the story and stardust when correct (15/min per client) |
 | `POST` | `/api/play/journeys` | Order a city's levels into a walk split over the trip's days (public) |
 | `GET` | `/api/play/me` | The player's stardust, rank, solved levels and unlocked cities |

@@ -64,7 +64,7 @@ export function PlacePhoto({
           target="_blank"
           rel="noreferrer"
           title={`Photo: ${photo.author} · ${photo.license} · Wikimedia Commons`}
-          className="absolute bottom-1.5 right-1.5 z-10 max-w-[70%] truncate rounded-full bg-black/45 px-2 py-0.5 text-[10px] text-white/90 backdrop-blur hover:bg-black/60"
+          className="absolute bottom-1.5 end-1.5 z-10 max-w-[70%] truncate rounded-full bg-black/45 px-2 py-0.5 text-[11px] text-white/90 backdrop-blur hover:bg-black/60"
         >
           📷 {photo.author} · {photo.license}
         </a>

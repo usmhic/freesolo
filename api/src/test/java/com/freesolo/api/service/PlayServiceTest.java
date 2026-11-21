@@ -48,6 +48,18 @@ class PlayServiceTest {
     }
 
     @Test
+    void theStoryIsOnlySentOnceTheMissionIsSolved() {
+        assertThat(service.lesson("ana", "town-near", "en").story()).isNull();
+
+        when(progressRepository.findByUserIdOrderBySolvedAtDesc("ana")).thenReturn(List.of(
+                LessonProgress.builder().userId("ana").lessonId("town-near").cityId("town").stardust(160).build()));
+        var solved = service.lesson("ana", "town-near", "en");
+        assertThat(solved.story()).isEqualTo("story town-near en");
+        assertThat(solved.facts()).extracting(Fact::value).containsExactly("1886");
+        assertThat(solved.sources()).isNotEmpty();
+    }
+
+    @Test
     void aCorrectAnswerSavesStardustOnceForASignedInPlayer() {
         var result = service.attempt("ana", "town-near", new AttemptRequest("yes", null, 1), "en");
 

@@ -50,6 +50,8 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
       .then(async (l) => {
         if (!live) return;
         setLesson(l);
+        // Already solved: open on the story instead of an empty challenge.
+        if (l.story) setResult({ correct: true, feedback: t.mission.solved, judgedBy: "match", story: l.story, sources: l.sources, facts: l.facts, stardustEarned: 0, alreadySolved: true, player: null });
         const c = await api<CityView>(`/api/play/cities/${l.cityId}`).catch(() => null);
         if (live) setCity(c);
       })
@@ -59,7 +61,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
         else setLoadError(e instanceof Error ? e.message : t.mission.loadError);
       });
     return () => { live = false; };
-  }, [lessonId, t.mission.loadError]);
+  }, [lessonId, t.mission.loadError, t.mission.solved]);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -137,7 +139,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
   return (
     <Shell>
       <div className="flex items-center justify-between gap-3">
-        <Link href={`/play/${lesson.cityId}`} className="inline-flex items-center gap-1.5 text-sm font-medium text-ink-soft hover:text-ink">
+        <Link href={`/play/${lesson.cityId}`} className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-ink-soft hover:text-ink">
           <ArrowLeft className="size-4" /> {fill(t.mission.back, { city: lesson.cityName })}
         </Link>
         {idx >= 0 && (
@@ -225,7 +227,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
                     <p key={i} className="flex gap-2 text-sm text-ink"><Lightbulb className="mt-0.5 size-4 shrink-0 text-sunset" /> {h}</p>
                   ))}
                   {hints < lesson.hints.length && (
-                    <button type="button" onClick={() => setHints((n) => n + 1)} className="btn-ghost btn-sm -ms-2 text-ink-soft">
+                    <button type="button" onClick={() => setHints((n) => n + 1)} className="btn-ghost -ms-3 px-3 text-ink-soft">
                       <Lightbulb className="size-4" /> {hints === 0 ? t.mission.needHint : t.mission.anotherHint} <span className="text-xs">{fill(t.mission.hintCost, { n: Math.round(l.points * 0.2) })}</span>
                     </button>
                   )}

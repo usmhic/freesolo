@@ -309,7 +309,7 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
       {/* ── Panel ──────────────────────────────────────────────────────── */}
       <aside
         className={cn(
-          "flex min-h-0 w-full flex-col border-line bg-paper lg:w-[420px] lg:shrink-0 lg:border-r",
+          "flex min-h-0 w-full flex-col border-line bg-paper lg:w-[420px] lg:shrink-0 lg:border-e",
           view === "map" && "hidden lg:flex"
         )}
       >
@@ -335,7 +335,7 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
                 <FolderOpen className="size-4" /> Plans <ChevronDown className="size-3.5" />
               </button>
               {menuOpen && (
-                <div className="absolute right-0 top-full z-[1001] mt-2 w-72 overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl">
+                <div className="absolute end-0 top-full z-[1001] mt-2 w-72 overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl">
                   <button type="button" onClick={newPlan} className="flex w-full items-center gap-2 px-4 py-3 text-sm font-semibold hover:bg-fd-muted">
                     <FilePlus2 className="size-4 text-sunset" /> New plan
                   </button>
@@ -352,7 +352,7 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
                     ) : (
                       plans.map((p) => (
                         <div key={p.id} className={cn("group flex items-center gap-2 px-4 py-2.5 hover:bg-fd-muted", p.id === draft.id && "bg-sunset-soft")}>
-                          <button type="button" onClick={() => open(p)} className="min-w-0 flex-1 text-left">
+                          <button type="button" onClick={() => open(p)} className="min-w-0 flex-1 text-start">
                             <span className="block truncate text-sm font-semibold text-ink">{p.title}</span>
                             <span className="block text-xs text-ink-soft">
                               {p.stops.length} stops{p.distanceMeters ? ` · ${formatDistance(p.distanceMeters)}` : ""}
@@ -459,7 +459,7 @@ export function Planner({ signedIn, initialPlanId }: { signedIn: boolean; initia
                   {saving ? <Loader2 className="size-4 animate-spin" /> : <Save className="size-4" />}
                   {draft.id ? "Save changes" : "Save plan"}
                 </button>
-                <span className="w-24 text-right text-xs text-ink-soft" aria-live="polite">
+                <span className="w-24 text-end text-xs text-ink-soft" aria-live="polite">
                   {dirty ? "Unsaved" : savedAt ? <span className="inline-flex items-center gap-1 text-sage"><Check className="size-3.5" /> Saved</span> : draft.id ? "Saved" : ""}
                 </span>
               </>
@@ -504,7 +504,7 @@ function Summary({ route, routing, error, stops }: { route: RouteResult | null; 
       <div>
         <p className="font-display text-xl font-extrabold leading-none text-ink">
           {route ? formatDistance(route.distanceMeters) : "—"}
-          <span className="ml-2 text-base font-semibold text-ink-soft">{route ? formatDuration(route.durationSeconds) : ""}</span>
+          <span className="ms-2 text-base font-semibold text-ink-soft">{route ? formatDuration(route.durationSeconds) : ""}</span>
         </p>
         <p className="mt-1 text-xs text-ink-soft">
           {stops} stops{route?.estimated ? " · straight-line estimate" : route ? " · along real roads and paths" : ""}

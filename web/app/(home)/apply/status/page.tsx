@@ -20,7 +20,7 @@ export default async function StatusPage({
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-40 -top-40 -z-10 size-[520px] rounded-full bg-sunset/10 blur-3xl"
+          className="pointer-events-none absolute -start-40 -top-40 -z-10 size-[520px] rounded-full bg-sunset/10 blur-3xl"
         />
         <div className="mx-auto w-full max-w-xl px-4 py-14 sm:px-6 sm:py-20">
           <div className="text-center">

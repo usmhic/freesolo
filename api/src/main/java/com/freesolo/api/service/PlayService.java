@@ -55,7 +55,9 @@ public class PlayService {
         Progress p = progress(userId);
         LessonCard card = card(l, cityId, p);
         if (card.locked()) throw ApiException.forbidden(PlayMessages.get(lang, PlayMessages.PACK_LOCKED, cityName));
-        return new LessonView(card, cityId, cityName, l.challenge(), l.hints(), judge.aiEnabled());
+        boolean solved = card.solved();
+        return new LessonView(card, cityId, cityName, l.challenge(), l.hints(), judge.aiEnabled(),
+                solved ? l.story() : null, solved ? l.sources() : null, solved ? l.facts() : null);
     }
 
     @Transactional
