@@ -69,6 +69,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   OpenStreetMap's public tiles.
 - The mobile app uses the same brand colours, heading font and cover colours
   as the web.
+- New-logo artwork across web/mobile exports; brand consistency checks in CI.
+- Logged web CI checks, pinned CI Node versions, corrected dev/release documentation, and a dated repository review/cleanup record. Scheduled dependency version PRs are paused.
 
 - Public trip pages on the web: `/trips` to browse trips and experiences, and
   `/trips/[id]` with the itinerary, what's included, the host, how full the

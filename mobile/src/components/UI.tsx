@@ -53,16 +53,17 @@ interface InfoBoxProps {
 }
 
 // ─── Logo ─────────────────────────────────────────────────────────────────────
-// `light` = sitting on a dark (ink) background, so use the logo-dark mark
-// (which carries its own dark backing) and light wordmark text — and vice versa.
+// The full-colour pin mark (generated from web/public/new-logo.png) reads on
+// both light and dark backgrounds. `light` = sitting on a dark (ink) background,
+// so only the wordmark text switches colour.
 export function Logo({ size = 28, light = false }: { size?: number; light?: boolean }) {
   const color = light ? Colors.paper : Colors.ink;
   return (
     <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
       <Image
         source={light ? require("../../assets/logo-dark.png") : require("../../assets/logo.png")}
-        style={{ width: size, height: size, borderRadius: size * 0.22 }}
-        resizeMode="cover"
+        style={{ width: size, height: size }}
+        resizeMode="contain"
       />
       <Text style={{
         fontFamily: Fonts.display,

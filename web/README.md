@@ -4,6 +4,16 @@
 
 The web front-end for the FreeSolo platform. Serves the public landing page, the Fumadocs-powered help center, and the admin / business-owner dashboard. All data access goes through the Spring Boot REST API — the web layer has no direct database connection.
 
+## Brand and landing page
+
+`public/new-logo.png` is the original brand master. From the repository root, run
+`node scripts/generate-brand.mjs` to regenerate the web marks, 16–512 px browser
+icons, 180 px Apple icon, 1200 × 630 social card, 1024 px mobile app and Android
+adaptive assets, monochrome notification assets, and splash mark. The generator
+preserves transparency for marks and uses opaque backgrounds for app icons.
+Legacy `logo.png` and `logo-dark.png` paths both use the new artwork.
+
+
 ## Stack
 
 | Layer | Technology |

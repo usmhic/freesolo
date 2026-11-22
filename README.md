@@ -35,6 +35,8 @@ trip with other solo travelers.
 
 Local setup, shared workspace ports, environment conventions, and `dev` workflows:
 [Local development](./LOCAL_DEVELOPMENT.md).
+Review scope, validation evidence, workflow changes, and bot cleanup:
+[Review log](docs/REVIEW_LOG.md).
 
 ## 🎬 Try the demo
 
@@ -94,7 +96,7 @@ and the web app, and creates the object-storage bucket automatically.
 ```bash
 git clone https://github.com/usmhic/freesolo.git && cd freesolo
 cp .env.example .env       # PowerShell: Copy-Item .env.example .env
-# Fill the secrets marked FILL ME at the bottom of .env, then:
+# Fill the empty secret values in .env (keep safe localhost defaults), then:
 docker compose up --build
 ```
 
@@ -181,7 +183,7 @@ deployment. Other API settings have working defaults, documented in [api/README.
 
 📱 **The App Store and Play Store listings aren't live yet** — the Expo app is built and running,
 and the delivery pipelines are wired up (see [MOBILE_DELIVERY.md](./MOBILE_DELIVERY.md)):
-`dev` ships Android builds to testers via Firebase App Distribution, `main` uploads to both stores.
+`dev` ships Android builds to testers via Firebase App Distribution, store uploads are manual from `dev` through the production environment.
 Until the listings go live, running it locally takes about a minute:
 
 ```bash
@@ -218,12 +220,12 @@ platform or a production override.
 | `web-ci.yml` | Type-check, lint, web image build/publish, and PR smoke test |
 | `mobile-android-dev.yml` | Type-check, signed APK, distribute to testers via Firebase App Distribution (`dev`) |
 | `mobile-ios-dev.yml` | Signed Ad Hoc IPA, distribute to testers via Firebase App Distribution (manual) |
-| `mobile-android-release.yml` | Signed AAB, upload to Google Play Console (`main`) |
-| `mobile-ios-release.yml` | Signed IPA, upload to App Store Connect (`main`) |
+| `mobile-android-release.yml` | Signed AAB, upload to Google Play Console (manual from `dev`) |
+| `mobile-ios-release.yml` | Signed IPA, upload to App Store Connect (manual from `dev`) |
 | `release.yml` | Create a GitHub release from a `vX.Y.Z` tag |
 
 Images are published as `ghcr.io/usmhic/freesolo-api` and `ghcr.io/usmhic/freesolo-web`, with
-`latest`, `dev`, and immutable SHA tags where applicable.
+`dev` and immutable SHA tags; no automatic `latest` promotion.
 
 ## 📚 Documentation
 

@@ -51,7 +51,7 @@ port is separate from the API's `PORT`.
 
 ## Brand assets
 
-`web/public/logo.png` is the source logo. Run
+`web/public/new-logo.png` is the untouched source logo. Run
 `node scripts/generate-brand.mjs` after installing dependencies to regenerate
 the compact UI mark, browser icons, Apple touch icon, web manifest, 1200×630 social
 card, mobile launcher, padded adaptive foreground, and splash asset. The original
@@ -67,3 +67,15 @@ are manual workflows selected on `dev`, using the existing production environmen
 Version-tag GitHub releases verify that the tagged commit belongs to `dev`.
 
 Local checks and setup never require a commit or push.
+
+## Check logs and maintenance
+
+Web CI retains check output and a GitHub job summary; logs are uploaded as
+`web-check-logs` for 14 days, including failures. Local logs under `ci-logs/`
+are ignored. `scripts/ci-check.mjs` preserves the child exit status and redacts
+known secret environment values; do not deliberately print credentials.
+Scheduled dependency version PRs are paused; review dependency/security alerts
+manually on `dev`. See [docs/REVIEW_LOG.md](docs/REVIEW_LOG.md) for scope and evidence.
+
+Run `node scripts/check-brand.mjs` after artwork changes to verify all generated
+exports against `web/public/new-logo.png` without modifying the working files.

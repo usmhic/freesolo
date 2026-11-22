@@ -15,20 +15,20 @@ Install Docker 24+ with Compose v2, then:
 git clone https://github.com/usmhic/freesolo.git
 cd freesolo
 cp .env.example .env
-# Fill the secrets marked FILL ME at the bottom of .env, then start Compose.
+# Fill the empty secret values in .env (keep safe localhost defaults), then start Compose.
 docker compose up --build
 ```
 
 On PowerShell, use `Copy-Item .env.example .env`. `.env.example` carries working
 localhost defaults for everything that is not a secret, so only the passwords
-and the JWT secret need values. `.env` is gitignored; never commit it. The web app is available at http://localhost:3000. Native tool versions are pinned in `mise.toml` for contributors working on an individual service.
+and the JWT secret need values. `.env` is gitignored; never commit it. The web app is available at http://localhost:3002. Native tool versions are pinned in `mise.toml` for contributors working on an individual service.
 
 ## Make a change
 
 1. Create a focused branch from `dev` (`feat/...`, `fix/...`, `docs/...`, or `chore/...`).
 2. Keep API, web, and mobile concerns inside their existing top-level directories.
 3. Add migrations when the database schema changes; never edit a deployed schema manually.
-4. Add every new configuration variable to root `.env.example`, in the section it belongs to, with a comment explaining what it does. Give it a working localhost default when it is not a secret; leave it empty and marked `FILL ME` when it is. Keep your own `.env` in the same order so a diff between the two stays readable, and never commit it.
+4. Add every new configuration variable to root `.env.example`, in the section it belongs to, with a comment explaining what it does. Give it a working localhost default when it is not a secret; leave it empty with a comment explaining how to generate it when it is. Keep your own `.env` in the same order so a diff between the two stays readable, and never commit it.
 5. Update the nearest README when behavior or setup changes.
 
 Use Conventional Commit-style subjects, for example `fix booking cancellation race` or `docs clarify mobile setup`.
