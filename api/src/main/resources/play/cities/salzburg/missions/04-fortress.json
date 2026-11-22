@@ -1,0 +1,154 @@
+{
+  "id": "salzburg-fortress",
+  "lat": 47.795,
+  "lng": 13.04722,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "11th",
+    "11th century",
+    "eleventh",
+    "eleventh century",
+    "1077",
+    "1000s",
+    "11 century",
+    "11",
+    "11e",
+    "11e siècle",
+    "xie",
+    "xie siècle",
+    "onzième",
+    "onzième siècle",
+    "siglo xi",
+    "xi",
+    "siglo 11",
+    "undécimo",
+    "القرن الحادي عشر",
+    "الحادي عشر",
+    "القرن 11"
+  ],
+  "rubric": "Correct if the player says the 11th century (1077).",
+  "sources": [
+    {
+      "label": "Hohensalzburg Fortress — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Hohensalzburg_Fortress"
+    },
+    {
+      "label": "Hohensalzburg Fortress — History Hit",
+      "url": "https://www.historyhit.com/locations/hohensalzburg-fortress/"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/salzburg-fortress.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg_-_Festung_Hohensalzburg.JPG",
+    "author": "C.Stadler/Bwag",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The castle nobody took",
+      "place": "Hohensalzburg Fortress",
+      "era": "1077",
+      "hook": "Look up — or ride the funicular — to the white fortress on the Festungsberg that watches over the whole city.",
+      "challenge": "Building began during a power struggle between the Pope and the Emperor. In which century?",
+      "hints": [
+        "It's more than 900 years old.",
+        "The year was 1077."
+      ],
+      "story": "Archbishop Gebhard began the fortress in 1077, in the middle of the Investiture Controversy: he had sided with the Pope against Emperor Henry IV and needed protection. His successors kept building, and it grew into one of the largest medieval castles in Europe. In the Peasants' War of 1525 it was besieged for weeks, but never taken.",
+      "facts": [
+        {
+          "value": "1077",
+          "label": "building begins"
+        },
+        {
+          "value": "1525",
+          "label": "besieged, never taken"
+        },
+        {
+          "value": "Huge",
+          "label": "one of Europe's largest castles"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le château que personne n'a pris",
+      "place": "Forteresse de Hohensalzburg",
+      "era": "1077",
+      "hook": "Levez les yeux — ou prenez le funiculaire — vers la forteresse blanche du Festungsberg qui veille sur toute la ville.",
+      "challenge": "Sa construction commença pendant une lutte de pouvoir entre le pape et l'empereur. En quel siècle ?",
+      "hints": [
+        "Elle a plus de 900 ans.",
+        "C'était en 1077."
+      ],
+      "story": "L'archevêque Gebhard commença la forteresse en 1077, en pleine querelle des Investitures : il avait pris le parti du pape contre l'empereur Henri IV et avait besoin de protection. Ses successeurs continuèrent à bâtir, et elle devint l'un des plus grands châteaux médiévaux d'Europe. Pendant la guerre des Paysans de 1525, elle fut assiégée des semaines, mais jamais prise.",
+      "facts": [
+        {
+          "value": "1077",
+          "label": "début des travaux"
+        },
+        {
+          "value": "1525",
+          "label": "assiégée, jamais prise"
+        },
+        {
+          "value": "Immense",
+          "label": "l'un des plus grands châteaux d'Europe"
+        }
+      ]
+    },
+    "es": {
+      "title": "El castillo que nadie tomó",
+      "place": "Fortaleza de Hohensalzburg",
+      "era": "1077",
+      "hook": "Levanta la vista —o sube en funicular— hacia la fortaleza blanca del Festungsberg que vigila toda la ciudad.",
+      "challenge": "Su construcción empezó durante una lucha de poder entre el papa y el emperador. ¿En qué siglo?",
+      "hints": [
+        "Tiene más de 900 años.",
+        "Fue en 1077."
+      ],
+      "story": "El arzobispo Gebhard empezó la fortaleza en 1077, en plena Querella de las Investiduras: se había puesto del lado del papa contra el emperador Enrique IV y necesitaba protección. Sus sucesores siguieron construyendo, y llegó a ser uno de los castillos medievales más grandes de Europa. En la guerra de los Campesinos de 1525 la asediaron durante semanas, pero nunca la tomaron.",
+      "facts": [
+        {
+          "value": "1077",
+          "label": "empieza la obra"
+        },
+        {
+          "value": "1525",
+          "label": "asediada, nunca tomada"
+        },
+        {
+          "value": "Enorme",
+          "label": "uno de los mayores castillos de Europa"
+        }
+      ]
+    },
+    "ar": {
+      "title": "القلعة التي لم يستولِ عليها أحد",
+      "place": "قلعة هوهنسالزبورغ",
+      "era": "1077",
+      "hook": "ارفع عينيك — أو اركب القطار المائل — إلى القلعة البيضاء على تلّ فستونغسبرغ التي تحرس المدينة كلها.",
+      "challenge": "بدأ بناؤها خلال صراع على السلطة بين البابا والإمبراطور. في أي قرن؟",
+      "hints": [
+        "عمرها أكثر من 900 عام.",
+        "كان ذلك سنة 1077."
+      ],
+      "story": "بدأ الأسقف غيبهارت بناء القلعة سنة 1077 في خضم «نزاع التنصيب»: فقد وقف مع البابا ضد الإمبراطور هنري الرابع واحتاج إلى الحماية. وواصل خلفاؤه البناء حتى صارت من أكبر قلاع العصور الوسطى في أوروبا. وفي حرب الفلاحين سنة 1525 حوصرت أسابيع، لكنها لم تسقط قط.",
+      "facts": [
+        {
+          "value": "1077",
+          "label": "بداية البناء"
+        },
+        {
+          "value": "1525",
+          "label": "حوصرت ولم تسقط"
+        },
+        {
+          "value": "ضخمة",
+          "label": "من أكبر قلاع أوروبا"
+        }
+      ]
+    }
+  }
+}

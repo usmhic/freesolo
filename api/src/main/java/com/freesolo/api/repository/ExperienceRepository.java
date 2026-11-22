@@ -31,9 +31,7 @@ public interface ExperienceRepository extends JpaRepository<Experience, String> 
     Optional<Experience> findByIdForUpdate(@Param("id") String id);
 
     List<Experience> findByFeaturedTrueAndStatus(String status);
-    List<Experience> findByHost(User host);
     List<Experience> findByHostOrderByCreatedAtDesc(User host);
-    List<Experience> findByBusinessId(String businessId);
     long countByStatus(String status);
 
     @Query("SELECT e FROM Experience e WHERE e.business.id = :businessId ORDER BY e.createdAt DESC")
@@ -41,7 +39,4 @@ public interface ExperienceRepository extends JpaRepository<Experience, String> 
 
     @Query("SELECT COUNT(e) FROM Experience e WHERE e.status = :status AND e.business.id = :businessId")
     long countByStatusAndBusinessId(@Param("status") String status, @Param("businessId") String businessId);
-
-    @Query("SELECT COUNT(b) FROM Booking b WHERE b.experience = :experience AND b.status IN ('pending', 'confirmed')")
-    long countActiveBookings(@Param("experience") Experience experience);
 }

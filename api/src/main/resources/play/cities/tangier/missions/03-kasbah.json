@@ -1,0 +1,145 @@
+{
+  "id": "tangier-kasbah",
+  "lat": 35.78861,
+  "lng": -5.81278,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "spain",
+    "espana",
+    "espagne",
+    "europe",
+    "spanish coast",
+    "andalusia",
+    "andalucia",
+    "europa",
+    "إسبانيا",
+    "اسبانيا",
+    "أوروبا",
+    "الأندلس"
+  ],
+  "rubric": "Correct if the player says Spain (or Europe / the Spanish coast).",
+  "sources": [
+    {
+      "label": "Kasbah Palace, Tangier — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kasbah_Palace,_Tangier"
+    },
+    {
+      "label": "Kasbah Mosque, Tangier — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Kasbah_Mosque,_Tangier"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-kasbah.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Kasbah_Museum_of_Tangier_17092021_003.jpg",
+    "author": "Yamen",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The palace on the cliff",
+      "place": "Kasbah Museum (Dar el Makhzen)",
+      "era": "1684",
+      "hook": "Climb to the top of the medina and through the Kasbah gate to the old sultan's palace. Find a spot on the walls with a view to the north.",
+      "challenge": "Across the water you can see another country — on another continent. Which one?",
+      "hints": [
+        "Look north, across the Strait of Gibraltar.",
+        "On a clear day you can see the mountains of Andalusia."
+      ],
+      "story": "England held Tangier from 1662 — it came as part of Catherine of Braganza's dowry — and when the English left in 1684 they blew up their fortifications. Moroccan rulers built a new kasbah, and the Dar el Makhzen palace rose on the ruins of the English 'Upper Castle'. Today it's the Kasbah Museum. The strait below is only about 14 km wide at its narrowest, which is exactly why so many empires wanted this hill.",
+      "facts": [
+        {
+          "value": "1662–84",
+          "label": "English rule"
+        },
+        {
+          "value": "14 km",
+          "label": "to Europe, at the narrowest"
+        },
+        {
+          "value": "Museum",
+          "label": "the palace today"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le palais sur la falaise",
+      "place": "Musée de la Kasbah (Dar el Makhzen)",
+      "era": "1684",
+      "hook": "Montez tout en haut de la médina, passez la porte de la Kasbah jusqu'à l'ancien palais du sultan. Trouvez un point des remparts avec vue vers le nord.",
+      "challenge": "De l'autre côté de l'eau, on voit un autre pays — sur un autre continent. Lequel ?",
+      "hints": [
+        "Regardez vers le nord, de l'autre côté du détroit de Gibraltar.",
+        "Par temps clair, on voit les montagnes d'Andalousie."
+      ],
+      "story": "L'Angleterre tint Tanger à partir de 1662 — la ville faisait partie de la dot de Catherine de Bragance — et en partant en 1684, les Anglais firent sauter leurs fortifications. Les souverains marocains bâtirent une nouvelle kasbah, et le palais Dar el Makhzen s'éleva sur les ruines du « château haut » anglais. C'est aujourd'hui le musée de la Kasbah. Le détroit, en contrebas, ne fait qu'environ 14 km à son point le plus étroit : voilà pourquoi tant d'empires voulaient cette colline.",
+      "facts": [
+        {
+          "value": "1662–84",
+          "label": "domination anglaise"
+        },
+        {
+          "value": "14 km",
+          "label": "jusqu'à l'Europe, au plus étroit"
+        },
+        {
+          "value": "Musée",
+          "label": "le palais aujourd'hui"
+        }
+      ]
+    },
+    "es": {
+      "title": "El palacio sobre el acantilado",
+      "place": "Museo de la Kasba (Dar el Majzén)",
+      "era": "1684",
+      "hook": "Sube a lo más alto de la medina y cruza la puerta de la Kasba hasta el antiguo palacio del sultán. Busca un punto de la muralla con vistas al norte.",
+      "challenge": "Al otro lado del agua se ve otro país, en otro continente. ¿Cuál?",
+      "hints": [
+        "Mira al norte, al otro lado del estrecho de Gibraltar.",
+        "Con el día claro se ven las montañas de Andalucía."
+      ],
+      "story": "Inglaterra tuvo Tánger desde 1662 —llegó como parte de la dote de Catalina de Braganza— y al marcharse en 1684 los ingleses volaron sus fortificaciones. Los soberanos marroquíes construyeron una nueva kasba, y el palacio Dar el Majzén se alzó sobre las ruinas del «castillo alto» inglés. Hoy es el Museo de la Kasba. El estrecho, abajo, mide solo unos 14 km en su punto más angosto: por eso tantos imperios querían esta colina.",
+      "facts": [
+        {
+          "value": "1662–84",
+          "label": "dominio inglés"
+        },
+        {
+          "value": "14 km",
+          "label": "hasta Europa, en lo más estrecho"
+        },
+        {
+          "value": "Museo",
+          "label": "el palacio hoy"
+        }
+      ]
+    },
+    "ar": {
+      "title": "القصر فوق الجرف",
+      "place": "متحف القصبة (دار المخزن)",
+      "era": "1684",
+      "hook": "اصعد إلى أعلى المدينة العتيقة وادخل من باب القصبة حتى قصر السلطان القديم. ابحث عن نقطة في الأسوار تطلّ على الشمال.",
+      "challenge": "على الضفة الأخرى من البحر ترى بلدًا آخر — في قارة أخرى. ما هو؟",
+      "hints": [
+        "انظر شمالًا، عبر مضيق جبل طارق.",
+        "في يوم صافٍ ترى جبال الأندلس."
+      ],
+      "story": "حكمت إنجلترا طنجة ابتداءً من 1662 — فقد جاءتها ضمن مهر كاترين من براغانزا — وحين غادرها الإنجليز سنة 1684 فجّروا تحصيناتهم. فبنى السلاطين المغاربة قصبة جديدة، وقام قصر دار المخزن على أنقاض «القلعة العليا» الإنجليزية. وهو اليوم متحف القصبة. والمضيق في الأسفل لا يتجاوز عرضه نحو 14 كم في أضيق نقطة، ولهذا أرادت إمبراطوريات كثيرة هذا التل.",
+      "facts": [
+        {
+          "value": "1662–84",
+          "label": "الحكم الإنجليزي"
+        },
+        {
+          "value": "14 كم",
+          "label": "إلى أوروبا في أضيق نقطة"
+        },
+        {
+          "value": "متحف",
+          "label": "القصر اليوم"
+        }
+      ]
+    }
+  }
+}

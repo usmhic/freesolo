@@ -1,0 +1,146 @@
+{
+  "id": "porto-lello",
+  "lat": 41.14694,
+  "lng": -8.61472,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "art and science",
+    "science and art",
+    "arte e ciencia",
+    "ciencia e arte",
+    "art et science",
+    "science et art",
+    "l'art et la science",
+    "arte y ciencia",
+    "ciencia y arte",
+    "el arte y la ciencia",
+    "الفن والعلم",
+    "العلم والفن",
+    "فن وعلم"
+  ],
+  "rubric": "Correct if the player says the figures represent Art and Science (in any order or language). Half-right answers naming one of them should get encouraging feedback but are not correct.",
+  "sources": [
+    {
+      "label": "Livraria Lello — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Livraria_Lello"
+    },
+    {
+      "label": "The neo-Gothic building — Livraria Lello",
+      "url": "https://livrarialello.pt/en/neo-gothic-building/"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-lello.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Lello_Bookshop_9_April_2026.jpg",
+    "author": "Guinness323",
+    "license": "CC0"
+  },
+  "text": {
+    "en": {
+      "title": "Myth or history?",
+      "place": "Livraria Lello",
+      "era": "1906",
+      "hook": "Stand across the street from the bookshop and look at its white neo-Gothic front. No ticket needed for this one.",
+      "challenge": "Two painted figures flank the upper window. What two ideas do they represent?",
+      "hints": [
+        "One is about creating beauty, the other about knowledge.",
+        "Think of the two things a great bookshop sells: stories and facts."
+      ],
+      "story": "The Lello brothers opened this shop in 1906, and the figures of Art and Science on its front were painted by José Bielman. Many visitors come because they've heard it inspired Harry Potter. J.K. Rowling has said she never visited it. That makes this a good lesson in itself: a famous story isn't always a true one, so check the source.",
+      "facts": [
+        {
+          "value": "1906",
+          "label": "opened"
+        },
+        {
+          "value": "Art & Science",
+          "label": "on the façade"
+        },
+        {
+          "value": "Myth",
+          "label": "the Harry Potter story"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Mythe ou histoire ?",
+      "place": "Librairie Lello",
+      "era": "1906",
+      "hook": "Placez-vous de l'autre côté de la rue et regardez la façade blanche néogothique de la librairie. Pas besoin de billet pour celle-ci.",
+      "challenge": "Deux figures peintes encadrent la fenêtre du haut. Quelles idées représentent-elles ?",
+      "hints": [
+        "L'une parle de créer la beauté, l'autre de connaissance.",
+        "Pensez aux deux choses que vend une grande librairie : des histoires et des faits."
+      ],
+      "story": "Les frères Lello ouvrirent cette librairie en 1906, et les figures de l'Art et de la Science de la façade furent peintes par José Bielman. Beaucoup de visiteurs viennent parce qu'ils ont entendu qu'elle avait inspiré Harry Potter. J.K. Rowling a dit ne l'avoir jamais visitée. C'est une bonne leçon en soi : une histoire célèbre n'est pas toujours vraie — vérifiez la source.",
+      "facts": [
+        {
+          "value": "1906",
+          "label": "ouverture"
+        },
+        {
+          "value": "Art & Science",
+          "label": "sur la façade"
+        },
+        {
+          "value": "Mythe",
+          "label": "l'histoire de Harry Potter"
+        }
+      ]
+    },
+    "es": {
+      "title": "¿Mito o historia?",
+      "place": "Librería Lello",
+      "era": "1906",
+      "hook": "Ponte en la acera de enfrente y mira la fachada blanca neogótica de la librería. Para esta no hace falta entrada.",
+      "challenge": "Dos figuras pintadas flanquean la ventana superior. ¿Qué dos ideas representan?",
+      "hints": [
+        "Una trata de crear belleza; la otra, del conocimiento.",
+        "Piensa en las dos cosas que vende una gran librería: historias y datos."
+      ],
+      "story": "Los hermanos Lello abrieron esta librería en 1906, y las figuras del Arte y la Ciencia de la fachada las pintó José Bielman. Muchos visitantes vienen porque han oído que inspiró Harry Potter. J.K. Rowling ha dicho que nunca la visitó. Eso ya es una buena lección: una historia famosa no siempre es cierta, así que comprueba la fuente.",
+      "facts": [
+        {
+          "value": "1906",
+          "label": "inauguración"
+        },
+        {
+          "value": "Arte y Ciencia",
+          "label": "en la fachada"
+        },
+        {
+          "value": "Mito",
+          "label": "la historia de Harry Potter"
+        }
+      ]
+    },
+    "ar": {
+      "title": "أسطورة أم تاريخ؟",
+      "place": "مكتبة ليلو",
+      "era": "1906",
+      "hook": "قف على الرصيف المقابل وانظر إلى واجهة المكتبة البيضاء ذات الطراز القوطي الجديد. لا حاجة إلى تذكرة لهذه المهمة.",
+      "challenge": "شخصيتان مرسومتان على جانبي النافذة العليا. ما الفكرتان اللتان تمثلانهما؟",
+      "hints": [
+        "إحداهما عن صنع الجمال، والأخرى عن المعرفة.",
+        "فكّر في الشيئين اللذين تبيعهما مكتبة عظيمة: الحكايات والحقائق."
+      ],
+      "story": "افتتح الأخوان ليلو هذه المكتبة سنة 1906، ورسم خوسيه بيلمان شخصيتَي الفن والعلم على واجهتها. يأتي كثير من الزوار لأنهم سمعوا أنها ألهمت «هاري بوتر»، لكن ج. ك. رولينغ قالت إنها لم تزرها قط. وهذا درس بحد ذاته: الحكاية الشهيرة ليست صحيحة دائمًا — فتحقّق من المصدر.",
+      "facts": [
+        {
+          "value": "1906",
+          "label": "الافتتاح"
+        },
+        {
+          "value": "الفن والعلم",
+          "label": "على الواجهة"
+        },
+        {
+          "value": "أسطورة",
+          "label": "حكاية هاري بوتر"
+        }
+      ]
+    }
+  }
+}

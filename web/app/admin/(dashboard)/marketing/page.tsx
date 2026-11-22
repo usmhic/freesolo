@@ -1,5 +1,5 @@
 import { requireAdmin } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import { SEGMENTS, type SegmentKey } from "@/lib/marketing";
 import { Card, EmptyState, PageHeader, StatCard } from "../../_components/ui";
 import { CampaignForm } from "./_components/campaign-form";

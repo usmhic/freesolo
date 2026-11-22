@@ -23,6 +23,8 @@ export interface RouteMapProps {
   onStopClick?: (index: number) => void;
   className?: string;
   interactive?: boolean;
+  /** How far the map may zoom in when it frames the stops: 13 suits road trips, ~16 a city walk. */
+  fitMaxZoom?: number;
 }
 
 // Basemap tiles. The default is OpenStreetMap's own raster tiles: free and
@@ -52,22 +54,23 @@ function stopIcon(n: number, active: boolean) {
   });
 }
 
-function fitTo(map: L.Map, stops: MapStop[], line?: [number, number][] | null) {
+function fitTo(map: L.Map, stops: MapStop[], line?: [number, number][] | null, maxZoom = 13) {
   const pts: [number, number][] = [
     ...stops.map((s) => [s.lat, s.lng] as [number, number]),
     ...((line ?? []).map(([lng, lat]) => [lat, lng]) as [number, number][]),
   ];
   if (pts.length === 0) return;
-  if (pts.length === 1) map.setView(pts[0], Math.max(map.getZoom(), 11));
-  else map.fitBounds(L.latLngBounds(pts), { padding: [48, 48], maxZoom: 13 });
+  // A single stop: the old regional default, or the requested street-level zoom.
+  if (pts.length === 1) map.setView(pts[0], Math.max(map.getZoom(), maxZoom > 13 ? maxZoom : 11));
+  else map.fitBounds(L.latLngBounds(pts), { padding: [48, 48], maxZoom });
 }
 
-function FitBounds({ stops, line }: { stops: MapStop[]; line?: [number, number][] | null }) {
+function FitBounds({ stops, line, maxZoom }: { stops: MapStop[]; line?: [number, number][] | null; maxZoom?: number }) {
   const map = useMap();
   // Refit only when the set of stops changes, not on every re-render.
   const key = stops.map((s) => `${s.lat.toFixed(4)},${s.lng.toFixed(4)}`).join("|");
   useEffect(() => {
-    fitTo(map, stops, line);
+    fitTo(map, stops, line, maxZoom);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, map]);
   return null;
@@ -86,11 +89,11 @@ function ClickHandler({ onMapClick }: { onMapClick?: (lat: number, lng: number) 
  * Keeps Leaflet's size in sync with its container (panels, sheets) and, when
  * the map was hidden and becomes visible (the phone Map tab), frames the route.
  */
-function ResizeWatcher({ stops, line }: { stops: MapStop[]; line?: [number, number][] | null }) {
+function ResizeWatcher({ stops, line, maxZoom }: { stops: MapStop[]; line?: [number, number][] | null; maxZoom?: number }) {
   const map = useMap();
-  const latest = useRef({ stops, line });
+  const latest = useRef({ stops, line, maxZoom });
   useEffect(() => {
-    latest.current = { stops, line };
+    latest.current = { stops, line, maxZoom };
   });
   useEffect(() => {
     const el = map.getContainer();
@@ -98,7 +101,7 @@ function ResizeWatcher({ stops, line }: { stops: MapStop[]; line?: [number, numb
     const ro = new ResizeObserver(() => {
       map.invalidateSize();
       const hidden = el.clientWidth === 0 || el.clientHeight === 0;
-      if (wasHidden && !hidden) fitTo(map, latest.current.stops, latest.current.line);
+      if (wasHidden && !hidden) fitTo(map, latest.current.stops, latest.current.line, latest.current.maxZoom);
       wasHidden = hidden;
     });
     ro.observe(el);
@@ -116,6 +119,7 @@ export default function RouteMapInner({
   onStopClick,
   className,
   interactive = true,
+  fitMaxZoom,
 }: RouteMapProps) {
   const { resolvedTheme } = useTheme();
   const dark = resolvedTheme === "dark";
@@ -165,9 +169,9 @@ export default function RouteMapInner({
           <Tooltip direction="top" offset={[0, -14]}>{s.name}</Tooltip>
         </Marker>
       ))}
-      <FitBounds stops={stops} line={line} />
+      <FitBounds stops={stops} line={line} maxZoom={fitMaxZoom} />
       <ClickHandler onMapClick={onMapClick} />
-      <ResizeWatcher stops={stops} line={line} />
+      <ResizeWatcher stops={stops} line={line} maxZoom={fitMaxZoom} />
     </MapContainer>
   );
 }

@@ -1,0 +1,45 @@
+{
+  "id": "cordoba",
+  "order": 3,
+  "emoji": "🌺",
+  "colors": [
+    "#7A1E2C",
+    "#E8B04B"
+  ],
+  "center": [
+    37.8795,
+    -4.78
+  ],
+  "photo": {
+    "url": "/play/photos/city-cordoba.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_aerial_2.jpg",
+    "author": "kallerna",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "name": "Córdoba",
+      "country": "Spain",
+      "tagline": "The caliphs' city of three faiths",
+      "intro": "A thousand years ago Córdoba was one of the largest and most learned cities in Europe — capital of al-Andalus, where Muslims, Jews and Christians shaped one city together. Its streets still mix all three."
+    },
+    "fr": {
+      "name": "Cordoue",
+      "country": "Espagne",
+      "tagline": "La cité des califes et des trois religions",
+      "intro": "Il y a mille ans, Cordoue était l'une des villes les plus grandes et les plus savantes d'Europe — capitale d'al-Andalus, où musulmans, juifs et chrétiens façonnaient une même ville. Ses rues mêlent encore les trois."
+    },
+    "es": {
+      "name": "Córdoba",
+      "country": "España",
+      "tagline": "La ciudad de los califas y las tres culturas",
+      "intro": "Hace mil años, Córdoba era una de las ciudades más grandes y cultas de Europa: capital de al-Ándalus, donde musulmanes, judíos y cristianos dieron forma a una misma ciudad. Sus calles todavía mezclan las tres."
+    },
+    "ar": {
+      "name": "قرطبة",
+      "country": "إسبانيا",
+      "tagline": "مدينة الخلفاء والأديان الثلاثة",
+      "intro": "قبل ألف عام كانت قرطبة من أكبر مدن أوروبا وأكثرها علمًا — عاصمة الأندلس، حيث صاغ المسلمون واليهود والمسيحيون مدينة واحدة معًا. وما زالت شوارعها تمزج الثلاثة."
+    }
+  }
+}

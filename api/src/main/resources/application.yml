@@ -81,6 +81,14 @@ app:
     api-key: ${ORS_API_KEY:}
     base-url: ${ORS_BASE_URL:https://api.openrouteservice.org}
     timeout-ms: ${ORS_TIMEOUT_MS:8000}
+  # Game answer checking through OpenRouter. Pick any vision-capable model;
+  # without a key and model, answers are matched against each lesson's list.
+  ai:
+    api-key: ${OPENROUTER_API_KEY:}
+    model: ${OPENROUTER_MODEL:}
+    base-url: ${OPENROUTER_BASE_URL:https://openrouter.ai/api/v1}
+    timeout-ms: ${OPENROUTER_TIMEOUT_MS:20000}
+    app-url: ${FRONTEND_URL:http://localhost:3000}
 
   oauth:
     google:

@@ -1,0 +1,144 @@
+{
+  "id": "cordoba-corredera",
+  "lat": 37.884,
+  "lng": -4.7752,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "bullfights",
+    "bullfighting",
+    "bullfight",
+    "bulls",
+    "corridas",
+    "toros",
+    "corrida de toros",
+    "corrida",
+    "tauromachie",
+    "courses de taureaux",
+    "taureaux",
+    "corridas de toros",
+    "مصارعة الثيران",
+    "مصارعة ثيران",
+    "ثيران"
+  ],
+  "rubric": "Correct if the player says bullfights (accept any language).",
+  "sources": [
+    {
+      "label": "Plaza de la Corredera — Lonely Planet",
+      "url": "https://www.lonelyplanet.com/spain/cordoba/attractions/plaza-de-la-corredera/a/poi-sig/484234/360732"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/cordoba-corredera.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:C%C3%B3rdoba_-_Plaza_de_la_Corredera.jpg",
+    "author": "Benjamin Smith",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "A square for everything",
+      "place": "Plaza de la Corredera",
+      "era": "1600s",
+      "hook": "Step into the Plaza de la Corredera, a huge rectangle closed on all four sides by arcades and rows of balconies.",
+      "challenge": "Long before the cafés, the square was used as an arena. For what kind of spectacle?",
+      "hints": [
+        "The balconies were the best seats in the house.",
+        "Think of Spain's most famous — and most argued-about — spectacle."
+      ],
+      "story": "La Corredera took its arcaded shape in the 17th century and became the city's stage: markets, festivals, bullfights watched from the balconies, and even public punishments ordered by the Inquisition. Squares like this are typical of central Spain and rare in Andalusia. Today the arcades shelter cafés, and the square still hosts Córdoba's celebrations.",
+      "facts": [
+        {
+          "value": "1600s",
+          "label": "arcaded square"
+        },
+        {
+          "value": "Bullfights",
+          "label": "seen from balconies"
+        },
+        {
+          "value": "Rare",
+          "label": "in Andalusia"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Une place pour tout",
+      "place": "Plaza de la Corredera",
+      "era": "XVIIe siècle",
+      "hook": "Entrez sur la Plaza de la Corredera, un immense rectangle fermé sur ses quatre côtés par des arcades et des rangées de balcons.",
+      "challenge": "Bien avant les cafés, la place servait d'arène. Pour quel genre de spectacle ?",
+      "hints": [
+        "Les balcons étaient les meilleures places.",
+        "Pensez au spectacle le plus célèbre — et le plus débattu — d'Espagne."
+      ],
+      "story": "La Corredera prit sa forme à arcades au XVIIe siècle et devint la scène de la ville : marchés, fêtes, corridas suivies depuis les balcons, et même des châtiments publics ordonnés par l'Inquisition. Ce type de place est typique du centre de l'Espagne et rare en Andalousie. Aujourd'hui, les arcades abritent des cafés, et la place accueille toujours les fêtes de Cordoue.",
+      "facts": [
+        {
+          "value": "XVIIe s.",
+          "label": "place à arcades"
+        },
+        {
+          "value": "Corridas",
+          "label": "vues des balcons"
+        },
+        {
+          "value": "Rare",
+          "label": "en Andalousie"
+        }
+      ]
+    },
+    "es": {
+      "title": "Una plaza para todo",
+      "place": "Plaza de la Corredera",
+      "era": "siglo XVII",
+      "hook": "Entra en la Plaza de la Corredera, un enorme rectángulo cerrado por los cuatro lados con soportales e hileras de balcones.",
+      "challenge": "Mucho antes de los cafés, la plaza se usaba como coso. ¿Para qué espectáculo?",
+      "hints": [
+        "Los balcones eran las mejores localidades.",
+        "Piensa en el espectáculo más famoso —y más discutido— de España."
+      ],
+      "story": "La Corredera adquirió su forma porticada en el siglo XVII y se convirtió en el escenario de la ciudad: mercados, fiestas, corridas de toros vistas desde los balcones e incluso castigos públicos ordenados por la Inquisición. Las plazas así son típicas del centro de España y raras en Andalucía. Hoy los soportales cobijan cafés y la plaza sigue acogiendo las celebraciones de Córdoba.",
+      "facts": [
+        {
+          "value": "s. XVII",
+          "label": "plaza porticada"
+        },
+        {
+          "value": "Corridas",
+          "label": "vistas desde los balcones"
+        },
+        {
+          "value": "Rara",
+          "label": "en Andalucía"
+        }
+      ]
+    },
+    "ar": {
+      "title": "ساحة لكل شيء",
+      "place": "ساحة لا كوريديرا",
+      "era": "القرن السابع عشر",
+      "hook": "ادخل ساحة لا كوريديرا، مستطيل ضخم تحيط به من جهاته الأربع أروقة وصفوف من الشرفات.",
+      "challenge": "قبل المقاهي بزمن طويل كانت الساحة حلبة. لأي نوع من العروض؟",
+      "hints": [
+        "كانت الشرفات أفضل المقاعد.",
+        "فكّر في أشهر عروض إسبانيا — وأكثرها إثارة للجدل."
+      ],
+      "story": "اتخذت لا كوريديرا شكلها ذا الأروقة في القرن السابع عشر وصارت مسرح المدينة: أسواق واحتفالات ومصارعة ثيران يتابعها الناس من الشرفات، بل وعقوبات علنية أمرت بها محاكم التفتيش. ومثل هذه الساحات شائع في وسط إسبانيا ونادر في الأندلس. واليوم تؤوي الأروقة المقاهي، وما زالت الساحة تحتضن احتفالات قرطبة.",
+      "facts": [
+        {
+          "value": "القرن 17",
+          "label": "ساحة بأروقة"
+        },
+        {
+          "value": "مصارعة الثيران",
+          "label": "من الشرفات"
+        },
+        {
+          "value": "نادرة",
+          "label": "في الأندلس"
+        }
+      ]
+    }
+  }
+}

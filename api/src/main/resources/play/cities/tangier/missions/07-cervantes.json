@@ -1,0 +1,135 @@
+{
+  "id": "tangier-cervantes",
+  "lat": 35.782,
+  "lng": -5.8107,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "cervantes",
+    "miguel de cervantes",
+    "سرفانتس",
+    "ثربانتس",
+    "سيرفانتس",
+    "ميغيل دي سرفانتس"
+  ],
+  "rubric": "Correct if the player names Miguel de Cervantes.",
+  "sources": [
+    {
+      "label": "Morocco recovers the Gran Teatro Cervantes — Atalayar",
+      "url": "https://www.atalayar.com/en/articulo/culture/morocco-seeks-recover-splendour-great-cervantes-theatre-tangiers/20230302134102182002.html"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-cervantes.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Gran_Teatro_Cervantes2.jpg",
+    "author": "Cosmo45",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "title": "A Spanish theatre in Morocco",
+      "place": "Gran Teatro Cervantes",
+      "era": "1913",
+      "hook": "Walk down into the new town and find a large theatre with a decorated front — built when Tangier was home to thousands of Spanish families.",
+      "challenge": "The theatre is named after Spain's most famous writer. Who?",
+      "hints": [
+        "The name is written on the building.",
+        "He wrote Don Quixote."
+      ],
+      "story": "The Gran Teatro Cervantes opened in 1913, when Tangier had a large Spanish community, and performers from across Europe played here. In 1928 its owners gave it to the Spanish state. After decades of decay Spain handed it to Morocco in 2023, and restoration has been bringing it back to life.",
+      "facts": [
+        {
+          "value": "1913",
+          "label": "opened"
+        },
+        {
+          "value": "1928",
+          "label": "given to Spain"
+        },
+        {
+          "value": "2023",
+          "label": "handed to Morocco"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Un théâtre espagnol au Maroc",
+      "place": "Gran Teatro Cervantes",
+      "era": "1913",
+      "hook": "Descendez dans la ville nouvelle et trouvez un grand théâtre à la façade décorée — construit quand Tanger abritait des milliers de familles espagnoles.",
+      "challenge": "Le théâtre porte le nom du plus célèbre écrivain espagnol. Lequel ?",
+      "hints": [
+        "Le nom est écrit sur le bâtiment.",
+        "Il a écrit Don Quichotte."
+      ],
+      "story": "Le Gran Teatro Cervantes ouvrit en 1913, quand Tanger comptait une importante communauté espagnole, et des artistes de toute l'Europe s'y produisirent. En 1928, ses propriétaires l'offrirent à l'État espagnol. Après des décennies d'abandon, l'Espagne l'a cédé au Maroc en 2023, et sa restauration lui redonne vie.",
+      "facts": [
+        {
+          "value": "1913",
+          "label": "ouverture"
+        },
+        {
+          "value": "1928",
+          "label": "offert à l'Espagne"
+        },
+        {
+          "value": "2023",
+          "label": "cédé au Maroc"
+        }
+      ]
+    },
+    "es": {
+      "title": "Un teatro español en Marruecos",
+      "place": "Gran Teatro Cervantes",
+      "era": "1913",
+      "hook": "Baja a la ciudad nueva y busca un gran teatro de fachada decorada, construido cuando Tánger acogía a miles de familias españolas.",
+      "challenge": "El teatro lleva el nombre del escritor español más famoso. ¿Cuál?",
+      "hints": [
+        "El nombre está escrito en el edificio.",
+        "Escribió el Quijote."
+      ],
+      "story": "El Gran Teatro Cervantes abrió en 1913, cuando Tánger tenía una gran comunidad española, y actuaron aquí artistas de toda Europa. En 1928 sus dueños lo donaron al Estado español. Tras décadas de abandono, España lo cedió a Marruecos en 2023, y la restauración le está devolviendo la vida.",
+      "facts": [
+        {
+          "value": "1913",
+          "label": "inauguración"
+        },
+        {
+          "value": "1928",
+          "label": "donado a España"
+        },
+        {
+          "value": "2023",
+          "label": "cedido a Marruecos"
+        }
+      ]
+    },
+    "ar": {
+      "title": "مسرح إسباني في المغرب",
+      "place": "المسرح الكبير سرفانتس",
+      "era": "1913",
+      "hook": "انزل إلى المدينة الجديدة وابحث عن مسرح كبير بواجهة مزخرفة — بُني حين كانت طنجة تضم آلاف العائلات الإسبانية.",
+      "challenge": "يحمل المسرح اسم أشهر كاتب إسباني. من هو؟",
+      "hints": [
+        "الاسم مكتوب على المبنى.",
+        "هو مؤلف «دون كيخوتي»."
+      ],
+      "story": "افتُتح المسرح الكبير سرفانتس سنة 1913، حين كانت في طنجة جالية إسبانية كبيرة، وقدّم فيه فنانون من أنحاء أوروبا عروضهم. وفي 1928 أهداه مالكوه إلى الدولة الإسبانية. وبعد عقود من الإهمال سلّمته إسبانيا إلى المغرب سنة 2023، وأعاده الترميم إلى الحياة.",
+      "facts": [
+        {
+          "value": "1913",
+          "label": "الافتتاح"
+        },
+        {
+          "value": "1928",
+          "label": "إهداؤه لإسبانيا"
+        },
+        {
+          "value": "2023",
+          "label": "تسليمه للمغرب"
+        }
+      ]
+    }
+  }
+}

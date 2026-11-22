@@ -1,0 +1,139 @@
+{
+  "id": "porto-luis-bridge",
+  "lat": 41.13986,
+  "lng": -8.60934,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "2",
+    "two",
+    "dois",
+    "double",
+    "two decks",
+    "2 decks",
+    "deux tabliers",
+    "dos tableros",
+    "طابقان",
+    "طابقين"
+  ],
+  "rubric": "Correct if the player says the bridge has two decks (an upper and a lower one).",
+  "sources": [
+    {
+      "label": "Dom Luís I Bridge — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Dom_Lu%C3%ADs_I_Bridge"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-luis-bridge.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Dom_Lu%C3%ADs_I_Bridge_(36961760686).jpg",
+    "author": "Deensel",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "title": "The bridge from Eiffel's workshop",
+      "place": "Dom Luís I Bridge",
+      "era": "1886",
+      "hook": "From the riverside, look up at the huge iron arch spanning the Douro.",
+      "challenge": "Count them: how many decks (levels you can cross on) does the bridge have?",
+      "hints": [
+        "Look for people crossing high up as well as right by the water.",
+        "One deck carries the metro on top; the other carries cars near the river."
+      ],
+      "story": "The bridge opened in 1886. It was designed by Théophile Seyrig, a former partner of Gustave Eiffel — the Eiffel Tower came three years later. Its iron arch was, at the time, the longest of its kind in the world. Today the upper deck carries the metro and walkers, and the lower deck links Ribeira to the port wine cellars of Gaia.",
+      "facts": [
+        {
+          "value": "1886",
+          "label": "opened"
+        },
+        {
+          "value": "2",
+          "label": "decks"
+        },
+        {
+          "value": "Seyrig",
+          "label": "Eiffel's former partner"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Le pont de l'atelier d'Eiffel",
+      "place": "Pont Dom-Luís-Ier",
+      "era": "1886",
+      "hook": "Depuis les quais, levez les yeux vers l'immense arche de fer qui enjambe le Douro.",
+      "challenge": "Comptez-les : combien de tabliers (niveaux de passage) le pont a-t-il ?",
+      "hints": [
+        "Cherchez des gens qui traversent tout en haut comme au ras de l'eau.",
+        "Un tablier porte le métro en haut ; l'autre les voitures près du fleuve."
+      ],
+      "story": "Le pont ouvrit en 1886. Il fut conçu par Théophile Seyrig, ancien associé de Gustave Eiffel — la tour Eiffel vint trois ans plus tard. Son arche de fer était alors la plus longue de son genre au monde. Aujourd'hui, le tablier supérieur porte le métro et les piétons, et le tablier inférieur relie Ribeira aux caves de porto de Gaia.",
+      "facts": [
+        {
+          "value": "1886",
+          "label": "ouverture"
+        },
+        {
+          "value": "2",
+          "label": "tabliers"
+        },
+        {
+          "value": "Seyrig",
+          "label": "ex-associé d'Eiffel"
+        }
+      ]
+    },
+    "es": {
+      "title": "El puente del taller de Eiffel",
+      "place": "Puente Don Luis I",
+      "era": "1886",
+      "hook": "Desde la orilla, levanta la vista hacia el enorme arco de hierro que cruza el Duero.",
+      "challenge": "Cuéntalos: ¿cuántos tableros (niveles por los que cruzar) tiene el puente?",
+      "hints": [
+        "Busca gente cruzando muy arriba y también junto al agua.",
+        "Un tablero lleva el metro arriba; el otro, los coches junto al río."
+      ],
+      "story": "El puente se inauguró en 1886. Lo diseñó Théophile Seyrig, antiguo socio de Gustave Eiffel; la torre Eiffel llegó tres años después. Su arco de hierro era entonces el más largo de su tipo del mundo. Hoy el tablero superior lleva el metro y a los peatones, y el inferior une la Ribeira con las bodegas de oporto de Gaia.",
+      "facts": [
+        {
+          "value": "1886",
+          "label": "inauguración"
+        },
+        {
+          "value": "2",
+          "label": "tableros"
+        },
+        {
+          "value": "Seyrig",
+          "label": "exsocio de Eiffel"
+        }
+      ]
+    },
+    "ar": {
+      "title": "الجسر الخارج من ورشة إيفل",
+      "place": "جسر دوم لويس الأول",
+      "era": "1886",
+      "hook": "من ضفة النهر، ارفع عينيك إلى القوس الحديدي الضخم الممتد فوق نهر دورو.",
+      "challenge": "عُدّها: كم طابقًا (مستوى للعبور) في الجسر؟",
+      "hints": [
+        "ابحث عن أناس يعبرون في الأعلى وآخرين قرب الماء.",
+        "طابق يحمل المترو في الأعلى، والآخر يحمل السيارات قرب النهر."
+      ],
+      "story": "افتُتح الجسر سنة 1886. صمّمه تيوفيل سيريغ، الشريك السابق لغوستاف إيفل — وجاء برج إيفل بعده بثلاث سنوات. وكان قوسه الحديدي آنذاك الأطول من نوعه في العالم. واليوم يحمل الطابق العلوي المترو والمشاة، ويصل الطابق السفلي حي ريبيرا بأقبية نبيذ غايا.",
+      "facts": [
+        {
+          "value": "1886",
+          "label": "الافتتاح"
+        },
+        {
+          "value": "2",
+          "label": "طابقان"
+        },
+        {
+          "value": "سيريغ",
+          "label": "شريك إيفل السابق"
+        }
+      ]
+    }
+  }
+}

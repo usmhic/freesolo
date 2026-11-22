@@ -33,7 +33,7 @@ export default function ApplyPage() {
       <section className="relative overflow-hidden">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 -top-40 -z-10 size-[560px] rounded-full bg-sunset/10 blur-3xl"
+          className="pointer-events-none absolute -end-40 -top-40 -z-10 size-[560px] rounded-full bg-sunset/10 blur-3xl"
         />
         <div className="container-page max-w-6xl py-12 sm:py-16">
           <div className="max-w-2xl">

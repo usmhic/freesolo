@@ -1,0 +1,146 @@
+{
+  "id": "cordoba-mezquita",
+  "lat": 37.87917,
+  "lng": -4.77972,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "red and white",
+    "white and red",
+    "rojo y blanco",
+    "blanco y rojo",
+    "red white",
+    "terracotta and white",
+    "brick and white",
+    "rouge et blanc",
+    "blanc et rouge",
+    "rouge blanc",
+    "أحمر وأبيض",
+    "الأحمر والأبيض",
+    "أبيض وأحمر"
+  ],
+  "rubric": "Correct if the player says red (brick/terracotta) and white (stone/cream), in either order or any language.",
+  "sources": [
+    {
+      "label": "La Mezquita — Lonely Planet",
+      "url": "https://www.lonelyplanet.com/points-of-interest/mezquita/1189075"
+    },
+    {
+      "label": "Córdoba's Mosque-Cathedral — National Geographic",
+      "url": "https://www.nationalgeographic.com/history/history-magazine/article/cordobas-mosque-cathedral-showcases-spains-muslim-heritage"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/cordoba-mezquita.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Mezquita_de_C%C3%B3rdoba_desde_el_aire_(C%C3%B3rdoba,_Espa%C3%B1a).jpg",
+    "author": "Toni Castillo Quero",
+    "license": "CC BY-SA 2.0"
+  },
+  "text": {
+    "en": {
+      "title": "A forest of striped arches",
+      "place": "Mosque–Cathedral (Mezquita)",
+      "era": "785",
+      "hook": "Step inside the Mosque–Cathedral and let your eyes adjust: rows upon rows of columns, holding up double arches that seem to go on for ever.",
+      "challenge": "What two colours stripe the arches?",
+      "hints": [
+        "Look up at the stripes on the arches, not the columns.",
+        "One colour is brick, the other is stone."
+      ],
+      "story": "Building began in 785 under Abd al-Rahman I, the Umayyad prince who escaped to Spain and founded a new state. Stacking two arches was an innovation: it let the roof rise high on fairly short columns, many reused from Roman and Visigothic buildings. The stripes alternate red brick and white stone. After the Christian conquest of 1236 it became a cathedral, and in the 16th century a Renaissance church was built right in the middle of the forest of columns.",
+      "facts": [
+        {
+          "value": "785",
+          "label": "building begins"
+        },
+        {
+          "value": "856",
+          "label": "columns remain"
+        },
+        {
+          "value": "1236",
+          "label": "becomes a cathedral"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Une forêt d'arcs rayés",
+      "place": "Mosquée-cathédrale (Mezquita)",
+      "era": "785",
+      "hook": "Entrez dans la mosquée-cathédrale et laissez vos yeux s'habituer : des rangées et des rangées de colonnes portant des arcs doubles qui semblent ne jamais finir.",
+      "challenge": "De quelles deux couleurs sont rayés les arcs ?",
+      "hints": [
+        "Regardez les rayures des arcs, pas les colonnes.",
+        "Une couleur est la brique, l'autre la pierre."
+      ],
+      "story": "La construction commença en 785 sous Abd al-Rahman Ier, le prince omeyyade qui s'enfuit en Espagne et y fonda un nouvel État. Superposer deux arcs fut une innovation : le toit pouvait monter haut sur des colonnes assez courtes, souvent récupérées de bâtiments romains et wisigoths. Les rayures alternent brique rouge et pierre blanche. Après la conquête chrétienne de 1236, elle devint cathédrale, et au XVIe siècle une église Renaissance fut bâtie en plein milieu de la forêt de colonnes.",
+      "facts": [
+        {
+          "value": "785",
+          "label": "début des travaux"
+        },
+        {
+          "value": "856",
+          "label": "colonnes encore debout"
+        },
+        {
+          "value": "1236",
+          "label": "devient cathédrale"
+        }
+      ]
+    },
+    "es": {
+      "title": "Un bosque de arcos rayados",
+      "place": "Mezquita-Catedral",
+      "era": "785",
+      "hook": "Entra en la Mezquita-Catedral y deja que los ojos se acostumbren: filas y filas de columnas que sostienen arcos dobles que parecen no acabar nunca.",
+      "challenge": "¿De qué dos colores están rayados los arcos?",
+      "hints": [
+        "Mira las rayas de los arcos, no las columnas.",
+        "Un color es el ladrillo; el otro, la piedra."
+      ],
+      "story": "La obra empezó en 785 bajo Abderramán I, el príncipe omeya que huyó a España y fundó un nuevo Estado. Superponer dos arcos fue una innovación: permitía elevar el techo sobre columnas bastante bajas, muchas reutilizadas de edificios romanos y visigodos. Las franjas alternan ladrillo rojo y piedra blanca. Tras la conquista cristiana de 1236 se convirtió en catedral, y en el siglo XVI se levantó una iglesia renacentista en pleno bosque de columnas.",
+      "facts": [
+        {
+          "value": "785",
+          "label": "empieza la obra"
+        },
+        {
+          "value": "856",
+          "label": "columnas en pie"
+        },
+        {
+          "value": "1236",
+          "label": "se hace catedral"
+        }
+      ]
+    },
+    "ar": {
+      "title": "غابة من الأقواس المخطّطة",
+      "place": "المسجد-الكاتدرائية (الجامع الكبير)",
+      "era": "785",
+      "hook": "ادخل المسجد-الكاتدرائية ودَع عينيك تعتادان: صفوف بعد صفوف من الأعمدة تحمل أقواسًا مزدوجة تبدو بلا نهاية.",
+      "challenge": "ما اللونان اللذان تتخطط بهما الأقواس؟",
+      "hints": [
+        "انظر إلى خطوط الأقواس، لا الأعمدة.",
+        "أحد اللونين لون الآجُرّ، والآخر لون الحجر."
+      ],
+      "story": "بدأ البناء سنة 785 في عهد عبد الرحمن الأول، الأمير الأموي الذي فرّ إلى الأندلس وأسّس فيها دولة جديدة. وكان تركيب قوسين فوق بعضهما ابتكارًا: إذ سمح برفع السقف عاليًا فوق أعمدة قصيرة نسبيًا، أُعيد استخدام كثير منها من مبانٍ رومانية وقوطية. وتتناوب الخطوط بين الآجرّ الأحمر والحجر الأبيض. وبعد الاستيلاء المسيحي سنة 1236 صار كاتدرائية، وفي القرن السادس عشر بُنيت كنيسة من طراز النهضة في قلب غابة الأعمدة.",
+      "facts": [
+        {
+          "value": "785",
+          "label": "بداية البناء"
+        },
+        {
+          "value": "856",
+          "label": "عمودًا باقيًا"
+        },
+        {
+          "value": "1236",
+          "label": "تحويله إلى كاتدرائية"
+        }
+      ]
+    }
+  }
+}

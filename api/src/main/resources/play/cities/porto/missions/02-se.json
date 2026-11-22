@@ -1,0 +1,170 @@
+{
+  "id": "porto-se",
+  "lat": 41.1428,
+  "lng": -8.6113,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "defense",
+    "defence",
+    "defend",
+    "defending",
+    "protect",
+    "protection",
+    "fortress",
+    "fort",
+    "war",
+    "attack",
+    "attacks",
+    "castle",
+    "military",
+    "battle",
+    "siege",
+    "défense",
+    "défendre",
+    "protéger",
+    "forteresse",
+    "guerre",
+    "château",
+    "attaque",
+    "defensa",
+    "defender",
+    "proteger",
+    "protección",
+    "fortaleza",
+    "guerra",
+    "castillo",
+    "ataque",
+    "الدفاع",
+    "دفاع",
+    "حماية",
+    "حصن",
+    "قلعة",
+    "حرب",
+    "هجوم"
+  ],
+  "rubric": "Correct if the player says the cathedral was also built to defend or protect the city, as a fortress, against attack or war. Reward any reasonable phrasing in any language.",
+  "sources": [
+    {
+      "label": "Porto Cathedral — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Porto_Cathedral"
+    },
+    {
+      "label": "Anglo-Portuguese Alliance — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Anglo-Portuguese_Alliance"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/porto-se.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Porto,_S%C3%A9_do_Porto_(9).jpg",
+    "author": "Laszlo Daroczy from Miskolc, Hungary",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "title": "A church built like a castle",
+      "place": "Porto Cathedral (Sé)",
+      "era": "1100s–1387",
+      "hook": "Walk around the cathedral and look at its top edge. It doesn't look much like a church from out here.",
+      "challenge": "The roofline has battlements, like a castle. What does that tell you the building was also meant for?",
+      "hints": [
+        "Battlements were where defenders stood behind the gaps in the wall.",
+        "Think about medieval Porto: what did a strong building on a hilltop need to survive?"
+      ],
+      "story": "Begun in the 12th century, the Sé was a fortress church on Porto's highest hill, meant to protect as well as to pray. In 1387 it hosted a famous wedding: King João I married the English princess Philippa of Lancaster here, sealing the alliance between Portugal and England — still the oldest diplomatic alliance in the world. Their son was Prince Henry the Navigator.",
+      "facts": [
+        {
+          "value": "1100s",
+          "label": "building begins"
+        },
+        {
+          "value": "1387",
+          "label": "royal wedding"
+        },
+        {
+          "value": "Oldest",
+          "label": "alliance still in force"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Une église bâtie comme un château",
+      "place": "Cathédrale de Porto (Sé)",
+      "era": "XIIe s.–1387",
+      "hook": "Faites le tour de la cathédrale et regardez son sommet. De l'extérieur, elle ne ressemble pas vraiment à une église.",
+      "challenge": "Le toit est bordé de créneaux, comme un château. Qu'est-ce que cela vous dit sur son autre rôle ?",
+      "hints": [
+        "Les créneaux abritaient les défenseurs derrière les ouvertures du mur.",
+        "Pensez au Porto médiéval : de quoi un bâtiment solide sur une colline avait-il besoin pour survivre ?"
+      ],
+      "story": "Commencée au XIIe siècle, la Sé était une église-forteresse sur la plus haute colline de Porto, faite pour protéger autant que pour prier. En 1387, elle accueillit un mariage célèbre : le roi Jean Ier y épousa la princesse anglaise Philippa de Lancastre, scellant l'alliance entre le Portugal et l'Angleterre — toujours la plus ancienne alliance diplomatique du monde. Leur fils était Henri le Navigateur.",
+      "facts": [
+        {
+          "value": "XIIe s.",
+          "label": "début de la construction"
+        },
+        {
+          "value": "1387",
+          "label": "mariage royal"
+        },
+        {
+          "value": "La plus ancienne",
+          "label": "alliance toujours en vigueur"
+        }
+      ]
+    },
+    "es": {
+      "title": "Una iglesia construida como un castillo",
+      "place": "Catedral de Oporto (Sé)",
+      "era": "siglo XII–1387",
+      "hook": "Rodea la catedral y mira su parte más alta. Desde fuera no parece mucho una iglesia.",
+      "challenge": "El tejado tiene almenas, como un castillo. ¿Qué te dice eso sobre su otra función?",
+      "hints": [
+        "Las almenas protegían a los defensores tras los huecos del muro.",
+        "Piensa en el Oporto medieval: ¿qué necesitaba un edificio fuerte en lo alto de una colina para sobrevivir?"
+      ],
+      "story": "Comenzada en el siglo XII, la Sé era una iglesia fortaleza en la colina más alta de Oporto, pensada para proteger además de para rezar. En 1387 acogió una boda famosa: el rey Juan I se casó aquí con la princesa inglesa Felipa de Lancaster, sellando la alianza entre Portugal e Inglaterra, que sigue siendo la alianza diplomática más antigua del mundo. Su hijo fue Enrique el Navegante.",
+      "facts": [
+        {
+          "value": "s. XII",
+          "label": "empieza la obra"
+        },
+        {
+          "value": "1387",
+          "label": "boda real"
+        },
+        {
+          "value": "La más antigua",
+          "label": "alianza aún vigente"
+        }
+      ]
+    },
+    "ar": {
+      "title": "كنيسة بُنيت كقلعة",
+      "place": "كاتدرائية بورتو (سي)",
+      "era": "القرن 12–1387",
+      "hook": "دُر حول الكاتدرائية وانظر إلى حافتها العليا. لا تبدو من الخارج كنيسة تمامًا.",
+      "challenge": "للسطح شُرفات كالقلاع. ماذا يخبرك ذلك عن دورها الآخر؟",
+      "hints": [
+        "كانت الشُّرفات تحمي المدافعين خلف فتحات الجدار.",
+        "فكّر في بورتو في العصور الوسطى: ما الذي يحتاجه مبنى متين على تلّ ليصمد؟"
+      ],
+      "story": "بدأ بناء الكاتدرائية في القرن الثاني عشر، وكانت كنيسة-حصنًا على أعلى تلال بورتو، للحماية بقدر ما هي للصلاة. وفي 1387 شهدت زفافًا شهيرًا: تزوّج فيها الملك جواو الأول الأميرة الإنجليزية فيليبا من لانكستر، فختما التحالف بين البرتغال وإنجلترا — وما زال أقدم تحالف دبلوماسي قائم في العالم. وكان ابنهما الأمير هنري الملاح.",
+      "facts": [
+        {
+          "value": "القرن 12",
+          "label": "بداية البناء"
+        },
+        {
+          "value": "1387",
+          "label": "زفاف ملكي"
+        },
+        {
+          "value": "الأقدم",
+          "label": "تحالف ما زال قائمًا"
+        }
+      ]
+    }
+  }
+}

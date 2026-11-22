@@ -124,7 +124,7 @@ export function ListingCard({ listing, priority }: { listing: Listing; priority?
             <HostAvatar host={listing.host} size={26} />
             <span className="truncate">{listing.host.name ?? "A FreeSolo member"}</span>
           </span>
-          <span className="shrink-0 text-right">
+          <span className="shrink-0 text-end">
             <span className="font-display text-lg font-extrabold text-ink">{money(listing.price, listing.currency)}</span>
             <span className="block text-[11px] leading-none text-ink-soft">per person</span>
           </span>

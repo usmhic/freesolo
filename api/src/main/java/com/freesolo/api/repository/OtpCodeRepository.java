@@ -17,8 +17,4 @@ public interface OtpCodeRepository extends JpaRepository<OtpCode, String> {
     @Modifying
     @Query("DELETE FROM OtpCode o WHERE o.user = :user")
     void deleteByUser(@Param("user") User user);
-
-    @Modifying
-    @Query("DELETE FROM OtpCode o WHERE o.expiresAt < :now")
-    void deleteExpired(@Param("now") LocalDateTime now);
 }

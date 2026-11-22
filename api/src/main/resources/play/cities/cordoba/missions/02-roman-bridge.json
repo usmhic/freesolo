@@ -1,0 +1,138 @@
+{
+  "id": "cordoba-roman-bridge",
+  "lat": 37.87667,
+  "lng": -4.77806,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "16",
+    "sixteen",
+    "dieciseis",
+    "seize",
+    "ستة عشر"
+  ],
+  "rubric": "Correct if the player says 16.",
+  "sources": [
+    {
+      "label": "Roman bridge of Córdoba — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Roman_bridge_of_C%C3%B3rdoba"
+    },
+    {
+      "label": "The Roman Bridge of Cordoba — Ancient Origins",
+      "url": "https://www.ancient-origins.net/node/13820"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/cordoba-roman-bridge.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Puente_Romano_Cordoba.jpg",
+    "author": "Rafesmar",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "Two thousand years over the river",
+      "place": "Roman Bridge",
+      "era": "1st century BC",
+      "hook": "Walk out onto the long stone bridge across the Guadalquivir, with the Mosque–Cathedral behind you.",
+      "challenge": "Count them: how many arches carry the bridge?",
+      "hints": [
+        "Lean over the side, or count from the riverbank.",
+        "It's between 15 and 17."
+      ],
+      "story": "The Romans built a stone bridge here in the early 1st century BC, and for centuries it was the city's only way across the river. It was rebuilt many times, especially in the Islamic period, and today stands on 16 arches — one fewer than at first. At the far end is the Calahorra Tower, a medieval gatehouse that now holds a museum about Córdoba's three cultures.",
+      "facts": [
+        {
+          "value": "1st c. BC",
+          "label": "Roman origin"
+        },
+        {
+          "value": "16",
+          "label": "arches"
+        },
+        {
+          "value": "Calahorra",
+          "label": "tower museum"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Deux mille ans au-dessus du fleuve",
+      "place": "Pont romain",
+      "era": "Ier siècle av. J.-C.",
+      "hook": "Avancez sur le long pont de pierre qui traverse le Guadalquivir, la mosquée-cathédrale dans votre dos.",
+      "challenge": "Comptez-les : combien d'arches portent le pont ?",
+      "hints": [
+        "Penchez-vous par-dessus le parapet, ou comptez depuis la rive.",
+        "C'est entre 15 et 17."
+      ],
+      "story": "Les Romains bâtirent ici un pont de pierre au début du Ier siècle av. J.-C., et pendant des siècles ce fut le seul passage sur le fleuve. Il fut reconstruit maintes fois, surtout à l'époque islamique, et repose aujourd'hui sur 16 arches — une de moins qu'à l'origine. Au bout se dresse la tour de la Calahorra, une porte médiévale qui abrite un musée sur les trois cultures de Cordoue.",
+      "facts": [
+        {
+          "value": "Ier s. av. J.-C.",
+          "label": "origine romaine"
+        },
+        {
+          "value": "16",
+          "label": "arches"
+        },
+        {
+          "value": "Calahorra",
+          "label": "tour-musée"
+        }
+      ]
+    },
+    "es": {
+      "title": "Dos mil años sobre el río",
+      "place": "Puente Romano",
+      "era": "siglo I a. C.",
+      "hook": "Sal al largo puente de piedra que cruza el Guadalquivir, con la Mezquita-Catedral a tu espalda.",
+      "challenge": "Cuéntalos: ¿cuántos arcos sostienen el puente?",
+      "hints": [
+        "Asómate por el pretil o cuéntalos desde la orilla.",
+        "Está entre 15 y 17."
+      ],
+      "story": "Los romanos construyeron aquí un puente de piedra a principios del siglo I a. C., y durante siglos fue el único paso sobre el río. Se reconstruyó muchas veces, sobre todo en época islámica, y hoy se apoya en 16 arcos, uno menos que al principio. Al final está la Torre de la Calahorra, una puerta medieval que alberga un museo sobre las tres culturas de Córdoba.",
+      "facts": [
+        {
+          "value": "s. I a. C.",
+          "label": "origen romano"
+        },
+        {
+          "value": "16",
+          "label": "arcos"
+        },
+        {
+          "value": "Calahorra",
+          "label": "torre museo"
+        }
+      ]
+    },
+    "ar": {
+      "title": "ألفا عام فوق النهر",
+      "place": "الجسر الروماني",
+      "era": "القرن الأول قبل الميلاد",
+      "hook": "سِر على الجسر الحجري الطويل فوق نهر الوادي الكبير، والمسجد-الكاتدرائية خلفك.",
+      "challenge": "عُدّها: كم قوسًا يحمل الجسر؟",
+      "hints": [
+        "انحنِ فوق الحاجز، أو عُدّها من الضفة.",
+        "العدد بين 15 و17."
+      ],
+      "story": "بنى الرومان هنا جسرًا حجريًا في مطلع القرن الأول قبل الميلاد، وظل لقرون المعبر الوحيد فوق النهر. أُعيد بناؤه مرات كثيرة، خصوصًا في العهد الإسلامي، ويقوم اليوم على 16 قوسًا — أقل بقوس واحد مما كان عليه أولًا. وفي طرفه برج القلهرّة، وهو بوابة من العصور الوسطى تضم متحفًا عن ثقافات قرطبة الثلاث.",
+      "facts": [
+        {
+          "value": "ق 1 ق.م",
+          "label": "أصل روماني"
+        },
+        {
+          "value": "16",
+          "label": "قوسًا"
+        },
+        {
+          "value": "القلهرّة",
+          "label": "برج ومتحف"
+        }
+      ]
+    }
+  }
+}

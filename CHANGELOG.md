@@ -9,6 +9,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- FreeSolo becomes a history game for travelers. Tell it where you're
+  travelling and for how long, and it turns the city into a walk of levels:
+  short lessons tied to real places, each with a challenge you solve on the
+  spot and a sourced story that unlocks when you do.
+- Five cities to play — Tangier, Porto, Córdoba, Rotterdam and Salzburg — with
+  33 researched levels (three free per city), each citing its sources.
+- A simple game funnel: pick a city, set your days, and follow a winding path
+  of levels next to the map; each win shows your next level, nudges you to the
+  city pack once the free levels are done, and celebrates a finished city.
+- Levels are visual: a photo of every place (veiled until you solve it, so it
+  can't give the answer away), key facts as big chips, a short story you can
+  expand or listen to, video links, and a postcard collection in My sky.
+  Photos come from Wikimedia Commons, are served by the web app, and are
+  credited on each photo and on a Photo credits page. Map pins now use
+  Wikipedia's coordinates where an article has them.
+- Answers are checked against each level's accepted answers; with
+  `OPENROUTER_API_KEY` and `OPENROUTER_MODEL` set, an AI model on OpenRouter
+  also judges your own wording, other languages and photos, and nudges you
+  when you're close.
+- Every mission is worth points (✨ 100–250, a fifth less per hint), and a
+  global ranking — all time and this week, with a podium — shows who's lit
+  up the most of the sky.
+- Stardust and star ranks from Nebula to Black Hole, earned in any city and
+  never sold, and "My sky": a night sky with a star for every solved level and
+  a constellation per city.
+- City packs unlock a city's remaining levels for good (free during the pilot).
+  Free levels need no account; signed-out progress stays in the browser.
+- A Help Center page on playing, and a game-first landing page. Group trips
+  stay as the way to play together.
+- The game speaks English, French, Spanish and Arabic. Pick a language in the
+  header; the landing page, game screens and every city and mission follow it,
+  and Arabic is laid out right to left with its own typeface. The API serves
+  content in the language asked for (`?lang=` or `Accept-Language`), answers
+  are accepted in any of the four, and the AI judge replies in the player's
+  language.
+- Game content is one JSON file per city and per mission, with a guide in
+  `api/src/main/resources/play/README.md`. `node scripts/new-mission.mjs <city>
+  <slug>` scaffolds a mission in all four languages, and the API refuses to
+  start on incomplete content, naming the file and field to fix.
+
 - Redesigned web app and landing page: a new navy and sunset brand, Plus
   Jakarta Sans headings, one shared header and footer, and layouts built for
   phones first. The trips list, trip pages, sign-in and application pages are
@@ -62,11 +102,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Trimmed `.env.example` to the 25 keys a local setup needs, in clear groups.
-  Values that only repeated an API default are gone, and each value now has
-  one name: `STORAGE_URL` is now `MINIO_PUBLIC_URL`, and the native-run script
-  derives `NEXT_PUBLIC_APP_URL`, `FRONTEND_URL` and `MINIO_SECRET_KEY`. Recreate
-  your `.env` from the template.
+- `.env.example` is grouped by purpose (app, database, sign-in, file storage,
+  then one group per optional service), with each service's port next to its
+  settings. Values that only repeated an API default are gone, and each value
+  has one name: `STORAGE_URL` is now `MINIO_PUBLIC_URL`, `MINIO_ACCESS_KEY` is
+  now `MINIO_USER` (pairing with `MINIO_PASSWORD`, like `POSTGRES_USER`), and
+  Compose and the native-run script derive the names each app reads. Compose
+  now uses `POSTGRES_USER` and `MINIO_USER`, and passes the optional email,
+  push and Google/Apple sign-in keys to the API. Recreate your `.env` from the
+  template.
+- Web structure: shared `SectionHeading` and `BackLink` components replace
+  repeated heading and back-link markup, and the API helpers are named for
+  where they run: `lib/server-api.ts` (signed-in server calls, was
+  `api-client.ts`), `lib/browser-api.ts` (was `client-api.ts`) and the new
+  `lib/public-api.ts` (cached public reads, shared by listings and the game).
 - Only approved members can join a listing, and groups cap at twelve
   travelers. Hosts can only list experiences at venues they own.
 - The landing page and help center now lead with group trips.
@@ -81,8 +130,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Aligned package, web, container, Compose, documentation, and workflow metadata
   with the usmhic open-source ecosystem.
 
+### Removed
+
+- Leftover web helpers from the Prisma era (`lib/api.ts`, `lib/route-config.ts`)
+  and a duplicate application form, plus unused API repository queries.
+
 ### Fixed
 
+- The My sky page and the main navigation label are translated (they showed
+  English in every language).
+- The phone menu opens again: it was sized to the header while the header's
+  background blur was on, so it never showed.
+- Pages that aren't translated yet (trips, planner, applying, sign-in, legal,
+  help center, admin) stay English and left to right when the site is in
+  Arabic, instead of mirroring English text.
+- Phone layouts: city and trip lists swipe sideways on the landing page, steps
+  and reasons are compact rows, level titles on a city's path wrap instead of
+  being cut off, the trip controls stack neatly, back links and buttons are
+  easier to tap, and reopening a solved mission shows its story.
 - Admin listing dates entered as DD/MM/YYYY no longer show "Invalid Date" or
   swap the day and month.
 - Filled seats now count booked seats, not bookings, so a two-seat booking no

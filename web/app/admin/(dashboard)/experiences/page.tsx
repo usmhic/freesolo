@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { requireDashboardUser } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import {
   setExperienceFeatured, setExperienceStatus, updateExperience, deleteExperience, markExperienceCompleted,
 } from "../../actions";

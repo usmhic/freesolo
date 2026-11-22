@@ -1,0 +1,148 @@
+{
+  "id": "rotterdam-destroyed-city",
+  "lat": 51.9176,
+  "lng": 4.4831,
+  "minutes": 10,
+  "points": 100,
+  "free": true,
+  "accepted": [
+    "heart",
+    "its heart",
+    "the heart",
+    "hart",
+    "coeur",
+    "hole in the chest",
+    "hole in its chest",
+    "chest",
+    "cœur",
+    "son coeur",
+    "corazón",
+    "el corazón",
+    "القلب",
+    "قلب",
+    "قلبه"
+  ],
+  "rubric": "Correct if the player says the heart is missing (a hole in the chest).",
+  "sources": [
+    {
+      "label": "The Destroyed City — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/The_Destroyed_City"
+    },
+    {
+      "label": "Unveiling of The Destroyed City — Anne Frank House",
+      "url": "https://www.annefrank.org/en/timeline/178/unveiling-of-the-destroyed-city/"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-destroyed-city.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Rotterdam_zadkine_monument.jpg",
+    "author": "F.Eveleens",
+    "license": "CC BY 3.0"
+  },
+  "text": {
+    "en": {
+      "title": "A city without a heart",
+      "place": "The Destroyed City, Plein 1940",
+      "era": "1940",
+      "hook": "Near the Maritime Museum on Plein 1940, a tall bronze figure throws its arms up at the sky.",
+      "challenge": "Look closely at the figure's body. What is missing?",
+      "hints": [
+        "Walk around the statue and look at its chest.",
+        "The city's nickname for it is 'city without a heart'."
+      ],
+      "story": "On 14 May 1940 German bombers destroyed Rotterdam's medieval centre. About 900 people died and tens of thousands lost their homes; the Netherlands surrendered the next day. The sculptor Ossip Zadkine saw the ruins in 1947 and made this figure, unveiled in 1953: a person with a hole where the heart should be, just as the city had lost its centre.",
+      "facts": [
+        {
+          "value": "14 May 1940",
+          "label": "the bombing"
+        },
+        {
+          "value": "~900",
+          "label": "killed"
+        },
+        {
+          "value": "1953",
+          "label": "statue unveiled"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Une ville sans cœur",
+      "place": "La Ville détruite, Plein 1940",
+      "era": "1940",
+      "hook": "Près du Musée maritime, sur la Plein 1940, une grande figure de bronze lance les bras vers le ciel.",
+      "challenge": "Regardez bien le corps de la figure. Que lui manque-t-il ?",
+      "hints": [
+        "Faites le tour de la statue et regardez sa poitrine.",
+        "Son surnom local : « la ville sans cœur »."
+      ],
+      "story": "Le 14 mai 1940, les bombardiers allemands détruisirent le centre médiéval de Rotterdam. Environ 900 personnes moururent et des dizaines de milliers perdirent leur maison ; les Pays-Bas capitulèrent le lendemain. Le sculpteur Ossip Zadkine vit les ruines en 1947 et créa cette figure, inaugurée en 1953 : une personne avec un trou à la place du cœur, comme la ville avait perdu son centre.",
+      "facts": [
+        {
+          "value": "14 mai 1940",
+          "label": "le bombardement"
+        },
+        {
+          "value": "~900",
+          "label": "morts"
+        },
+        {
+          "value": "1953",
+          "label": "statue inaugurée"
+        }
+      ]
+    },
+    "es": {
+      "title": "Una ciudad sin corazón",
+      "place": "La Ciudad Destruida, Plein 1940",
+      "era": "1940",
+      "hook": "Cerca del Museo Marítimo, en la Plein 1940, una alta figura de bronce alza los brazos al cielo.",
+      "challenge": "Mira bien el cuerpo de la figura. ¿Qué le falta?",
+      "hints": [
+        "Rodea la estatua y mírale el pecho.",
+        "Su apodo local es «ciudad sin corazón»."
+      ],
+      "story": "El 14 de mayo de 1940 los bombarderos alemanes destruyeron el centro medieval de Róterdam. Murieron unas 900 personas y decenas de miles perdieron su casa; los Países Bajos se rindieron al día siguiente. El escultor Ossip Zadkine vio las ruinas en 1947 e hizo esta figura, inaugurada en 1953: una persona con un hueco donde debería estar el corazón, igual que la ciudad había perdido su centro.",
+      "facts": [
+        {
+          "value": "14 mayo 1940",
+          "label": "el bombardeo"
+        },
+        {
+          "value": "~900",
+          "label": "muertos"
+        },
+        {
+          "value": "1953",
+          "label": "estatua inaugurada"
+        }
+      ]
+    },
+    "ar": {
+      "title": "مدينة بلا قلب",
+      "place": "المدينة المدمَّرة، ساحة 1940",
+      "era": "1940",
+      "hook": "قرب المتحف البحري في ساحة 1940، يرفع تمثال برونزي طويل ذراعيه نحو السماء.",
+      "challenge": "انظر جيدًا إلى جسد التمثال. ما الذي ينقصه؟",
+      "hints": [
+        "دُر حول التمثال وانظر إلى صدره.",
+        "لقبه المحلي «المدينة بلا قلب»."
+      ],
+      "story": "في 14 مايو 1940 دمّرت القاذفات الألمانية مركز روتردام الذي يعود إلى العصور الوسطى. مات نحو 900 شخص وفقد عشرات الآلاف بيوتهم، واستسلمت هولندا في اليوم التالي. رأى النحات أوسيب زادكين الأنقاض سنة 1947 فصنع هذا التمثال الذي كُشف عنه سنة 1953: إنسان في مكان قلبه فجوة، كما فقدت المدينة قلبها.",
+      "facts": [
+        {
+          "value": "14 مايو 1940",
+          "label": "القصف"
+        },
+        {
+          "value": "~900",
+          "label": "قتيل"
+        },
+        {
+          "value": "1953",
+          "label": "الكشف عن التمثال"
+        }
+      ]
+    }
+  }
+}

@@ -15,8 +15,6 @@ import java.util.List;
 public interface BookingRepository extends JpaRepository<Booking, String> {
     Page<Booking> findByUser(User user, Pageable pageable);
     List<Booking> findByExperienceAndStatus(Experience experience, String status);
-    List<Booking> findByExperienceAndStatusIn(Experience experience, List<String> statuses);
-    long countByExperienceAndStatusIn(Experience experience, List<String> statuses);
 
     /** Seats held on a listing. Join requests awaiting the host hold none. */
     @Query("SELECT COALESCE(SUM(b.seats), 0) FROM Booking b WHERE b.experience = :experience AND b.status IN ('pending', 'confirmed')")

@@ -9,11 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BusinessRepository extends JpaRepository<Business, String> {
     List<Business> findByOwner(User owner);
-    Optional<Business> findFirstByOwnerOrderByCreatedAtAsc(User owner);
 
     @Query("SELECT b FROM Business b WHERE " +
            "b.status = 'approved' " +

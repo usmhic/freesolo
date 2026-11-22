@@ -1,7 +1,7 @@
 "use server";
 
 import { z } from "zod";
-import { apiGet, apiPost, ApiError } from "@/lib/api-client";
+import { apiGet, apiPost, ApiError } from "@/lib/server-api";
 import { validate } from "@/lib/validate";
 
 /**

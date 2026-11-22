@@ -2,6 +2,7 @@
   "title": "FreeSolo Help Center",
   "pages": [
     "index",
+    "play",
     "joining",
     "exploring",
     "booking",
@@ -11,6 +12,7 @@
     "reviews",
     "notifications",
     "profile",
-    "faq"
+    "faq",
+    "photo-credits"
   ]
 }

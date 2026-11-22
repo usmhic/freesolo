@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { requireDashboardUser } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import { cn } from "@/lib/cn";
 import { updateBooking, deleteBooking } from "../../actions";
 import { ActionButton } from "../../_components/action-button";

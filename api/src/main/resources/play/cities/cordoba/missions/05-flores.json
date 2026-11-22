@@ -1,0 +1,143 @@
+{
+  "id": "cordoba-flores",
+  "lat": 37.88,
+  "lng": -4.7791,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "flowers",
+    "flower pots",
+    "flowerpots",
+    "pots",
+    "geraniums",
+    "carnations",
+    "plants",
+    "macetas",
+    "flores",
+    "fleurs",
+    "pots de fleurs",
+    "géraniums",
+    "oeillets",
+    "geranios",
+    "claveles",
+    "زهور",
+    "ورود",
+    "أزهار",
+    "أصص",
+    "نباتات"
+  ],
+  "rubric": "Correct if the player says flowers, flowerpots or plants (geraniums, carnations).",
+  "sources": [
+    {
+      "label": "Calleja de las Flores — Córdoba tourism",
+      "url": "https://turismodecordoba.org/calleja-de-las-flores-alley-of-the-flowers"
+    }
+  ],
+  "text": {
+    "en": {
+      "title": "The street of flowers",
+      "place": "Calleja de las Flores",
+      "era": "Every May",
+      "hook": "Find the narrow, whitewashed Calleja de las Flores near the Mosque–Cathedral. Walk to the little square at its end, then turn around.",
+      "challenge": "What covers the white walls of the alley?",
+      "hints": [
+        "Look up at the walls, not the ground.",
+        "They're bright red and hang all over the walls."
+      ],
+      "story": "Córdoba's houses are built around cool inner patios — a tradition with Roman and Islamic roots — and families fill them with pots of geraniums and carnations. Every May the city holds its Patios Festival, when people open their courtyards to visitors; it is recognised by UNESCO. And from the end of this alley, the bell tower of the Mosque–Cathedral is framed perfectly between the white walls.",
+      "facts": [
+        {
+          "value": "May",
+          "label": "Patios Festival"
+        },
+        {
+          "value": "UNESCO",
+          "label": "recognised"
+        },
+        {
+          "value": "Geraniums",
+          "label": "& carnations"
+        }
+      ]
+    },
+    "fr": {
+      "title": "La rue des fleurs",
+      "place": "Calleja de las Flores",
+      "era": "Chaque mois de mai",
+      "hook": "Trouvez l'étroite Calleja de las Flores, blanchie à la chaux, près de la mosquée-cathédrale. Marchez jusqu'à la petite place au bout, puis retournez-vous.",
+      "challenge": "Qu'est-ce qui couvre les murs blancs de la ruelle ?",
+      "hints": [
+        "Regardez les murs, pas le sol.",
+        "Ils sont rouge vif et accrochés partout aux murs."
+      ],
+      "story": "Les maisons de Cordoue sont bâties autour de patios frais — une tradition aux racines romaines et islamiques — que les familles remplissent de pots de géraniums et d'œillets. Chaque mois de mai, la ville fête ses patios : les habitants ouvrent leurs cours aux visiteurs, une fête reconnue par l'UNESCO. Et du bout de cette ruelle, le clocher de la mosquée-cathédrale est parfaitement encadré entre les murs blancs.",
+      "facts": [
+        {
+          "value": "Mai",
+          "label": "fête des Patios"
+        },
+        {
+          "value": "UNESCO",
+          "label": "reconnue"
+        },
+        {
+          "value": "Géraniums",
+          "label": "et œillets"
+        }
+      ]
+    },
+    "es": {
+      "title": "La calle de las flores",
+      "place": "Calleja de las Flores",
+      "era": "Cada mayo",
+      "hook": "Busca la estrecha y encalada Calleja de las Flores, cerca de la Mezquita-Catedral. Camina hasta la placita del final y date la vuelta.",
+      "challenge": "¿Qué cubre las paredes blancas de la calleja?",
+      "hints": [
+        "Mira las paredes, no el suelo.",
+        "Son de un rojo vivo y cuelgan por todas las paredes."
+      ],
+      "story": "Las casas de Córdoba se construyen alrededor de patios frescos —una tradición de raíces romanas e islámicas— que las familias llenan de macetas de geranios y claveles. Cada mayo la ciudad celebra la Fiesta de los Patios, en la que los vecinos abren sus patios a los visitantes; está reconocida por la UNESCO. Y desde el final de esta calleja, la torre de la Mezquita-Catedral queda perfectamente enmarcada entre las paredes blancas.",
+      "facts": [
+        {
+          "value": "Mayo",
+          "label": "Fiesta de los Patios"
+        },
+        {
+          "value": "UNESCO",
+          "label": "reconocida"
+        },
+        {
+          "value": "Geranios",
+          "label": "y claveles"
+        }
+      ]
+    },
+    "ar": {
+      "title": "زقاق الزهور",
+      "place": "زقاق الزهور (كاييخا دي لاس فلوريس)",
+      "era": "كل شهر مايو",
+      "hook": "ابحث عن زقاق الزهور الضيق المطلي بالجير قرب المسجد-الكاتدرائية. امشِ حتى الساحة الصغيرة في آخره، ثم استدر.",
+      "challenge": "ما الذي يغطي الجدران البيضاء في الزقاق؟",
+      "hints": [
+        "انظر إلى الجدران، لا إلى الأرض.",
+        "إنها حمراء زاهية ومعلّقة على الجدران في كل مكان."
+      ],
+      "story": "تُبنى بيوت قرطبة حول أفنية باردة — تقليد له جذور رومانية وإسلامية — تملؤها العائلات بأصص الجيرانيوم والقرنفل. وفي كل مايو تحتفل المدينة بمهرجان الأفنية، فيفتح الأهالي أفنيتهم للزوار، وهو مهرجان تعترف به اليونسكو. ومن آخر هذا الزقاق يظهر برج المسجد-الكاتدرائية مؤطرًا تمامًا بين الجدران البيضاء.",
+      "facts": [
+        {
+          "value": "مايو",
+          "label": "مهرجان الأفنية"
+        },
+        {
+          "value": "اليونسكو",
+          "label": "اعتراف"
+        },
+        {
+          "value": "الجيرانيوم",
+          "label": "والقرنفل"
+        }
+      ]
+    }
+  }
+}

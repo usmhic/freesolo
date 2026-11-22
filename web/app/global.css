@@ -134,6 +134,14 @@
 @utility container-page {
   @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
 }
+/* A swipeable row on phones that becomes a grid from `sm` up; pair with sm:grid-cols-*. */
+@utility rail {
+  @apply -mx-4 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:overflow-visible sm:px-0 sm:pb-0;
+  scrollbar-width: none;
+}
+@utility rail-item {
+  @apply flex w-[80%] max-w-80 shrink-0 snap-start flex-col sm:w-auto sm:max-w-none;
+}
 
 /* FreeSoloLogo brand mark — swap light/dark variants with the page theme. */
 .logo-mark-dark {
@@ -150,6 +158,7 @@
 
 /* Leaflet sits under our own UI; keep its controls in the brand. */
 .leaflet-container {
+  direction: ltr; /* maps don't mirror in right-to-left languages */
   font-family: var(--font-body), system-ui, sans-serif;
   background: #E9EEF1;
 }
@@ -164,6 +173,25 @@
 }
 .leaflet-bar a {
   color: var(--navy) !important;
+}
+
+/* Arabic: one typeface for body and headings, no Latin letter-spacing, and
+   arrows that point the way the page reads. */
+html[lang="ar"] {
+  --font-body: var(--font-arabic);
+  --font-display: var(--font-arabic);
+}
+html[lang="ar"] body * {
+  letter-spacing: normal !important;
+}
+:is(.lucide-arrow-right, .lucide-arrow-left, .lucide-chevron-right, .lucide-chevron-left):dir(rtl) {
+  transform: scaleX(-1);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

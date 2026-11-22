@@ -13,12 +13,11 @@ The workspace uses distinct ports so all three products can run together:
 | Expenn | 3001 | 5000 | 8082 | 5433 | 9010 | 9011 |
 | FreeSolo | 3002 | 8080 | 8083 | 5434 | 9020 | 9021 |
 
-Database and storage usernames match the product (`skaddosh`, `expenn`, or
-`freesolo`). Read their passwords from your local `.env`. Expenn uses the same
-`JWT_SECRET` / `Jwt__Secret`, `MINIO_PASSWORD` / `Storage__SecretKey`, and
-`RABBITMQ_PASSWORD` / `RabbitMq__Password`. Keep each pair synchronized. FreeSolo
-keeps one name per value: `scripts/with-root-env.mjs` passes `APP_URL` on as
-`NEXT_PUBLIC_APP_URL` and `FRONTEND_URL`, and `MINIO_PASSWORD` as `MINIO_SECRET_KEY`.
+Database and storage usernames match the product (`POSTGRES_USER` and
+`MINIO_USER`, both `freesolo`); their passwords live in your local `.env`.
+FreeSolo keeps one name per value: `scripts/with-root-env.mjs` and Compose pass
+`APP_URL` on as `NEXT_PUBLIC_APP_URL` and `FRONTEND_URL`, and `MINIO_USER` /
+`MINIO_PASSWORD` as the API's `MINIO_ACCESS_KEY` / `MINIO_SECRET_KEY`.
 
 `DATABASE_URL` points to the host database for native development. Compose maps
 the same credentials to its internal service names. Port settings control host

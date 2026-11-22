@@ -35,7 +35,7 @@ export default function TermsPage() {
         </Section>
 
         <Section title="2. Eligibility & accounts">
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>You must be at least 18 years old to create an account or book an experience.</li>
             <li>You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account.</li>
             <li>Hosts and businesses must be approved through our application process before listing experiences.</li>
@@ -44,7 +44,7 @@ export default function TermsPage() {
         </Section>
 
         <Section title="3. Bookings & cancellations">
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Booking an experience reserves a seat subject to the host&rsquo;s availability and the details shown at checkout.</li>
             <li>Cancellation terms are set per experience and shown before you confirm a booking.</li>
             <li>Hosts may cancel an experience (e.g. for low attendance or unforeseen circumstances); affected travelers will be notified.</li>
@@ -54,7 +54,7 @@ export default function TermsPage() {
 
         <Section title="4. User conduct">
           <p>You agree not to:</p>
-          <ul className="list-disc space-y-1.5 pl-5">
+          <ul className="list-disc space-y-1.5 ps-5">
             <li>Violate any applicable law or the rights of others</li>
             <li>Post false, misleading, or fraudulent listings, reviews, or content</li>
             <li>Harass, threaten, or discriminate against other users</li>

@@ -1,18 +1,20 @@
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import './global.css';
-import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter, IBM_Plex_Sans_Arabic } from 'next/font/google';
 import { cn } from '@/lib/cn';
 import type { Metadata } from 'next';
+import { isRtl } from '@/lib/i18n/config';
+import { I18nProvider } from '@/lib/i18n/client';
+import { getDictionary, getLang } from '@/lib/i18n/server';
 
-export const metadata: Metadata = {
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getDictionary(await getLang());
+  return { ...metadata, title: { default: t.meta.title, template: '%s | FreeSolo' }, description: t.meta.description };
+}
+
+const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
   applicationName: 'FreeSolo',
-  title: {
-    default: 'FreeSolo — small-group trips for solo travelers',
-    template: '%s | FreeSolo',
-  },
-  description:
-    'Join small, vetted groups of solo travelers on trips hosted by members — and plan your own route on the map.',
   authors: [{ name: 'usmhic', url: 'https://github.com/usmhic' }],
   creator: 'usmhic',
   publisher: 'usmhic',
@@ -38,11 +40,27 @@ const body = Inter({
   variable: '--font-body',
 });
 
-export default function Layout({ children }: LayoutProps<'/'>) {
+// Arabic pages switch both faces to this (see global.css).
+const arabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic'],
+  variable: '--font-arabic',
+  weight: ['400', '500', '600', '700'],
+});
+
+export default async function Layout({ children }: LayoutProps<'/'>) {
+  const lang = await getLang();
+  const dict = await getDictionary(lang);
   return (
-    <html lang="en" className={cn(display.variable, body.variable, 'font-sans')} suppressHydrationWarning>
+    <html
+      lang={lang}
+      dir={isRtl(lang) ? 'rtl' : 'ltr'}
+      className={cn(display.variable, body.variable, arabic.variable, 'font-sans')}
+      suppressHydrationWarning
+    >
       <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
+        <I18nProvider lang={lang} dict={dict}>
+          <RootProvider dir={isRtl(lang) ? 'rtl' : 'ltr'}>{children}</RootProvider>
+        </I18nProvider>
       </body>
     </html>
   );

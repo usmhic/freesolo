@@ -1,0 +1,249 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { ArrowRight, CalendarDays, Loader2, Lock, Map as MapIcon, Minus, Plus, Sparkles, Trophy } from "lucide-react";
+import { cn } from "@/lib/cn";
+import { api, ClientApiError } from "@/lib/browser-api";
+import { RouteMap } from "@/components/map/route-map";
+import { useI18n } from "@/lib/i18n/client";
+import { cityGradient, readGuest, serverGuest, subscribeGuest, type JourneyView, type LessonCard } from "@/lib/play";
+import { LevelPath } from "./level-path";
+import { PlacePhoto } from "./place-photo";
+import { RankChip } from "./star-badge";
+import { usePlayer } from "./use-player";
+import { BackLink } from "@/components/site/back-link";
+
+const TRIP_KEY = "freesolo.play.trips.v2";
+type Trip = { days: number; startDate: string };
+
+function loadTrip(cityId: string): Trip {
+  try {
+    const all = JSON.parse(localStorage.getItem(TRIP_KEY) ?? "{}");
+    return { days: 2, startDate: "", ...(all[cityId] ?? {}) };
+  } catch {
+    return { days: 2, startDate: "" };
+  }
+}
+function saveTrip(cityId: string, trip: Trip) {
+  try {
+    const all = JSON.parse(localStorage.getItem(TRIP_KEY) ?? "{}");
+    localStorage.setItem(TRIP_KEY, JSON.stringify({ ...all, [cityId]: trip }));
+  } catch { /* not saved */ }
+}
+
+function dayDate(startDate: string, day: number) {
+  if (!startDate) return null;
+  const d = new Date(startDate + "T12:00:00");
+  d.setDate(d.getDate() + day - 1);
+  return d;
+}
+
+/** Step two of the game: a city's journey — its story, your days, and the level path. */
+export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolean }) {
+  const { t, num, day: fmtDay, fill } = useI18n();
+  const player = usePlayer(signedIn);
+  const guest = useSyncExternalStore(subscribeGuest, readGuest, serverGuest);
+  const [trip, setTrip] = useState<Trip | null>(null);
+  const [journey, setJourney] = useState<JourneyView | null>(null);
+  const [notFound, setNotFound] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [unlocking, setUnlocking] = useState(false);
+  const [showMap, setShowMap] = useState(false);
+  const [version, setVersion] = useState(0);
+
+  // The trip lives in this browser; read it once on the client.
+  useEffect(() => {
+    const t = loadTrip(cityId);
+    const id = setTimeout(() => setTrip(t), 0);
+    return () => clearTimeout(id);
+  }, [cityId]);
+
+  useEffect(() => {
+    if (!trip) return;
+    let live = true;
+    api<JourneyView>("/api/play/journeys", {
+      method: "POST",
+      body: JSON.stringify({ cityId, days: trip.days, startDate: trip.startDate || null }),
+    })
+      .then((j) => { if (live) { setJourney(j); setError(null); } })
+      .catch((e) => {
+        if (!live) return;
+        if (e instanceof ClientApiError && e.status === 404) setNotFound(true);
+        else setError(e instanceof Error ? e.message : "Couldn't load this city");
+      });
+    return () => { live = false; };
+  }, [cityId, trip, version]);
+
+  function changeTrip(next: Trip) {
+    setTrip(next);
+    saveTrip(cityId, next);
+  }
+
+  async function unlock() {
+    setUnlocking(true);
+    try {
+      await api(`/api/play/cities/${cityId}/unlock`, { method: "POST" });
+      player.refresh();
+      setVersion((v) => v + 1);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Couldn't unlock this city");
+    } finally {
+      setUnlocking(false);
+    }
+  }
+
+  if (notFound) {
+    return (
+      <div className="container-page py-20 text-center">
+        <h1 className="font-display text-3xl font-extrabold">{t.city.notFound}</h1>
+        <Link href="/play" className="btn-primary mt-6">{t.city.pickAnother}</Link>
+      </div>
+    );
+  }
+  if (!journey || !trip) {
+    return <div className="flex justify-center py-32 text-ink-soft"><Loader2 className="size-6 animate-spin" /></div>;
+  }
+
+  const city = journey.city;
+  const solvedHere = (l: LessonCard) => l.solved || !!guest.solved[l.id];
+  const days = journey.days.map((d) => ({ ...d, lessons: d.lessons.map((l) => ({ ...l, solved: solvedHere(l) })) }));
+  const all = days.flatMap((d) => d.lessons);
+  const numbers = new Map(all.map((l, i) => [l.id, i + 1]));
+  const solved = all.filter((l) => l.solved).length;
+  const locked = all.filter((l) => l.locked);
+  const next = all.find((l) => !l.solved && !l.locked) ?? null;
+  const freeDone = all.filter((l) => l.free).every((l) => l.solved);
+  const complete = solved === all.length;
+  const rank = player.rank;
+
+  const packCard = locked.length > 0 && (
+    <div id="pack" className={cn("card scroll-mt-24 overflow-hidden", freeDone && "ring-2 ring-sunset")}>
+      <div className="flex items-start gap-4 p-5">
+        <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-navy text-white dark:bg-sunset"><Lock className="size-5" /></span>
+        <div>
+          <p className="font-display text-lg font-bold">{fill(freeDone ? t.city.packTitleDone : t.city.packTitle, { city: city.name })}</p>
+          <p className="mt-1 text-sm text-ink-soft">
+            {fill(t.city.packLead, { n: locked.length })}{" "}
+            <span className="font-semibold text-ink">{t.city.packPilot}</span>
+          </p>
+        </div>
+      </div>
+      <div className="border-t border-line p-4">
+        {signedIn ? (
+          <button type="button" onClick={unlock} disabled={unlocking} className="btn-primary w-full">
+            {unlocking ? <Loader2 className="size-4 animate-spin" /> : <Sparkles className="size-4" />} {fill(t.city.unlock, { n: locked.length })}
+          </button>
+        ) : (
+          <Link href={`/sign-in?next=${encodeURIComponent(`/play/${cityId}`)}`} className="btn-dark w-full">{t.city.signInToUnlock}</Link>
+        )}
+      </div>
+    </div>
+  );
+
+  const map = (
+    <div className="isolate h-[320px] overflow-hidden rounded-3xl border border-line lg:h-[520px]">
+      <RouteMap
+        stops={all.map((l) => ({ name: l.place, lat: l.lat, lng: l.lng }))}
+        line={journey.route?.coordinates ?? null}
+        estimated={journey.route?.estimated}
+        fitMaxZoom={16}
+        className="h-full w-full"
+      />
+    </div>
+  );
+
+  return (
+    <div>
+      {/* City hero */}
+      <section className="relative overflow-hidden text-white" style={{ background: cityGradient(city) }}>
+        <PlacePhoto photo={city.photo} width={1280} alt="" className="absolute inset-0" priority />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, ${city.colors[0]}F2 0%, ${city.colors[0]}B3 45%, ${city.colors[0]}33 100%)` }} />
+        {city.photo && (
+          <a href={city.photo.page} target="_blank" rel="noreferrer" className="absolute bottom-2 end-3 z-10 max-w-[60%] truncate py-1 text-[11px] text-white/70 hover:text-white">
+            📷 {city.photo.author} · {city.photo.license}
+          </a>
+        )}
+        <div className="container-page relative z-10 py-8 sm:py-12">
+          <BackLink href="/play" onDark>{t.city.allCities}</BackLink>
+          <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">{city.country}</p>
+          <h1 className="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{city.name}</h1>
+          <p className="mt-2 font-display text-xl font-bold text-white/90">{city.tagline}</p>
+          <p className="mt-4 line-clamp-3 max-w-2xl leading-relaxed text-white/90 sm:line-clamp-none">{city.intro}</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {next ? (
+              <Link href={`/play/lessons/${next.id}`} className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">
+                {solved === 0 ? t.city.start : fill(t.city.continue, { n: numbers.get(next.id) ?? 1 })} <ArrowRight className="size-4" />
+              </Link>
+            ) : complete ? (
+              <Link href="/sky" className="btn bg-white px-6 py-3 text-[15px] text-navy"><Trophy className="size-4" /> {t.city.complete}</Link>
+            ) : locked.length > 0 ? (
+              <a href="#pack" className="btn bg-white px-6 py-3 text-[15px] text-navy shadow-lg hover:bg-white/90">
+                <Lock className="size-4" /> {fill(t.city.unlockMore, { n: locked.length })}
+              </a>
+            ) : null}
+            <span className="rounded-full bg-black/25 px-3.5 py-2 text-sm font-semibold backdrop-blur">
+              {fill(t.city.solvedToWin, { solved, total: all.length, points: num(all.filter((l) => !l.solved).reduce((n, l) => n + l.points, 0)) })}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <div className="container-page py-8">
+        {/* Trip controls */}
+        {/* Stacked rows on phones, one line from `sm` up. */}
+        <div className="card grid gap-3 p-4 sm:flex sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-4 sm:p-5">
+          <div className="flex items-center justify-between gap-3">
+            <span className="text-sm font-semibold">{fill(t.city.days, { city: city.name })}</span>
+            <span className="flex items-center gap-2">
+              <button type="button" aria-label={t.city.fewer} onClick={() => changeTrip({ ...trip, days: Math.max(1, trip.days - 1) })} className="btn-outline size-10 p-0"><Minus className="size-4" /></button>
+              <span className="w-6 text-center font-display text-lg font-bold" aria-live="polite">{trip.days}</span>
+              <button type="button" aria-label={t.city.more} onClick={() => changeTrip({ ...trip, days: Math.min(7, trip.days + 1) })} className="btn-outline size-10 p-0"><Plus className="size-4" /></button>
+            </span>
+          </div>
+          <label className="flex items-center justify-between gap-3">
+            <span className="text-sm font-semibold">{t.city.arriving}</span>
+            <span className="relative min-w-0">
+              <CalendarDays className="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
+              <input type="date" value={trip.startDate} onChange={(e) => changeTrip({ ...trip, startDate: e.target.value })} className="field h-10 w-auto max-w-44 py-0 ps-9" />
+            </span>
+          </label>
+          <div className="flex items-center justify-between gap-2 border-t border-line pt-3 sm:ms-auto sm:border-0 sm:pt-0">
+            {rank && <RankChip rankKey={rank.key} stardust={player.stardust} />}
+            <button type="button" onClick={() => setShowMap((v) => !v)} className="btn-outline h-10 px-4 py-0 lg:hidden" aria-expanded={showMap}>
+              <MapIcon className="size-4" /> {showMap ? t.city.hideMap : t.city.map}
+            </button>
+          </div>
+        </div>
+
+        {complete && (
+          <div className="mt-6 flex items-center gap-4 rounded-3xl bg-sunset-soft p-5">
+            <Trophy className="size-8 shrink-0 text-sunset" />
+            <p className="text-ink"><span className="font-display font-bold">{fill(t.city.completeBanner, { city: city.name })}</span> {t.city.completeBannerLead}</p>
+          </div>
+        )}
+        {error && <p className="mt-4 text-sm text-red-600 dark:text-red-400">{error}</p>}
+
+        <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1.05fr]">
+          <div className="min-w-0 space-y-8">
+            {showMap && <div className="lg:hidden">{map}</div>}
+            {days.map((d) => (
+              <section key={d.day} aria-label={`Day ${d.day}`}>
+                <h2 className="mb-2 flex items-baseline gap-2">
+                  <span className="text-xs font-bold uppercase tracking-[0.14em] text-sunset">{fill(t.city.day, { n: d.day })}</span>
+                  {dayDate(trip.startDate, d.day) && <span className="text-xs text-ink-soft">{fmtDay(dayDate(trip.startDate, d.day)!)}</span>}
+                </h2>
+                <LevelPath lessons={d.lessons} numbers={numbers} currentId={next?.id ?? null} />
+              </section>
+            ))}
+            {packCard}
+          </div>
+          <div className="hidden lg:sticky lg:top-24 lg:block lg:self-start">
+            {map}
+            <p className="mt-2 text-xs text-ink-soft">{t.city.walkingOrder}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

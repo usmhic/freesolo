@@ -2,12 +2,13 @@
 
 # 🧗 FreeSolo
 
-### Solo travel, together.
+### Every street has a story. Play it.
 
-**Small-group trips and local experiences for solo travelers, hosted by vetted members.**
-No big-bus tours. No stranger-danger group chats. Just a handful of people
-sharing five days island-hopping, a food crawl, or a sunrise hike — with a host
-who picked the group and knows exactly where to go.
+**A history game for the city you're in.** Tell FreeSolo where you're travelling
+and it turns the city into a walk of short levels: look closely at a real place,
+answer the challenge, and unlock the story of what happened there. Earn stardust,
+climb from Nebula to Black Hole, and — when you want company — join a small group
+trip with other solo travelers.
 
 <br />
 
@@ -51,18 +52,23 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 
 ## ✨ How it works, in one breath
 
-1. **You apply** to join — about five minutes, reviewed by a human.
-2. **You explore** multi-day group trips and few-hour local experiences.
-3. **You ask to join** with a short intro. On most trips the host picks the group; everything
-   confirms once enough people are in.
-4. **You go, you connect, you review.** And when you're planning a trip anyway — host it, and choose
-   who comes along.
+1. **Tell it where.** Pick your city and how many days you're there.
+2. **Get your journey.** The city's levels, ordered into a walk and split across your days.
+3. **Solve on the spot.** Type what you found or snap a photo — answers are matched, and with AI
+   checking switched on, your own words, other languages and photos count too.
+4. **Learn and light a star.** The sourced story unlocks, you earn stardust, and your sky fills up.
+   Want company? Apply to join and travel with a small, vetted group.
+
+Playable now: Tangier, Porto, Córdoba, Rotterdam and Salzburg. The first levels in every city are free with no account. City packs unlock the rest (free during
+the pilot). Play in English, French, Spanish or Arabic. Lessons live in
+[`api/src/main/resources/play/cities`](./api/src/main/resources/play/cities), one JSON file per mission,
+and every fact cites a source. See the [content guide](./api/src/main/resources/play/README.md) to add a city or mission.
 
 ## 🗺️ What's inside
 
 | | Surface | Highlights |
 |---|---|---|
-| 🌍 | **Web** | Public site, trip pages with route maps, a route planner, Fumadocs help center, OG image generation |
+| 🌍 | **Web** | The city history game (Play, levels, My sky), group trip pages with route maps, a route planner, Fumadocs help center |
 | 🔐 | **Admin** | Applications, businesses, experiences, bookings, reviews, users, media, marketing |
 | 📱 | **Mobile** | Expo app with the trip and experience feed, trip routes, hosting and join requests, maps, notifications, and camera uploads |
 | ⚙️ | **API** | Spring Boot REST API — sole owner of auth, business rules, and the PostgreSQL schema |
@@ -75,6 +81,7 @@ Local setup, shared workspace ports, environment conventions, and `dev` workflow
 | API | Java 21, Spring Boot, Spring Security, Flyway, PostgreSQL |
 | Web | Next.js, React, TypeScript, Tailwind CSS, Leaflet, Fumadocs |
 | Maps | OpenRouteService (routing and place search, called by the API), OpenStreetMap tiles |
+| AI | Any model on OpenRouter (optional) judges game answers and photos, called by the API |
 | Mobile | Expo and React Native |
 | Storage | MinIO (S3-compatible) |
 | Delivery | Docker Compose, GitHub Actions, GHCR |
@@ -148,23 +155,20 @@ Full breakdown in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## 🔧 Configuration
 
-All Compose configuration lives in the ignored root `.env`. The tracked `.env.example` lists the
-required variable names with intentionally empty values; fill the local copy before starting the
-stack.
+All configuration lives in the ignored root `.env`. Copy [`.env.example`](./.env.example), set the
+three empty secrets (`POSTGRES_PASSWORD`, `JWT_SECRET`, `MINIO_PASSWORD`), and run
+`node scripts/check-env.mjs`. The template is grouped by what each setting is for:
 
-| Variable | Purpose |
+| Group | Variables |
 |---|---|
-| `APP_URL` | Public web URL and allowed browser origin |
-| `SPRING_BOOT_API_URL` | API URL for the web app when run natively (Compose uses its internal network) |
-| `MINIO_PUBLIC_URL` | Public MinIO URL returned for uploaded files |
-| `ADMIN_EMAIL` | Email that receives the administrator role |
-| `POSTGRES_PASSWORD` | PostgreSQL password |
-| `MINIO_PASSWORD` | MinIO password shared with the API |
-| `JWT_SECRET` | Signing secret shared by the API and web app |
+| App | `APP_URL` (public web URL), ports, and the API URL for the web and mobile apps |
+| Database | `POSTGRES_*` and `DATABASE_URL` (for running the API natively) |
+| Sign-in | `JWT_SECRET` (shared by the API and web app) and `ADMIN_EMAIL` (gets the admin role) |
+| File storage | `MINIO_*`; `MINIO_PUBLIC_URL` is returned for uploaded files |
+| Optional | `OPENROUTER_*` (AI answer checking), `ORS_API_KEY` (routing), `RESEND_API_KEY` (email), `EXPO_ACCESS_TOKEN` (push), `GOOGLE_*` / `APPLE_*` (social sign-in) |
 
-⚠️ Change every password and secret before deployment. Optional OpenRouteService, Resend,
-OAuth, and Expo keys are listed at the bottom of the template; other API settings have working
-defaults, documented in [api/README.md](./api/README.md).
+Optional services stay off while their keys are empty. ⚠️ Change every password and secret before
+deployment. Other API settings have working defaults, documented in [api/README.md](./api/README.md).
 
 ## Mobile apps
 

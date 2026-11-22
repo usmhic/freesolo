@@ -1,0 +1,45 @@
+{
+  "id": "salzburg",
+  "order": 5,
+  "emoji": "🎻",
+  "colors": [
+    "#3B2F5C",
+    "#E9C46A"
+  ],
+  "center": [
+    47.799,
+    13.045
+  ],
+  "photo": {
+    "url": "/play/photos/city-salzburg.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Salzburg_(48489551981).jpg",
+    "author": "Jorge Franganillo",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "name": "Salzburg",
+      "country": "Austria",
+      "tagline": "Salt, prince-archbishops and a child called Mozart",
+      "intro": "Salzburg means 'salt castle'. Salt made it rich, and for centuries its prince-archbishops ruled it like kings — building a fortress, a Baroque cathedral and gardens fit for a palace. Then a boy was born on Getreidegasse and the city found its soundtrack."
+    },
+    "fr": {
+      "name": "Salzbourg",
+      "country": "Autriche",
+      "tagline": "Le sel, les princes-archevêques et un enfant nommé Mozart",
+      "intro": "Salzbourg signifie « château du sel ». Le sel la rendit riche et, pendant des siècles, ses princes-archevêques la gouvernèrent comme des rois — bâtissant une forteresse, une cathédrale baroque et des jardins dignes d'un palais. Puis un garçon naquit dans la Getreidegasse, et la ville trouva sa bande-son."
+    },
+    "es": {
+      "name": "Salzburgo",
+      "country": "Austria",
+      "tagline": "Sal, príncipes-arzobispos y un niño llamado Mozart",
+      "intro": "Salzburgo significa «castillo de la sal». La sal la hizo rica y, durante siglos, sus príncipes-arzobispos la gobernaron como reyes: levantaron una fortaleza, una catedral barroca y jardines dignos de un palacio. Luego un niño nació en la Getreidegasse y la ciudad encontró su banda sonora."
+    },
+    "ar": {
+      "name": "سالزبورغ",
+      "country": "النمسا",
+      "tagline": "الملح والأمراء الأساقفة وطفل اسمه موزارت",
+      "intro": "اسم سالزبورغ يعني «قلعة الملح». أغناها الملح، وحكمها أمراؤها الأساقفة لقرون كأنهم ملوك — فبنوا قلعة وكاتدرائية باروكية وحدائق تليق بالقصور. ثم وُلد صبي في شارع غيترايدغاسه، فوجدت المدينة موسيقاها."
+    }
+  }
+}

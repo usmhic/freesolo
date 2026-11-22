@@ -10,6 +10,7 @@ const env = { ...local, ...process.env };
 // .env keeps one name per value; fill in the names each app reads.
 env.NEXT_PUBLIC_APP_URL ??= env.APP_URL;
 env.FRONTEND_URL ??= env.APP_URL;
+env.MINIO_ACCESS_KEY ??= env.MINIO_USER;
 env.MINIO_SECRET_KEY ??= env.MINIO_PASSWORD;
 const args = process.argv.slice(2);
 const app = args[0]?.startsWith('--') ? args.shift() : undefined;

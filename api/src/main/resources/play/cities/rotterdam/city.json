@@ -1,0 +1,45 @@
+{
+  "id": "rotterdam",
+  "order": 4,
+  "emoji": "⚓",
+  "colors": [
+    "#0B3D5C",
+    "#E4572E"
+  ],
+  "center": [
+    51.916,
+    4.48
+  ],
+  "photo": {
+    "url": "/play/photos/city-rotterdam.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:A_view_of_Rotterdam,_taken_from_the_roof_of_the_Maassilo,_Rotterdam,_The_Netherlands.jpg",
+    "author": "Rob Oo",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "name": "Rotterdam",
+      "country": "Netherlands",
+      "tagline": "The city that rebuilt itself as the future",
+      "intro": "On 14 May 1940 bombs flattened Rotterdam's old heart. Instead of copying the past, the city invented a new skyline — and kept a few survivors that tell the whole story, from Erasmus to the emigrant ships."
+    },
+    "fr": {
+      "name": "Rotterdam",
+      "country": "Pays-Bas",
+      "tagline": "La ville qui s'est reconstruite en avenir",
+      "intro": "Le 14 mai 1940, les bombes rasèrent le vieux cœur de Rotterdam. Plutôt que de copier le passé, la ville inventa un nouvel horizon — et garda quelques survivants qui racontent toute l'histoire, d'Érasme aux navires d'émigrants."
+    },
+    "es": {
+      "name": "Róterdam",
+      "country": "Países Bajos",
+      "tagline": "La ciudad que se reconstruyó como el futuro",
+      "intro": "El 14 de mayo de 1940 las bombas arrasaron el viejo corazón de Róterdam. En lugar de copiar el pasado, la ciudad inventó un nuevo horizonte y conservó algunos supervivientes que cuentan toda la historia, de Erasmo a los barcos de emigrantes."
+    },
+    "ar": {
+      "name": "روتردام",
+      "country": "هولندا",
+      "tagline": "المدينة التي أعادت بناء نفسها كمستقبل",
+      "intro": "في 14 مايو 1940 سوّت القنابل قلب روتردام القديم بالأرض. وبدل أن تنسخ الماضي، ابتكرت المدينة أفقًا جديدًا — واحتفظت ببضعة ناجين يروون القصة كلها، من إيراسموس إلى سفن المهاجرين."
+    }
+  }
+}

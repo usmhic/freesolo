@@ -1,0 +1,144 @@
+{
+  "id": "tangier-petit-socco",
+  "lat": 35.7854,
+  "lng": -5.8106,
+  "minutes": 10,
+  "points": 200,
+  "free": false,
+  "accepted": [
+    "international zone",
+    "interzone",
+    "tangier international zone",
+    "zone internationale",
+    "international city",
+    "internationalized zone",
+    "zona internacional",
+    "interzona",
+    "المنطقة الدولية",
+    "منطقة دولية",
+    "إنترزون"
+  ],
+  "rubric": "Correct if the player says the International Zone (or Interzone, or an internationally governed city).",
+  "sources": [
+    {
+      "label": "Tangier International Zone — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Tangier_International_Zone"
+    },
+    {
+      "label": "The International Zone: Expat Writers in Tangier — Culture Trip",
+      "url": "https://theculturetrip.com/africa/morocco/articles/the-international-zone-expat-writers-in-tangier/"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/tangier-petit-socco.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Morocco_Tangier_Petit_Socco.jpg",
+    "author": "Boubloub",
+    "license": "CC BY-SA 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "The Interzone",
+      "place": "Petit Socco",
+      "era": "1920s–1956",
+      "hook": "Sit for a moment in the little café square in the heart of the medina. Seventy years ago, spies, smugglers and writers sat at these same tables.",
+      "challenge": "From the 1920s until 1956 Tangier wasn't ruled by one country but by several together. What was this arrangement called?",
+      "hints": [
+        "Several foreign powers shared the job of running the city.",
+        "William Burroughs gave it a nickname that starts with 'Inter-'."
+      ],
+      "story": "For about three decades Tangier was the Tangier International Zone, governed jointly by foreign powers. Low taxes and loose rules drew bankers, smugglers and spies — and writers. Paul Bowles settled here in 1947, and William S. Burroughs, who called the city 'Interzone', followed in the 1950s. The cafés of the Petit Socco were their meeting place. The zone ended in 1956, when Tangier rejoined independent Morocco.",
+      "facts": [
+        {
+          "value": "1920s–56",
+          "label": "International Zone"
+        },
+        {
+          "value": "1947",
+          "label": "Paul Bowles arrives"
+        },
+        {
+          "value": "Interzone",
+          "label": "Burroughs' nickname"
+        }
+      ]
+    },
+    "fr": {
+      "title": "L'Interzone",
+      "place": "Petit Socco",
+      "era": "années 1920–1956",
+      "hook": "Asseyez-vous un moment sur la petite place aux cafés, au cœur de la médina. Il y a soixante-dix ans, espions, contrebandiers et écrivains s'asseyaient aux mêmes tables.",
+      "challenge": "Des années 1920 à 1956, Tanger n'était pas gouvernée par un pays mais par plusieurs à la fois. Comment s'appelait cet arrangement ?",
+      "hints": [
+        "Plusieurs puissances étrangères se partageaient la gestion de la ville.",
+        "William Burroughs lui donna un surnom qui commence par « Inter- »."
+      ],
+      "story": "Pendant une trentaine d'années, Tanger fut la zone internationale de Tanger, gouvernée conjointement par des puissances étrangères. Impôts bas et règles souples attirèrent banquiers, contrebandiers et espions — et écrivains. Paul Bowles s'y installa en 1947, et William S. Burroughs, qui appelait la ville « Interzone », suivit dans les années 1950. Les cafés du Petit Socco étaient leur point de rencontre. La zone prit fin en 1956, quand Tanger rejoignit le Maroc indépendant.",
+      "facts": [
+        {
+          "value": "1920s–56",
+          "label": "zone internationale"
+        },
+        {
+          "value": "1947",
+          "label": "arrivée de Paul Bowles"
+        },
+        {
+          "value": "Interzone",
+          "label": "le surnom de Burroughs"
+        }
+      ]
+    },
+    "es": {
+      "title": "La Interzona",
+      "place": "Zoco Chico",
+      "era": "años 1920–1956",
+      "hook": "Siéntate un momento en la placita de cafés del corazón de la medina. Hace setenta años, espías, contrabandistas y escritores se sentaban en estas mismas mesas.",
+      "challenge": "Desde los años veinte hasta 1956, Tánger no la gobernaba un país, sino varios a la vez. ¿Cómo se llamaba aquel régimen?",
+      "hints": [
+        "Varias potencias extranjeras compartían el gobierno de la ciudad.",
+        "William Burroughs le dio un apodo que empieza por «Inter-»."
+      ],
+      "story": "Durante unas tres décadas, Tánger fue la Zona Internacional de Tánger, gobernada conjuntamente por potencias extranjeras. Los impuestos bajos y las normas laxas atrajeron a banqueros, contrabandistas y espías… y a escritores. Paul Bowles se instaló aquí en 1947, y William S. Burroughs, que llamaba a la ciudad «Interzona», llegó en los años cincuenta. Los cafés del Zoco Chico eran su punto de encuentro. La zona terminó en 1956, cuando Tánger volvió al Marruecos independiente.",
+      "facts": [
+        {
+          "value": "1920–56",
+          "label": "Zona Internacional"
+        },
+        {
+          "value": "1947",
+          "label": "llega Paul Bowles"
+        },
+        {
+          "value": "Interzona",
+          "label": "el apodo de Burroughs"
+        }
+      ]
+    },
+    "ar": {
+      "title": "المنطقة الدولية",
+      "place": "السوق الداخلي",
+      "era": "العشرينيات–1956",
+      "hook": "اجلس قليلًا في ساحة المقاهي الصغيرة في قلب المدينة العتيقة. قبل سبعين عامًا جلس جواسيس ومهربون وكتّاب إلى الطاولات نفسها.",
+      "challenge": "من عشرينيات القرن العشرين حتى 1956 لم تكن طنجة تحت حكم دولة واحدة بل عدة دول معًا. ماذا كان يسمّى هذا النظام؟",
+      "hints": [
+        "تقاسمت عدة قوى أجنبية إدارة المدينة.",
+        "أطلق عليها ويليام بوروز لقبًا يبدأ بـ«إنتر»."
+      ],
+      "story": "طوال نحو ثلاثة عقود كانت طنجة «المنطقة الدولية»، تحكمها قوى أجنبية بشكل مشترك. فجذبت الضرائب المنخفضة والقوانين المرنة المصرفيين والمهربين والجواسيس — والكتّاب أيضًا. استقر فيها بول بولز سنة 1947، ولحق به في الخمسينيات ويليام س. بوروز الذي سمّاها «إنترزون». وكانت مقاهي السوق الداخلي ملتقاهم. وانتهت المنطقة الدولية سنة 1956 حين عادت طنجة إلى المغرب المستقل.",
+      "facts": [
+        {
+          "value": "العشرينيات–56",
+          "label": "المنطقة الدولية"
+        },
+        {
+          "value": "1947",
+          "label": "وصول بول بولز"
+        },
+        {
+          "value": "إنترزون",
+          "label": "لقب بوروز"
+        }
+      ]
+    }
+  }
+}

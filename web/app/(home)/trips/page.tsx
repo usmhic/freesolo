@@ -4,6 +4,7 @@ import { ArrowRight, Map, Search, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { getListings, type ListingKind } from "@/lib/listings";
 import { EmptyListings, ListingCard } from "@/components/listing-card";
+import { SectionHeading } from "@/components/site/section-heading";
 
 export const metadata: Metadata = {
   title: "Group trips & experiences",
@@ -39,26 +40,26 @@ export default async function TripsPage({ searchParams }: { searchParams: Promis
     <>
       <section className="border-b border-line">
         <div className="container-page pb-8 pt-10 sm:pt-14">
-          <p className="eyebrow">Leaving soon</p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{active.heading}</h1>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            Hosted by vetted members and capped at twelve travelers. Members ask to join from the app — on
-            most trips, the host picks the group.
-          </p>
+          <SectionHeading
+            as="h1"
+            eyebrow="Leaving soon"
+            title={active.heading}
+            lead="Hosted by vetted members and capped at twelve travelers. Members ask to join from the app — on most trips, the host picks the group."
+          />
 
           <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <form action="/trips" className="relative w-full max-w-md" role="search">
               {active.id !== "all" && <input type="hidden" name="kind" value={active.id} />}
-              <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
+              <Search className="pointer-events-none absolute start-4 top-1/2 size-4 -translate-y-1/2 text-ink-soft" />
               <input
                 type="search"
                 name="q"
                 defaultValue={q}
                 placeholder="Search a city or region"
                 aria-label="Search by city or region"
-                className="field h-12 rounded-full pl-11 pr-28"
+                className="field h-12 rounded-full ps-11 pe-28"
               />
-              <button type="submit" className="btn-dark btn-sm absolute right-1.5 top-1/2 -translate-y-1/2">
+              <button type="submit" className="btn-dark absolute end-1.5 top-1/2 h-9 -translate-y-1/2 px-4 py-0">
                 Search
               </button>
             </form>
@@ -91,13 +92,13 @@ export default async function TripsPage({ searchParams }: { searchParams: Promis
             {q && (
               <>
                 {" "}matching <span className="font-semibold text-ink">“{q}”</span>{" "}
-                <Link href={href(active.id, "")} className="ml-1 inline-flex items-center gap-1 text-sunset hover:underline">
+                <Link href={href(active.id, "")} className="ms-1 inline-flex items-center gap-1 text-sunset hover:underline">
                   <X className="size-3.5" /> clear
                 </Link>
               </>
             )}
           </p>
-          <Link href="/planner" className="btn-ghost btn-sm">
+          <Link href="/planner" className="btn-ghost -me-3 px-3">
             <Map className="size-4" /> Plan your own route
           </Link>
         </div>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { requireAdmin } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import { cn } from "@/lib/cn";
 import {
   setUserRole, setUserStatus, updateUser, deleteUser, sendUserNotification,

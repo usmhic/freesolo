@@ -1,0 +1,144 @@
+{
+  "id": "rotterdam-cube-houses",
+  "lat": 51.9201,
+  "lng": 4.4907,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "45",
+    "45 degrees",
+    "forty five",
+    "forty five degrees",
+    "45 deg",
+    "quarante-cinq",
+    "quarante cinq",
+    "cuarenta y cinco",
+    "خمس وأربعون",
+    "خمسة وأربعون",
+    "45 درجة"
+  ],
+  "rubric": "Correct if the player says 45 degrees.",
+  "sources": [
+    {
+      "label": "What are Rotterdam's Cube Houses? — Culture Trip",
+      "url": "https://theculturetrip.com/europe/the-netherlands/articles/what-are-rotterdams-cube-houses"
+    },
+    {
+      "label": "Cube house architecture — MasterClass",
+      "url": "https://www.masterclass.com/articles/cube-house-architecture-guide"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/rotterdam-cube-houses.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Cube_houses_(DSC_3076).jpg",
+    "author": "Trougnouf (Benoit Brummer)",
+    "license": "CC BY 4.0"
+  },
+  "text": {
+    "en": {
+      "title": "Living in a tilted cube",
+      "place": "Cube Houses (Kubuswoningen)",
+      "era": "1984",
+      "hook": "Look up at the yellow cubes balanced on their corners above the street.",
+      "challenge": "Each cube is tipped onto one corner. By how many degrees is it tilted?",
+      "hints": [
+        "It's exactly half of a right angle.",
+        "Between 40 and 50."
+      ],
+      "story": "Architect Piet Blom designed the Kubuswoningen as a village above the city: each house is a cube tilted 45 degrees on a six-sided pillar, and together they were meant to look like a forest. They were finished in 1984, though only 38 of the planned houses were built. People really live inside, with walls that slope in every direction.",
+      "facts": [
+        {
+          "value": "45°",
+          "label": "tilt"
+        },
+        {
+          "value": "1984",
+          "label": "finished"
+        },
+        {
+          "value": "38",
+          "label": "houses built"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Vivre dans un cube penché",
+      "place": "Maisons cubiques (Kubuswoningen)",
+      "era": "1984",
+      "hook": "Levez les yeux vers les cubes jaunes posés sur la pointe au-dessus de la rue.",
+      "challenge": "Chaque cube est basculé sur un coin. De combien de degrés est-il incliné ?",
+      "hints": [
+        "C'est exactement la moitié d'un angle droit.",
+        "Entre 40 et 50."
+      ],
+      "story": "L'architecte Piet Blom imagina les Kubuswoningen comme un village au-dessus de la ville : chaque maison est un cube incliné à 45 degrés sur un pilier à six côtés, et l'ensemble devait évoquer une forêt. Elles furent achevées en 1984, mais seules 38 des maisons prévues furent construites. Des gens y vivent vraiment, entre des murs qui penchent dans tous les sens.",
+      "facts": [
+        {
+          "value": "45°",
+          "label": "d'inclinaison"
+        },
+        {
+          "value": "1984",
+          "label": "achèvement"
+        },
+        {
+          "value": "38",
+          "label": "maisons construites"
+        }
+      ]
+    },
+    "es": {
+      "title": "Vivir en un cubo inclinado",
+      "place": "Casas cubo (Kubuswoningen)",
+      "era": "1984",
+      "hook": "Levanta la vista hacia los cubos amarillos apoyados en una esquina sobre la calle.",
+      "challenge": "Cada cubo está apoyado sobre una esquina. ¿Cuántos grados está inclinado?",
+      "hints": [
+        "Es exactamente la mitad de un ángulo recto.",
+        "Entre 40 y 50."
+      ],
+      "story": "El arquitecto Piet Blom concibió las Kubuswoningen como un pueblo sobre la ciudad: cada casa es un cubo inclinado 45 grados sobre un pilar de seis lados, y el conjunto debía parecer un bosque. Se terminaron en 1984, aunque solo se construyeron 38 de las casas previstas. Vive gente de verdad dentro, entre paredes que se inclinan en todas direcciones.",
+      "facts": [
+        {
+          "value": "45°",
+          "label": "de inclinación"
+        },
+        {
+          "value": "1984",
+          "label": "terminadas"
+        },
+        {
+          "value": "38",
+          "label": "casas construidas"
+        }
+      ]
+    },
+    "ar": {
+      "title": "العيش في مكعّب مائل",
+      "place": "البيوت المكعبة (كوبوسفونينغن)",
+      "era": "1984",
+      "hook": "ارفع عينيك إلى المكعبات الصفراء المرتكزة على زواياها فوق الشارع.",
+      "challenge": "كل مكعب مائل على إحدى زواياه. بكم درجة يميل؟",
+      "hints": [
+        "إنها نصف الزاوية القائمة تمامًا.",
+        "بين 40 و50."
+      ],
+      "story": "تصوّر المعماري بيت بلوم هذه البيوت قرية فوق المدينة: كل بيت مكعب مائل بزاوية 45 درجة فوق عمود سداسي الأضلاع، وأراد أن تبدو معًا كغابة. اكتملت سنة 1984، ولم يُبنَ إلا 38 من البيوت المخطط لها. ويعيش فيها أناس فعلًا، بين جدران تميل في كل اتجاه.",
+      "facts": [
+        {
+          "value": "45°",
+          "label": "زاوية الميل"
+        },
+        {
+          "value": "1984",
+          "label": "الاكتمال"
+        },
+        {
+          "value": "38",
+          "label": "بيتًا مبنيًا"
+        }
+      ]
+    }
+  }
+}

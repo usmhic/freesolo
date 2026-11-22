@@ -1,0 +1,145 @@
+{
+  "id": "cordoba-alcazar",
+  "lat": 37.87722,
+  "lng": -4.78194,
+  "minutes": 10,
+  "points": 150,
+  "free": false,
+  "accepted": [
+    "columbus",
+    "christopher columbus",
+    "colon",
+    "cristobal colon",
+    "colombo",
+    "cristoforo colombo",
+    "colomb",
+    "christophe colomb",
+    "colón",
+    "كولومبوس",
+    "كريستوفر كولومبوس",
+    "كولمبس"
+  ],
+  "rubric": "Correct if the player names Christopher Columbus (Cristóbal Colón).",
+  "sources": [
+    {
+      "label": "Alcázar de los Reyes Cristianos — Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Alc%C3%A1zar_de_los_Reyes_Cristianos"
+    },
+    {
+      "label": "Alcázar de los Reyes Cristianos — Fascinating Spain",
+      "url": "https://www.fascinatingspain.com/articulo/monuments-of-spain/alcazar-de-los-reyes-cristianos-in-cordoba/20230919072626071152.html"
+    }
+  ],
+  "photo": {
+    "url": "/play/photos/cordoba-alcazar.webp",
+    "page": "https://commons.wikimedia.org/wiki/File:Cordoba-6_(48026780817).jpg",
+    "author": "Ajay Suresh from New York, NY, USA",
+    "license": "CC BY 2.0"
+  },
+  "text": {
+    "en": {
+      "title": "Where Columbus pitched his plan",
+      "place": "Alcázar de los Reyes Cristianos",
+      "era": "1486",
+      "hook": "Walk through the Alcázar's long gardens of pools, orange trees and clipped hedges. Look for a statue group of three people.",
+      "challenge": "The statue shows Queen Isabella and King Ferdinand listening to an explorer. Who is he?",
+      "hints": [
+        "He's holding a map or plans in front of the monarchs.",
+        "Six years after this meeting he sailed west, in 1492."
+      ],
+      "story": "Ferdinand and Isabella used this fortress-palace as a base during their war against Granada. In 1486 a Genoese sailor, Christopher Columbus, had his first audience with them here and asked for ships to reach Asia by sailing west. They made him wait: the answer came in 1492. The Alcázar later housed the Inquisition and, after that, a prison.",
+      "facts": [
+        {
+          "value": "1486",
+          "label": "Columbus's audience"
+        },
+        {
+          "value": "1492",
+          "label": "the answer"
+        },
+        {
+          "value": "Inquisition",
+          "label": "later housed here"
+        }
+      ]
+    },
+    "fr": {
+      "title": "Là où Colomb présenta son plan",
+      "place": "Alcazar des Rois chrétiens",
+      "era": "1486",
+      "hook": "Traversez les longs jardins de l'Alcazar : bassins, orangers et haies taillées. Cherchez un groupe de statues de trois personnages.",
+      "challenge": "La statue montre la reine Isabelle et le roi Ferdinand écoutant un explorateur. Qui est-ce ?",
+      "hints": [
+        "Il tient une carte ou des plans devant les monarques.",
+        "Six ans après cette rencontre, il partit vers l'ouest, en 1492."
+      ],
+      "story": "Ferdinand et Isabelle firent de ce palais-forteresse leur base pendant la guerre contre Grenade. En 1486, un marin génois, Christophe Colomb, y obtint sa première audience et demanda des navires pour atteindre l'Asie en naviguant vers l'ouest. Ils le firent attendre : la réponse vint en 1492. L'Alcazar abrita plus tard l'Inquisition, puis une prison.",
+      "facts": [
+        {
+          "value": "1486",
+          "label": "audience de Colomb"
+        },
+        {
+          "value": "1492",
+          "label": "la réponse"
+        },
+        {
+          "value": "Inquisition",
+          "label": "installée ici plus tard"
+        }
+      ]
+    },
+    "es": {
+      "title": "Donde Colón presentó su plan",
+      "place": "Alcázar de los Reyes Cristianos",
+      "era": "1486",
+      "hook": "Recorre los largos jardines del Alcázar: estanques, naranjos y setos recortados. Busca un grupo escultórico de tres personas.",
+      "challenge": "La estatua muestra a la reina Isabel y al rey Fernando escuchando a un explorador. ¿Quién es?",
+      "hints": [
+        "Sostiene un mapa o unos planos ante los monarcas.",
+        "Seis años después de este encuentro navegó hacia el oeste, en 1492."
+      ],
+      "story": "Fernando e Isabel usaron este palacio fortaleza como base durante la guerra contra Granada. En 1486, un marino genovés, Cristóbal Colón, tuvo aquí su primera audiencia con ellos y pidió barcos para llegar a Asia navegando hacia el oeste. Le hicieron esperar: la respuesta llegó en 1492. Más tarde el Alcázar albergó la Inquisición y, después, una cárcel.",
+      "facts": [
+        {
+          "value": "1486",
+          "label": "audiencia de Colón"
+        },
+        {
+          "value": "1492",
+          "label": "la respuesta"
+        },
+        {
+          "value": "Inquisición",
+          "label": "instalada aquí después"
+        }
+      ]
+    },
+    "ar": {
+      "title": "حيث عرض كولومبوس خطته",
+      "place": "قصر الملوك المسيحيين (الكازار)",
+      "era": "1486",
+      "hook": "اعبر حدائق القصر الطويلة: أحواض وأشجار برتقال وأسيجة مشذّبة. ابحث عن مجموعة تماثيل لثلاثة أشخاص.",
+      "challenge": "يُظهر التمثال الملكة إيزابيلا والملك فرديناند يستمعان إلى مستكشف. من هو؟",
+      "hints": [
+        "يحمل خريطة أو مخططات أمام الملكين.",
+        "بعد ست سنوات من هذا اللقاء أبحر غربًا، سنة 1492."
+      ],
+      "story": "اتخذ فرديناند وإيزابيلا هذا القصر-الحصن مقرًا خلال حربهما على غرناطة. وفي 1486 حظي بحّار من جنوة، كريستوفر كولومبوس، بأول لقاء معهما هنا، وطلب سفنًا ليصل إلى آسيا مبحرًا نحو الغرب. فجعلاه ينتظر: جاء الجواب سنة 1492. ولاحقًا صار القصر مقرًا لمحاكم التفتيش، ثم سجنًا.",
+      "facts": [
+        {
+          "value": "1486",
+          "label": "لقاء كولومبوس"
+        },
+        {
+          "value": "1492",
+          "label": "الجواب"
+        },
+        {
+          "value": "محاكم التفتيش",
+          "label": "استقرت هنا لاحقًا"
+        }
+      ]
+    }
+  }
+}

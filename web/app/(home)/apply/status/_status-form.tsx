@@ -87,7 +87,7 @@ function Result({ application }: { application: ApplicationStatus }) {
         {p.body}
       </p>
 
-      <dl className="mx-auto mt-6 grid max-w-sm grid-cols-2 gap-px overflow-hidden rounded-xl border border-fd-border bg-fd-border text-left">
+      <dl className="mx-auto mt-6 grid max-w-sm grid-cols-2 gap-px overflow-hidden rounded-xl border border-fd-border bg-fd-border text-start">
         <div className="bg-fd-background p-3">
           <dt className="text-xs text-fd-muted-foreground">Applicant</dt>
           <dd className="mt-0.5 truncate text-sm font-medium">{application.name}</dd>

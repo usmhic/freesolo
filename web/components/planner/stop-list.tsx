@@ -96,7 +96,7 @@ export function StopList({
                     )}
                   >
                     {leg && (
-                      <p className="mb-2 ml-9 text-[11px] font-medium text-ink-soft">
+                      <p className="mb-2 ms-9 text-[11px] font-medium text-ink-soft">
                         ↓ {formatDistance(leg.distanceMeters)} · {formatDuration(leg.durationSeconds)}
                       </p>
                     )}
