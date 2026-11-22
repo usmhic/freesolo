@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { requireDashboardUser } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import { deleteReview, updateReview } from "../../actions";
 import { ActionButton } from "../../_components/action-button";
 import { EditModal } from "../../_components/edit-modal";

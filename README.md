@@ -155,23 +155,20 @@ Full breakdown in [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## 🔧 Configuration
 
-All Compose configuration lives in the ignored root `.env`. The tracked `.env.example` lists the
-required variable names with intentionally empty values; fill the local copy before starting the
-stack.
+All configuration lives in the ignored root `.env`. Copy [`.env.example`](./.env.example), set the
+three empty secrets (`POSTGRES_PASSWORD`, `JWT_SECRET`, `MINIO_PASSWORD`), and run
+`node scripts/check-env.mjs`. The template is grouped by what each setting is for:
 
-| Variable | Purpose |
+| Group | Variables |
 |---|---|
-| `APP_URL` | Public web URL and allowed browser origin |
-| `SPRING_BOOT_API_URL` | API URL for the web app when run natively (Compose uses its internal network) |
-| `MINIO_PUBLIC_URL` | Public MinIO URL returned for uploaded files |
-| `ADMIN_EMAIL` | Email that receives the administrator role |
-| `POSTGRES_PASSWORD` | PostgreSQL password |
-| `MINIO_PASSWORD` | MinIO password shared with the API |
-| `JWT_SECRET` | Signing secret shared by the API and web app |
+| App | `APP_URL` (public web URL), ports, and the API URL for the web and mobile apps |
+| Database | `POSTGRES_*` and `DATABASE_URL` (for running the API natively) |
+| Sign-in | `JWT_SECRET` (shared by the API and web app) and `ADMIN_EMAIL` (gets the admin role) |
+| File storage | `MINIO_*`; `MINIO_PUBLIC_URL` is returned for uploaded files |
+| Optional | `OPENROUTER_*` (AI answer checking), `ORS_API_KEY` (routing), `RESEND_API_KEY` (email), `EXPO_ACCESS_TOKEN` (push), `GOOGLE_*` / `APPLE_*` (social sign-in) |
 
-⚠️ Change every password and secret before deployment. Optional OpenRouteService, Resend,
-OAuth, and Expo keys are listed at the bottom of the template; other API settings have working
-defaults, documented in [api/README.md](./api/README.md).
+Optional services stay off while their keys are empty. ⚠️ Change every password and secret before
+deployment. Other API settings have working defaults, documented in [api/README.md](./api/README.md).
 
 ## Mobile apps
 

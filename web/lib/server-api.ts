@@ -1,13 +1,11 @@
 /**
- * FreeSolo — Server-side API client for Spring Boot API calls.
- *
- * Used by Next.js server actions and server components to call
- * the Spring Boot REST API with the user's JWT from the cookie.
+ * Signed-in calls to the Spring Boot API from server actions and server
+ * components, carrying the user's JWT from the session cookie.
+ * Browser code uses `browser-api.ts`; cached public reads use `public-api.ts`.
  */
 
 import { cookies } from "next/headers";
-
-const API_URL = process.env.SPRING_BOOT_API_URL ?? "https://api.freesolo.osas.cloud";
+import { API_URL } from "./public-api";
 
 export class ApiError extends Error {
   constructor(
@@ -18,7 +16,7 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiCall<T = unknown>(
+async function apiCall<T = unknown>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {

@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
-import { ArrowLeft, ArrowRight, CalendarDays, Loader2, Lock, Map as MapIcon, Minus, Plus, Sparkles, Trophy } from "lucide-react";
+import { ArrowRight, CalendarDays, Loader2, Lock, Map as MapIcon, Minus, Plus, Sparkles, Trophy } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api, ClientApiError } from "@/lib/client-api";
+import { api, ClientApiError } from "@/lib/browser-api";
 import { RouteMap } from "@/components/map/route-map";
 import { useI18n } from "@/lib/i18n/client";
 import { cityGradient, readGuest, serverGuest, subscribeGuest, type JourneyView, type LessonCard } from "@/lib/play";
@@ -12,6 +12,7 @@ import { LevelPath } from "./level-path";
 import { PlacePhoto } from "./place-photo";
 import { RankChip } from "./star-badge";
 import { usePlayer } from "./use-player";
+import { BackLink } from "@/components/site/back-link";
 
 const TRIP_KEY = "freesolo.play.trips.v2";
 type Trip = { days: number; startDate: string };
@@ -164,7 +165,7 @@ export function CityHub({ cityId, signedIn }: { cityId: string; signedIn: boolea
           </a>
         )}
         <div className="container-page relative z-10 py-8 sm:py-12">
-          <Link href="/play" className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-white/80 hover:text-white"><ArrowLeft className="size-4" /> {t.city.allCities}</Link>
+          <BackLink href="/play" onDark>{t.city.allCities}</BackLink>
           <p className="mt-6 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">{city.country}</p>
           <h1 className="mt-1 font-display text-5xl font-extrabold tracking-tight sm:text-6xl">{city.name}</h1>
           <p className="mt-2 font-display text-xl font-bold text-white/90">{city.tagline}</p>

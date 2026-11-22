@@ -1,5 +1,5 @@
 import { requireAdmin } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
+import { apiGet } from "@/lib/server-api";
 import { setBusinessStatus, updateBusiness, deleteBusiness } from "../../actions";
 import { ActionSelect } from "../../_components/action-select";
 import { ActionButton } from "../../_components/action-button";

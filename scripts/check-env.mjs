@@ -16,11 +16,8 @@ if (existsSync(localPath)) {
   if (JSON.stringify(keys(local)) !== JSON.stringify(expected)) throw new Error('.env and .env.example must have identical keys on identical lines');
   if (local.length !== example.length) throw new Error('Environment file line counts differ');
   const values = parseEnv(local.join('\n'));
-  for (const key of ['POSTGRES_PASSWORD', 'JWT_SECRET', 'BETTER_AUTH_SECRET', 'MINIO_SECRET_KEY', 'MINIO_PASSWORD', 'Jwt__Secret', 'Storage__SecretKey', 'ConnectionStrings__DefaultConnection', 'DATABASE_URL']) {
-    if (key in values && !values[key]) throw new Error(`Set the local development value for ${key}`);
-  }
-  for (const [left, right] of [['JWT_SECRET', 'Jwt__Secret'], ['MINIO_PASSWORD', 'MINIO_SECRET_KEY'], ['MINIO_PASSWORD', 'Storage__SecretKey'], ['RABBITMQ_PASSWORD', 'RabbitMq__Password']]) {
-    if (left in values && right in values && values[left] !== values[right]) throw new Error(`${left} and ${right} must agree`);
+  for (const key of ['POSTGRES_PASSWORD', 'JWT_SECRET', 'MINIO_PASSWORD', 'DATABASE_URL']) {
+    if (!values[key]) throw new Error(`Set the local development value for ${key}`);
   }
 }
 const values = parseEnv(example.join('\n'));

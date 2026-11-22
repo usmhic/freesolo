@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
-  ArrowLeft,
   ArrowRight,
   CalendarDays,
   Check,
@@ -28,6 +27,7 @@ import {
 import { formatDistance, formatDuration, modeLabel } from "@/lib/routing";
 import { HostAvatar, ListingCover, SeatsMeter } from "@/components/listing-card";
 import { TripRouteMap } from "./trip-route-map";
+import { BackLink } from "@/components/site/back-link";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -56,12 +56,7 @@ export default async function TripPage({ params }: Props) {
     <div className="pb-28 lg:pb-0">
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
       <section className="container-page pt-6">
-        <Link
-          href={trip ? "/trips?kind=trip" : "/trips?kind=experience"}
-          className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-ink-soft hover:text-ink"
-        >
-          <ArrowLeft className="size-4" /> All {trip ? "trips" : "experiences"}
-        </Link>
+        <BackLink href={trip ? "/trips?kind=trip" : "/trips?kind=experience"}>All {trip ? "trips" : "experiences"}</BackLink>
 
         <div className="relative mt-4 overflow-hidden rounded-[2rem]">
           <ListingCover

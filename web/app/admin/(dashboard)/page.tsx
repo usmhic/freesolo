@@ -9,8 +9,8 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { requireDashboardUser } from "@/lib/admin";
-import { apiGet } from "@/lib/api-client";
-import { Badge, Card, EmptyState, PageHeader, StatCard, fmtDate, fmtDateTime } from "../_components/ui";
+import { apiGet } from "@/lib/server-api";
+import { Badge, Card, EmptyState, PageHeader, StatCard, fmtDateTime } from "../_components/ui";
 
 export const dynamic = "force-dynamic";
 

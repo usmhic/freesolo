@@ -4,10 +4,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Loader2, Trophy } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api } from "@/lib/client-api";
+import { api } from "@/lib/browser-api";
 import { useI18n } from "@/lib/i18n/client";
 import type { Leaderboard, Standing } from "@/lib/play";
 import { StarOrb, useRankText } from "./star-badge";
+import { SectionHeading } from "@/components/site/section-heading";
 
 const PERIODS = ["all", "week"] as const;
 const MEDALS = ["🥇", "🥈", "🥉"];
@@ -34,10 +35,7 @@ export function RankingScreen({ signedIn }: { signedIn: boolean }) {
 
   return (
     <div className="container-page max-w-3xl py-10 sm:py-14">
-      <p className="eyebrow">{t.ranking.eyebrow}</p>
-      <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-        {t.ranking.titleA} <span className="text-sunset">{t.ranking.titleB}</span>
-      </h1>
+      <SectionHeading as="h1" eyebrow={t.ranking.eyebrow} title={<>{t.ranking.titleA} <span className="text-sunset">{t.ranking.titleB}</span></>} />
       <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <div role="tablist" aria-label={t.ranking.period} className="inline-flex rounded-full bg-fd-muted p-1">
           {PERIODS.map((p) => (

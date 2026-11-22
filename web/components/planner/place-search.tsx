@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { Loader2, MapPin, MousePointerClick, Search } from "lucide-react";
-import { api, ClientApiError } from "@/lib/client-api";
+import { api, ClientApiError } from "@/lib/browser-api";
 import type { PlaceResult } from "./types";
 
 /**

@@ -4,13 +4,14 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ArrowRight, Loader2 } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api } from "@/lib/client-api";
+import { api } from "@/lib/browser-api";
 import { useI18n } from "@/lib/i18n/client";
 import { rankProgress, type CitySummary, type CityView } from "@/lib/play";
 import { NightSky } from "./night-sky";
 import { StarOrb, useRankText } from "./star-badge";
 import { PlacePhoto } from "./place-photo";
 import { usePlayer } from "./use-player";
+import { SectionHeading } from "@/components/site/section-heading";
 
 export function SkyScreen({ signedIn }: { signedIn: boolean }) {
   const { t, num, fill } = useI18n();
@@ -39,12 +40,11 @@ export function SkyScreen({ signedIn }: { signedIn: boolean }) {
     <div className="container-page py-8 sm:py-12">
       <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
         <div className="min-w-0 space-y-6">
-          <div>
-            <p className="eyebrow">My sky</p>
-            <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight">
-              {rank ? <>{t.sky.youAre} <span className="text-sunset">{rankText(rank.key).name}</span></> : t.sky.yourSky}
-            </h1>
-          </div>
+          <SectionHeading
+            as="h1"
+            eyebrow={t.sky.eyebrow}
+            title={rank ? <>{t.sky.youAre} <span className="text-sunset">{rankText(rank.key).name}</span></> : t.sky.yourSky}
+          />
 
           <div className="card p-6">
             <div className="flex items-center gap-5">

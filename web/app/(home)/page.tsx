@@ -19,9 +19,10 @@ import { fill } from "@/lib/i18n/config";
 import { getDictionary, getLang } from "@/lib/i18n/server";
 import { getListings } from "@/lib/listings";
 import { getPlayCities } from "@/lib/play-server";
+import { SectionHeading } from "@/components/site/section-heading";
 
 // Live cities and trips: re-fetched at most once a minute. Next.js needs a
-// literal here; keep it in step with LISTINGS_REVALIDATE_SECONDS.
+// literal here; keep it in step with PUBLIC_REVALIDATE_SECONDS.
 export const revalidate = 60;
 
 const STEP_ICONS = [MapPinned, Footprints, Camera, Sparkles];
@@ -82,16 +83,12 @@ export default async function HomePage() {
       {cities.length > 0 && (
         <section className="border-t border-line bg-surface/50 py-14 sm:py-20">
           <div className="container-page">
-            <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-              <div className="max-w-xl">
-                <p className="eyebrow">{t.citiesEyebrow}</p>
-                <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  {fill(t.citiesTitle, { cities: cities.length, missions: cities.reduce((n, c) => n + c.lessons, 0) })}
-                </h2>
-                <p className="mt-3 text-ink-soft">{t.citiesLead}</p>
-              </div>
-              <Link href="/play" className="btn-outline">{t.allCities} <ArrowRight className="size-4" /></Link>
-            </div>
+            <SectionHeading
+              eyebrow={t.citiesEyebrow}
+              title={fill(t.citiesTitle, { cities: cities.length, missions: cities.reduce((n, c) => n + c.lessons, 0) })}
+              lead={t.citiesLead}
+              action={<Link href="/play" className="btn-outline">{t.allCities} <ArrowRight className="size-4" /></Link>}
+            />
             <div className="rail mt-8 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 xl:grid-cols-5">
               {cities.map((c) => <CityCard key={c.id} city={c} className="rail-item" />)}
             </div>
@@ -102,10 +99,7 @@ export default async function HomePage() {
       {/* ── How it works ─────────────────────────────────────────────────── */}
       <section id="how-it-works" className="scroll-mt-20 py-14 sm:py-24">
         <div className="container-page">
-          <div className="max-w-2xl">
-            <p className="eyebrow">{t.howEyebrow}</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.howTitle}</h2>
-          </div>
+          <SectionHeading eyebrow={t.howEyebrow} title={t.howTitle} />
           <ol className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {t.steps.map(([title, body], i) => {
               const Icon = STEP_ICONS[i];
@@ -129,11 +123,7 @@ export default async function HomePage() {
       {/* ── Star ladder ──────────────────────────────────────────────────── */}
       <section className="bg-navy py-14 text-white sm:py-24 dark:bg-navy-deep">
         <div className="container-page">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sunset">{t.rankEyebrow}</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.rankTitle}</h2>
-            <p className="mt-4 text-white/75">{t.rankLead}</p>
-          </div>
+          <SectionHeading eyebrow={t.rankEyebrow} title={t.rankTitle} lead={t.rankLead} dark />
           <ol className="-mx-4 mt-8 flex snap-x scroll-px-4 gap-3 overflow-x-auto px-4 pb-4 [scrollbar-width:none] sm:mx-0 sm:mt-12 sm:gap-4 sm:px-0 lg:grid lg:grid-cols-7 lg:overflow-visible">
             {RANK_KEYS.map((key, i) => (
               <li key={key} className="flex min-w-32 snap-start flex-col items-center rounded-3xl border border-white/10 bg-white/5 px-3 py-6 text-center">
@@ -155,11 +145,7 @@ export default async function HomePage() {
       {/* ── Why it works ─────────────────────────────────────────────────── */}
       <section className="py-14 sm:py-24">
         <div className="container-page">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow">{t.whyEyebrow}</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.whyTitle}</h2>
-            <p className="mt-4 text-ink-soft">{t.whyLead}</p>
-          </div>
+          <SectionHeading eyebrow={t.whyEyebrow} title={t.whyTitle} lead={t.whyLead} center />
           <div className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {t.why.map(([title, body], i) => {
               const Icon = WHY_ICONS[i];
@@ -180,14 +166,12 @@ export default async function HomePage() {
       {/* ── Group trips (live) ───────────────────────────────────────────── */}
       <section className="border-t border-line bg-surface/50 py-14 sm:py-20">
         <div className="container-page">
-          <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
-            <div className="max-w-xl">
-              <p className="eyebrow">{t.tripsEyebrow}</p>
-              <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight sm:text-4xl">{t.tripsTitle}</h2>
-              <p className="mt-3 text-ink-soft">{t.tripsLead}</p>
-            </div>
-            <Link href="/trips" className="btn-outline">{t.allTrips} <ArrowRight className="size-4" /></Link>
-          </div>
+          <SectionHeading
+            eyebrow={t.tripsEyebrow}
+            title={t.tripsTitle}
+            lead={t.tripsLead}
+            action={<Link href="/trips" className="btn-outline">{t.allTrips} <ArrowRight className="size-4" /></Link>}
+          />
           {trips.length > 0 ? (
             <div className="rail mt-8 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
               {trips.map((trip, i) => (
@@ -220,8 +204,7 @@ export default async function HomePage() {
             </div>
           </div>
           <div>
-            <p className="eyebrow">{t.faqEyebrow}</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold tracking-tight">{t.faqTitle}</h2>
+            <SectionHeading eyebrow={t.faqEyebrow} title={t.faqTitle} />
             <div className="mt-8 divide-y divide-line border-y border-line">
               {t.faq.map(([q, a]) => (
                 <details key={q} className="group py-5">

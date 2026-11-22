@@ -16,6 +16,7 @@ const es: Dict = {
     min: "{n} min",
   },
   nav: {
+    main: "Principal",
     home: "Inicio de FreeSolo",
     play: "Jugar",
     sky: "Mi cielo",

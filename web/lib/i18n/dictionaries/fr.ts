@@ -16,6 +16,7 @@ const fr: Dict = {
     min: "{n} min",
   },
   nav: {
+    main: "Principal",
     home: "Accueil FreeSolo",
     play: "Jouer",
     sky: "Mon ciel",

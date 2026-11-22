@@ -11,7 +11,7 @@ The web front-end for the FreeSolo platform. Serves the public landing page, the
 | Framework | Next.js 16 App Router |
 | Language | TypeScript |
 | Auth | JWT cookie verified via `jose` — issued by the Spring Boot API |
-| API calls | Fetch-based `apiGet/apiPost/apiPatch/apiDelete` in `lib/api-client.ts` |
+| API calls | `lib/server-api.ts` (signed-in server calls), `lib/public-api.ts` (cached public reads), `lib/browser-api.ts` (browser calls through the proxy) |
 | API proxy | Next.js rewrites — `/api/**` → Spring Boot at `SPRING_BOOT_API_URL` |
 | Docs | Fumadocs MDX at `/docs` |
 | UI | Tailwind CSS 4 · lucide-react |
@@ -33,7 +33,7 @@ The Spring Boot API must be running at `SPRING_BOOT_API_URL`.
 
 | Variable | Description |
 |---|---|
-| `SPRING_BOOT_API_URL` | URL of the Spring Boot API. Defaults to `https://api.freesolo.osas.cloud`. Needed at **build** time (baked into the `/api/**` rewrite) *and* at runtime (server-side calls in `lib/api-client.ts`) |
+| `SPRING_BOOT_API_URL` | URL of the Spring Boot API. Defaults to `https://api.freesolo.osas.cloud`. Needed at **build** time (baked into the `/api/**` rewrite) *and* at runtime (server-side calls in `lib/server-api.ts` and `lib/public-api.ts`) |
 | `JWT_SECRET` | **Must match** the API's `JWT_SECRET` — used to verify the auth cookie locally |
 | `NEXT_PUBLIC_MAP_TILE_URL` | Optional. Raster tile URL template (`{z}/{x}/{y}`) for maps. Empty uses OpenStreetMap's public tiles, which are meant for light traffic; set your own provider for production. Inlined at **build** time |
 | `NEXT_PUBLIC_MAP_TILE_DARK_URL` | Optional. Dark-mode tiles. Without it, dark mode tints the light tiles |
@@ -49,7 +49,7 @@ The shared values used by Compose are documented in the root `.env.example`.
 1. The user signs in via `/admin/sign-in`, which calls `POST /api/auth/otp/verify` (or an OAuth callback).
 2. Spring Boot issues a `freesolo-token` HttpOnly cookie containing a signed JWT.
 3. Server components (`lib/auth.ts`) read and verify that cookie using `jose` and the shared `JWT_SECRET`.
-4. Server actions (`lib/api-client.ts`) forward the token to Spring Boot in the `Authorization: Bearer` header.
+4. Server actions (`lib/server-api.ts`) forward the token to Spring Boot in the `Authorization: Bearer` header.
 5. Browser requests to `/api/**` are proxied by Next.js rewrites, so cookies pass through automatically.
 
 ## How the API proxy works
@@ -59,7 +59,7 @@ The shared values used by Compose are documented in the root `.env.example`.
 Next.js resolves `rewrites()` when `next build` runs and writes the result into
 `routes-manifest.json`, so the proxy target is fixed at build time. Pass it as a
 Docker `--build-arg`; a runtime `-e SPRING_BOOT_API_URL` only affects the
-server-side client in `lib/api-client.ts`.
+server-side client in `lib/server-api.ts`.
 
 This means the browser never needs to know the Spring Boot URL, CORS is transparent, and HttpOnly cookies work seamlessly across both layers.
 
@@ -149,17 +149,23 @@ Or use `docker compose up` from the root of the monorepo.
 ```
 web/
 ├── app/
-│   ├── (home)/           Public landing page
-│   ├── admin/
-│   │   ├── sign-in/      OTP + OAuth sign-in page
-│   │   ├── (dashboard)/  Admin / business dashboard pages
-│   │   └── _components/  Shared dashboard UI
+│   ├── (home)/           Public site: landing, play, sky, ranking, trips, apply, sign-in
+│   ├── (app)/planner/    Full-height route planner
+│   ├── admin/            Admin and business dashboard (sign-in, pages, shared UI)
 │   └── docs/             Fumadocs help center
+├── components/
+│   ├── play/             The history game: city hub, level path, mission, sky, ranking
+│   ├── site/             Site shell and shared pieces: header, footer, headings, back links
+│   ├── planner/, map/    Route planner and maps
+│   └── listing-card.tsx  Trip and experience card
 ├── lib/
-│   ├── api-client.ts     Server-side fetch wrapper (injects JWT header)
+│   ├── i18n/             Languages, dictionaries and the client/server helpers
+│   ├── server-api.ts     Signed-in API calls from the server (adds the JWT)
+│   ├── public-api.ts     Cached, fail-soft reads of public endpoints
+│   ├── browser-api.ts    Browser calls through the /api/** proxy
+│   ├── play.ts           Game types and helpers
+│   ├── listings.ts       Trip and experience types and reads
 │   ├── auth.ts           JWT cookie verification via jose
-│   ├── admin.ts          requireAdmin / requireDashboardUser guards
-│   └── marketing.ts      Segment metadata for email campaign UI
-├── content/docs/         MDX help-center articles
-└── components/           Shared React components
+│   └── admin.ts          requireAdmin / requireDashboardUser guards
+└── content/docs/         MDX help-center articles
 ```

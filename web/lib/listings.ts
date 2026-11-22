@@ -2,13 +2,11 @@
  * Public listing data for the marketing site — trips and experiences as the
  * Spring Boot API serves them on its unauthenticated read endpoints.
  *
- * These calls carry no cookie, so pages that use them can be cached (ISR)
- * instead of rendering per request. Every call fails soft: when the API is
- * unreachable (a CI build, a local run without the API) the page renders its
- * empty state rather than erroring.
+ * Reads go through `publicGet`: cached, and empty rather than failing when the
+ * API is unreachable.
  */
 
-const API_URL = process.env.SPRING_BOOT_API_URL ?? "https://api.freesolo.osas.cloud";
+import { publicGet } from "./public-api";
 
 export type ListingKind = "trip" | "experience";
 
@@ -46,22 +44,6 @@ export interface Listing {
   featured: boolean;
   filledSeats: number;
   availableSeats: number;
-}
-
-/** How long a public listing page may be served from cache. */
-export const LISTINGS_REVALIDATE_SECONDS = 60;
-
-async function publicGet<T>(path: string): Promise<T | null> {
-  try {
-    const res = await fetch(`${API_URL}${path}`, {
-      next: { revalidate: LISTINGS_REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(5000),
-    });
-    if (!res.ok) return null;
-    return (await res.json()) as T;
-  } catch {
-    return null;
-  }
 }
 
 export interface TripRoute {

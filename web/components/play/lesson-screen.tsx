@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
-  ArrowLeft, ArrowRight, BookOpen, Camera, Check, Lightbulb, Loader2, Lock, MapPin, Sparkles, Trophy, X,
+  ArrowRight, BookOpen, Camera, Check, Lightbulb, Loader2, Lock, MapPin, Sparkles, Trophy, X,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api, ClientApiError } from "@/lib/client-api";
+import { api, ClientApiError } from "@/lib/browser-api";
 import { useI18n } from "@/lib/i18n/client";
 import { RouteMap } from "@/components/map/route-map";
 import { rankFor, recordGuestSolve, type AttemptResult, type CityView, type LessonView, type Rank } from "@/lib/play";
@@ -14,6 +14,7 @@ import { StarOrb, useRankText } from "./star-badge";
 import { PlacePhoto } from "./place-photo";
 import { StoryCard } from "./story-card";
 import { usePlayer } from "./use-player";
+import { BackLink } from "@/components/site/back-link";
 
 /** Shrinks a phone photo to at most 1280px before it's sent for checking. */
 async function toDataUrl(file: File): Promise<string> {
@@ -139,9 +140,7 @@ export function LessonScreen({ lessonId, signedIn }: { lessonId: string; signedI
   return (
     <Shell>
       <div className="flex items-center justify-between gap-3">
-        <Link href={`/play/${lesson.cityId}`} className="-my-2.5 inline-flex items-center gap-1.5 py-2.5 text-sm font-medium text-ink-soft hover:text-ink">
-          <ArrowLeft className="size-4" /> {fill(t.mission.back, { city: lesson.cityName })}
-        </Link>
+        <BackLink href={`/play/${lesson.cityId}`}>{fill(t.mission.back, { city: lesson.cityName })}</BackLink>
         {idx >= 0 && (
           <span className="flex items-center gap-2 text-xs font-semibold text-ink-soft">
             {fill(t.mission.ofTotal, { n: idx + 1, total: order.length })}

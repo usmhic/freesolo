@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
-import { api } from "@/lib/client-api";
+import { api } from "@/lib/browser-api";
 import {
   guestStardust, rankFor, readGuest, serverGuest, subscribeGuest,
   type PlayerView, type Rank,

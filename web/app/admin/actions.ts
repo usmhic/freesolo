@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/admin";
-import { apiCall, apiDelete, apiPatch, apiPost, ApiError } from "@/lib/api-client";
+import { apiDelete, apiPatch, apiPost, ApiError } from "@/lib/server-api";
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
 

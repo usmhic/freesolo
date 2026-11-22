@@ -15,6 +15,7 @@ const en = {
     min: "{n} min",
   },
   nav: {
+    main: "Main",
     home: "FreeSolo home",
     play: "Play",
     sky: "My sky",

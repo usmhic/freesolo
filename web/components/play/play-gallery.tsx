@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { ArrowRight, Camera, Loader2, MapPinned, Sparkles } from "lucide-react";
-import { api } from "@/lib/client-api";
+import { api } from "@/lib/browser-api";
 import { useI18n } from "@/lib/i18n/client";
 import { readGuest, serverGuest, solvedIn, subscribeGuest, cityGradient, type CitySummary } from "@/lib/play";
 import { CityCard } from "./city-card";
 import { RankChip } from "./star-badge";
 import { usePlayer } from "./use-player";
+import { SectionHeading } from "@/components/site/section-heading";
 
 /** Step one of the game: pick a city. */
 export function PlayGallery({ signedIn }: { signedIn: boolean }) {
@@ -32,29 +33,29 @@ export function PlayGallery({ signedIn }: { signedIn: boolean }) {
 
   return (
     <div className="container-page py-10 sm:py-14">
-      <div className="flex flex-wrap items-end justify-between gap-4">
-        <div className="max-w-2xl">
-          <p className="eyebrow">{t.play.eyebrow}</p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-            {t.play.titleA} <span className="text-sunset">{t.play.titleB}</span>
-          </h1>
-          <p className="mt-3 text-lg text-ink-soft">{t.play.lead}</p>
-        </div>
-        {rank && <RankChip rankKey={rank.key} stardust={player.stardust} />}
-      </div>
+      <SectionHeading
+        as="h1"
+        eyebrow={t.play.eyebrow}
+        title={<>{t.play.titleA} <span className="text-sunset">{t.play.titleB}</span></>}
+        lead={t.play.lead}
+        action={rank && <RankChip rankKey={rank.key} stardust={player.stardust} />}
+      />
 
       {current && (
         <Link
           href={`/play/${current.city.id}`}
-          className="mt-8 flex items-center gap-4 overflow-hidden rounded-3xl p-5 text-white shadow-lg transition hover:shadow-xl"
+          className="mt-8 flex items-center gap-3 overflow-hidden rounded-3xl p-4 text-white shadow-lg transition hover:shadow-xl sm:gap-4 sm:p-5"
           style={{ background: cityGradient(current.city) }}
         >
-          <span className="text-4xl">{current.city.emoji}</span>
+          <span className="text-3xl sm:text-4xl">{current.city.emoji}</span>
           <span className="min-w-0 flex-1">
-            <span className="block text-xs font-semibold uppercase tracking-[0.14em] text-white/80">{t.play.continue}</span>
-            <span className="block font-display text-xl font-extrabold">{current.city.name} · {current.solved}/{current.city.lessons}</span>
+            <span className="block truncate text-xs font-semibold uppercase tracking-[0.14em] text-white/80">{t.play.continue}</span>
+            <span className="block truncate font-display text-xl font-extrabold">{current.city.name} · {current.solved}/{current.city.lessons}</span>
           </span>
-          <span className="btn bg-white px-4 py-2 text-navy">{t.play.continueBtn} <ArrowRight className="size-4" /></span>
+          {/* The whole card is the link; on phones the button shrinks to an arrow. */}
+          <span className="btn size-10 shrink-0 bg-white p-0 text-navy sm:size-auto sm:px-4 sm:py-2">
+            <span className="sr-only sm:not-sr-only">{t.play.continueBtn}</span> <ArrowRight className="size-4" />
+          </span>
         </Link>
       )}
 

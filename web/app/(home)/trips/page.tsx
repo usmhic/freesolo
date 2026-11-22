@@ -4,6 +4,7 @@ import { ArrowRight, Map, Search, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { getListings, type ListingKind } from "@/lib/listings";
 import { EmptyListings, ListingCard } from "@/components/listing-card";
+import { SectionHeading } from "@/components/site/section-heading";
 
 export const metadata: Metadata = {
   title: "Group trips & experiences",
@@ -39,12 +40,12 @@ export default async function TripsPage({ searchParams }: { searchParams: Promis
     <>
       <section className="border-b border-line">
         <div className="container-page pb-8 pt-10 sm:pt-14">
-          <p className="eyebrow">Leaving soon</p>
-          <h1 className="mt-3 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{active.heading}</h1>
-          <p className="mt-3 max-w-2xl text-ink-soft">
-            Hosted by vetted members and capped at twelve travelers. Members ask to join from the app — on
-            most trips, the host picks the group.
-          </p>
+          <SectionHeading
+            as="h1"
+            eyebrow="Leaving soon"
+            title={active.heading}
+            lead="Hosted by vetted members and capped at twelve travelers. Members ask to join from the app — on most trips, the host picks the group."
+          />
 
           <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <form action="/trips" className="relative w-full max-w-md" role="search">

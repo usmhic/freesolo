@@ -22,7 +22,7 @@ import {
   Waypoints,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
-import { api, ClientApiError } from "@/lib/client-api";
+import { api, ClientApiError } from "@/lib/browser-api";
 import { formatDistance, formatDuration, TRAVEL_MODES, type TravelMode } from "@/lib/routing";
 import { RouteMap } from "@/components/map/route-map";
 import { PlaceSearch } from "./place-search";

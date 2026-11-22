@@ -64,7 +64,7 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
           <FreeSoloLogo />
         </Link>
 
-        <nav aria-label="Main" className="ms-6 hidden items-center gap-1 lg:flex">
+        <nav aria-label={t.nav.main} className="ms-6 hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -132,7 +132,7 @@ export function HeaderBar({ user }: { user: HeaderUser }) {
         hidden={!open}
         className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto bg-paper lg:hidden"
       >
-        <nav aria-label="Main" className="container-page flex flex-col gap-1 py-6">
+        <nav aria-label={t.nav.main} className="container-page flex flex-col gap-1 py-6">
           {NAV.map((item) => (
             <Link
               key={item.href}

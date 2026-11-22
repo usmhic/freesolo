@@ -102,11 +102,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Trimmed `.env.example` to the 25 keys a local setup needs, in clear groups.
-  Values that only repeated an API default are gone, and each value now has
-  one name: `STORAGE_URL` is now `MINIO_PUBLIC_URL`, and the native-run script
-  derives `NEXT_PUBLIC_APP_URL`, `FRONTEND_URL` and `MINIO_SECRET_KEY`. Recreate
-  your `.env` from the template.
+- `.env.example` is grouped by purpose (app, database, sign-in, file storage,
+  then one group per optional service), with each service's port next to its
+  settings. Values that only repeated an API default are gone, and each value
+  has one name: `STORAGE_URL` is now `MINIO_PUBLIC_URL`, `MINIO_ACCESS_KEY` is
+  now `MINIO_USER` (pairing with `MINIO_PASSWORD`, like `POSTGRES_USER`), and
+  Compose and the native-run script derive the names each app reads. Compose
+  now uses `POSTGRES_USER` and `MINIO_USER`, and passes the optional email,
+  push and Google/Apple sign-in keys to the API. Recreate your `.env` from the
+  template.
+- Web structure: shared `SectionHeading` and `BackLink` components replace
+  repeated heading and back-link markup, and the API helpers are named for
+  where they run: `lib/server-api.ts` (signed-in server calls, was
+  `api-client.ts`), `lib/browser-api.ts` (was `client-api.ts`) and the new
+  `lib/public-api.ts` (cached public reads, shared by listings and the game).
 - Only approved members can join a listing, and groups cap at twelve
   travelers. Hosts can only list experiences at venues they own.
 - The landing page and help center now lead with group trips.
@@ -128,6 +137,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- The My sky page and the main navigation label are translated (they showed
+  English in every language).
 - The phone menu opens again: it was sized to the header while the header's
   background blur was on, so it never showed.
 - Pages that aren't translated yet (trips, planner, applying, sign-in, legal,
